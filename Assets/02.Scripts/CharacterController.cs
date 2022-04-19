@@ -30,7 +30,8 @@ public class CharacterController : MonoBehaviour
 
 	void Start()
 	{
-		setCharacter(0);
+		//setCharacter(0);
+        animator = GetComponentInChildren<Animator>();
 	}
 
 	void FixedUpdate()
@@ -103,8 +104,8 @@ public class CharacterController : MonoBehaviour
 			// }
 
 			// death
-			if (Input.GetKeyDown("m"))
-				StartCoroutine(selfdestruct());
+			// if (Input.GetKeyDown("m"))
+			// 	StartCoroutine(selfdestruct());
 
             //Leave
             // if (Input.GetKeyDown("l"))
@@ -161,49 +162,49 @@ public class CharacterController : MonoBehaviour
 		isAttacking = false;
 	}
 
-    public IEnumerator selfdestruct()
-    {
-        animator.SetTrigger("isDead");
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        dead = true;
+    // public IEnumerator selfdestruct()
+    // {
+    //     animator.SetTrigger("isDead");
+    //     GetComponent<Rigidbody>().velocity = Vector3.zero;
+    //     dead = true;
 
-        yield return new WaitForSeconds(3f);
-        while (true)
-        {
-            if (Input.anyKeyDown)
-            {
-                Application.LoadLevel(Application.loadedLevelName);
-                yield break;
-            }
-            else
-                yield return 0;
+    //     yield return new WaitForSeconds(3f);
+    //     while (true)
+    //     {
+    //         if (Input.anyKeyDown)
+    //         {
+    //             Application.LoadLevel(Application.loadedLevelName);
+    //             yield break;
+    //         }
+    //         else
+    //             yield return 0;
 
-        }
-    }
-    public void setCharacter(int i)
-	{
-		currentChar += i;
+    //     }
+    // }
+    // public void setCharacter(int i)
+	// {
+	// 	currentChar += i;
 
-		if (currentChar > characters.Length - 1)
-			currentChar = 0;
-		if (currentChar < 0)
-			currentChar = characters.Length - 1;
+	// 	if (currentChar > characters.Length - 1)
+	// 		currentChar = 0;
+	// 	if (currentChar < 0)
+	// 		currentChar = characters.Length - 1;
 
-		foreach (GameObject child in characters)
-		{
-            if (child == characters[currentChar])
-            {
-                child.SetActive(true);
-                if (nameText != null)
-                    nameText.text = child.name;
-            }
-            else
-            {
-                child.SetActive(false);
-            }
-		}
-		animator = GetComponentInChildren<Animator>();
-    }
+	// 	foreach (GameObject child in characters)
+	// 	{
+    //         if (child == characters[currentChar])
+    //         {
+    //             child.SetActive(true);
+    //             if (nameText != null)
+    //                 nameText.text = child.name;
+    //         }
+    //         else
+    //         {
+    //             child.SetActive(false);
+    //         }
+	// 	}
+	// 	animator = GetComponentInChildren<Animator>();
+    // }
 
     public bool ContainsParam(Animator _Anim, string _ParamName)
     {
