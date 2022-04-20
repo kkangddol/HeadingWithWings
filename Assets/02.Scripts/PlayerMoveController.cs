@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterController : MonoBehaviour
+public class PlayerMoveController : MonoBehaviour
 {
 
 	private Animator animator;
@@ -119,48 +119,48 @@ public class CharacterController : MonoBehaviour
         }
 
 	}
-    GameObject target = null;
-    public void tryDamageTarget()
-    {
-        target = null;
-        float targetDistance = minAttackDistance + 1;
-        foreach (var item in targets)
-        {
-            float itemDistance = (item.transform.position - transform.position).magnitude;
-            if (itemDistance < minAttackDistance)
-            {
-                if (target == null) {
-                    target = item;
-                    targetDistance = itemDistance;
-                }
-                else if (itemDistance < targetDistance)
-                {
-                    target = item;
-                    targetDistance = itemDistance;
-                }
-            }
-        }
-        if(target != null)
-        {
-            transform.LookAt(target.transform);
+    // GameObject target = null;
+    // public void tryDamageTarget()
+    // {
+    //     target = null;
+    //     float targetDistance = minAttackDistance + 1;
+    //     foreach (var item in targets)
+    //     {
+    //         float itemDistance = (item.transform.position - transform.position).magnitude;
+    //         if (itemDistance < minAttackDistance)
+    //         {
+    //             if (target == null) {
+    //                 target = item;
+    //                 targetDistance = itemDistance;
+    //             }
+    //             else if (itemDistance < targetDistance)
+    //             {
+    //                 target = item;
+    //                 targetDistance = itemDistance;
+    //             }
+    //         }
+    //     }
+    //     if(target != null)
+    //     {
+    //         transform.LookAt(target.transform);
             
-        }
-    }
-    public void DealDamage(DealDamageComponent comp)
-    {
-        if (target != null)
-        {
-            target.GetComponent<Animator>().SetTrigger("Hit");
-            var hitFX = Instantiate<GameObject>(comp.hitFX);
-            hitFX.transform.position = target.transform.position + new Vector3(0, target.GetComponentInChildren<SkinnedMeshRenderer>().bounds.center.y,0);
-        }
-    }
+    //     }
+    // }
+    // public void DealDamage(DealDamageComponent comp)
+    // {
+    //     if (target != null)
+    //     {
+    //         target.GetComponent<Animator>().SetTrigger("Hit");
+    //         var hitFX = Instantiate<GameObject>(comp.hitFX);
+    //         hitFX.transform.position = target.transform.position + new Vector3(0, target.GetComponentInChildren<SkinnedMeshRenderer>().bounds.center.y,0);
+    //     }
+    // }
 
-    public IEnumerator stopAttack(float length)
-	{
-		yield return new WaitForSeconds(length); 
-		isAttacking = false;
-	}
+    // public IEnumerator stopAttack(float length)
+	// {
+	// 	yield return new WaitForSeconds(length); 
+	// 	isAttacking = false;
+	// }
 
     // public IEnumerator selfdestruct()
     // {
@@ -206,12 +206,12 @@ public class CharacterController : MonoBehaviour
 	// 	animator = GetComponentInChildren<Animator>();
     // }
 
-    public bool ContainsParam(Animator _Anim, string _ParamName)
-    {
-        foreach (AnimatorControllerParameter param in _Anim.parameters)
-        {
-            if (param.name == _ParamName) return true;
-        }
-        return false;
-    }
+    // public bool ContainsParam(Animator _Anim, string _ParamName)
+    // {
+    //     foreach (AnimatorControllerParameter param in _Anim.parameters)
+    //     {
+    //         if (param.name == _ParamName) return true;
+    //     }
+    //     return false;
+    // }
 }

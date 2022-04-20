@@ -5,11 +5,14 @@ using UnityEngine;
 public class ShootingController : MonoBehaviour
 {
 
+    PlayerInfo playerInfo;
+
     public float FireDelay = 1.0f;             // 미사일 발사 딜레이?(미사일이 날라가는 속도x)
     private bool FireState = true;
 
 
     public GameObject bullet;   //Prefabs을 GameObject로 받는다 아니면 transformComponent로 받아도 된다
+    public BulletController bulletController;
     public Transform firePos;
     public AudioClip fireSfx;
     public MeshRenderer muzzleFlash;
@@ -22,6 +25,8 @@ public class ShootingController : MonoBehaviour
 
     void Start()
     {
+        playerInfo = GetComponent<PlayerInfo>();
+
         _audio = GetComponent<AudioSource>();
         muzzleFlash.enabled = false;
 
@@ -48,8 +53,22 @@ public class ShootingController : MonoBehaviour
     }
 
     void Fire(){
+        //Instantiate 방식에 따라 BulletController에서 AddRelativeForce도 약간 바뀜
+
         //총알 생성
-        Instantiate(bullet, firePos.position,firePos.rotation); //불릿을 이위치 이각도에 만들어라
+        //GameObject nowBullet = Instantiate(bullet, firePos.position,firePos.rotation); //불릿을 이위치 이각도에 만들어라
+        //nowBullet.GetComponent<BulletController>().damage = playerInfo.damage;
+        
+        // 총알 생성 컴포넌트 방식
+        //BulletController firedBullet = (BulletController)Instantiate(bulletController, firePos.position, firePos.rotation);
+        //firedBullet.damage = playerInfo.damage;
+
+
+        //총알 생성 제너릭 방식 연습
+        BulletController firedBullet = Instantiate<BulletController>(bulletController);
+        firedBullet.damage = playerInfo.damage;
+        firedBullet.transform.SetPositionAndRotation(firePos.position,firePos.rotation);
+
         //총 소리 발생
         
         //이방식은 소리가 끊어진다
