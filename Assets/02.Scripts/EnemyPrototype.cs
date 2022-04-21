@@ -40,6 +40,9 @@ public class EnemyPrototype : MonoBehaviour
             Vector3 reactVec = transform.position - other.transform.position;
             hp -= other.GetComponent<BulletController>().damage;
 
+            // 이 데미지값을 이용해서 텍스트 표시 호출
+            
+
             StartCoroutine(ReactForAttack(reactVec));
             Destroy(other.gameObject);
         }
