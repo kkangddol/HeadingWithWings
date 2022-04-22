@@ -15,6 +15,8 @@ public class EnemyPrototype : MonoBehaviour
     private Rigidbody rigid;
     SkinnedMeshRenderer skinnedMeshRenderer;
 
+    public GameObject damageText;
+
 
 
     // Start is called before the first frame update
@@ -30,6 +32,11 @@ public class EnemyPrototype : MonoBehaviour
     {
         agent.SetDestination(targetTransform.position);
     }
+
+
+
+    // 사실 이 부분 자체를 투사체로 옮겨야함 피격자는 뭐가 날 때리는지 몰라야함
+    // 그냥 쳐맞는거임
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "ATTACK")
@@ -38,7 +45,10 @@ public class EnemyPrototype : MonoBehaviour
             // 뒤로 넉백 -> 움직임 잠시 멈추고 뒤로 밀어야함
             // 넉백은 공격의 넉백 수치에 따라 다름
             Vector3 reactVec = transform.position - other.transform.position;
-            hp -= other.GetComponent<BulletController>().damage;
+            int damage = (int)other.GetComponent<BulletController>().damage;
+            hp -= damage;
+            GameObject dText = Instantiate(damageText, other.transform.position, other.transform.rotation);
+            dText.GetComponentInChildren<DamageText>().damage = damage;
 
             // 이 데미지값을 이용해서 텍스트 표시 호출
             

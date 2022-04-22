@@ -5,22 +5,27 @@ using TMPro;
 
 public class DamageText : MonoBehaviour
 {
-    TextMeshPro text;
-    Color alpha;
-    private int damage;
-
-    // Start is called before the first frame update
-    void Start()
+    private Canvas canvas;
+    private Camera mainCamera;
+    TextMeshPro textMeshPro;
+    private int damageValue;
+    public int damage
     {
-        text = GetComponent<TextMeshPro>();
-        alpha = text.color;
-        text.text = damage.ToString();
-        Destroy(gameObject, 1.0f);
+        set { damageValue = value;}
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        mainCamera = Camera.main;
+        canvas = GetComponent<Canvas>();
+        canvas.worldCamera = mainCamera;
+        transform.LookAt(transform.position + mainCamera.transform.forward);
+        textMeshPro = GetComponentInChildren<TextMeshPro>();
+        textMeshPro.text = damageValue.ToString();
+        Destroy(gameObject, 1.15f);
+    }
+    void LateUpdate()
+    {
+        transform.LookAt(transform.position + mainCamera.transform.forward);
     }
 }
