@@ -9,7 +9,7 @@ public class EnemyPrototype : MonoBehaviour
     private Animator animator;
     public float hp;
     public float damage;
-    public int knockbackSize = 5;
+
 
     private Transform targetTransform;
     private Rigidbody rigid;
@@ -33,32 +33,17 @@ public class EnemyPrototype : MonoBehaviour
         agent.SetDestination(targetTransform.position);
     }
 
+    public void TakeDamage(Transform hitTr, int damage, int knockbackSize){
+        Vector3 reactVec = transform.position - hitTr.position;
 
+        hp -= damage;
+        GameObject dText = Instantiate(damageText, hitTr.position, hitTr.rotation);
+        dText.GetComponentInChildren<DamageText>().damage = damage;
 
-    // 사실 이 부분 자체를 투사체로 옮겨야함 피격자는 뭐가 날 때리는지 몰라야함
-    // 그냥 쳐맞는거임
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "ATTACK")
-        {
-            // 하얗게 1회 번쩍이면서 -> animator 활용?
-            // 뒤로 넉백 -> 움직임 잠시 멈추고 뒤로 밀어야함
-            // 넉백은 공격의 넉백 수치에 따라 다름
-            Vector3 reactVec = transform.position - other.transform.position;
-            int damage = (int)other.GetComponent<BulletController>().damage;
-            hp -= damage;
-            GameObject dText = Instantiate(damageText, other.transform.position, other.transform.rotation);
-            dText.GetComponentInChildren<DamageText>().damage = damage;
-
-            // 이 데미지값을 이용해서 텍스트 표시 호출
-            
-
-            StartCoroutine(ReactForAttack(reactVec));
-            Destroy(other.gameObject);
-        }
+        StartCoroutine(ReactForAttack(reactVec,knockbackSize));
     }
-
-    IEnumerator ReactForAttack(Vector3 reactVec)
+    
+    IEnumerator ReactForAttack(Vector3 reactVec, int knockbackSize)
     {
         if(hp <= 0)
         {

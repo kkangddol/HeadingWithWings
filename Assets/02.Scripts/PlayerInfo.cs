@@ -9,7 +9,7 @@ public class PlayerInfo : MonoBehaviour
     public float moveSpeed;
     public int minDamage = 1;
     public int maxDamage = 3;
-    public float damage = 1.0f;
+    public int damage = 2;
     public float attackDelay;
 
     
