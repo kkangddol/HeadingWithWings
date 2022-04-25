@@ -3785,7 +3785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69489a438425514085c31c1e2b80df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireDelay: 1
+  FireDelay: 0.3
   bullet: {fileID: 4274656806881653110, guid: f4851d1638ed36f4b9cec12ed304c74a, type: 3}
   bulletController: {fileID: 6632595647307303975, guid: f4851d1638ed36f4b9cec12ed304c74a,
     type: 3}
