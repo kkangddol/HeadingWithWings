@@ -7,6 +7,9 @@ TagManager:
   - PLAYER
   - ATTACK
   - ENEMY
+  - HEALITEM
+  - OXYGENITEM
+  - RANDOMITEM
   layers:
   - Default
   - TransparentFX
