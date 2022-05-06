@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPool : MonoBehaviour
+public class EnemyPrototypePool : MonoBehaviour
 {
-    public static EnemyPool Instance;
+    public static EnemyPrototypePool Instance;
 
     [SerializeField]
     private GameObject poolingObjectPrefab;
@@ -15,7 +15,7 @@ public class EnemyPool : MonoBehaviour
     {
         Instance = this;
 
-        Initialize(10);
+        Initialize(30);
     }
 
     private void Initialize(int initCount)
