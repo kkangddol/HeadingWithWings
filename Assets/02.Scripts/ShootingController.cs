@@ -83,7 +83,7 @@ public class ShootingController : MonoBehaviour
         //_audio.Play();
 
         //소리를 중첩해서내게 한다.
-        _audio.PlayOneShot(fireSfx,0.8f);   //오디오파일,볼륨
+        _audio.PlayOneShot(fireSfx,0.5f);   //오디오파일,볼륨
 
         StartCoroutine(ShowMuzzleFlash());  //코루틴 실행
     }

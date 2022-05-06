@@ -5,23 +5,16 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public int damage;    //총알공격력  //생성할때 ShootingController에서 넘겨받음
-    public float speed = 500.0f;
+    public float speed = 1.0f;
     public int knockbackSize = 5;
-    private Rigidbody rb;
 
-    void Awake()
+    private void Update()
     {
-        //player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
-        //damage = player.damage;
-        rb = GetComponent<Rigidbody>();
-        //rb.AddRelativeForce(Vector3.forward * speed); //일반 instantiate 및 instantiateComponent
-        //rb.AddRelativeForce(transform.forward * speed); //instantiateGeneric
-        //Destroy(gameObject, 10.0f);
+        transform.Translate(Vector3.forward * speed);
     }
 
     public void ActivateBullet()
     {
-        rb.AddRelativeForce(transform.forward * speed);
         Invoke("DestroyBullet", 10.0f);
     }
 
