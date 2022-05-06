@@ -11,7 +11,7 @@ public class ShootingController : MonoBehaviour
     private bool FireState = true;
 
 
-    public GameObject bullet;   //Prefabs을 GameObject로 받는다 아니면 transformComponent로 받아도 된다
+    //public GameObject bullet;   //Prefabs을 GameObject로 받는다 아니면 transformComponent로 받아도 된다
     public BulletController bulletController;
     public Transform firePos;
     public AudioClip fireSfx;
@@ -65,9 +65,16 @@ public class ShootingController : MonoBehaviour
 
 
         //총알 생성 제너릭 방식 연습
-        BulletController firedBullet = Instantiate<BulletController>(bulletController);
+        //BulletController firedBullet = Instantiate<BulletController>(bulletController);
+        //firedBullet.damage = playerInfo.damage;
+        //firedBullet.transform.SetPositionAndRotation(firePos.position,firePos.rotation);
+
+        //오브젝트 풀 방식
+        BulletController firedBullet = BulletPool.GetObject();
+        firedBullet.transform.SetPositionAndRotation(firePos.position, firePos.rotation);
         firedBullet.damage = playerInfo.damage;
-        firedBullet.transform.SetPositionAndRotation(firePos.position,firePos.rotation);
+        firedBullet.ActivateBullet();
+        
 
         //총 소리 발생
         
