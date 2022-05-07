@@ -48,12 +48,10 @@ public class EnemyPrototype : MonoBehaviour
         if(hp <= 0)
         {
             damage = 0;
-            //agent.SetDestination(transform.position);
-            agent.isStopped = true;
+            agent.SetDestination(transform.position);
             skinnedMeshRenderer.material.color = Color.black;
-            //Destroy(gameObject,0.2f);
-            yield return new WaitForSeconds(.1f);
-            EnemyPrototypePool.ReturnObject(this);
+            Destroy(gameObject,0.2f);
+            yield return null;
         }
         reactVec = reactVec.normalized;
         reactVec -= transform.forward;
@@ -64,5 +62,7 @@ public class EnemyPrototype : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         skinnedMeshRenderer.material.color = Color.white;
+
+
     }
 }

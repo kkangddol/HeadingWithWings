@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTakeDamage : MonoBehaviour
+public class PlayerHit : MonoBehaviour
 {
     PlayerInfo playerInfo;
     SkinnedMeshRenderer skinnedMeshRenderer;
