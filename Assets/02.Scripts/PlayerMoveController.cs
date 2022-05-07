@@ -26,6 +26,7 @@ public class PlayerMoveController : MonoBehaviour
     public UnityEngine.UI.Text nameText;
 
     public FloatingJoystick movement;
+    public Transform modelTransform;
 
 
 	void Start()
@@ -53,8 +54,15 @@ public class PlayerMoveController : MonoBehaviour
 				speedOut = 0;
 
 			if (stickDirection != Vector3.zero && !isAttacking)
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(stickDirection, Vector3.up), rotationDegreePerSecond * Time.deltaTime);
-			GetComponent<Rigidbody>().velocity = transform.forward * speedOut * walkspeed + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
+            {
+                modelTransform.rotation = Quaternion.RotateTowards(
+                    modelTransform.rotation, 
+                    Quaternion.LookRotation(stickDirection, Vector3.up), 
+                    rotationDegreePerSecond * Time.deltaTime
+                    );
+            }
+				
+			GetComponent<Rigidbody>().velocity = modelTransform.forward * speedOut * walkspeed + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
 
 			animator.SetFloat("Speed", speedOut);
 		}
