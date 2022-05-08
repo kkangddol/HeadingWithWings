@@ -79,8 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   damage: 1
-  knockbackSize: 5
-  damageText: {fileID: 2300595072904111110, guid: cc5a5cf014803be4394a862a82ee9032,
+  damageText: {fileID: 3997464698092151095, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
     type: 3}
 --- !u!195 &4237877143533212884
 NavMeshAgent:
