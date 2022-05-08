@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 0.05
+  speed: 0.1
   knockbackSize: 5
 --- !u!135 &4274656806881653097
 SphereCollider:

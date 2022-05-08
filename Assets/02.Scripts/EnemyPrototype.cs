@@ -38,7 +38,7 @@ public class EnemyPrototype : MonoBehaviour
 
         hp -= damage;
         GameObject dText = Instantiate(damageText, hitTr.position, hitTr.rotation);
-        dText.GetComponentInChildren<DamageText>().damage = damage;
+        dText.GetComponent<TextPopup>().SetDamage((int)damage);
 
         StartCoroutine(ReactForAttack(reactVec,knockbackSize));
     }
