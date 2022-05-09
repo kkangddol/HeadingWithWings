@@ -922,7 +922,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07caacbdf9ee7be4db61215676f1cacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
   spawnDelay: 1
 --- !u!4 &637549261
 Transform:
@@ -2589,7 +2588,7 @@ GameObject:
   - component: {fileID: 1681275958}
   - component: {fileID: 1681275957}
   m_Layer: 0
-  m_Name: TempCloudTerrain
+  m_Name: CloudTerrainSample
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
