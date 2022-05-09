@@ -8,7 +8,7 @@ public class HeightBar : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    public void SetHeight(int height)
+    public void SetHeight(float height)
     {
         slider.value = height;
 

@@ -10,6 +10,6 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         time += Time.deltaTime;
-        heightBar.SetHeight((int)time);
+        heightBar.SetHeight(time);
     }
 }
