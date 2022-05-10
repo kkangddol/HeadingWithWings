@@ -9,10 +9,15 @@ public class TerrainRandomGenerate : MonoBehaviour
     public float tempGenRatio = 50;
     int repeat = 200;
 
-    private void Start()
+    private void Awake()
     {
         repeat = (int)((tempGenSize*tempGenSize) * (tempGenRatio/100));
-        StartCoroutine("Work");
+        for(int i = 0; i < repeat; i++)
+        {
+            GenerateRandomNature();
+        }
+
+        //StartCoroutine("Work");
     }
 
     IEnumerator Work()
