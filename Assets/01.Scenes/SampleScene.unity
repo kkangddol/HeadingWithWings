@@ -1481,7 +1481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &395409488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4843,7 +4843,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434628912}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d69489a438425514085c31c1e2b80df6, type: 3}
   m_Name: 
@@ -5013,7 +5013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meteorPrefab: {fileID: 1278500337193143494, guid: be29dbccb5fd0f04fb598faa3c57ece5,
     type: 3}
-  meteorSpeed: 100
+  meteorAmount: 10
 --- !u!1001 &1442440333
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
-    private float meteorRadius; 
+
+    private float meteorRadius = 3f;
+    private int meteorPower = 10;
+    private int meteorDamage = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -15,14 +18,24 @@ public class Meteor : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(transform.position.y < 1f)
+        if(transform.position.y < 0.7f)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+            // Particle System을 추가해야함
+
+            Collider[] hitColliders = Physics.OverlapSphere(new Vector3(transform.position.x, 0, transform.position.z), meteorRadius);
+
             foreach (var hitCollider in hitColliders)
             {
-                hitCollider.SendMessage("AddDamage");
+                EnemyPrototype enemy = hitCollider.gameObject.GetComponent<EnemyPrototype>();
+                if (enemy == null)
+                {
+                    continue;
+                }
+
+                enemy.TakeDamage(transform, meteorDamage, meteorPower);
             }
-            Destroy(gameObject);
+            this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            MeteorAttack.ReturnObject(this);
         }
     }
 }
