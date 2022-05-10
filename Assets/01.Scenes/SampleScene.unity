@@ -1481,7 +1481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &395409488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4759,6 +4759,7 @@ GameObject:
   - component: {fileID: 1434628921}
   - component: {fileID: 1434628917}
   - component: {fileID: 1434628919}
+  - component: {fileID: 1434628924}
   - component: {fileID: 1434628920}
   m_Layer: 0
   m_Name: PlayerController
@@ -4842,7 +4843,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434628912}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d69489a438425514085c31c1e2b80df6, type: 3}
   m_Name: 
@@ -4998,6 +4999,21 @@ MonoBehaviour:
     type: 3}
   healAmount: 300
   oxygenAmount: 300
+--- !u!114 &1434628924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434628912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae6da43d1462aa4baf8330fbb4d7239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meteorPrefab: {fileID: 1278500337193143494, guid: be29dbccb5fd0f04fb598faa3c57ece5,
+    type: 3}
+  meteorSpeed: 100
 --- !u!1001 &1442440333
 PrefabInstance:
   m_ObjectHideFlags: 0
