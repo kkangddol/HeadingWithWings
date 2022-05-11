@@ -7,6 +7,8 @@ public class LobbySceneManager : MonoBehaviour
 {
     public void OnClickStartButton()
     {
-        SceneManager.LoadScene("SampleScene");
+        //SceneManager.LoadSceneAsync("MainGameScene");
+        LoadingSceneController.Instance.LoadScene("01TroposphereScene");
+        //SceneManager.LoadScene("01TroposphereScene", LoadSceneMode.Additive);
     }
 }
