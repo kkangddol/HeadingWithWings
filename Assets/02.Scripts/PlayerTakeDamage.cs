@@ -6,7 +6,6 @@ public class PlayerTakeDamage : MonoBehaviour
 {
     PlayerInfo playerInfo;
     SkinnedMeshRenderer skinnedMeshRenderer;
-    public HealthBar healthBar;
 
     private void Start()
     {
@@ -14,23 +13,15 @@ public class PlayerTakeDamage : MonoBehaviour
         skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
-
-    //얘가 맞지말고 때리는쪽이 때리는걸로
-    //여기는 수정 필요함 22/04/24 일단 막짜놓은거라
-    private void OnTriggerStay(Collider other)
+    public void TakeDamage(float damage)
     {
-        if(other.tag == "ENEMY")
-        {
-            playerInfo.hp -= other.GetComponent<EnemyPrototype>().damage;
-            healthBar.SetHealth((int)playerInfo.hp);
-            skinnedMeshRenderer.material.color = Color.red;
-        }
+        playerInfo.HealthPoint = playerInfo.HealthPoint - damage;
+        skinnedMeshRenderer.material.color = Color.red;
+        Invoke("EndTakeDamage", 0.1f);
     }
-    private void OnTriggerExit(Collider other)
+
+    public void EndTakeDamage()
     {
-        if(other.tag == "ENEMY")
-        {
-            skinnedMeshRenderer.material.color = Color.white;
-        }
+        skinnedMeshRenderer.material.color = Color.white;
     }
 }
