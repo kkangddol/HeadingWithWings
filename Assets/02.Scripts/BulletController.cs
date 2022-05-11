@@ -8,13 +8,9 @@ public class BulletController : MonoBehaviour
     public float speed = 1.0f;
     public int knockbackSize = 5;
 
-    private void Update()
-    {
-        transform.Translate(Vector3.forward * speed);
-    }
-
     public void ActivateBullet()
     {
+        GetComponent<TrailRenderer>().enabled = true;
         Invoke("DestroyBullet", 10.0f);
     }
 
@@ -30,9 +26,10 @@ public class BulletController : MonoBehaviour
 
     private void DestroyBullet()
     {
-        
+        CancelInvoke();
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<TrailRenderer>().enabled = false;
         BulletPool.ReturnObject(this);
-
     }
 
     //사용하지않는 update함수는 지워야 최적화된다

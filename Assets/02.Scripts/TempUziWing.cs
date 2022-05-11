@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingController : MonoBehaviour
+public class TempUziWing : MonoBehaviour
 {
 
     PlayerInfo playerInfo;
 
-    public float FireDelay = 1.0f;             // 미사일 발사 딜레이?(미사일이 날라가는 속도x)
+    public float FireDelay;             // 미사일 발사 딜레이?(미사일이 날라가는 속도x)
     private bool FireState = true;
 
 
@@ -73,8 +73,8 @@ public class ShootingController : MonoBehaviour
         BulletController firedBullet = BulletPool.GetObject();
         firedBullet.transform.SetPositionAndRotation(firePos.position, firePos.rotation);
         //firedBullet.damage = playerInfo.damage;
-        firedBullet.damage = 4;
-        firedBullet.GetComponent<Rigidbody>().AddForce(firedBullet.transform.forward * 15f, ForceMode.Impulse);
+        firedBullet.damage = 1;
+        firedBullet.GetComponent<Rigidbody>().AddForce(firedBullet.transform.forward * 20f, ForceMode.Impulse);
         firedBullet.ActivateBullet();
         
 

@@ -1612,6 +1612,8 @@ GameObject:
   - component: {fileID: 968634605}
   - component: {fileID: 968634604}
   - component: {fileID: 968634603}
+  - component: {fileID: 968634612}
+  - component: {fileID: 968634611}
   - component: {fileID: 968634602}
   m_Layer: 0
   m_Name: PlayerController
@@ -1632,7 +1634,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.11
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1728,7 +1730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69489a438425514085c31c1e2b80df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireDelay: 0.7
+  FireDelay: 1
   bulletController: {fileID: 6632595647307303975, guid: f4851d1638ed36f4b9cec12ed304c74a,
     type: 3}
   firePos: {fileID: 785322231}
@@ -1778,8 +1780,8 @@ MonoBehaviour:
   healthBar: {fileID: 1339561799}
   TextPopup: {fileID: 7069438660160322206, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
     type: 3}
-  healAmount: 300
-  oxygenAmount: 300
+  healAmount: 30
+  oxygenAmount: 30
 --- !u!114 &968634607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1847,6 +1849,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &968634611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968634601}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9de7b8fa9cbfe0469271ea305d7b64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireDelay: 0.1
+  bulletController: {fileID: 6632595647307303975, guid: f4851d1638ed36f4b9cec12ed304c74a,
+    type: 3}
+  firePos: {fileID: 785322231}
+  fireSfx: {fileID: 8300000, guid: 3988c7241ff434c2a900f22726ee7a08, type: 3}
+  muzzleFlash: {fileID: 351235102}
+--- !u!114 &968634612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968634601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36439b1175bfab49b19be5e6f8f772d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &987165845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,7 +1961,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 987165848}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 968634612}
+        m_TargetAssemblyTypeName: TempPlayerWingSelect, Assembly-CSharp
+        m_MethodName: OnClickUzi
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &987165848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1950,7 +1994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7ed1a2b7b97ce29488301be3c00c1303, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34ed5e1ce3a644a4f9fd8503f1ccd0dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2831,9 +2875,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1000
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2977,9 +3021,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1000
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3528,7 +3572,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1879023229}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 968634612}
+        m_TargetAssemblyTypeName: TempPlayerWingSelect, Assembly-CSharp
+        m_MethodName: OnClickRevolver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1879023229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3549,7 +3605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7ed1a2b7b97ce29488301be3c00c1303, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb3d44de8556c23498d0dfcd3d89a62d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

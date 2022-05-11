@@ -8,9 +8,9 @@ public class PlayerTakeItem : MonoBehaviour
     public HealthBar healthBar;
     public TextPopup TextPopup;
     [SerializeField]
-    float healAmount = 300.0f;
+    float healAmount;
     [SerializeField]
-    float oxygenAmount = 300.0f;
+    float oxygenAmount;
 
     void Start()
     {
