@@ -1745,14 +1745,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0be653b4a9dce846b871de0f7faefec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkspeed: 5
+  moveSpeed: 5
   gamecam: {fileID: 1263785771}
   camPosition: {x: 14, y: 7}
-  characters: []
-  currentChar: 0
-  targets: []
-  minAttackDistance: 0
-  nameText: {fileID: 0}
   movement: {fileID: 1237369508}
   modelTransform: {fileID: 1495438919}
 --- !u!114 &968634605
@@ -1796,9 +1791,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ed6dffc6527e342bc799eadac2b1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1339561799}
+  maxHealthPoint: 100
+  healthPoint: 100
+  maxOxygen: 0
   oxygen: 0
-  moveSpeed: 0
+  moveSpeed: 5
   minDamage: 1
   maxDamage: 3
   damage: 2
@@ -4875,11 +4872,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 696987615375855404, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: m_TagString
+      value: GAMEMANAGER
+      objectReference: {fileID: 0}
     - target: {fileID: 696987615375855405, guid: e8bd96acb3af0d7419b926e688f59d2e,
         type: 3}
       propertyPath: heightBar
       value: 
       objectReference: {fileID: 1103206448}
+    - target: {fileID: 696987615375855405, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: gameoverUI
+      value: 
+      objectReference: {fileID: 6071691565051270512, guid: 2e647d05da297d849a4190a29ff78d75,
+        type: 3}
     - target: {fileID: 696987615375855406, guid: e8bd96acb3af0d7419b926e688f59d2e,
         type: 3}
       propertyPath: m_RootOrder

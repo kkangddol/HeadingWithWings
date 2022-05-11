@@ -7,13 +7,36 @@ public class PlayerInfo : MonoBehaviour
 {
     private HealthBar healthBar;
     [SerializeField]
-    private float healthPoint = 1000;
+    private float maxHealthPoint;
+    public float MaxHealthPoint
+    {
+        set
+        {
+            maxHealthPoint = value;
+            OnMaxHealthPointChange(maxHealthPoint);
+        }
+        get
+        {
+            return maxHealthPoint;
+        }
+    }
+
+    [SerializeField]
+    private float healthPoint;
     public float HealthPoint
     {
         set
         {
             healthPoint = value;
-            HealthPointEvent(healthPoint);
+            if(healthPoint > maxHealthPoint)
+            {
+                healthPoint = maxHealthPoint;
+            }
+            OnHealthPointChange(healthPoint);
+            if(healthPoint <= 0)
+            {
+                PlayerDie();
+            }
         }
         get
         {
@@ -21,6 +44,9 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
+
+
+    public float maxOxygen;
     public float oxygen;
     public float moveSpeed;
     public int minDamage = 1;
@@ -33,10 +59,19 @@ public class PlayerInfo : MonoBehaviour
         healthBar = GetComponentInChildren<HealthBar>();
     }
 
-    private void HealthPointEvent(float healthPoint)
+    private void OnMaxHealthPointChange(float maxHealthPoint)
+    {
+        healthBar.SetMaxHealth(maxHealthPoint);
+    }
+    private void OnHealthPointChange(float healthPoint)
     {
         healthBar.SetHealth(healthPoint);
     }
     
+    
+    private void PlayerDie()
+    {
+        GameObject.FindWithTag("GAMEMANAGER").GetComponent<GameManager>().OnGameOver();
+    }
     
 }
