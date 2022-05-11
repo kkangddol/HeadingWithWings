@@ -9,8 +9,9 @@ public class Position
     {
         Vector3 randomPos = new Vector3(0.0f, 0.0f, 0.0f);
         randomPos.x = Random.Range(center.x - radius, center.x + radius);
-        float zRange = Mathf.Sqrt(radius*radius - Mathf.Pow(randomPos.x - center.x, 2)) + center.z;
+        float zRange = Mathf.Sqrt(radius*radius - Mathf.Pow(randomPos.x - center.x, 2));
         randomPos.z = Random.Range(-zRange, zRange);
+        randomPos.z += center.z;
 
         return randomPos;
     }
