@@ -10,6 +10,7 @@ TagManager:
   - HEALITEM
   - OXYGENITEM
   - RANDOMITEM
+  - GAMEMANAGER
   layers:
   - Default
   - TransparentFX

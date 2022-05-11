@@ -23,12 +23,12 @@ public class PlayerTakeItem : MonoBehaviour
         {
             TextPopup textPopup = Instantiate<TextPopup>(TextPopup, other.transform.position, other.transform.rotation);
             textPopup.GetComponent<TextPopup>().SetHealAmount((int)healAmount);
-            playerInfo.hp += healAmount;
-            if (playerInfo.hp > 1000.0f)
+            playerInfo.HealthPoint += healAmount;
+            if (playerInfo.HealthPoint > 1000.0f)
             {
-                playerInfo.hp = 1000.0f;
+                playerInfo.HealthPoint = 1000.0f;
             }
-            healthBar.SetHealth((int)playerInfo.hp);
+            healthBar.SetHealth((int)playerInfo.HealthPoint);
 
             Destroy(other.gameObject);
         }
