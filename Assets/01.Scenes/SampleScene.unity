@@ -4861,7 +4861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkspeed: 5
   gamecam: {fileID: 963194225}
-  camPosition: {x: 10, y: 5.5}
+  camPosition: {x: 14, y: 7}
   characters: []
   currentChar: 0
   targets: []
