@@ -5,8 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public int damage;    //총알공격력  //생성할때 ShootingController에서 넘겨받음
-    public float speed = 1.0f;
-    public int knockbackSize = 5;
+    public int knockbackSize;
 
     public void ActivateBullet()
     {
