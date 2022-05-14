@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     public int enemyKillCount;
     private float playerHeight;
+    public float PlayerHeight { get { return playerHeight; } }
 
     
     private float time;
