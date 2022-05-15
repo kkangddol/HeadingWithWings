@@ -6,15 +6,14 @@ using TMPro;
 public class HeightbarText : MonoBehaviour
 {
     private TMP_Text heightbarText;
-    private float playerHeight = 0.0f;
+    private float playerHeight;
     private void Start()
     {
         heightbarText = GetComponent<TMP_Text>();
-        playerHeight = GameManager.Instance.PlayerHeight;
     }
-    private void Update()
+    private void LateUpdate()
     {
-
-        heightbarText.text = $"{playerHeight}m >";
+        playerHeight = GameManager.Instance.PlayerHeight;
+        heightbarText.text = $"{(int)playerHeight}m >";
     }
 }
