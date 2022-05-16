@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IWingBulletHandler
+interface IWingBullet
 {
     //투사체를 발사하는 함수를 구현해야함.
+    float FireDelay{get; set;}
     void Fire();
-    IEnumerator FireCylce();
+    IEnumerator FireCylce(float fireDelay);
 }
