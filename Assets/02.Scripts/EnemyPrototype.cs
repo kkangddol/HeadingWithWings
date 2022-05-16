@@ -8,7 +8,7 @@ public class EnemyPrototype : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
     public float hp;
-    public float damage;
+    public float enemyDamage;
 
 
     private Transform targetTransform;
@@ -38,7 +38,7 @@ public class EnemyPrototype : MonoBehaviour
 
         hp -= damage;
         GameObject dText = Instantiate(damageText, hitTr.position, hitTr.rotation);
-        dText.GetComponentInChildren<DamageText>().damage = damage;
+        dText.GetComponent<TextPopup>().SetDamage((int)damage);
 
         StartCoroutine(ReactForAttack(reactVec,knockbackSize));
     }
@@ -47,7 +47,7 @@ public class EnemyPrototype : MonoBehaviour
     {
         if(hp <= 0)
         {
-            damage = 0;
+            enemyDamage = 0;
             //agent.SetDestination(transform.position);
             agent.isStopped = true;
             skinnedMeshRenderer.material.color = Color.black;
@@ -64,5 +64,20 @@ public class EnemyPrototype : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         skinnedMeshRenderer.material.color = Color.white;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "PLAYER")
+        {
+            other.GetComponent<PlayerTakeDamage>().TakeDamage(enemyDamage);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "PLAYER")
+        {
+            other.GetComponent<PlayerTakeDamage>().EndTakeDamage();
+        }
     }
 }

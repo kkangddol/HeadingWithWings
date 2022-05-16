@@ -4,12 +4,13 @@ using UnityEngine;
  
 public class EnemySpawn : MonoBehaviour
 {
-    public Transform playerTransform;
+    private Transform playerTransform;
     public float spawnDelay = 1.0f;
 
     private void Start()
     {
         StartCoroutine("SpawnPrototype");
+        playerTransform = GameObject.FindGameObjectWithTag("PLAYER").GetComponent<Transform>();
     }
 
     private Vector3 GetRandomPosition()
