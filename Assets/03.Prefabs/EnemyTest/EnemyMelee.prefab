@@ -9,12 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4237877143533212886}
+  - component: {fileID: -4225746368814994475}
+  - component: {fileID: -5560992901786184591}
+  - component: {fileID: -8774350516094986939}
+  - component: {fileID: -9155657901927084605}
   - component: {fileID: 4237877143533212887}
   - component: {fileID: 4237877143533212904}
-  - component: {fileID: 4237877143533212885}
   - component: {fileID: 4237877143533212884}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemyMelee
   m_TagString: ENEMY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +30,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4237877143533212905}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 0, z: 4.89}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36,6 +39,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4225746368814994475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4237877143533212905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99938abae337d214188f61b69e2cd87d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoint: 0
+  enemyDamage: 0
+  targetTransform: {fileID: 0}
+--- !u!114 &-5560992901786184591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4237877143533212905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e124dac16534f4f95969103fb09c2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageText: {fileID: 3997464698092151095, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
+    type: 3}
+--- !u!114 &-8774350516094986939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4237877143533212905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09745796a409bec478246d12e2b6be10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-9155657901927084605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4237877143533212905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa91984b4de2574a9a92ba5bebb756c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &4237877143533212887
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -65,22 +121,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.31
   m_Center: {x: 0, y: 1.03, z: 0}
---- !u!114 &4237877143533212885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4237877143533212905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6a10b6625f374047a32580c95e2e5a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 4
-  enemyDamage: 1
-  damageText: {fileID: 3997464698092151095, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
-    type: 3}
 --- !u!195 &4237877143533212884
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -180,6 +220,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 137954050844376528, guid: 312b31977ed9b2d48a14849ebb8c7fb3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c5e94a92c0c35e24e92f1034213c57bb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 312b31977ed9b2d48a14849ebb8c7fb3, type: 3}
 --- !u!4 &4233591034726401018 stripped

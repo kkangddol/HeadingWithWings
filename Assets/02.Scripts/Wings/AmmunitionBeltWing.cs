@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class AmmunitionBeltWing : Wings, IWingBullet, IWingDetectEnemy
+public class AmmunitionBeltWing : Wings, IWingProjectile, IWingDetectEnemy
 {
     public int damage;
     public Bullets bullet;
@@ -11,7 +11,7 @@ public class AmmunitionBeltWing : Wings, IWingBullet, IWingDetectEnemy
 
     private void Start()
     {
-        StartCoroutine(FireCylce(fireDelay));
+        StartCoroutine(FireCylce());
     }
     public void Fire()
     {
@@ -21,7 +21,7 @@ public class AmmunitionBeltWing : Wings, IWingBullet, IWingDetectEnemy
         newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * 15f, ForceMode.Impulse);
     }
 
-    public IEnumerator FireCylce(float fireDelay)
+    public IEnumerator FireCylce()
     {
         while(true)
         {

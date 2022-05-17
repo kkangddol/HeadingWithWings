@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Bullet_AmmunitionBelt : Bullets
 {
+    const string ENEMY = "ENEMY";
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "ENEMY")
+        if(other.tag == ENEMY)
         {
-            other.GetComponent<EnemyPrototype>().TakeDamage(transform, damage, knockbackSize);
+            other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, 10);
             Destroy(gameObject);
         }
     }

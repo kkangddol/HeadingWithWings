@@ -1,54 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public abstract class Enemies : MonoBehaviour
+public class EnemyTakeDamage : MonoBehaviour
 {
-    const string PLAYER = "PLAYER";
-    private NavMeshAgent agent;
-    private Animator animator;
-    public int healthPoint;
-    public float enemyDamage;
-    private Transform targetTransform;
+    private EnemyInfo enemyInfo;
     private Rigidbody rigid;
     SkinnedMeshRenderer skinnedMeshRenderer;
-
     public GameObject damageText;
 
-    private bool isDead;
-
-
-
-    void Start()
+    private void Start()
     {
         Initialize();
-        StartCoroutine(EnemySetDestination());
     }
 
-    void Initialize()
+    private void Initialize()
     {
-        agent = GetComponent<NavMeshAgent>();
-        targetTransform = GameObject.FindGameObjectWithTag(PLAYER).GetComponent<Transform>();
-        animator = GetComponentInChildren<Animator>();
+        enemyInfo = GetComponent<EnemyInfo>();
         rigid = GetComponent<Rigidbody>();
         skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        isDead = false;
     }
-
-    IEnumerator EnemySetDestination()
-    {
-        while(!isDead)
-        {
-            yield return null;
-            agent.SetDestination(targetTransform.position);
-        }
-    }
-
     public void TakeDamage(Transform hitTr, int damage, int knockbackSize)
     {
         Vector3 reactVec = transform.position - hitTr.position;
-        healthPoint -= damage;
+        enemyInfo.healthPoint -= damage;
         GameObject dText = Instantiate(damageText, hitTr.position, hitTr.rotation);
         dText.GetComponent<TextPopup>().SetDamage((int)damage);
 
@@ -67,24 +42,20 @@ public abstract class Enemies : MonoBehaviour
         reactVec -= transform.forward;
         rigid.AddForce(reactVec * knockbackSize, ForceMode.Impulse);
 
+        Color tempColor = skinnedMeshRenderer.material.color;
+
         skinnedMeshRenderer.material.color = Color.red;
 
         yield return new WaitForSeconds(0.1f);
 
-        skinnedMeshRenderer.material.color = Color.white;
+        skinnedMeshRenderer.material.color = tempColor;
     }
 
     void CheckDead()
     {
-        if(healthPoint <= 0)
+        if(enemyInfo.healthPoint <= 0)
         {
-            isDead = true;
-            enemyDamage = 0;
-            agent.isStopped = true;
-            skinnedMeshRenderer.material.color = Color.black;
-            ///EnemyPrototypePool.ReturnObject(this);
-            Destroy(gameObject, 0.1f);
+            enemyInfo.IsDead = true;
         }
     }
-
 }
