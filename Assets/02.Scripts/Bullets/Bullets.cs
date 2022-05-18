@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class Bullets : MonoBehaviour
 {
     public int damage;
-    public int knockbackSize;
+    public float knockbackSize;
 }

@@ -33,9 +33,11 @@ public class EnemyMovement : MonoBehaviour
     public void StopMove()
     {
         StopCoroutine(EnemySetDestination());
+        agent.isStopped = true;
     }
     public void ResumeMove()
     {
+        agent.isStopped = false;
         StartCoroutine(EnemySetDestination());
     }
 }

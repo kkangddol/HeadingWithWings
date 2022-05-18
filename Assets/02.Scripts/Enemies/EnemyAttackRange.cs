@@ -9,6 +9,8 @@ public class EnemyAttackRange : MonoBehaviour
     public EnemyProjectile enemyProjectile;
     public float attackRange;
     public float fireDelay;
+    private bool isAttacking;
+    private Coroutine fireCoroutine;
     private bool isInRange;
     public bool IsInRange
     {
@@ -19,23 +21,25 @@ public class EnemyAttackRange : MonoBehaviour
         set
         {
             isInRange = value;
-            if(isInRange == true)
+
+            if(isInRange == true && fireCoroutine == null)
             {
                 enemyMovement.StopMove();
-                StartCoroutine(FireCycle());
+                fireCoroutine = StartCoroutine(FireCycle());
             }
-            else
+            else if(isInRange == false)
             {
-                StopCoroutine(FireCycle());
                 enemyMovement.ResumeMove();
+                fireCoroutine = null;
             }
+            
         }
     }
-    private Transform targetTransform;
 
     private void Start()
     {
         Initialize();
+        StartCoroutine(CheckRange());
     }
 
     void Initialize()
@@ -43,6 +47,8 @@ public class EnemyAttackRange : MonoBehaviour
         enemyInfo = GetComponent<EnemyInfo>();
         enemyMovement = GetComponent<EnemyMovement>();
         isInRange = false;
+        isAttacking = false;
+        fireCoroutine = null;
     }
 
     IEnumerator CheckRange()
@@ -50,7 +56,7 @@ public class EnemyAttackRange : MonoBehaviour
         while(!enemyInfo.IsDead)
         {
             yield return null;
-            if(Vector3.Distance(transform.position, targetTransform.position) <= attackRange)
+            if(Vector3.Distance(transform.position, enemyInfo.targetTransform.position) <= attackRange)
             {
                 IsInRange = true;
             }
@@ -63,6 +69,7 @@ public class EnemyAttackRange : MonoBehaviour
 
     void Fire()
     {
+        transform.LookAt(enemyInfo.targetTransform);
         EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, transform.rotation);
         newProjectile.transform.LookAt(enemyInfo.targetTransform);
         newProjectile.damage = enemyInfo.enemyDamage;
@@ -73,8 +80,19 @@ public class EnemyAttackRange : MonoBehaviour
     {
         while(isInRange)
         {
-            yield return new WaitForSeconds(fireDelay);
-            Fire();
+            yield return null;
+            if(!isAttacking)
+            {
+                isAttacking = true;
+                Fire();
+                StartCoroutine(FireDelay());
+            }
         }
+    }
+
+    IEnumerator FireDelay()
+    {
+        yield return new WaitForSeconds(fireDelay);
+        isAttacking = false;
     }
 }

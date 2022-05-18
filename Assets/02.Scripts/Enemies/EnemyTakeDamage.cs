@@ -20,7 +20,7 @@ public class EnemyTakeDamage : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
-    public void TakeDamage(Transform hitTr, int damage, int knockbackSize)
+    public void TakeDamage(Transform hitTr, int damage, float knockbackSize)
     {
         Vector3 reactVec = transform.position - hitTr.position;
         enemyInfo.healthPoint -= damage;
@@ -30,13 +30,13 @@ public class EnemyTakeDamage : MonoBehaviour
         StartCoroutine(ProcessForDamage(reactVec,knockbackSize));
     }
 
-    IEnumerator ProcessForDamage(Vector3 reactVec, int knockbackSize)
+    IEnumerator ProcessForDamage(Vector3 reactVec, float knockbackSize)
     {
         yield return ReactForDamage(reactVec, knockbackSize);
         CheckDead();
     }
 
-    IEnumerator ReactForDamage(Vector3 reactVec, int knockbackSize)
+    IEnumerator ReactForDamage(Vector3 reactVec, float knockbackSize)
     {
         reactVec = reactVec.normalized;
         reactVec -= transform.forward;

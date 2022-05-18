@@ -9,7 +9,7 @@ public class Bullet_AmmunitionBelt : Bullets
     {
         if(other.tag == ENEMY)
         {
-            other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, 10);
+            other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
             Destroy(gameObject);
         }
     }

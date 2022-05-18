@@ -6038,11 +6038,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 582708578454491437, guid: 9c5a3280f97dd6a4291c1b42120ba5a7,
+        type: 3}
+      propertyPath: enemyDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 582708578454491437, guid: 9c5a3280f97dd6a4291c1b42120ba5a7,
+        type: 3}
+      propertyPath: healthPoint
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586540158141703859, guid: 9c5a3280f97dd6a4291c1b42120ba5a7,
+        type: 3}
+      propertyPath: fireDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1586540158141703859, guid: 9c5a3280f97dd6a4291c1b42120ba5a7,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1586540158141703859, guid: 9c5a3280f97dd6a4291c1b42120ba5a7,
+        type: 3}
+      propertyPath: attackRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586540158141703859, guid: 9c5a3280f97dd6a4291c1b42120ba5a7,
+        type: 3}
+      propertyPath: enemyProjectile
+      value: 
+      objectReference: {fileID: -7581937572539301455, guid: 8254e0bdafc8d6345ac5e621e46bc0d6,
+        type: 3}
     - target: {fileID: 4237877143533212886, guid: 9c5a3280f97dd6a4291c1b42120ba5a7,
         type: 3}
       propertyPath: m_RootOrder
