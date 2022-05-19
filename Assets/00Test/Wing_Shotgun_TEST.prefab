@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4040734005815535507}
   - component: {fileID: 7776544746516416325}
   - component: {fileID: 1742004812528935372}
+  - component: {fileID: -3756797001133290209}
+  - component: {fileID: -5760390051731167041}
   m_Layer: 0
   m_Name: Wing_Shotgun_TEST
   m_TagString: Untagged
@@ -83,3 +85,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-3756797001133290209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564713079278996076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cd89d5dc396f04785c69d83320cb51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: -870538336479471407, guid: 115bba4fe49bad04d9da4b2957328b73, type: 3}
+  damage: 1
+  fireDelay: 1
+  bulletSpeed: 15
+  maxSpread: 0.3
+--- !u!114 &-5760390051731167041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564713079278996076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91097c8145ef964296701e46fbbba84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

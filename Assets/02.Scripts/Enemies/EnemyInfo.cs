@@ -40,6 +40,7 @@ public class EnemyInfo : MonoBehaviour
 
     private void EnemyDie()
     {
+        GameManager.Instance.enemyKillCount++;
         enemyDamage = 0;
         GetComponent<NavMeshAgent>().isStopped = true;
         GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.black;

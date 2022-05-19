@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Shotgun : MonoBehaviour
+public class Bullet_Shotgun : Bullets
 {
-    // Start is called before the first frame update
-    void Start()
+    const string ENEMY = "ENEMY";
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(other.tag == ENEMY)
+        {
+            other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
+            Destroy(gameObject);
+        }
     }
 }

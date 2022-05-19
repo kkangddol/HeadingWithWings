@@ -6,7 +6,8 @@ public class EnemyTakeDamage : MonoBehaviour
 {
     private EnemyInfo enemyInfo;
     private Rigidbody rigid;
-    SkinnedMeshRenderer skinnedMeshRenderer;
+    private SkinnedMeshRenderer skinnedMeshRenderer;
+    private Color originalColor;
     public GameObject damageText;
 
     private void Start()
@@ -19,12 +20,13 @@ public class EnemyTakeDamage : MonoBehaviour
         enemyInfo = GetComponent<EnemyInfo>();
         rigid = GetComponent<Rigidbody>();
         skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        originalColor = skinnedMeshRenderer.material.color;
     }
     public void TakeDamage(Transform hitTr, int damage, float knockbackSize)
     {
         Vector3 reactVec = transform.position - hitTr.position;
         enemyInfo.healthPoint -= damage;
-        GameObject dText = Instantiate(damageText, hitTr.position, hitTr.rotation);
+        GameObject dText = Instantiate(damageText, hitTr.position + Vector3.up, hitTr.rotation);
         dText.GetComponent<TextPopup>().SetDamage((int)damage);
 
         StartCoroutine(ProcessForDamage(reactVec,knockbackSize));
@@ -42,13 +44,11 @@ public class EnemyTakeDamage : MonoBehaviour
         reactVec -= transform.forward;
         rigid.AddForce(reactVec * knockbackSize, ForceMode.Impulse);
 
-        Color tempColor = skinnedMeshRenderer.material.color;
-
         skinnedMeshRenderer.material.color = Color.red;
 
         yield return new WaitForSeconds(0.1f);
 
-        skinnedMeshRenderer.material.color = tempColor;
+        skinnedMeshRenderer.material.color = originalColor;
     }
 
     void CheckDead()

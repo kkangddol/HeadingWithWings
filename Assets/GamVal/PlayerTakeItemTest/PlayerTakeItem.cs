@@ -21,7 +21,7 @@ public class PlayerTakeItem : MonoBehaviour
     {
         if (other.CompareTag("HEALITEM"))
         {
-            TextPopup textPopup = Instantiate<TextPopup>(TextPopup, other.transform.position, other.transform.rotation);
+            TextPopup textPopup = Instantiate<TextPopup>(TextPopup, other.transform.position + Vector3.up, other.transform.rotation);
             textPopup.GetComponent<TextPopup>().SetHealAmount((int)healAmount);
             playerInfo.HealthPoint += healAmount;
             if (playerInfo.HealthPoint > playerInfo.MaxHealthPoint)
@@ -34,7 +34,7 @@ public class PlayerTakeItem : MonoBehaviour
         }
         else if (other.CompareTag("OXYGENITEM"))
         {
-            TextPopup textPopup = Instantiate<TextPopup>(TextPopup, other.transform.position, other.transform.rotation);
+            TextPopup textPopup = Instantiate<TextPopup>(TextPopup, other.transform.position + Vector3.up, other.transform.rotation);
             textPopup.GetComponent<TextPopup>().SetOxygenAmount((int)oxygenAmount);
             playerInfo.oxygen += oxygenAmount;
             if (playerInfo.oxygen > playerInfo.maxOxygen)

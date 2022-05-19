@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8576311173104196022}
   - component: {fileID: 8576311173104195977}
   - component: {fileID: 2971231220245932166}
+  - component: {fileID: 4551235772251962712}
   m_Layer: 0
   m_Name: Wing_AmmunitionBelt_TEST
   m_TagString: Untagged
@@ -96,6 +97,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d3471244778134180da2db7f4ea91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
   bullet: {fileID: 7899013379030827032, guid: 00a7a5a1c55f1b24bb2e8c6900b2cf2e, type: 3}
+  damage: 2
   fireDelay: 0.5
+  bulletSpeed: 15
+--- !u!114 &4551235772251962712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576311173104195976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91097c8145ef964296701e46fbbba84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

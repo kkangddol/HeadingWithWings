@@ -14,7 +14,7 @@ public class PlayerMoveController : MonoBehaviour
 	private float rotationDegreePerSecond = 1000;
 	private bool isAttacking = false;
 
-	public GameObject gamecam;
+	public Camera gamecam;
 	public Vector2 camPosition;
 
     public FloatingJoystick movement;
@@ -26,6 +26,7 @@ public class PlayerMoveController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
         moveSpeed = playerInfo.moveSpeed;
+		gamecam = Camera.main;
 	}
 
 	void FixedUpdate()

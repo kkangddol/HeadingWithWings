@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99938abae337d214188f61b69e2cd87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 0
-  enemyDamage: 0
+  healthPoint: 100
+  enemyDamage: 1
   targetTransform: {fileID: 0}
 --- !u!114 &1586540158141703859
 MonoBehaviour:
@@ -66,9 +66,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64d53876b5b7704986d0d0f37a0736c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
-  attackRange: 0
-  fireDelay: 0
+  enemyProjectile: {fileID: -7581937572539301455, guid: 8254e0bdafc8d6345ac5e621e46bc0d6,
+    type: 3}
+  attackRange: 5
+  fireDelay: 1
 --- !u!114 &5783187951236476488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +124,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.31
-  m_Center: {x: 0, y: 1.03, z: 0}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!195 &4237877143533212884
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -179,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4303844821561524, guid: 312b31977ed9b2d48a14849ebb8c7fb3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4303844821561524, guid: 312b31977ed9b2d48a14849ebb8c7fb3, type: 3}
       propertyPath: m_LocalPosition.z
