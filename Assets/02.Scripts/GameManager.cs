@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
 
         // Data 불러오기
         instance.data.Init();
+        Debug.Log(instance.data.StageMonsterGenerateDict[3].bigwaveGenerateInfo.monsterGenerateInfo.id[3]);
     }
     
     private void Update()
