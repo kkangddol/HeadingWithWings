@@ -6,6 +6,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
+
+    private DataManager data = new DataManager();
+    public static DataManager Data { get { return Instance.data; } }
+
     public static GameManager Instance
     {
         get
@@ -61,6 +65,10 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         isGameOver = false;
+
+        // Data 불러오기
+        instance.data.Init();
+        Debug.Log(instance.data.StageMonsterGenerateDict[3].bigwaveGenerateInfo.monsterGenerateInfo.id[3]);
     }
     
     private void Update()
