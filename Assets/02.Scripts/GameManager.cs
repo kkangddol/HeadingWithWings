@@ -50,10 +50,16 @@ public class GameManager : MonoBehaviour
 
     public int enemyKillCount;
     private float playerHeight;
-    public float PlayerHeight { get { return playerHeight; } }
+    public float PlayerHeight { 
+        set { playerHeight = value; }
+        get { return playerHeight; } 
+    }
 
     
     private float time;
+    public float tempTime{
+        get {return time;}
+    }
 
     private void Awake()
     {
@@ -74,7 +80,9 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         time += Time.deltaTime;
-        heightBar.SetHeight(time);
+        playerHeight = time;
+
+        heightBar.SetHeight(playerHeight);
     }
 
     private static GameManager Create()
