@@ -71,7 +71,8 @@ public class PlayerInfo : MonoBehaviour
     
     private void PlayerDie()
     {
-        GameObject.FindWithTag("GAMEMANAGER").GetComponent<GameManager>().OnGameOver();
+        // GameObject.FindWithTag("GAMEMANAGER").GetComponent<GameManager>().OnGameOver();
+        GameManager.Instance.OnGameOver();
     }
     
 }
