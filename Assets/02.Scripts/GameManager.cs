@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     private DataManager data = new DataManager();
     public static DataManager Data { get { return Instance.data; } }
 
+    public Action<int> stageEvents;
+    private bool eventCall = false;
+
     public static GameManager Instance
     {
         get
@@ -74,7 +77,7 @@ public class GameManager : MonoBehaviour
 
         // Data 불러오기
         instance.data.Init();
-        Debug.Log(instance.data.StageMonsterGenerateDict[3].bigwaveGenerateInfo.monsterGenerateInfo.id[3]);
+        // Debug.Log(instance.data.StageMonsterGenerateDict[3].bigwaveGenerateInfo.monsterGenerateInfo.id[3]);
     }
     
     private void Update()
@@ -83,6 +86,12 @@ public class GameManager : MonoBehaviour
         playerHeight = time;
 
         heightBar.SetHeight(playerHeight);
+
+        if(playerHeight > 5 && eventCall == false)
+        {
+            eventCall = true;
+            stageEvents.Invoke(1);
+        }
     }
 
     private static GameManager Create()
