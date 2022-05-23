@@ -8,9 +8,9 @@ public class PlayerTakeItem : MonoBehaviour
     public HealthBar healthBar;
     public TextPopup TextPopup;
     [SerializeField]
-    float healAmount = 300.0f;
+    float healAmount;
     [SerializeField]
-    float oxygenAmount = 300.0f;
+    float oxygenAmount;
 
     void Start()
     {
@@ -21,12 +21,12 @@ public class PlayerTakeItem : MonoBehaviour
     {
         if (other.CompareTag("HEALITEM"))
         {
-            TextPopup textPopup = Instantiate<TextPopup>(TextPopup, other.transform.position, other.transform.rotation);
+            TextPopup textPopup = Instantiate<TextPopup>(TextPopup, other.transform.position + Vector3.up, other.transform.rotation);
             textPopup.GetComponent<TextPopup>().SetHealAmount((int)healAmount);
             playerInfo.HealthPoint += healAmount;
-            if (playerInfo.HealthPoint > 1000.0f)
+            if (playerInfo.HealthPoint > playerInfo.MaxHealthPoint)
             {
-                playerInfo.HealthPoint = 1000.0f;
+                playerInfo.HealthPoint = playerInfo.MaxHealthPoint;
             }
             healthBar.SetHealth((int)playerInfo.HealthPoint);
 
@@ -34,12 +34,12 @@ public class PlayerTakeItem : MonoBehaviour
         }
         else if (other.CompareTag("OXYGENITEM"))
         {
-            TextPopup textPopup = Instantiate<TextPopup>(TextPopup, other.transform.position, other.transform.rotation);
+            TextPopup textPopup = Instantiate<TextPopup>(TextPopup, other.transform.position + Vector3.up, other.transform.rotation);
             textPopup.GetComponent<TextPopup>().SetOxygenAmount((int)oxygenAmount);
             playerInfo.oxygen += oxygenAmount;
-            if (playerInfo.oxygen > 1000.0f)
+            if (playerInfo.oxygen > playerInfo.maxOxygen)
             {
-                playerInfo.oxygen = 1000.0f;
+                playerInfo.oxygen = playerInfo.maxOxygen;
             }
 
             Destroy(other.gameObject);

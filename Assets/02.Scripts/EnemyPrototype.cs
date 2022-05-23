@@ -17,7 +17,7 @@ public class EnemyPrototype : MonoBehaviour
 
     public GameObject damageText;
 
-
+    private bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +27,22 @@ public class EnemyPrototype : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
         skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-    }
-    private void Update()
-    {
-        agent.SetDestination(targetTransform.position);
+        isDead = false;
+        StartCoroutine(EnemySetDestination());
     }
 
-    public void TakeDamage(Transform hitTr, int damage, int knockbackSize){
+    IEnumerator EnemySetDestination()
+    {
+        while(!isDead)
+        {
+            yield return null;
+            agent.SetDestination(targetTransform.position);
+        }
+        agent.SetDestination(transform.position);
+    }
+
+    public void TakeDamage(Transform hitTr, int damage, int knockbackSize)
+    {
         Vector3 reactVec = transform.position - hitTr.position;
 
         hp -= damage;
@@ -47,6 +56,7 @@ public class EnemyPrototype : MonoBehaviour
     {
         if(hp <= 0)
         {
+            isDead = true;
             enemyDamage = 0;
             //agent.SetDestination(transform.position);
             agent.isStopped = true;

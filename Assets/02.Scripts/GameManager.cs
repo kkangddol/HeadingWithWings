@@ -6,6 +6,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
+
+    private DataManager data = new DataManager();
+    public static DataManager Data { get { return Instance.data; } }
+
+    public Action<int> stageEvents;
+    private bool eventCall = false;
+
     public static GameManager Instance
     {
         get
@@ -46,10 +53,16 @@ public class GameManager : MonoBehaviour
 
     public int enemyKillCount;
     private float playerHeight;
-    public float PlayerHeight { get { return playerHeight; } }
+    public float PlayerHeight { 
+        set { playerHeight = value; }
+        get { return playerHeight; } 
+    }
 
     
     private float time;
+    public float tempTime{
+        get {return time;}
+    }
 
     private void Awake()
     {
@@ -61,12 +74,24 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         isGameOver = false;
+
+        // Data 불러오기
+        instance.data.Init();
+        // Debug.Log(instance.data.StageMonsterGenerateDict[3].bigwaveGenerateInfo.monsterGenerateInfo.id[3]);
     }
     
     private void Update()
     {
         time += Time.deltaTime;
-        heightBar.SetHeight(time);
+        playerHeight = time;
+
+        heightBar.SetHeight(playerHeight);
+
+        if(playerHeight > 5 && eventCall == false)
+        {
+            eventCall = true;
+            stageEvents.Invoke(1);
+        }
     }
 
     private static GameManager Create()

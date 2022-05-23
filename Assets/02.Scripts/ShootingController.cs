@@ -72,7 +72,9 @@ public class ShootingController : MonoBehaviour
         //오브젝트 풀 방식
         BulletController firedBullet = BulletPool.GetObject();
         firedBullet.transform.SetPositionAndRotation(firePos.position, firePos.rotation);
-        firedBullet.damage = playerInfo.damage;
+        //firedBullet.damage = playerInfo.damage;
+        firedBullet.damage = 4;
+        firedBullet.GetComponent<Rigidbody>().AddForce(firedBullet.transform.forward * 15f, ForceMode.Impulse);
         firedBullet.ActivateBullet();
         
 
