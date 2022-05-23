@@ -659,6 +659,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wing_Satellite_TEST
       objectReference: {fileID: 0}
+    - target: {fileID: 5564713079278996076, guid: c10480f00fb8ecf4dad3f7878c295b70,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c10480f00fb8ecf4dad3f7878c295b70, type: 3}
 --- !u!1 &558990838
