@@ -1,0 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class SFXVolume : BaseVolume
+{
+    private void Start()
+    {
+        Init("TempSFX");
+        // amount = 1;
+    }
+}
