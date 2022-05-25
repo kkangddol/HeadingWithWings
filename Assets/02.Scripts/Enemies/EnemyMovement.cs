@@ -7,7 +7,6 @@ public class EnemyMovement : MonoBehaviour
 {
     private EnemyInfo enemyInfo;
     private NavMeshAgent agent;
-    private Animator animator;
 
     private void Start()
     {
@@ -19,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         enemyInfo = GetComponent<EnemyInfo>();
+        agent.speed = GameManager.Data.MonsterDict[enemyInfo.MonsterID].monsterSpeed;
     }
 
     IEnumerator EnemySetDestination()

@@ -6,8 +6,11 @@ using UnityEngine.AI;
 public class EnemyInfo : MonoBehaviour
 {
     const string PLAYER = "PLAYER";
-    public int healthPoint;
-    public int enemyDamage;
+    [SerializeField]
+    private int monsterID;
+    public int MonsterID { get { return monsterID; } set { } }
+    public float healthPoint;
+    public float enemyDamage;
     private bool isDead;
     public bool IsDead
     {
@@ -34,7 +37,10 @@ public class EnemyInfo : MonoBehaviour
 
     void Initialize()
     {
+        monsterID = int.Parse(gameObject.name);
         isDead = false;
+        healthPoint = GameManager.Data.MonsterDict[monsterID].monsterHp;
+        enemyDamage = GameManager.Data.MonsterDict[monsterID].collisionDamage;
         targetTransform = GameObject.FindGameObjectWithTag(PLAYER).GetComponent<Transform>();
     }
 
@@ -43,7 +49,7 @@ public class EnemyInfo : MonoBehaviour
         GameManager.Instance.enemyKillCount++;
         enemyDamage = 0;
         GetComponent<NavMeshAgent>().isStopped = true;
-        GetComponentInChildren<SkinnedMeshRenderer>().material.color = Color.black;
+        GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
         Destroy(gameObject, 0.1f);
     }
 }

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static DataManager Data { get { return Instance.data; } }
 
     public Action<int> stageEvents;
-    private bool eventCall = false;
+    public bool eventCall = false;
 
     public static GameManager Instance
     {
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
         if(playerHeight > 5 && eventCall == false)
         {
             eventCall = true;
-            stageEvents.Invoke(1);
+            // stageEvents.Invoke(1);
         }
     }
 
