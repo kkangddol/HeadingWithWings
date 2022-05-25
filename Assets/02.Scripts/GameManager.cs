@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
         get {return time;}
     }
 
+    public List<GameObject> attackItemObjects;
+    public List<GameObject> abilityItemObjects;
+    public List<GameObject> wingItemObjects;
+    public List<GameObject> wingItemModels;
+
     private void Awake()
     {
         if(Instance != this)

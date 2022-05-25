@@ -22,7 +22,7 @@ public class EnemyTakeDamage : MonoBehaviour
         skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         originalColor = skinnedMeshRenderer.material.color;
     }
-    public void TakeDamage(Transform hitTr, int damage, float knockbackSize)
+    public void TakeDamage(Transform hitTr, float damage, float knockbackSize)
     {
         Vector3 reactVec = transform.position - hitTr.position;
         enemyInfo.healthPoint -= damage;

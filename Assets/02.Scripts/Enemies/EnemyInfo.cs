@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyInfo : MonoBehaviour
 {
     const string PLAYER = "PLAYER";
-    public int healthPoint;
+    public float healthPoint;
     public int enemyDamage;
     private bool isDead;
     public bool IsDead

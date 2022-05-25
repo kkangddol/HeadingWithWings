@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -264,6 +264,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RandomItem (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3810181411317358590, guid: c629a69eb7935954e904c6e792939e9f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8818539601881851294, guid: c629a69eb7935954e904c6e792939e9f,
         type: 3}
@@ -1355,6 +1360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OxygenItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8208804795084211511, guid: a03025e12e241074693bb2494a2d05f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9155804036240442690, guid: a03025e12e241074693bb2494a2d05f2,
         type: 3}
@@ -2512,6 +2522,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomItem
       objectReference: {fileID: 0}
+    - target: {fileID: 3810181411317358590, guid: c629a69eb7935954e904c6e792939e9f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8818539601881851294, guid: c629a69eb7935954e904c6e792939e9f,
         type: 3}
       propertyPath: m_IsTrigger
@@ -2655,7 +2670,7 @@ PrefabInstance:
     - target: {fileID: 4237877143533212905, guid: 9c5a3280f97dd6a4291c1b42120ba5a7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c5a3280f97dd6a4291c1b42120ba5a7, type: 3}
@@ -3283,7 +3298,7 @@ PrefabInstance:
     - target: {fileID: 4237877143533212905, guid: b0382dfe025c4e74898614c0a7c3f48d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0382dfe025c4e74898614c0a7c3f48d, type: 3}
