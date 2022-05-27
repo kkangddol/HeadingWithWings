@@ -10,8 +10,9 @@ public class GameManager : MonoBehaviour
     private DataManager data = new DataManager();
     public static DataManager Data { get { return Instance.data; } }
 
+    private int stage = 1;
     public Action<int> stageEvents;
-    private bool eventCall = false;
+    public bool eventCall = false;
 
     public static GameManager Instance
     {
@@ -87,11 +88,12 @@ public class GameManager : MonoBehaviour
 
         heightBar.SetHeight(playerHeight);
 
-        if(playerHeight > 5 && eventCall == false)
-        {
-            eventCall = true;
-            stageEvents.Invoke(1);
-        }
+        // if(playerHeight >= GameManager.Data.StageDict[stage].endHeight && eventCall == false)
+        //if (playerHeight >= 5 && eventCall == false)
+        //{
+        //    eventCall = true;
+        //    stageEvents.Invoke(0);
+        //}
     }
 
     private static GameManager Create()
