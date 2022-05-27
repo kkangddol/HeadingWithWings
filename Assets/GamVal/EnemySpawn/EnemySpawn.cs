@@ -117,7 +117,6 @@ public class EnemySpawn : MonoBehaviour
     }
     private void SpawnBigWave(BigwaveGenerateInfo bigwaveInfo)
     {
-        Debug.Log("I am here!");
         int clusterIndex = bigwaveInfo.monsterGenerateInfo.amount.Length - 1;
         int clusterAmount = bigwaveInfo.monsterGenerateInfo.amount[clusterIndex];
         Vector3 spawnPos = RandomCirclePosition(20);
