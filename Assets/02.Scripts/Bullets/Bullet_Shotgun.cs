@@ -5,6 +5,10 @@ using UnityEngine;
 public class Bullet_Shotgun : Bullets
 {
     const string ENEMY = "ENEMY";
+
+    private void Start() {
+        Destroy(gameObject, 1f);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == ENEMY)

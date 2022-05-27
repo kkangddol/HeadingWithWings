@@ -11,7 +11,7 @@ public class HeightBar : MonoBehaviour
 
     private void Awake()
     {
-        GameObject.FindWithTag("GAMEMANAGER").GetComponent<GameManager>().HeightBar = this;
+        GameManager.Instance.HeightBar = this;
     }
 
     public void SetHeight(float height)
