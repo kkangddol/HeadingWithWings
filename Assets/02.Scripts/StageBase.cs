@@ -6,8 +6,8 @@ public class StageBase : MonoBehaviour
 {
     protected enum CrisisType
     {
-        Boss,
         Bigwave,
+        Boss,
     }
 
     protected int stage = 0;
