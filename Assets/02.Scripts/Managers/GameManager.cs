@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private DataManager data = new DataManager();
     public static DataManager Data { get { return Instance.data; } }
 
+    public int tempPickHeight = 10;
+
     public Action<int> stageEvents;
     private bool eventCall = false;
 
@@ -70,10 +72,12 @@ public class GameManager : MonoBehaviour
 
     const string PLAYER = "PLAYER";
     public static PlayerInfo playerInfo;
+    PickManager pickManager;
 
     private void Awake()
     {
         playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
+        pickManager = GetComponent<PickManager>();
 
         if(Instance != this)
         {
@@ -95,6 +99,11 @@ public class GameManager : MonoBehaviour
         playerHeight += Time.deltaTime;
 
         heightBar.SetHeight(playerHeight);
+
+        if(playerHeight >= tempPickHeight)
+        {
+            PickStart();
+        }
 
         if(playerHeight > 5 && eventCall == false)
         {
@@ -118,5 +127,11 @@ public class GameManager : MonoBehaviour
     private void PopUpUI()
     {
         Instantiate(gameoverUI);
+    }
+
+    public void PickStart()
+    {
+        tempPickHeight += tempPickHeight + 2;
+        pickManager.StartPickSequence();
     }
 }

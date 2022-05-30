@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 9c1fca73445a2ab48b44bc41218acd8f, type: 2}
---- !u!4 &786150 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1255552289}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &93779498
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +235,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -187.09, y: 0}
-  m_SizeDelta: {x: 149.82, y: 150}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &265137948
 MonoBehaviour:
@@ -642,10 +636,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.19607843}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -678,7 +672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -715,12 +709,12 @@ GameObject:
   - component: {fileID: 714966280}
   - component: {fileID: 714966279}
   m_Layer: 5
-  m_Name: PickEquipment
+  m_Name: PickEquipmentUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &714966278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1247,8 +1241,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 786150}
+  m_Children: []
   m_Father: {fileID: 1058204928}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1588,7 +1581,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -187.09, y: 0}
-  m_SizeDelta: {x: 149.82, y: 150}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1031120492
 MonoBehaviour:
@@ -1802,8 +1795,8 @@ MonoBehaviour:
   abilityEquipments: 
   wingEquipment: {fileID: 0}
   wingNumber: 0
-  attackEquipmentsParent: {fileID: 0}
-  wingEquipmentParent: {fileID: 0}
+  attackEquipmentsParent: {fileID: 914547580}
+  wingEquipmentParent: {fileID: 1565073933}
   wingModelParent: {fileID: 2745280986826333090}
 --- !u!135 &1058204926
 SphereCollider:
@@ -2175,75 +2168,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237369506}
   m_CullTransparentMesh: 1
---- !u!1001 &1255552289
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 914547580}
-    m_Modifications:
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3208278780341513255, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7003791252261313227, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
-        type: 3}
-      propertyPath: m_Name
-      value: FeatherAttackItem
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5a2db1f2eae618843b9bb46dcae5efa4, type: 3}
 --- !u!1 &1263785771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,10 +2314,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.19607843}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2426,7 +2350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2487,7 +2411,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -187.09, y: 0}
-  m_SizeDelta: {x: 149.82, y: 150}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1350037633
 MonoBehaviour:
@@ -3246,10 +3170,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.19607843}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.19607843}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3282,7 +3206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3685,7 +3609,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'ReRoll
 
-    (cost 10% health)'
+    (cost something)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4014,7 +3938,8 @@ MonoBehaviour:
   attackEquipmentsLevel: 
   abilityEquipmentsLevel: 
   wingEquipmentsLevel: 
-  attackEquipmentObjects: []
+  attackEquipmentObjects:
+  - {fileID: 7003791252261313227, guid: 5a2db1f2eae618843b9bb46dcae5efa4, type: 3}
   abilityEquipmentObjects: []
   wingEquipmentObjects: []
   wingModels: []
@@ -4024,6 +3949,9 @@ MonoBehaviour:
   attackEquipmentDescriptions: []
   abilityEquipmentDescriptions: []
   wingEquipmentDescriptions: []
+  attackEquipmentsCount: 0
+  abilityEquipmentsCount: 0
+  wingEquipmentsCount: 0
 --- !u!114 &696987615641651895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4036,10 +3964,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d0b49ed4f0271246ad910ef96cec7c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUI: {fileID: 714966277}
+  attackDropRate: 55
+  abilityDropRate: 35
+  wingDropRate: 10
+  skipRewardHeight: 10
   slots:
   - {fileID: 1644033914}
   - {fileID: 1346596101}
   - {fileID: 709423741}
+  noImage: {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  noDescription: No Description.
 --- !u!4 &2745280986826333090
 Transform:
   m_ObjectHideFlags: 0

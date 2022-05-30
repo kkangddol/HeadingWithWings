@@ -4,21 +4,15 @@ using UnityEngine;
 
 public enum AttackEquipmentsNumber
 {
-    Feather,
-    Shotgun,
-    Meteor
+    Feather
 }
 
 public enum AbilityEquipmentsNumber
 {
-    DamageUp,
-    MoveSpeedUp,
-    AttackDelayDown
 }
 
 public enum WingEquipmentsNumber
 {
-    Rambo
 }
 
 public class EquipmentManager : MonoBehaviour
@@ -43,42 +37,48 @@ public class EquipmentManager : MonoBehaviour
     public string[] abilityEquipmentDescriptions;
     public string[] wingEquipmentDescriptions;
 
+    public int attackEquipmentsCount;
+    public int abilityEquipmentsCount;
+    public int wingEquipmentsCount;
+
+
     private void Start() {
         Initialize();
     }
 
     void Initialize()
     {
-        int attackEquipmentsCount = System.Enum.GetValues(typeof(AttackEquipmentsNumber)).Length;
-        int abilityEquipmentsCount = System.Enum.GetValues(typeof(AbilityEquipmentsNumber)).Length;
-        int wingEquipmentsCount = System.Enum.GetValues(typeof(WingEquipmentsNumber)).Length;
+        attackEquipmentsCount = System.Enum.GetValues(typeof(AttackEquipmentsNumber)).Length;
+        abilityEquipmentsCount = System.Enum.GetValues(typeof(AbilityEquipmentsNumber)).Length;
+        wingEquipmentsCount = System.Enum.GetValues(typeof(WingEquipmentsNumber)).Length;
 
         attackEquipmentsLevel = new int[attackEquipmentsCount];     
         abilityEquipmentsLevel = new int[abilityEquipmentsCount];        
         wingEquipmentsLevel = new int[wingEquipmentsCount];
 
-        attackEquipmentObjects = new GameObject[attackEquipmentsCount];
-        abilityEquipmentObjects = new GameObject[abilityEquipmentsCount];
-        wingEquipmentObjects = new GameObject[wingEquipmentsCount];
-        wingModels = new GameObject[wingEquipmentsCount];
+        // attackEquipmentObjects = new GameObject[attackEquipmentsCount];
+        // abilityEquipmentObjects = new GameObject[abilityEquipmentsCount];
+        // wingEquipmentObjects = new GameObject[wingEquipmentsCount];
+        // wingModels = new GameObject[wingEquipmentsCount];
 
-        attackEquipmentSprites = new Sprite[attackEquipmentsCount];     
-        abilityEquipmentSprites = new Sprite[abilityEquipmentsCount];        
-        wingEquipmentSprites = new Sprite[wingEquipmentsCount];
+        // attackEquipmentSprites = new Sprite[attackEquipmentsCount];     
+        // abilityEquipmentSprites = new Sprite[abilityEquipmentsCount];        
+        // wingEquipmentSprites = new Sprite[wingEquipmentsCount];
 
-        attackEquipmentDescriptions = new string[attackEquipmentsCount];
-        abilityEquipmentDescriptions = new string[abilityEquipmentsCount];
-        wingEquipmentDescriptions = new string[wingEquipmentsCount];
-
-        //임시
-        attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
-        //임시끝
+        // attackEquipmentDescriptions = new string[attackEquipmentsCount];
+        // abilityEquipmentDescriptions = new string[abilityEquipmentsCount];
+        // wingEquipmentDescriptions = new string[wingEquipmentsCount];
 
         playerInfo = GameManager.playerInfo;
+
+        //임시
+        TakeAttackEquipment((int)AttackEquipmentsNumber.Feather);
+        //attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
+        //임시끝
     }
     
     public void TakeAttackEquipment(int EquipmentNumber)
-    {
+    {       
         if(attackEquipmentsLevel[EquipmentNumber] == 0)
         {
             //신규 장착
