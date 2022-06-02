@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     const string PLAYER = "PLAYER";
-    public int damage;
+    public float damage;
 
     private void Start()
     {

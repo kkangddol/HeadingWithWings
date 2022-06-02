@@ -6,7 +6,7 @@ public class EnemyTakeDamage : MonoBehaviour
 {
     private EnemyInfo enemyInfo;
     private Rigidbody rigid;
-    private SkinnedMeshRenderer skinnedMeshRenderer;
+    private SpriteRenderer skinnedMeshRenderer;
     private Color originalColor;
     public GameObject damageText;
 
@@ -19,7 +19,7 @@ public class EnemyTakeDamage : MonoBehaviour
     {
         enemyInfo = GetComponent<EnemyInfo>();
         rigid = GetComponent<Rigidbody>();
-        skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        skinnedMeshRenderer = GetComponentInChildren<SpriteRenderer>();
         originalColor = skinnedMeshRenderer.material.color;
     }
     public void TakeDamage(Transform hitTr, float damage, float knockbackSize)

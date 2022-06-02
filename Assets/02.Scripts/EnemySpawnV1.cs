@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
  
-public class EnemySpawn : MonoBehaviour
+public class EnemySpawnV1 : MonoBehaviour
 {
     private Transform playerTransform;
     public float spawnDelay = 1.0f;

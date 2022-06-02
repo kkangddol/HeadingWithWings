@@ -46,6 +46,9 @@ public class EnemyAttackRange : MonoBehaviour
     {
         enemyInfo = GetComponent<EnemyInfo>();
         enemyMovement = GetComponent<EnemyMovement>();
+        // attackRange = GameManager.Data.MonsterDict[enemyInfo.monsterID];
+        fireDelay = GameManager.Data.MonsterDict[int.Parse(gameObject.name)].projectileFireDelay;
+        attackRange = 10; // Test
         isInRange = false;
         isAttacking = false;
         fireCoroutine = null;
@@ -72,7 +75,7 @@ public class EnemyAttackRange : MonoBehaviour
         transform.LookAt(enemyInfo.targetTransform);
         EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, transform.rotation);
         newProjectile.transform.LookAt(enemyInfo.targetTransform);
-        newProjectile.damage = enemyInfo.enemyDamage;
+        newProjectile.damage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].projectileDamage;
         newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.forward * 15f, ForceMode.Impulse);
     }
 
