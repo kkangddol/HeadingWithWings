@@ -124,7 +124,7 @@ public class EquipmentManager : MonoBehaviour
             GameObject equipment = Instantiate(wingEquipmentObjects[EquipmentNumber], playerInfo.wingEquipmentParent);
             GameObject model = Instantiate(wingModels[EquipmentNumber], playerInfo.wingModelParent);
 
-            equipment.GetComponent<Wing>().SetLevel(1);
+            equipment.GetComponent<WingEquipment>().SetLevel(1);
             playerInfo.wingEquipment = equipment;
 
             wingEquipmentsLevel[EquipmentNumber] += 1;
@@ -137,7 +137,7 @@ public class EquipmentManager : MonoBehaviour
             int newLevel = wingEquipmentsLevel[EquipmentNumber] + 1;
             wingEquipmentsLevel[EquipmentNumber] = newLevel;
 
-            playerInfo.wingEquipment.GetComponent<Wing>().SetLevel(newLevel);
+            playerInfo.wingEquipment.GetComponent<WingEquipment>().SetLevel(newLevel);
         }
         else
         {
