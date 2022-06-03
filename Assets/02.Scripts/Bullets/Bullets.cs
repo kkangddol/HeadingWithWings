@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Bullets : MonoBehaviour
 {
-    public int damage;
+    [HideInInspector]
+    public float damage;
+    [HideInInspector]
     public float knockbackSize;
 }

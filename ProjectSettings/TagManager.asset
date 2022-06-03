@@ -7,9 +7,6 @@ TagManager:
   - PLAYER
   - ATTACK
   - ENEMY
-  - HEALITEM
-  - OXYGENITEM
-  - RANDOMITEM
   - GAMEMANAGER
   layers:
   - Default
