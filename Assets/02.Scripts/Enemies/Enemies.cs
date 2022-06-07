@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class Enemies : MonoBehaviour
+public class Enemies : MonoBehaviour
 {
     const string PLAYER = "PLAYER";
     private NavMeshAgent agent;
-    private Animator animator;
-    public int healthPoint;
+    public float healthPoint;
     public float enemyDamage;
     private Transform targetTransform;
     private Rigidbody rigid;
-    SkinnedMeshRenderer skinnedMeshRenderer;
+    SpriteRenderer skinnedMeshRenderer;
 
     public GameObject damageText;
 
     private bool isDead;
-
 
 
     void Start()
@@ -30,9 +28,8 @@ public abstract class Enemies : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         targetTransform = GameObject.FindGameObjectWithTag(PLAYER).GetComponent<Transform>();
-        animator = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
-        skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        skinnedMeshRenderer = GetComponentInChildren<SpriteRenderer>();
         isDead = false;
     }
 
@@ -42,6 +39,7 @@ public abstract class Enemies : MonoBehaviour
         {
             yield return null;
             agent.SetDestination(targetTransform.position);
+            transform.LookAt(targetTransform);
         }
     }
 

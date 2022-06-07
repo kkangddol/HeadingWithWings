@@ -323,3 +323,161 @@ public class MonsterData: ILoader<int, Monster>
     }
 }
 #endregion
+
+#region WingData
+[Serializable]
+public class WingRaw
+{
+    public int wingID = 0;
+    public int wingTier = 0;
+    public int hasRange = 0;
+
+    public string damagePerLevels = "";
+    public string attackSpeedPerLevels = "";
+
+    public int hasPassive = 0;
+    public string passiveSkillDamagePerLevels = "";
+    public string passiveAttackSpeedIncreasePerLevels = "";
+    public string passiveMoveSpeedIncreasePerLevels = "";
+    public float passiveSkillCooltime = 0.0f;
+
+    public int hasActive = 0;
+    public string activeSkillDamagePerLevels = "";
+    public string activeSkillLifetimePerLevels = "";
+    public float activeSkillCooltime = 0.0f;
+}
+[Serializable]
+public class Wing
+{
+    public int wingID = 0;
+    public int wingTier = 0;
+    public bool hasRange = false;
+
+    public int[] damagePerLevels;
+    public float[] attackSpeedPerLevels;
+
+    public bool hasPassive = false;
+    public int[] passiveSkillDamagePerLevels;
+    public int[] passiveAttackSpeedIncreasePerLevels;
+    public int[] passiveMoveSpeedIncreasePerLevels;
+    public float passiveSkillCooltime = 0.0f;
+
+    public bool hasActive = false;
+    public int[] activeSkillDamagePerLevels;
+    public float[] activeSkillLifetimePerLevels;
+    public float activeSkillCooltime = 0.0f;
+}
+[Serializable]
+public class WingData : ILoader<int, Wing>
+{
+    public List<WingRaw> wings = new List<WingRaw>();
+
+    #region SetData
+    public bool CheckLevels(string str1, bool isActive=false)
+    {
+        string[] split = str1.Split("|");
+        
+        if(isActive)
+        {
+            if (str1.Split("|").Length == 2 && split[0] != "" && split[1] != "")
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if (str1.Split("|").Length == 3 && split[0] != "" && split[1] != "" && split[2] != "")
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    private Wing SetData(WingRaw rawData)
+    {
+        Wing temp = new Wing();
+
+        temp.wingID = rawData.wingID;
+        temp.wingTier = rawData.wingTier;
+        temp.hasRange = rawData.hasRange == 1 ? true : false;
+
+        if (CheckLevels(rawData.damagePerLevels) == false)
+        {
+            Debug.LogError("damageDat가 부족합니다!");
+            return null;
+        }
+        temp.damagePerLevels = ProcessData.CutStringToInt(rawData.damagePerLevels);
+
+        if (CheckLevels(rawData.attackSpeedPerLevels) == false)
+        {
+            Debug.LogError("attackSpeedData가 부족합니다!");
+            return null;
+        }
+        temp.attackSpeedPerLevels = ProcessData.CutStringToFloat(rawData.attackSpeedPerLevels);
+
+        temp.hasPassive = rawData.hasPassive == 1 ? true : false;
+        if (temp.hasPassive)
+        {
+            if(CheckLevels(rawData.passiveSkillDamagePerLevels) == false)
+            {
+                Debug.LogError("passiveSkillDamageData가 부족합니다!");
+                return null;
+            }
+            temp.passiveSkillDamagePerLevels = ProcessData.CutStringToInt(rawData.passiveSkillDamagePerLevels);
+
+            if (CheckLevels(rawData.passiveAttackSpeedIncreasePerLevels) == false)
+            {
+                Debug.LogError($"passiveAttackSpeedIncreaseData가 부족합니다!");
+                return null;
+            }
+            temp.passiveAttackSpeedIncreasePerLevels = ProcessData.CutStringToInt(rawData.passiveAttackSpeedIncreasePerLevels);
+
+            if (CheckLevels(rawData.passiveMoveSpeedIncreasePerLevels) == false)
+            {
+                Debug.LogError("passiveMoveSpeedIncreaseData가 부족합니다!");
+                return null;
+            }
+            temp.passiveMoveSpeedIncreasePerLevels = ProcessData.CutStringToInt(rawData.passiveMoveSpeedIncreasePerLevels);
+
+            temp.passiveSkillCooltime = rawData.passiveSkillCooltime;
+        }
+        
+        temp.hasActive = rawData.hasActive == 1 ? true : false;
+        if(temp.hasActive)
+        {
+            if (CheckLevels(rawData.activeSkillDamagePerLevels, true) == false)
+            {
+                Debug.LogError("activeSkillDamageData가 부족합니다!");
+                return null;
+            }
+            temp.activeSkillDamagePerLevels = ProcessData.CutStringToInt(rawData.activeSkillDamagePerLevels);
+
+            temp.activeSkillLifetimePerLevels = ProcessData.CutStringToFloat(rawData.activeSkillLifetimePerLevels);
+            temp.activeSkillCooltime = rawData.activeSkillCooltime;
+        }
+
+        return temp;
+    }
+    #endregion
+
+    public Dictionary<int, Wing> MakeDict()
+    {
+        Dictionary<int, Wing> dict = new Dictionary<int, Wing>();
+
+        foreach (WingRaw wing in wings)
+        {
+            Wing temp = SetData(wing);
+
+            if (temp == null)
+            {
+                return null;
+            }
+
+            dict.Add(wing.wingID, temp);
+        }
+
+        return dict;
+    }
+}
+#endregion
