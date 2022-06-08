@@ -8,7 +8,6 @@ public class PlayerMoveController : MonoBehaviour
 
     private PlayerInfo playerInfo;
 
-	public float moveSpeed = 5;
 	private float horizontal;
 	private float vertical;
 	private float rotationDegreePerSecond = 1000;
@@ -25,7 +24,6 @@ public class PlayerMoveController : MonoBehaviour
 	{
         animator = GetComponentInChildren<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
-        moveSpeed = playerInfo.moveSpeed;
 		gamecam = Camera.main;
 	}
 
@@ -56,7 +54,7 @@ public class PlayerMoveController : MonoBehaviour
                     );
             }
 				
-			GetComponent<Rigidbody>().velocity = modelTransform.forward * speedOut * moveSpeed + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
+			GetComponent<Rigidbody>().velocity = modelTransform.forward * speedOut * GameManager.playerInfo.moveSpeed + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
 
 			animator.SetFloat("Speed", speedOut);
 		}

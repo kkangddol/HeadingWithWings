@@ -7,7 +7,7 @@ public class AmmunitionBeltWing : MonoBehaviour
     PlayerInfo playerInfo;
     WingDetectEnemy wingDetectEnemy;
     const string ENEMY = "ENEMY";
-    public Bullets bullet;
+    public Bullet bullet;
     public int damage;
     public float fireDelay;
     public float bulletSpeed;
@@ -27,7 +27,7 @@ public class AmmunitionBeltWing : MonoBehaviour
     public void Fire()
     {
         Transform targetTransform = wingDetectEnemy.FindNearestEnemy(ENEMY);
-        Bullets newBullet = Instantiate(bullet,transform.position,transform.rotation);
+        Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
         newBullet.transform.LookAt(targetTransform);
         newBullet.damage = this.damage;
         newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);

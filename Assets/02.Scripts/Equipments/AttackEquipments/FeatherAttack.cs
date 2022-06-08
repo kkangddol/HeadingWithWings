@@ -7,7 +7,9 @@ public class FeatherAttack : Equipment
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
     const string ENEMY = "ENEMY";
-    public Bullets bullet;
+    public Bullet bullet;
+    public Bullet FeatherBullet;
+    public Bullet PenetrateFeatherBullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
     public float bulletSpeed;
@@ -22,6 +24,7 @@ public class FeatherAttack : Equipment
     {
         playerInfo = GameManager.playerInfo;
         detectEnemy = GetComponent<DetectEnemy>();
+        bullet = FeatherBullet;
     }
 
     void Fire()
@@ -31,9 +34,10 @@ public class FeatherAttack : Equipment
         {
             return;
         }
-        Bullets newBullet = Instantiate(bullet,transform.position,transform.rotation);
+        Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
         newBullet.transform.LookAt(targetTransform);
-        newBullet.damage = playerInfo.damage * (damageMultiplier / 100f);
+        newBullet.damage = playerInfo.damage * (damageMultiplier / 100);
+        newBullet.knockbackSize = 3f;
         newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
     }
 
@@ -55,31 +59,36 @@ public class FeatherAttack : Equipment
         {
             case 1:
             {
-                damageMultiplier = 100;
+                bullet = FeatherBullet;
+                damageMultiplier = 10;
                 attackDelayMultiplier = 100;
                 break;
             }
             case 2:
             {
-                damageMultiplier = 105;
+                bullet = FeatherBullet;
+                damageMultiplier = 15;
                 attackDelayMultiplier = 95;
                 break;
             }
             case 3:
             {
-                damageMultiplier = 110;
+                bullet = FeatherBullet;
+                damageMultiplier = 20;
                 attackDelayMultiplier = 90;
                 break;
             }
             case 4:
             {
-                damageMultiplier = 115;
+                bullet = FeatherBullet;
+                damageMultiplier = 25;
                 attackDelayMultiplier = 85;
                 break;
             }
             case 5:
             {
-                damageMultiplier = 120;
+                bullet = PenetrateFeatherBullet;
+                damageMultiplier = 30;
                 attackDelayMultiplier = 80;
                 break;
             }

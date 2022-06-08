@@ -53,7 +53,7 @@ public class EnemyTakeDamage : MonoBehaviour
 
     void CheckDead()
     {
-        if(enemyInfo.healthPoint <= 0)
+        if(enemyInfo.healthPoint <= 0 && !enemyInfo.IsDead)
         {
             enemyInfo.IsDead = true;
         }

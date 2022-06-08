@@ -21,7 +21,7 @@ public class EnemyInfo : MonoBehaviour
         set
         {
             isDead = value;
-            if(isDead == true)
+            if(value)
             {
                 EnemyDie();
             }
@@ -38,18 +38,19 @@ public class EnemyInfo : MonoBehaviour
     void Initialize()
     {
         monsterID = int.Parse(gameObject.name);
-        isDead = false;
-        healthPoint = GameManager.Data.MonsterDict[monsterID].monsterHp;
-        enemyDamage = GameManager.Data.MonsterDict[monsterID].collisionDamage;
-        targetTransform = GameObject.FindGameObjectWithTag(PLAYER).GetComponent<Transform>();
+        IsDead = false;
+        //healthPoint = GameManager.Data.MonsterDict[monsterID].monsterHp;
+        //enemyDamage = GameManager.Data.MonsterDict[monsterID].collisionDamage;
+        targetTransform = GameManager.playerInfo.GetComponent<Transform>();
     }
 
     private void EnemyDie()
     {
-        GameManager.Instance.enemyKillCount++;
+        GameManager.Instance.KillCount++;
         enemyDamage = 0;
         GetComponent<NavMeshAgent>().isStopped = true;
         GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
+        GetComponent<EnemyDropItem>().DropItem();
         Destroy(gameObject, 0.1f);
     }
 }

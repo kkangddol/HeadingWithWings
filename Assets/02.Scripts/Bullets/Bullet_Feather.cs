@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Feather : Bullets
+public class Bullet_Feather : Bullet
 {
     const string ENEMY = "ENEMY";
 

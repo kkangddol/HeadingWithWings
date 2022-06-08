@@ -27,17 +27,22 @@ public class PickManager : MonoBehaviour
     public Sprite noImage;
     public string noDescription = "No Description.";
 
-    private void Awake() {
-        Initialize();
-    }
+    // private void Awake() {
+    //     Initialize();
+    // }
 
-    void Initialize()
+    public void Initialize()
     {
         equipmentManager = GameManager.Instance.GetComponent<EquipmentManager>(); 
+        pickUI = GameObject.Find("GameCanvas").transform.Find("PickEquipmentUI").gameObject;
+        slots[0] = pickUI.transform.Find("ItemSlot1").gameObject;
+        slots[1] = pickUI.transform.Find("ItemSlot2").gameObject;
+        slots[2] = pickUI.transform.Find("ItemSlot3").gameObject;
     }
 
     public void StartPickSequence()
     {
+        GameManager.Instance.PlayerHeight = 0;
         Time.timeScale = 0;
         pickUI.SetActive(true);
         SetSlot();
@@ -93,8 +98,8 @@ public class PickManager : MonoBehaviour
                 }
                 else
                 {
-                    button.GetComponentsInChildren<Image>()[1].sprite = equipmentManager.attackEquipmentSprites[randomAbility];
-                    button.GetComponentInChildren<TMPro.TMP_Text>().text = equipmentManager.attackEquipmentDescriptions[randomAbility];
+                    button.GetComponentsInChildren<Image>()[1].sprite = equipmentManager.abilityEquipmentSprites[randomAbility];
+                    button.GetComponentInChildren<TMPro.TMP_Text>().text = equipmentManager.abilityEquipmentDescriptions[randomAbility];
                 }
 
                 button.onClick.AddListener(delegate {equipmentManager.TakeAbilityItem(randomAbility);});
@@ -111,8 +116,8 @@ public class PickManager : MonoBehaviour
                 }
                 else
                 {
-                    button.GetComponentsInChildren<Image>()[1].sprite = equipmentManager.attackEquipmentSprites[randomWing];
-                    button.GetComponentInChildren<TMPro.TMP_Text>().text = equipmentManager.attackEquipmentDescriptions[randomWing];
+                    button.GetComponentsInChildren<Image>()[1].sprite = equipmentManager.wingEquipmentSprites[randomWing];
+                    button.GetComponentInChildren<TMPro.TMP_Text>().text = equipmentManager.wingEquipmentDescriptions[randomWing];
                 }
 
                 button.onClick.AddListener(delegate {equipmentManager.TakeWingItem(randomWing);});

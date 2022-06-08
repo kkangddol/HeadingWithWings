@@ -7,7 +7,7 @@ public class ShotgunWing : MonoBehaviour
     private PlayerInfo playerInfo;
     private WingDetectEnemy wingDetectEnemy;
     const string ENEMY = "ENEMY";
-    public Bullets bullet;
+    public Bullet bullet;
     public int damage;
     public float fireDelay;
     public float knockbackSize;
@@ -32,7 +32,7 @@ public class ShotgunWing : MonoBehaviour
 
         for(int i = 0; i < 4; i++)
         {
-            Bullets newPellet = Instantiate(bullet,transform.position,transform.rotation);
+            Bullet newPellet = Instantiate(bullet,transform.position,transform.rotation);
             newPellet.damage = this.damage;
             newPellet.knockbackSize = this.knockbackSize;   //스크립터블 오브젝트로 처리할 예정
             newPellet.transform.LookAt(targetEnemy);

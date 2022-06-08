@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &696987615375855404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 696987615375855406}
+  - component: {fileID: 696987615375855405}
+  - component: {fileID: 696987615641651894}
+  - component: {fileID: 696987615641651895}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: GAMEMANAGER
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &696987615375855406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696987615375855404}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &696987615375855405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696987615375855404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05552ffaeb094944fabf3548ee8b6130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameoverUI: {fileID: 6071691565051270512, guid: 2e647d05da297d849a4190a29ff78d75,
+    type: 3}
+  isGameOver: 0
+  playingTime: 0
+  heightItemDropRate: 0
+  healItemDropRate: 0
+  tempPickHeight: 10
+--- !u!114 &696987615641651894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696987615375855404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4ccd6d81dfa73408b87ba5ccd0c1cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackEquipmentsLevel: 
+  abilityEquipmentsLevel: 
+  wingEquipmentsLevel: 
+  attackEquipmentObjects:
+  - {fileID: 7003791252261313227, guid: 5a2db1f2eae618843b9bb46dcae5efa4, type: 3}
+  abilityEquipmentObjects:
+  - {fileID: 8696415257508639808, guid: 19e6f99d16f192a49a83d80fc58a8e70, type: 3}
+  - {fileID: 7559434722245793598, guid: b851d8b7ac210a9499b2ade3b1d7fb4c, type: 3}
+  - {fileID: 2071120592528323742, guid: 5cd84f09151c66e49b6bf73468391f78, type: 3}
+  - {fileID: 1243884993235805666, guid: 96fc3288a328d8847b5d8adcb48338e5, type: 3}
+  - {fileID: 4895337445699896633, guid: 896d879c119713f44ace4b79c661f271, type: 3}
+  - {fileID: 7004762184797923780, guid: 6489064bd6cebba48a17525608e281cf, type: 3}
+  - {fileID: 3850959649641060618, guid: d121316d4fc175846b3373f79c498c43, type: 3}
+  - {fileID: 6170851934674497698, guid: 8c0e14d194550e7478b5c0047431ea73, type: 3}
+  - {fileID: 554590196384656452, guid: e1212a8f585c5b348ae108565e0748ed, type: 3}
+  - {fileID: 3741103474814439283, guid: 6558f06429c1991499da6c864cf1ca48, type: 3}
+  - {fileID: 4411464692371325514, guid: abbc6d77e9b600242891e883f00e4763, type: 3}
+  - {fileID: 5565552570625225846, guid: 80d253adbf63ff74f9697cbf2faa0bbd, type: 3}
+  - {fileID: 3286775588667186500, guid: 303fe77d3b087144fa7a4e6d9c18c0d7, type: 3}
+  wingEquipmentObjects: []
+  wingModels: []
+  attackEquipmentSprites:
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  abilityEquipmentSprites:
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  wingEquipmentSprites: []
+  attackEquipmentDescriptions:
+  - "[\uAE43\uD138] \uACF5\uACA9\uB825 100% <color=green>+5%</color> \uACF5\uACA9\uC8FC\uAE30
+    100% <color=green>-5%</color> \uB9CC\uB819\uC2DC \uAD00\uD1B5!"
+  abilityEquipmentDescriptions:
+  - "[\uAE43\uD138\uCD94\uAC00] \uC774\uB3D9\uC18D\uB3C4 <color=green>+5%</color>"
+  - "[\uAC15\uCCA0\uAE43\uD138] \uACF5\uACA9\uB825 <color=green>+5%</color>, \uCD5C\uB300\uCCB4\uB825
+    <color=green>+5%</color>, \uC774\uB3D9\uC18D\uB3C4 <color=red>-8%</color>"
+  - "[\uB364\uBCA8] \uACF5\uACA9\uB825 <color=green>+5%</color>"
+  - "[\uBC14\uBCA8] \uACF5\uACA9\uB825 <color=green>+15%</color>, \uC774\uB3D9\uC18D\uB3C4
+    <color=red>-10%</color>"
+  - "[\uC904\uB118\uAE30] \uACF5\uACA9\uC8FC\uAE30 <color=green>-5%</color>"
+  - "[\uD131\uAC78\uC774] \uACF5\uACA9\uC8FC\uAE30 <color=green>-5%</color>, \uACF5\uACA9\uD06C\uAE30
+    <color=green>+5%</color>"
+  - "[\uD669\uAE08\uD558\uD2B8] \uCD5C\uB300\uCCB4\uB825 <color=green>+5%</color>"
+  - "[\uCCAD\uC9C4\uAE30] \uD790\uB7C9 <color=green>+5%</color>"
+  - "[\uB3CB\uBCF4\uAE30] \uACF5\uACA9\uD06C\uAE30 <color=green>+5%</color>"
+  - "[\uD604\uBBF8\uACBD] \uACF5\uACA9\uD06C\uAE30 <color=green>+10%</color>, \uCD5C\uB300\uCCB4\uB825
+    <color=red>-5%</color>"
+  - "[\uCEE4\uD53C] \uACF5\uACA9\uC8FC\uAE30 <color=green>-10%</color>, \uCD5C\uB300\uCCB4\uB825
+    <color=red>-5%</color>"
+  - "[\uC2DC\uC6D0\uD55C \uBB3C] \uCCB4\uB825 \uC804\uBD80 \uD68C\uBCF5!"
+  - "[\uAD6C\uAE09\uD0A4\uD2B8] \uCCB4\uB825 \uD68C\uBCF5 \uC544\uC774\uD15C \uB4DC\uB78D\uB960
+    <color=green>+5%</color>"
+  wingEquipmentDescriptions: []
+  attackEquipmentsCount: 0
+  abilityEquipmentsCount: 0
+  wingEquipmentsCount: 0
+--- !u!114 &696987615641651895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696987615375855404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d0b49ed4f0271246ad910ef96cec7c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUI: {fileID: 0}
+  attackDropRate: 30
+  abilityDropRate: 65
+  wingDropRate: 5
+  skipRewardHeight: 10
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  noImage: {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  noDescription: No Description.
