@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2343973736123364069}
   - component: {fileID: 2343973736123364074}
   - component: {fileID: 2343973736123364075}
+  - component: {fileID: 1437435932}
   m_Layer: 0
   m_Name: 0
   m_TagString: ENEMY
@@ -103,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterID: 0
-  healthPoint: 15
+  healthPoint: 100
   enemyDamage: 1
   targetTransform: {fileID: 0}
 --- !u!114 &2343973736123364069
@@ -143,6 +144,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageText: {fileID: 3997464698092151095, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
+    type: 3}
+--- !u!114 &1437435932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2343973736123364083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89a8d290ab87164a904709fc99d3fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heightItemPrefab: {fileID: 3810181411317358590, guid: c629a69eb7935954e904c6e792939e9f,
+    type: 3}
+  healItemPrefab: {fileID: 3483643955154888932, guid: a33de5b9ff484394181fb6d8744ee25a,
     type: 3}
 --- !u!1 &2343973737154129662
 GameObject:

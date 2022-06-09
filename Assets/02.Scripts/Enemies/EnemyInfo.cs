@@ -37,7 +37,7 @@ public class EnemyInfo : MonoBehaviour
 
     void Initialize()
     {
-        monsterID = int.Parse(gameObject.name);
+        //monsterID = int.Parse(gameObject.name);
         IsDead = false;
         //healthPoint = GameManager.Data.MonsterDict[monsterID].monsterHp;
         //enemyDamage = GameManager.Data.MonsterDict[monsterID].collisionDamage;

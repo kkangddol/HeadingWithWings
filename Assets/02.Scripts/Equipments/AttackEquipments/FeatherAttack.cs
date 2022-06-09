@@ -12,7 +12,13 @@ public class FeatherAttack : Equipment
     public Bullet PenetrateFeatherBullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
+    public float attackRange;
+    public float knockbackSize;
     public float bulletSpeed;
+
+    private Transform targetTransform;
+    private bool isCoolDown = false;
+
 
     private void Start()
     {
@@ -29,25 +35,37 @@ public class FeatherAttack : Equipment
 
     void Fire()
     {
-        Transform targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
-        if(targetTransform == transform)
-        {
-            return;
-        }
         Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
         newBullet.transform.LookAt(targetTransform);
-        newBullet.damage = playerInfo.damage * (damageMultiplier / 100);
-        newBullet.knockbackSize = 3f;
+        newBullet.damage = playerInfo.damage * (damageMultiplier / 100f);
+        newBullet.knockbackSize = knockbackSize;
         newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
+        isCoolDown = true;
+        StartCoroutine(CoolDown());
     }
 
     IEnumerator FireCycle()
     {
         while(true)
         {
-            yield return new WaitForSeconds(playerInfo.attackDelay * (attackDelayMultiplier / 100f));
-            Fire();
+            yield return null;
+            targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
+
+            if(targetTransform == transform) continue;
+
+            if(Vector3.Distance(transform.position, targetTransform.position) > attackRange) continue;
+
+            if(!isCoolDown)
+            {
+                Fire();
+            }
         }
+    }
+
+    IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(playerInfo.attackDelay * (attackDelayMultiplier / 100f));
+        isCoolDown = false;
     }
 
     public override void SetLevel(int newLevel)

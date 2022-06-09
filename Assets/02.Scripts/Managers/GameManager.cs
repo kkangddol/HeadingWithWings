@@ -119,8 +119,11 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        GameStartInit();
-        Debug.Log("게임시작");
+        if(scene.name == "MainGameScene")
+        {
+            GameStartInit();
+            Debug.Log("게임시작");
+        }
     }
 
     private void OnDisable() {

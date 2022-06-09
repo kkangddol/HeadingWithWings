@@ -4,7 +4,9 @@ using UnityEngine;
 
 public enum AttackEquipmentsNumber
 {
-    Feather
+    Feather,
+    Shotgun,
+    Sniper
 }
 
 public enum AbilityEquipmentsNumber
@@ -133,7 +135,7 @@ public class EquipmentManager : MonoBehaviour
             GameObject equipment = Instantiate(wingEquipmentObjects[EquipmentNumber], GameManager.playerInfo.wingEquipmentParent);
             GameObject model = Instantiate(wingModels[EquipmentNumber], GameManager.playerInfo.wingModelParent);
 
-            equipment.GetComponent<WingEquipment>().SetLevel(1);
+            equipment.GetComponent<Equipment>().SetLevel(1);
             GameManager.playerInfo.wingEquipment = equipment;
 
             wingEquipmentsLevel[EquipmentNumber] += 1;
@@ -146,7 +148,7 @@ public class EquipmentManager : MonoBehaviour
             int newLevel = wingEquipmentsLevel[EquipmentNumber] + 1;
             wingEquipmentsLevel[EquipmentNumber] = newLevel;
 
-            GameManager.playerInfo.wingEquipment.GetComponent<WingEquipment>().SetLevel(newLevel);
+            GameManager.playerInfo.wingEquipment.GetComponent<Equipment>().SetLevel(newLevel);
         }
         else
         {

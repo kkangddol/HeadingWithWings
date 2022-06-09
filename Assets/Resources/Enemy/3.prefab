@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterID: 0
-  healthPoint: 12
+  healthPoint: 80
   enemyDamage: 1
   targetTransform: {fileID: 0}
 --- !u!114 &6102667122217650957

@@ -1161,7 +1161,7 @@ MonoBehaviour:
   maxOxygen: 0
   oxygen: 0
   moveSpeed: 3
-  damage: 10
+  damage: 100
   attackDelay: 1
   attackSize: 1
   itemTakeRange: 1
@@ -2059,6 +2059,64 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentObjects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentSprites.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 6997895802431485307, guid: 2dd46f541eafad94897cf03dc4516a3e,
+        type: 3}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 4175149256938263869, guid: b8ebaf3683492084191c5a5686879ea8,
+        type: 3}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649,
+        type: 3}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649,
+        type: 3}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentDescriptions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentDescriptions.Array.data[0]
+      value: "[\uAE43\uD138] \uACF5\uACA9\uB825 10% <color=green>+5%</color> \uACF5\uACA9\uC8FC\uAE30
+        100% <color=green>-5%</color> \uB9CC\uB819\uC2DC \uAD00\uD1B5!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentDescriptions.Array.data[1]
+      value: "[\uC0F7\uAC74] \uACF5\uACA9\uB825 3% <color=green>+1%</color> \uACF5\uACA9\uC8FC\uAE30
+        300% <color=green>-10%</color> \uB9CC\uB819\uC2DC \uD3A0\uB9BF \uB450\uBC30!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentDescriptions.Array.data[2]
+      value: "[\uC2A4\uB098\uC774\uD37C] \uACF5\uACA9\uB825 80% <color=green>+40%</color>
+        \uACF5\uACA9\uC8FC\uAE30 1000% <color=green>-20%</color> \uB9CC\uB819\uC2DC
+        \uD5E4\uB4DC\uC0F7!"
       objectReference: {fileID: 0}
     - target: {fileID: 696987615641651895, guid: e8bd96acb3af0d7419b926e688f59d2e,
         type: 3}

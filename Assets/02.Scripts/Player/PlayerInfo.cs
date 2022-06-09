@@ -54,6 +54,7 @@ public class PlayerInfo : MonoBehaviour
     public float attackSize;
     public float itemTakeRange;
     public float healAmount;
+    public float skillDelay;
 
     public GameObject[] attackEquipments;
     public int[] abilityEquipments;
