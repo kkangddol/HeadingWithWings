@@ -30,9 +30,10 @@ public class MilitaryGirlWing : Equipment
 
     public void ActivateSkill()
     {
+        //집중 포화
         if(isCoolDown) return;
 
-        
+        Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
 
         isCoolDown = true;
         StartCoroutine(CoolDown());
