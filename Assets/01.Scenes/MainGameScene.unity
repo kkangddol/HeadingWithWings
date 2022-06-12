@@ -1166,6 +1166,7 @@ MonoBehaviour:
   attackSize: 1
   itemTakeRange: 1
   healAmount: 30
+  skillDelay: 0
   attackEquipments: []
   abilityEquipments: 
   wingEquipment: {fileID: 0}
