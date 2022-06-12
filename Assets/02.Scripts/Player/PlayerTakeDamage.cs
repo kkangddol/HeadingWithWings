@@ -5,23 +5,23 @@ using UnityEngine;
 public class PlayerTakeDamage : MonoBehaviour
 {
     PlayerInfo playerInfo;
-    SkinnedMeshRenderer skinnedMeshRenderer;
+    SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         playerInfo = GetComponent<PlayerInfo>();
-        skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void TakeDamage(float damage)
     {
         playerInfo.HealthPoint = playerInfo.HealthPoint - damage;
-        skinnedMeshRenderer.material.color = Color.red;
+        spriteRenderer.material.color = Color.red;
         Invoke("EndTakeDamage", 0.1f);
     }
 
     public void EndTakeDamage()
     {
-        skinnedMeshRenderer.material.color = Color.white;
+        spriteRenderer.material.color = Color.white;
     }
 }

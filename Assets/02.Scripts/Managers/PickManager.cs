@@ -27,6 +27,10 @@ public class PickManager : MonoBehaviour
     public Sprite noImage;
     public string noDescription = "No Description.";
 
+    private List<int> pickedAttack = new List<int>();
+    private List<int> pickedAbility = new List<int>();
+    private List<int> pickedWing = new List<int>();
+
     // private void Awake() {
     //     Initialize();
     // }
@@ -59,6 +63,10 @@ public class PickManager : MonoBehaviour
     {
         //slot 별로 어떤 항목이 나올지 확률적으로 선택 (ex 공격장비 확률 55%, 능력치장비 확률 35%, 날개장비 확률 10%)
         //선택된 장비중 랜덤하게 하나 선택
+
+        pickedAttack.Clear();
+        pickedAbility.Clear();
+        pickedWing.Clear();
         for(int i = 0; i < 3; i++)
         {
             float abilityAccumulateRate = attackDropRate + abilityDropRate;
@@ -71,7 +79,13 @@ public class PickManager : MonoBehaviour
             if(0 <= randomEquipment && randomEquipment <= attackDropRate)
             {
                 //공격장비
-                int randomAttack = Random.Range(0, equipmentManager.attackEquipmentsCount);
+                int randomAttack;
+                do
+                {
+                    randomAttack = Random.Range(0, equipmentManager.attackEquipmentsCount);
+                }while(pickedAttack.Contains(randomAttack));
+
+                pickedAttack.Add(randomAttack);
 
                 if(equipmentManager.attackEquipmentSprites.Length <= randomAttack)
                 {
@@ -89,7 +103,13 @@ public class PickManager : MonoBehaviour
             else if(attackDropRate < randomEquipment && randomEquipment <= abilityAccumulateRate)
             {
                 //능력치장비
-                int randomAbility = Random.Range(0, equipmentManager.abilityEquipmentsCount);
+                int randomAbility;
+                do
+                {
+                    randomAbility = Random.Range(0, equipmentManager.abilityEquipmentsCount);
+                }while(pickedAbility.Contains(randomAbility));
+                
+                pickedAbility.Add(randomAbility);
 
                 if(equipmentManager.abilityEquipmentSprites.Length <= randomAbility)
                 {
@@ -107,7 +127,22 @@ public class PickManager : MonoBehaviour
             else
             {
                 //날개장비
+
+                //임시 시작
+                if(equipmentManager.wingEquipmentsCount == 0)
+                {
+                    i--;
+                    continue;
+                }//임시끝
+                
                 int randomWing = Random.Range(0, equipmentManager.wingEquipmentsCount);
+                do
+                {
+                    randomWing = Random.Range(0, equipmentManager.wingEquipmentsCount);
+                }while(pickedWing.Contains(randomWing));
+                
+                pickedWing.Add(randomWing);
+                
 
                 if(equipmentManager.wingEquipmentSprites.Length <= randomWing)
                 {

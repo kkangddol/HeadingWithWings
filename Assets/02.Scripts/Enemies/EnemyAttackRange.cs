@@ -50,7 +50,6 @@ public class EnemyAttackRange : MonoBehaviour
         enemyMovement = GetComponent<EnemyMovement>();
         //attackRange = GameManager.Data.MonsterDict[enemyInfo.monsterID];
         //fireDelay = GameManager.Data.MonsterDict[int.Parse(gameObject.name)].projectileFireDelay;
-        attackRange = 10; // Test
         isInRange = false;
         isAttacking = false;
         fireCoroutine = null;

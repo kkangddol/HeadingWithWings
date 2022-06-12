@@ -29,7 +29,7 @@ public class PlayerMoveController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (animator)
+		if (true)
 		{
 			//walk
 			horizontal = movement.Horizontal;
@@ -54,9 +54,13 @@ public class PlayerMoveController : MonoBehaviour
                     );
             }
 				
-			GetComponent<Rigidbody>().velocity = modelTransform.forward * speedOut * GameManager.playerInfo.moveSpeed + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
+			GetComponent<Rigidbody>().velocity = modelTransform.forward * speedOut * GameManager.playerInfo.moveSpeed;// + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
 
-			animator.SetFloat("Speed", speedOut);
+			if(stickDirection.x > 0)
+				GetComponentInChildren<SpriteRenderer>().flipX = true;
+			else
+				GetComponentInChildren<SpriteRenderer>().flipX = false;
+			//animator.SetFloat("Speed", speedOut);
 		}
 	}
 

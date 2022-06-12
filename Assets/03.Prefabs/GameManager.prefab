@@ -50,6 +50,7 @@ MonoBehaviour:
     type: 3}
   isGameOver: 0
   playingTime: 0
+  playingTimeText: {fileID: 0}
   heightItemDropRate: 0
   healItemDropRate: 0
   tempPickHeight: 10
@@ -70,6 +71,8 @@ MonoBehaviour:
   wingEquipmentsLevel: 
   attackEquipmentObjects:
   - {fileID: 7003791252261313227, guid: 5a2db1f2eae618843b9bb46dcae5efa4, type: 3}
+  - {fileID: 6997895802431485307, guid: 2dd46f541eafad94897cf03dc4516a3e, type: 3}
+  - {fileID: 4175149256938263869, guid: b8ebaf3683492084191c5a5686879ea8, type: 3}
   abilityEquipmentObjects:
   - {fileID: 8696415257508639808, guid: 19e6f99d16f192a49a83d80fc58a8e70, type: 3}
   - {fileID: 7559434722245793598, guid: b851d8b7ac210a9499b2ade3b1d7fb4c, type: 3}
@@ -88,13 +91,15 @@ MonoBehaviour:
   wingModels: []
   attackEquipmentSprites:
   - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 97008766bb2e3f9489c0b362cda5103a, type: 3}
+  - {fileID: 21300000, guid: 01deab5ae4125684788132f26479a618, type: 3}
   abilityEquipmentSprites:
-  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
-  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
-  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
-  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
-  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
-  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
+  - {fileID: 21300000, guid: 1ca34fd053180e745b8b6ce30c1c22e3, type: 3}
+  - {fileID: 21300000, guid: 5811c9eaf6a501745ad54aeb18504da3, type: 3}
+  - {fileID: 21300000, guid: be128cd792ff32d40ab81430d646925b, type: 3}
+  - {fileID: 21300000, guid: 66d1062d4bd3ded48975be98e61f5f11, type: 3}
+  - {fileID: 21300000, guid: 8e746bd2b3f267e4bb19df86be0c7924, type: 3}
+  - {fileID: 21300000, guid: 5f1672e973326d5418c62cc6ca67789b, type: 3}
   - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
   - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
   - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
@@ -104,8 +109,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
   wingEquipmentSprites: []
   attackEquipmentDescriptions:
-  - "[\uAE43\uD138] \uACF5\uACA9\uB825 100% <color=green>+5%</color> \uACF5\uACA9\uC8FC\uAE30
+  - "[\uAE43\uD138] \uACF5\uACA9\uB825 10% <color=green>+5%</color> \uACF5\uACA9\uC8FC\uAE30
     100% <color=green>-5%</color> \uB9CC\uB819\uC2DC \uAD00\uD1B5!"
+  - "[\uC0F7\uAC74] \uACF5\uACA9\uB825 3% <color=green>+1%</color> \uACF5\uACA9\uC8FC\uAE30
+    300% <color=green>-10%</color> \uB9CC\uB819\uC2DC \uD3A0\uB9BF \uB450\uBC30!"
+  - "[\uC2A4\uB098\uC774\uD37C] \uACF5\uACA9\uB825 80% <color=green>+40%</color>
+    \uACF5\uACA9\uC8FC\uAE30 1000% <color=green>-20%</color> \uB9CC\uB819\uC2DC \uD5E4\uB4DC\uC0F7!"
   abilityEquipmentDescriptions:
   - "[\uAE43\uD138\uCD94\uAC00] \uC774\uB3D9\uC18D\uB3C4 <color=green>+5%</color>"
   - "[\uAC15\uCCA0\uAE43\uD138] \uACF5\uACA9\uB825 <color=green>+5%</color>, \uCD5C\uB300\uCCB4\uB825

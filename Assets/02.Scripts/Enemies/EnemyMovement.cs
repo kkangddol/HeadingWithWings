@@ -14,6 +14,13 @@ public class EnemyMovement : MonoBehaviour
         StartCoroutine(EnemySetDestination());
     }
 
+    private void FixedUpdate() {
+        if(transform.position.x - enemyInfo.targetTransform.position.x > 0)
+            GetComponentInChildren<SpriteRenderer>().flipX = false;
+        else
+            GetComponentInChildren<SpriteRenderer>().flipX = true;
+    }
+
     private void Initialize()
     {
         agent = GetComponent<NavMeshAgent>();
