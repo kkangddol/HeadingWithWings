@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MilitaryGirlWing : Equipment
+public class MilitaryGirlWing : Equipment, ActiveWing
 {
     PlayerInfo playerInfo;
-    DetectEnemy detectEnemy;
-    const string ENEMY = "ENEMY";
-    public Bullet bullet;
+    public GameObject skillEffect;
     public float damageMultiplier;
     public float skillDelayMultiplier;
-    public float attackRange;
     public float knockbackSize;
-    public float bulletSpeed;
-
-    private Transform targetTransform;
+    public float skillTime;
     private bool isCoolDown = false;
+    public float coolTime;
 
     private void Start()
     {
@@ -25,24 +21,43 @@ public class MilitaryGirlWing : Equipment
     void Initialize()
     {
         playerInfo = GameManager.playerInfo;
-        detectEnemy = GetComponent<DetectEnemy>();
     }
 
     public void ActivateSkill()
     {
         //집중 포화
         if(isCoolDown) return;
+        ConcentrateFire();
+    }
 
-        Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
-
+    void ConcentrateFire()
+    {
         isCoolDown = true;
+        skillEffect.SetActive(true);
+        StartCoroutine(StopSkill());
+    }
+
+    IEnumerator StopSkill()
+    {
+        yield return new WaitForSeconds(skillTime);
+        skillEffect.SetActive(false);
         StartCoroutine(CoolDown());
     }
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(playerInfo.skillDelay * (skillDelayMultiplier / 100f));
-        isCoolDown = false;
+        isCoolDown = true;
+        coolTime = playerInfo.skillDelay * (skillDelayMultiplier / 100f);
+        while(isCoolDown)
+        {
+            yield return null;
+            coolTime -= Time.deltaTime;
+            if(coolTime <= 0)
+            {
+                isCoolDown = false;
+                break;
+            }
+        }
     }
 
 
