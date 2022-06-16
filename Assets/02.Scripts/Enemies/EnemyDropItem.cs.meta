@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d89a8d290ab87164a904709fc99d3fdb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - heightItemPrefab: {fileID: 3810181411317358590, guid: c629a69eb7935954e904c6e792939e9f,
+      type: 3}
+  - healItemPrefab: {fileID: 3483643955154888932, guid: a33de5b9ff484394181fb6d8744ee25a,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

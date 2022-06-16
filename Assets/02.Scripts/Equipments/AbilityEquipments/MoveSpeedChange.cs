@@ -6,6 +6,6 @@ public class MoveSpeedChange : AbilityChange
 {
     public override void ApplyChange()
     {
-        playerInfo.moveSpeed += playerInfo.moveSpeed * (changeMultiplier / 100f);
+        GameManager.playerInfo.moveSpeed += GameManager.playerInfo.moveSpeed * (changeMultiplier / 100f);
     }
 }

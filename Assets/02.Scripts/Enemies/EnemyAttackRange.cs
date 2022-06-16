@@ -7,8 +7,10 @@ public class EnemyAttackRange : MonoBehaviour
     private EnemyInfo enemyInfo;
     private EnemyMovement enemyMovement;
     public EnemyProjectile enemyProjectile;
-    public float attackRange;
+    public float projectileDamage;
+    public float projectileSpeed;
     public float fireDelay;
+    public float attackRange;
     private bool isAttacking;
     private Coroutine fireCoroutine;
     private bool isInRange;
@@ -46,9 +48,8 @@ public class EnemyAttackRange : MonoBehaviour
     {
         enemyInfo = GetComponent<EnemyInfo>();
         enemyMovement = GetComponent<EnemyMovement>();
-        // attackRange = GameManager.Data.MonsterDict[enemyInfo.monsterID];
-        fireDelay = GameManager.Data.MonsterDict[int.Parse(gameObject.name)].projectileFireDelay;
-        attackRange = 10; // Test
+        //attackRange = GameManager.Data.MonsterDict[enemyInfo.monsterID];
+        //fireDelay = GameManager.Data.MonsterDict[int.Parse(gameObject.name)].projectileFireDelay;
         isInRange = false;
         isAttacking = false;
         fireCoroutine = null;
@@ -75,8 +76,9 @@ public class EnemyAttackRange : MonoBehaviour
         transform.LookAt(enemyInfo.targetTransform);
         EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, transform.rotation);
         newProjectile.transform.LookAt(enemyInfo.targetTransform);
-        newProjectile.damage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].projectileDamage;
-        newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.forward * 15f, ForceMode.Impulse);
+        //newProjectile.damage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].projectileDamage;
+        newProjectile.damage = projectileDamage;
+        newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.forward * projectileSpeed, ForceMode.Impulse);
     }
 
     IEnumerator FireCycle()

@@ -4,11 +4,26 @@ using UnityEngine;
 
 public enum AttackEquipmentsNumber
 {
-    Feather
+    Feather,
+    Shotgun,
+    Sniper
 }
 
 public enum AbilityEquipmentsNumber
 {
+    AddFeather,
+    IronFeather,
+    DumbBell,
+    BarBell,
+    JumpRope,
+    PullUp,
+    GoldenHeart,
+    Stethoscope,
+    Magnifier,
+    Microscope,
+    Coffee,
+    CoolWater,
+    FirstAidKit
 }
 
 public enum WingEquipmentsNumber
@@ -17,8 +32,6 @@ public enum WingEquipmentsNumber
 
 public class EquipmentManager : MonoBehaviour
 {
-    PlayerInfo playerInfo;
-
     public int[] attackEquipmentsLevel;
     public int[] abilityEquipmentsLevel;
     public int[] wingEquipmentsLevel;
@@ -42,11 +55,11 @@ public class EquipmentManager : MonoBehaviour
     public int wingEquipmentsCount;
 
 
-    private void Start() {
-        Initialize();
-    }
+    // private void Start() {
+    //     Initialize();
+    // }
 
-    void Initialize()
+    public void Initialize()
     {
         attackEquipmentsCount = System.Enum.GetValues(typeof(AttackEquipmentsNumber)).Length;
         abilityEquipmentsCount = System.Enum.GetValues(typeof(AbilityEquipmentsNumber)).Length;
@@ -69,8 +82,6 @@ public class EquipmentManager : MonoBehaviour
         // abilityEquipmentDescriptions = new string[abilityEquipmentsCount];
         // wingEquipmentDescriptions = new string[wingEquipmentsCount];
 
-        playerInfo = GameManager.playerInfo;
-
         //임시
         TakeAttackEquipment((int)AttackEquipmentsNumber.Feather);
         //attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
@@ -84,8 +95,8 @@ public class EquipmentManager : MonoBehaviour
             //신규 장착
             attackEquipmentsLevel[EquipmentNumber] = 1;
 
-            GameObject equipment = Instantiate(attackEquipmentObjects[EquipmentNumber], playerInfo.attackEquipmentsParent);
-            playerInfo.attackEquipments[EquipmentNumber] = equipment;
+            GameObject equipment = Instantiate(attackEquipmentObjects[EquipmentNumber], GameManager.playerInfo.attackEquipmentsParent);
+            GameManager.playerInfo.attackEquipments[EquipmentNumber] = equipment;
             equipment.GetComponent<Equipment>().SetLevel(1);
             
         }
@@ -95,7 +106,7 @@ public class EquipmentManager : MonoBehaviour
             int newLevel = attackEquipmentsLevel[EquipmentNumber] + 1;
             attackEquipmentsLevel[EquipmentNumber] = newLevel;
 
-            playerInfo.attackEquipments[EquipmentNumber].GetComponent<Equipment>().SetLevel(newLevel);
+            GameManager.playerInfo.attackEquipments[EquipmentNumber].GetComponent<Equipment>().SetLevel(newLevel);
         }
         else
         {
@@ -106,7 +117,7 @@ public class EquipmentManager : MonoBehaviour
     public void TakeAbilityItem(int EquipmentNumber)
     {
         abilityEquipmentsLevel[EquipmentNumber] += 1;
-        playerInfo.abilityEquipments[EquipmentNumber] += 1;
+        GameManager.playerInfo.abilityEquipments[EquipmentNumber] += 1;
         foreach(var change in abilityEquipmentObjects[EquipmentNumber].GetComponents<AbilityChange>())
         {
             change.ApplyChange();
@@ -114,21 +125,21 @@ public class EquipmentManager : MonoBehaviour
     }
     public void TakeWingItem(int EquipmentNumber)
     {
-        if(playerInfo.wingNumber != EquipmentNumber)
+        if(GameManager.playerInfo.wingNumber != EquipmentNumber)
         {
             //신규 장착
-            Destroy(playerInfo.wingEquipmentParent.GetChild(0));
-            Destroy(playerInfo.wingModelParent.GetChild(0));
-            wingEquipmentsLevel[playerInfo.wingNumber] = 0;
+            Destroy(GameManager.playerInfo.wingEquipmentParent.GetChild(0));
+            Destroy(GameManager.playerInfo.wingModelParent.GetChild(0));
+            wingEquipmentsLevel[GameManager.playerInfo.wingNumber] = 0;
 
-            GameObject equipment = Instantiate(wingEquipmentObjects[EquipmentNumber], playerInfo.wingEquipmentParent);
-            GameObject model = Instantiate(wingModels[EquipmentNumber], playerInfo.wingModelParent);
+            GameObject equipment = Instantiate(wingEquipmentObjects[EquipmentNumber], GameManager.playerInfo.wingEquipmentParent);
+            GameObject model = Instantiate(wingModels[EquipmentNumber], GameManager.playerInfo.wingModelParent);
 
-            equipment.GetComponent<WingEquipment>().SetLevel(1);
-            playerInfo.wingEquipment = equipment;
+            equipment.GetComponent<Equipment>().SetLevel(1);
+            GameManager.playerInfo.wingEquipment = equipment;
 
             wingEquipmentsLevel[EquipmentNumber] += 1;
-            playerInfo.wingNumber = EquipmentNumber;
+            GameManager.playerInfo.wingNumber = EquipmentNumber;
 
         }
         else if(0 < wingEquipmentsLevel[EquipmentNumber] && wingEquipmentsLevel[EquipmentNumber] < 5)
@@ -137,7 +148,7 @@ public class EquipmentManager : MonoBehaviour
             int newLevel = wingEquipmentsLevel[EquipmentNumber] + 1;
             wingEquipmentsLevel[EquipmentNumber] = newLevel;
 
-            playerInfo.wingEquipment.GetComponent<WingEquipment>().SetLevel(newLevel);
+            GameManager.playerInfo.wingEquipment.GetComponent<Equipment>().SetLevel(newLevel);
         }
         else
         {

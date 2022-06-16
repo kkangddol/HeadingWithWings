@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_AmmunitionBelt : Bullets
+public class Bullet_AmmunitionBelt : Bullet
 {
     const string ENEMY = "ENEMY";
     private void OnTriggerEnter(Collider other)

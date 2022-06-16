@@ -5,9 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - PLAYER
-  - ATTACK
   - ENEMY
   - GAMEMANAGER
+  - TIMETEXT
+  - KILLCOUNT
+  - HEIGHTBAR
+  - ATTACK
+  - PICKUI
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,6 @@ public class PlayerMoveController : MonoBehaviour
 
     private PlayerInfo playerInfo;
 
-	public float moveSpeed = 5;
 	private float horizontal;
 	private float vertical;
 	private float rotationDegreePerSecond = 1000;
@@ -25,13 +24,12 @@ public class PlayerMoveController : MonoBehaviour
 	{
         animator = GetComponentInChildren<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
-        moveSpeed = playerInfo.moveSpeed;
 		gamecam = Camera.main;
 	}
 
 	void FixedUpdate()
 	{
-		if (animator)
+		if (true)
 		{
 			//walk
 			horizontal = movement.Horizontal;
@@ -56,9 +54,13 @@ public class PlayerMoveController : MonoBehaviour
                     );
             }
 				
-			GetComponent<Rigidbody>().velocity = modelTransform.forward * speedOut * moveSpeed + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
+			GetComponent<Rigidbody>().velocity = modelTransform.forward * speedOut * GameManager.playerInfo.moveSpeed;// + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
 
-			animator.SetFloat("Speed", speedOut);
+			if(stickDirection.x > 0)
+				GetComponentInChildren<SpriteRenderer>().flipX = true;
+			else
+				GetComponentInChildren<SpriteRenderer>().flipX = false;
+			//animator.SetFloat("Speed", speedOut);
 		}
 	}
 

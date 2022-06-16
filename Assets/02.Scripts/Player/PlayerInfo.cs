@@ -44,7 +44,9 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
+    [HideInInspector]
     public float maxOxygen;
+    [HideInInspector]
     public float oxygen;
     public float moveSpeed;
     public float damage;
@@ -52,6 +54,7 @@ public class PlayerInfo : MonoBehaviour
     public float attackSize;
     public float itemTakeRange;
     public float healAmount;
+    public float skillDelay;
 
     public GameObject[] attackEquipments;
     public int[] abilityEquipments;
@@ -80,6 +83,10 @@ public class PlayerInfo : MonoBehaviour
     private void OnMaxHealthPointChange(float maxHealthPoint)
     {
         healthBar.SetMaxHealth(maxHealthPoint);
+        if(maxHealthPoint <= healthPoint)
+        {
+            healthPoint = maxHealthPoint;
+        }
     }
     private void OnHealthPointChange(float healthPoint)
     {
