@@ -5,7 +5,7 @@ using UnityEngine;
 public class MilitaryGirlWing : Equipment, ActiveWing
 {
     PlayerInfo playerInfo;
-    public GameObject skillEffect;
+    public GameObject skillObject;
     public float damageMultiplier;
     public float skillDelayMultiplier;
     public float knockbackSize;
@@ -21,6 +21,8 @@ public class MilitaryGirlWing : Equipment, ActiveWing
     void Initialize()
     {
         playerInfo = GameManager.playerInfo;
+        skillObject.GetComponent<MilitaryGirlSkill>().damage = playerInfo.damage * (damageMultiplier / 100f);
+        skillObject.GetComponent<MilitaryGirlSkill>().knockbackSize = knockbackSize;
     }
 
     public void ActivateSkill()
@@ -33,14 +35,15 @@ public class MilitaryGirlWing : Equipment, ActiveWing
     void ConcentrateFire()
     {
         isCoolDown = true;
-        skillEffect.SetActive(true);
+        skillObject.SetActive(true);
+        skillObject.GetComponent<MilitaryGirlSkill>().Init();
         StartCoroutine(StopSkill());
     }
 
     IEnumerator StopSkill()
     {
         yield return new WaitForSeconds(skillTime);
-        skillEffect.SetActive(false);
+        skillObject.SetActive(false);
         StartCoroutine(CoolDown());
     }
 
