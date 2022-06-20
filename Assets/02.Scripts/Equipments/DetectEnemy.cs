@@ -15,7 +15,7 @@ public class DetectEnemy : MonoBehaviour
         var neareastObject = objects
         .OrderBy(obj =>
         {
-            return Vector3.Distance(transform.position, obj.transform.position);
+            return Vector2.Distance(transform.position, obj.transform.position);
         })
         .FirstOrDefault();
 

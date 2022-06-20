@@ -38,7 +38,7 @@ public class SniperAttack : Equipment
         newBullet.transform.LookAt(targetTransform);
         newBullet.damage = playerInfo.damage * (damageMultiplier / 100f);
         newBullet.knockbackSize = knockbackSize;
-        newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
+        newBullet.GetComponent<Rigidbody2D>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode2D.Impulse);
         isCoolDown = true;
         StartCoroutine(CoolDown());
     }
@@ -52,7 +52,7 @@ public class SniperAttack : Equipment
 
             if(targetTransform == transform) continue;
 
-            if(Vector3.Distance(transform.position, targetTransform.position) > attackRange) continue;
+            if(Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
 
             if(!isCoolDown)
             {

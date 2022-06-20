@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1274085816530770397}
   - component: {fileID: 5231186823022497740}
   - component: {fileID: 8181852950417660149}
-  - component: {fileID: 3887418407775424687}
   - component: {fileID: 8694400404539397174}
+  - component: {fileID: 1435694149529382386}
   m_Layer: 0
   m_Name: HealItem
   m_TagString: Untagged
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3887418407775424687
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3483643955154888932}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8694400404539397174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,3 +99,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textPopup: {fileID: 7069438660160322206, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
     type: 3}
+--- !u!58 &1435694149529382386
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483643955154888932}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

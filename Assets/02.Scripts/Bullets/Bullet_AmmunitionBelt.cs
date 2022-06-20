@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet_AmmunitionBelt : Bullet
 {
     const string ENEMY = "ENEMY";
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == ENEMY)
         {
@@ -13,4 +13,5 @@ public class Bullet_AmmunitionBelt : Bullet
             Destroy(gameObject);
         }
     }
+
 }

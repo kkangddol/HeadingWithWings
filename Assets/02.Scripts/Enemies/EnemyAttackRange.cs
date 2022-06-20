@@ -12,8 +12,7 @@ public class EnemyAttackRange : MonoBehaviour
     public float fireDelay;
     public float attackRange;
     private bool isAttacking;
-    private Coroutine fireCoroutine;
-    private bool isInRange;
+    private bool isInRange = false;
     public bool IsInRange
     {
         get
@@ -23,18 +22,6 @@ public class EnemyAttackRange : MonoBehaviour
         set
         {
             isInRange = value;
-
-            if(isInRange == true && fireCoroutine == null)
-            {
-                enemyMovement.StopMove();
-                fireCoroutine = StartCoroutine(FireCycle());
-            }
-            else if(isInRange == false)
-            {
-                enemyMovement.ResumeMove();
-                fireCoroutine = null;
-            }
-            
         }
     }
 
@@ -42,6 +29,24 @@ public class EnemyAttackRange : MonoBehaviour
     {
         Initialize();
         StartCoroutine(CheckRange());
+    }
+
+    private void Update()
+    {
+        if(IsInRange)
+        {
+            enemyMovement.StopMove();
+
+            if(isAttacking) return;
+            
+            isAttacking = true;
+            Fire();
+            StartCoroutine(FireDelay());
+        }
+        else if(!IsInRange && enemyMovement.isStop)
+        {
+            enemyMovement.ResumeMove();
+        }
     }
 
     void Initialize()
@@ -52,15 +57,15 @@ public class EnemyAttackRange : MonoBehaviour
         //fireDelay = GameManager.Data.MonsterDict[int.Parse(gameObject.name)].projectileFireDelay;
         isInRange = false;
         isAttacking = false;
-        fireCoroutine = null;
     }
 
     IEnumerator CheckRange()
     {
+        WaitForSeconds waitTime = new WaitForSeconds(0.1f);
         while(!enemyInfo.IsDead)
         {
-            yield return null;
-            if(Vector3.Distance(transform.position, enemyInfo.targetTransform.position) <= attackRange)
+            yield return waitTime;
+            if(Vector2.Distance(transform.position, enemyInfo.targetTransform.position) <= attackRange)
             {
                 IsInRange = true;
             }
@@ -73,27 +78,27 @@ public class EnemyAttackRange : MonoBehaviour
 
     void Fire()
     {
-        transform.LookAt(enemyInfo.targetTransform);
         EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, transform.rotation);
         newProjectile.transform.LookAt(enemyInfo.targetTransform);
         //newProjectile.damage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].projectileDamage;
         newProjectile.damage = projectileDamage;
-        newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.forward * projectileSpeed, ForceMode.Impulse);
+        newProjectile.GetComponent<Rigidbody2D>().AddForce(newProjectile.transform.forward * projectileSpeed, ForceMode2D.Impulse);
+        //newProjectile.GetComponent<Rigidbody2D>().AddForce(enemyInfo.targetTransform.position.normalized * projectileSpeed, ForceMode2D.Impulse);
     }
 
-    IEnumerator FireCycle()
-    {
-        while(isInRange)
-        {
-            yield return null;
-            if(!isAttacking)
-            {
-                isAttacking = true;
-                Fire();
-                StartCoroutine(FireDelay());
-            }
-        }
-    }
+    // IEnumerator FireCycle()
+    // {
+    //     while(isInRange)
+    //     {
+    //         yield return null;
+    //         if(!isAttacking)
+    //         {
+    //             isAttacking = true;
+    //             Fire();
+    //             StartCoroutine(FireDelay());
+    //         }
+    //     }
+    // }
 
     IEnumerator FireDelay()
     {

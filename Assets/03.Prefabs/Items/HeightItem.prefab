@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3149838692602432852}
   - component: {fileID: 274858227889217649}
   - component: {fileID: 327901717658152695}
-  - component: {fileID: 8818539601881851294}
   - component: {fileID: -5394870403517064947}
+  - component: {fileID: 525776362348040004}
   m_Layer: 0
   m_Name: HeightItem
   m_TagString: Untagged
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8818539601881851294
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3810181411317358590}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-5394870403517064947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +98,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseAmount: 5
+--- !u!58 &525776362348040004
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810181411317358590}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

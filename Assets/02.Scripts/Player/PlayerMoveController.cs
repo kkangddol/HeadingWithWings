@@ -13,9 +13,6 @@ public class PlayerMoveController : MonoBehaviour
 	private float rotationDegreePerSecond = 1000;
 	private bool isAttacking = false;
 
-	public Camera gamecam;
-	public Vector2 camPosition;
-
     public FloatingJoystick movement;
     public Transform modelTransform;
 
@@ -24,7 +21,6 @@ public class PlayerMoveController : MonoBehaviour
 	{
         animator = GetComponentInChildren<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
-		gamecam = Camera.main;
 	}
 
 	void FixedUpdate()
@@ -35,7 +31,7 @@ public class PlayerMoveController : MonoBehaviour
 			horizontal = movement.Horizontal;
 			vertical = movement.Vertical;
 
-			Vector3 stickDirection = new Vector3(horizontal, 0, vertical);
+			Vector2 stickDirection = new Vector2(horizontal, vertical);
 			float speedOut;
 
 			if (stickDirection.sqrMagnitude > 1) stickDirection.Normalize();
@@ -45,31 +41,22 @@ public class PlayerMoveController : MonoBehaviour
 			else
 				speedOut = 0;
 
-			if (stickDirection != Vector3.zero && !isAttacking)
-            {
-                modelTransform.rotation = Quaternion.RotateTowards(
-                    modelTransform.rotation, 
-                    Quaternion.LookRotation(stickDirection, Vector3.up), 
-                    rotationDegreePerSecond * Time.deltaTime
-                    );
-            }
+			// if (stickDirection != Vector3.zero && !isAttacking)
+            // {
+            //     modelTransform.rotation = Quaternion.RotateTowards(
+            //         modelTransform.rotation, 
+            //         Quaternion.LookRotation(stickDirection, Vector3.up), 
+            //         rotationDegreePerSecond * Time.deltaTime
+            //         );
+            // }
 				
-			GetComponent<Rigidbody>().velocity = modelTransform.forward * speedOut * GameManager.playerInfo.moveSpeed;// + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
+			GetComponent<Rigidbody2D>().velocity = stickDirection * speedOut * GameManager.playerInfo.moveSpeed;// + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
 
 			if(stickDirection.x > 0)
 				GetComponentInChildren<SpriteRenderer>().flipX = true;
-			else
+			else if (stickDirection.x < 0)
 				GetComponentInChildren<SpriteRenderer>().flipX = false;
 			//animator.SetFloat("Speed", speedOut);
 		}
-	}
-
-	void LateUpdate()
-	{
-        // move camera
-        if (gamecam)
-        {
-            gamecam.transform.position = transform.position + new Vector3(0, camPosition.x, -camPosition.y);
-        }
 	}
 }

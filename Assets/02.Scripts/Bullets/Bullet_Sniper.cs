@@ -7,7 +7,7 @@ public class Bullet_Sniper : Bullet
     const string ENEMY = "ENEMY";
     [HideInInspector]
     public float headShotChance = 0;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == ENEMY)
         {

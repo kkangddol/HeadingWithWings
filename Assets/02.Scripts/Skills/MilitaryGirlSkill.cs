@@ -15,7 +15,7 @@ public class MilitaryGirlSkill : MonoBehaviour
         isDelay = false;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if(isDelay) return;
 

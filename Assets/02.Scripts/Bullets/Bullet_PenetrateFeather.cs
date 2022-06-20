@@ -10,7 +10,7 @@ public class Bullet_PenetrateFeather : Bullet
         Destroy(gameObject, 5f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == ENEMY)
         {

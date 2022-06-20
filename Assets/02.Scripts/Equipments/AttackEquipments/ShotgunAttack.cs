@@ -40,8 +40,8 @@ public class ShotgunAttack : Equipment
             newPellet.damage = playerInfo.damage * (damageMultiplier / 100f);
             newPellet.knockbackSize = this.knockbackSize;   //스크립터블 오브젝트로 처리할 예정
             newPellet.transform.LookAt(targetTransform);
-            Vector3 pelletDirection = newPellet.transform.forward + new Vector3(Random.Range(-maxSpread,maxSpread), 0, Random.Range(-maxSpread,maxSpread));
-            newPellet.GetComponent<Rigidbody>().AddForce(pelletDirection * bulletSpeed, ForceMode.Impulse);
+            Vector2 pelletDirection = newPellet.transform.forward + new Vector3(Random.Range(-maxSpread,maxSpread), Random.Range(-maxSpread,maxSpread), 0);
+            newPellet.GetComponent<Rigidbody2D>().AddForce(pelletDirection * bulletSpeed, ForceMode2D.Impulse);
         }
         isCoolDown = true;
         StartCoroutine(CoolDown());
@@ -56,7 +56,7 @@ public class ShotgunAttack : Equipment
 
             if(targetTransform == transform) continue;
 
-            if(Vector3.Distance(transform.position, targetTransform.position) > attackRange) continue;
+            if(Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
 
             if(!isCoolDown)
             {
