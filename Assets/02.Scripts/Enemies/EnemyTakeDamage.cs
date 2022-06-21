@@ -28,7 +28,8 @@ public class EnemyTakeDamage : MonoBehaviour
     {
         Vector2 reactVec = transform.position - hitTr.position;
         enemyInfo.healthPoint -= damage;
-        GameObject dText = Instantiate(damageText, hitTr.position + Vector3.up, Quaternion.identity);
+        float randomX = Random.Range(-0.5f,0.5f);
+        GameObject dText = Instantiate(damageText, transform.position + (Vector3.up / 2) + (Vector3.right * randomX), Quaternion.identity);
         dText.GetComponent<TextPopup>().SetDamage((int)damage);
 
         StartCoroutine(ProcessForDamage(reactVec,knockbackSize));

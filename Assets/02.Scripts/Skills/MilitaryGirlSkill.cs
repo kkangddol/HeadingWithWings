@@ -7,7 +7,7 @@ public class MilitaryGirlSkill : MonoBehaviour
     const string ENEMY = "ENEMY";
     public float damage;
     public float knockbackSize;
-    public float attackInterval = 0.5f;
+    public float attackInterval = 0.3f;
     bool isDelay = false;
 
     public void Init()

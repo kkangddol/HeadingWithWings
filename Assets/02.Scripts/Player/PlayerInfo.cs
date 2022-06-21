@@ -65,6 +65,8 @@ public class PlayerInfo : MonoBehaviour
     public Transform wingEquipmentParent;
     public Transform wingModelParent;
 
+    public float headAngle;
+
     private void Awake()
     {
         Initialize();

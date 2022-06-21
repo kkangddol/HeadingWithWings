@@ -87,7 +87,8 @@ MonoBehaviour:
   - {fileID: 4411464692371325514, guid: abbc6d77e9b600242891e883f00e4763, type: 3}
   - {fileID: 5565552570625225846, guid: 80d253adbf63ff74f9697cbf2faa0bbd, type: 3}
   - {fileID: 3286775588667186500, guid: 303fe77d3b087144fa7a4e6d9c18c0d7, type: 3}
-  wingEquipmentObjects: []
+  wingEquipmentObjects:
+  - {fileID: 5861956466206476945, guid: 248171d45c0f6db47a6ec590353674b4, type: 3}
   wingModels: []
   attackEquipmentSprites:
   - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
@@ -107,7 +108,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
   - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
   - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
-  wingEquipmentSprites: []
+  wingEquipmentSprites:
+  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
   attackEquipmentDescriptions:
   - "[\uAE43\uD138] \uACF5\uACA9\uB825 10% <color=green>+5%</color> \uACF5\uACA9\uC8FC\uAE30
     100% <color=green>-5%</color> \uB9CC\uB819\uC2DC \uAD00\uD1B5!"
@@ -135,10 +137,12 @@ MonoBehaviour:
   - "[\uC2DC\uC6D0\uD55C \uBB3C] \uCCB4\uB825 \uC804\uBD80 \uD68C\uBCF5!"
   - "[\uAD6C\uAE09\uD0A4\uD2B8] \uCCB4\uB825 \uD68C\uBCF5 \uC544\uC774\uD15C \uB4DC\uB78D\uB960
     <color=green>+5%</color>"
-  wingEquipmentDescriptions: []
+  wingEquipmentDescriptions:
+  - "[\uAD70\uD544\uC5EC\uACE0\uC0DD] \uC9D1\uC911\uD3EC\uD654\uAC00 \uC788\uC2B5\uB2C8\uB2E4~"
   attackEquipmentsCount: 0
   abilityEquipmentsCount: 0
   wingEquipmentsCount: 0
+  skillButton: {fileID: 0}
 --- !u!114 &696987615641651895
 MonoBehaviour:
   m_ObjectHideFlags: 0

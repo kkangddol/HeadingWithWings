@@ -11,16 +11,20 @@ public class EnemyDropItem : MonoBehaviour
         float heightItemDropRate = GameManager.Instance.heightItemDropRate;
         float healItemDropRate = GameManager.Instance.healItemDropRate;
 
+        float randomX;
+
         float randomNumber = Random.Range(0f,100f);
         if(randomNumber < heightItemDropRate)
         {
-            Instantiate(heightItemPrefab,transform.position,transform.rotation);
+            randomX = Random.Range(-1f, 1f);
+            GameObject item = Instantiate(heightItemPrefab, transform.position + (Vector3.right * randomX), Quaternion.identity);
         }
 
         randomNumber = Random.Range(0f,100f);
         if(randomNumber < healItemDropRate)
         {
-            Instantiate(healItemPrefab,transform.position,transform.rotation);
+            randomX = Random.Range(-1f, 1f);
+            GameObject item = Instantiate(healItemPrefab, transform.position + (Vector3.right * randomX), Quaternion.identity);
         }
     }
 }
