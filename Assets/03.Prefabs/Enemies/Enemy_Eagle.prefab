@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterID: 0
-  healthPoint: 100
+  healthPoint: 120
   enemyDamage: 1
   enemyMoveSpeed: 1
   targetTransform: {fileID: 0}

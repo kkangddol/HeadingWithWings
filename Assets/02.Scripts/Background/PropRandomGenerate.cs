@@ -7,12 +7,12 @@ public class PropRandomGenerate : MonoBehaviour
     public GameObject[] naturePrefabs;
     public float tempGenSize = 50;
     public float tempGenRatio = 50;
-    int repeat = 200;
+    public int propCount = 200;
 
     private void Awake()
     {
-        repeat = (int)((tempGenSize*tempGenSize) * (tempGenRatio/100));
-        for(int i = 0; i < repeat; i++)
+        propCount = (int)((tempGenSize*tempGenSize) * (tempGenRatio/100));
+        for(int i = 0; i < propCount; i++)
         {
             GenerateRandomNature();
         }
@@ -25,7 +25,7 @@ public class PropRandomGenerate : MonoBehaviour
         int index = 0;
 
 
-        while(index < repeat)
+        while(index < propCount)
         {
             yield return null;
             GenerateRandomNature();
