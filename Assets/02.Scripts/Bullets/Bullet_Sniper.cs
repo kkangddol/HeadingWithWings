@@ -9,7 +9,7 @@ public class Bullet_Sniper : Bullet
     public float headShotChance = 0;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == ENEMY)
+        if(other.CompareTag(ENEMY))
         {
             float randomNumber = Random.Range(0f,100f);
             if(randomNumber < headShotChance)

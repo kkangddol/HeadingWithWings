@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeteorAttack : MonoBehaviour
+public class MeteorAttack_old : MonoBehaviour
 {
     public int meteorAmount = 10;
     private float meteorSpeed = 30f;

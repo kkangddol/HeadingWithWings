@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FeatherAttack : Equipment
+public class ArchonAttack : Equipment
 {
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
     const string ENEMY = "ENEMY";
     public Bullet bullet;
-    public Bullet FeatherBullet;
-    public Bullet PenetrateFeatherBullet;
+    public Bullet archonBullet;
+    public Bullet SplashArchonBullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
     public float attackRange;
@@ -30,12 +30,12 @@ public class FeatherAttack : Equipment
     {
         playerInfo = GameManager.playerInfo;
         detectEnemy = GetComponent<DetectEnemy>();
-        bullet = FeatherBullet;
+        bullet = archonBullet;
     }
 
     void Fire()
     {
-        Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
+        Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation);
         newBullet.transform.LookAt(targetTransform);
         newBullet.damage = playerInfo.damage * damageMultiplier;
         newBullet.knockbackSize = knockbackSize;
@@ -46,16 +46,16 @@ public class FeatherAttack : Equipment
 
     IEnumerator FireCycle()
     {
-        while(true)
+        while (true)
         {
             yield return null;
             targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
 
-            if(targetTransform == transform) continue;
+            if (targetTransform == transform) continue;
 
-            if(Vector3.Distance(transform.position, targetTransform.position) > attackRange) continue;
+            if (Vector3.Distance(transform.position, targetTransform.position) > attackRange) continue;
 
-            if(!isCoolDown)
+            if (!isCoolDown)
             {
                 Fire();
             }
@@ -73,45 +73,46 @@ public class FeatherAttack : Equipment
         this.level = newLevel;
 
         //220527 하드코딩이므로 DataManager 이용할 것.
-        switch(level)
+        switch (level)
         {
             case 1:
-            {
-                bullet = FeatherBullet;
-                damageMultiplier = 0.10f;
-                attackDelayMultiplier = 1.00f;
-                break;
-            }
+                {
+                    bullet = archonBullet;
+                    damageMultiplier = 0.50f;
+                    attackDelayMultiplier = 2.50f;
+                    break;
+                }
             case 2:
-            {
-                bullet = FeatherBullet;
-                damageMultiplier = 0.15f;
-                attackDelayMultiplier = 0.95f;
-                break;
-            }
+                {
+                    bullet = archonBullet;
+                    damageMultiplier = 0.55f;
+                    attackDelayMultiplier = 2.40f;
+                    break;
+                }
             case 3:
-            {
-                bullet = FeatherBullet;
-                damageMultiplier = 0.20f;
-                attackDelayMultiplier = 0.90f;
-                break;
-            }
+                {
+                    bullet = archonBullet;
+                    damageMultiplier = 0.60f;
+                    attackDelayMultiplier = 2.35f;
+                    break;
+                }
             case 4:
-            {
-                bullet = FeatherBullet;
-                damageMultiplier = 0.25f;
-                attackDelayMultiplier = 0.85f;
-                break;
-            }
+                {
+                    bullet = archonBullet;
+                    damageMultiplier = 0.65f;
+                    attackDelayMultiplier = 2.30f;
+                    break;
+                }
             case 5:
-            {
-                bullet = PenetrateFeatherBullet;
-                damageMultiplier = 0.30f;
-                attackDelayMultiplier = 0.80f;
-                break;
-            }
+                {
+                    bullet = SplashArchonBullet;
+                    damageMultiplier = 0.70f;
+                    attackDelayMultiplier = 2.25f;
+                    break;
+                }
             default:
                 break;
         }
     }
 }
+

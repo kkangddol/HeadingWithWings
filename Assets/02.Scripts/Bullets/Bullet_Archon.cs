@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_AmmunitionBelt : Bullet
+public class Bullet_Archon : Bullet
 {
     const string ENEMY = "ENEMY";
 
@@ -13,7 +13,7 @@ public class Bullet_AmmunitionBelt : Bullet
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(ENEMY))
+        if (other.CompareTag(ENEMY))
         {
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
             Destroy(gameObject);

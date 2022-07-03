@@ -36,8 +36,9 @@ public class SniperAttack : Equipment
     {
         Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
         newBullet.transform.LookAt(targetTransform);
-        newBullet.damage = playerInfo.damage * (damageMultiplier / 100f);
+        newBullet.damage = playerInfo.damage * damageMultiplier;
         newBullet.knockbackSize = knockbackSize;
+        ((Bullet_Sniper)newBullet).headShotChance = headShotChance;
         newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
         isCoolDown = true;
         StartCoroutine(CoolDown());
@@ -63,7 +64,7 @@ public class SniperAttack : Equipment
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(playerInfo.attackDelay * (attackDelayMultiplier / 100f));
+        yield return new WaitForSeconds(playerInfo.attackDelay * attackDelayMultiplier);
         isCoolDown = false;
     }
 
@@ -76,36 +77,36 @@ public class SniperAttack : Equipment
         {
             case 1:
             {
-                damageMultiplier = 80;
-                attackDelayMultiplier = 1000;
+                damageMultiplier = 0.80f;
+                attackDelayMultiplier = 10.00f;
                 headShotChance = 0;
                 break;
             }
             case 2:
             {
-                damageMultiplier = 120;
-                attackDelayMultiplier = 980;
+                damageMultiplier = 1.20f;
+                attackDelayMultiplier = 9.80f;
                 headShotChance = 0;
                 break;
             }
             case 3:
             {
-                damageMultiplier = 160;
-                attackDelayMultiplier = 960;
+                damageMultiplier = 1.60f;
+                attackDelayMultiplier = 9.60f;
                 headShotChance = 0;
                 break;
             }
             case 4:
             {
-                damageMultiplier = 180;
-                attackDelayMultiplier = 940;
+                damageMultiplier = 1.80f;
+                attackDelayMultiplier = 9.40f;
                 headShotChance = 0;
                 break;
             }
             case 5:
             {
-                damageMultiplier = 200;
-                attackDelayMultiplier = 920;
+                damageMultiplier = 2.00f;
+                attackDelayMultiplier = 9.20f;
                 headShotChance = 5;
                 break;
             }
