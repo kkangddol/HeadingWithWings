@@ -18,7 +18,7 @@ public class Bullet_Icicle : Bullet
         if (other.CompareTag(ENEMY))
         {
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
-            other.GetComponent<EnemyMovement>().SlowMove(speedMultiplier);
+            //other.GetComponent<EnemyMovement>().SlowMove(speedMultiplier);
             Destroy(gameObject);
         }
     }
