@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyInfo : MonoBehaviour
 {
@@ -11,6 +10,7 @@ public class EnemyInfo : MonoBehaviour
     public int MonsterID { get { return monsterID; } set { } }
     public float healthPoint;
     public float enemyDamage;
+    public float enemyMoveSpeed;
     private bool isDead;
     public bool IsDead
     {
@@ -48,7 +48,6 @@ public class EnemyInfo : MonoBehaviour
     {
         GameManager.Instance.KillCount++;
         enemyDamage = 0;
-        GetComponent<NavMeshAgent>().isStopped = true;
         GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
         GetComponent<EnemyDropItem>().DropItem();
         Destroy(gameObject, 0.1f);

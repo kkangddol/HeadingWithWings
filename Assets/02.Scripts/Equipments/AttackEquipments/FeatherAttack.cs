@@ -36,10 +36,9 @@ public class FeatherAttack : Equipment
     void Fire()
     {
         Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
-        newBullet.transform.LookAt(targetTransform);
         newBullet.damage = playerInfo.damage * (damageMultiplier / 100f);
         newBullet.knockbackSize = knockbackSize;
-        newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
+        newBullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
         isCoolDown = true;
         StartCoroutine(CoolDown());
     }
@@ -53,7 +52,7 @@ public class FeatherAttack : Equipment
 
             if(targetTransform == transform) continue;
 
-            if(Vector3.Distance(transform.position, targetTransform.position) > attackRange) continue;
+            if(Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
 
             if(!isCoolDown)
             {

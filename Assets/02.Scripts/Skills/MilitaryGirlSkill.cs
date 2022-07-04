@@ -7,7 +7,7 @@ public class MilitaryGirlSkill : MonoBehaviour
     const string ENEMY = "ENEMY";
     public float damage;
     public float knockbackSize;
-    public float attackInterval = 0.5f;
+    public float attackInterval = 0.3f;
     bool isDelay = false;
 
     public void Init()
@@ -15,7 +15,7 @@ public class MilitaryGirlSkill : MonoBehaviour
         isDelay = false;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if(isDelay) return;
 

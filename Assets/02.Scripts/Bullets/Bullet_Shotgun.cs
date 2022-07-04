@@ -9,7 +9,7 @@ public class Bullet_Shotgun : Bullet
     private void Start() {
         Destroy(gameObject, 1f);
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == ENEMY)
         {
