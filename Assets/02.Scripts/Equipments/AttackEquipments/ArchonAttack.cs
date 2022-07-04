@@ -30,7 +30,7 @@ public class ArchonAttack : Equipment
     {
         playerInfo = GameManager.playerInfo;
         detectEnemy = GetComponent<DetectEnemy>();
-        bullet = archonBullet;
+        bullet = SplashArchonBullet;
     }
 
     void Fire()

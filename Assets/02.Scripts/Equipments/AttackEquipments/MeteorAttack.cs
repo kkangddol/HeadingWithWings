@@ -23,7 +23,7 @@ public class MeteorAttack : Equipment
     private float meteorHeight = 10.0f;
     private float meteorRangeRadius = 3.0f;
     private WaitForSeconds meteorInterval = new WaitForSeconds(0.25f);
-    private Transform[] targetTransform;
+    private Vector3[] targetPositions;
     private bool isCoolDown = false;
 
 
@@ -43,13 +43,14 @@ public class MeteorAttack : Equipment
     IEnumerator Fire()
     {
         isCoolDown = true;
-
+        Debug.Log($"meteorCount = {meteorCount}");
         for (int i = 0; i < meteorCount; i++)
         {
+            Debug.Log($"i = {i}");
             Bullet newBullet = Instantiate(bullet, 
             Position.GetRandomInCircle(transform.position, meteorRangeRadius) + Vector3.up * meteorHeight,
             Quaternion.identity);
-            newBullet.transform.LookAt(targetTransform[i].position);
+            newBullet.transform.LookAt(targetPositions[i]);
             newBullet.damage = playerInfo.damage * damageMultiplier;
             newBullet.knockbackSize = knockbackSize;
             newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
@@ -65,8 +66,9 @@ public class MeteorAttack : Equipment
         while (true)
         {
             yield return null;
-            targetTransform = detectEnemy.FindNearestEnemies(ENEMY, meteorCount, attackRange);
-
+            Debug.Log($"meteorCount = {meteorCount}");
+            targetPositions = detectEnemy.FindNearestEnemies(ENEMY, meteorCount, attackRange);
+            Debug.Log($"targetPositions.Length = {targetPositions.Length}");
             if (!isCoolDown)
             {
                 StartCoroutine(Fire());

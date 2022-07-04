@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Bullet_Meteor : Bullet
 {
-    const string ENEMY = "ENEMY";
     const string TERRAIN = "TERRAIN";
     const float EXPLODE_RADIUS = 3.0f;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(ENEMY) || other.CompareTag(TERRAIN))
+        if (other.CompareTag(TERRAIN))
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, EXPLODE_RADIUS);
 

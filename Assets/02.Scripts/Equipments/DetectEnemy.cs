@@ -27,9 +27,10 @@ public class DetectEnemy : MonoBehaviour
         return neareastObject.transform;
     }
 
-    public Transform[] FindNearestEnemies(string tag, int enemyCount = 2, float attackRange = 3.0f)
+    public Vector3[] FindNearestEnemies(string tag, int enemyCount = 2, float attackRange = 3.0f)
     {
-        Transform[] returnTransforms = new Transform[0];
+        Debug.Log($"EnmeyCount = {enemyCount}");
+        List<Vector3> returnPositions = new List<Vector3>();
         // 탐색할 오브젝트 목록을 List 로 저장합니다.
         var objects = GameObject.FindGameObjectsWithTag(tag).ToList();
         // 이 부분 나중에 Enemy 다루는 오브젝트를 넘겨줄 예정
@@ -45,17 +46,16 @@ public class DetectEnemy : MonoBehaviour
         {
             foreach (var obj in neareastObjects)
             {
-                returnTransforms.Append(obj.transform);
+                returnPositions.Add(obj.transform.position);
             }
         }
-        
-        for (int i = 0; i < enemyCount - returnTransforms.Length; i++)
+
+        for (int i = 0; i < (enemyCount - returnPositions.Count); i++)
         {
-            Transform randTr = new GameObject().GetComponent<Transform>();
-            randTr.position = Position.GetRandomInCircle(transform.position, attackRange);
-            returnTransforms.Append(randTr);
+            returnPositions.Add(Position.GetRandomInCircle(transform.position, attackRange));
         }
 
-            return returnTransforms;
+
+        return returnPositions.ToArray();
     }
 }

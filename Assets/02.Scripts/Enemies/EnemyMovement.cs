@@ -57,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
         agent.speed = enemySpeed;
     }
 
-    public void SlowMove(float speedMultiplier, float duration = 0.5f)
+    public void SlowMove(float speedMultiplier, float duration = 1.5f)
     {
         StartCoroutine(EnemySetSlow(speedMultiplier, duration));
     }

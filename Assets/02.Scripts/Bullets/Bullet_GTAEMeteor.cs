@@ -43,8 +43,7 @@ public class Bullet_GTAEMeteor : Bullet
 
     private void OnTriggerEnter(Collider other)
     {
-        // ENEMY와 충돌한 경우는 충돌한 위치가 아니라 인위적으로 높이를 0으로 세팅
-        if (other.CompareTag(ENEMY) || other.CompareTag(TERRAIN))
+        if (other.CompareTag(TERRAIN))
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, EXPLODE_RADIUS);
 
@@ -62,7 +61,7 @@ public class Bullet_GTAEMeteor : Bullet
             if(isGTAE == true)
                 return;
 
-            GTAEPos = hitColliders[0].transform.position;
+            GTAEPos = other.transform.position;
             GTAEPos.y = 0.0f;
             StartCoroutine(GTAE());
         }

@@ -6,7 +6,7 @@ public class Bullet_SplashArchon : Bullet
 {
     const string ENEMY = "ENEMY";
     [HideInInspector]
-    public float splashRange = 2.0f;
+    public float splashRange = 3.0f;
 
     private void Start()
     {
@@ -20,7 +20,11 @@ public class Bullet_SplashArchon : Bullet
             Collider[] hitColliders = Physics.OverlapSphere(other.transform.position, splashRange);
             foreach (var hitCollider in hitColliders)
             {
-                hitCollider.GetComponent<EnemyTakeDamage>().TakeDamage(other.transform, damage, knockbackSize);
+                EnemyTakeDamage temp = hitCollider.GetComponent<EnemyTakeDamage>();
+                if(temp != null)
+                {
+                    temp.TakeDamage(temp.transform, damage, knockbackSize);
+                }
             }
             Destroy(gameObject);
         }
