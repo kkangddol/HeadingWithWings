@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     private EnemyInfo enemyInfo;
     private NavMeshAgent agent;
+    private float enemySpeed = 1.0f;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         enemyInfo = GetComponent<EnemyInfo>();
         agent.speed = GameManager.Data.MonsterDict[enemyInfo.MonsterID].monsterSpeed;
+        enemySpeed = agent.speed;
     }
 
     IEnumerator EnemySetDestination()
@@ -46,5 +48,17 @@ public class EnemyMovement : MonoBehaviour
     {
         agent.isStopped = false;
         StartCoroutine(EnemySetDestination());
+    }
+
+    IEnumerator EnemySetSlow(float speedMultiplier, float duration)
+    {
+        agent.speed = enemySpeed * speedMultiplier;
+        yield return new WaitForSeconds(duration);
+        agent.speed = enemySpeed;
+    }
+
+    public void SlowMove(float speedMultiplier, float duration = 1.5f)
+    {
+        StartCoroutine(EnemySetSlow(speedMultiplier, duration));
     }
 }

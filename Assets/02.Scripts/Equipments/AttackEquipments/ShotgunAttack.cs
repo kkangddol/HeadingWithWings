@@ -37,7 +37,7 @@ public class ShotgunAttack : Equipment
         for(int i = 0; i < pelletCount; i++)
         {
             Bullet newPellet = Instantiate(bullet,transform.position,transform.rotation);
-            newPellet.damage = playerInfo.damage * (damageMultiplier / 100f);
+            newPellet.damage = playerInfo.damage * damageMultiplier;
             newPellet.knockbackSize = this.knockbackSize;   //스크립터블 오브젝트로 처리할 예정
             newPellet.transform.LookAt(targetTransform);
             Vector3 pelletDirection = newPellet.transform.forward + new Vector3(Random.Range(-maxSpread,maxSpread), 0, Random.Range(-maxSpread,maxSpread));
@@ -67,7 +67,7 @@ public class ShotgunAttack : Equipment
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(playerInfo.attackDelay * (attackDelayMultiplier / 100f));
+        yield return new WaitForSeconds(playerInfo.attackDelay * attackDelayMultiplier);
         isCoolDown = false;
     }
 
@@ -80,36 +80,36 @@ public class ShotgunAttack : Equipment
         {
             case 1:
             {
-                damageMultiplier = 3;
-                attackDelayMultiplier = 300;
+                damageMultiplier = 0.03f;
+                attackDelayMultiplier = 3.00f;
                 pelletCount = 4;
                 break;
             }
             case 2:
             {
-                damageMultiplier = 4;
-                attackDelayMultiplier = 290;
+                damageMultiplier = 0.04f;
+                attackDelayMultiplier = 2.90f;
                 pelletCount = 4;
                 break;
             }
             case 3:
             {
-                damageMultiplier = 5;
-                attackDelayMultiplier = 280;
+                damageMultiplier = 0.05f;
+                attackDelayMultiplier = 2.80f;
                 pelletCount = 4;
                 break;
             }
             case 4:
             {
-                damageMultiplier = 6;
-                attackDelayMultiplier = 270;
+                damageMultiplier = 0.06f;
+                attackDelayMultiplier = 2.70f;
                 pelletCount = 4;
                 break;
             }
             case 5:
             {
-                damageMultiplier = 6;
-                attackDelayMultiplier = 270;
+                damageMultiplier = 0.06f;
+                attackDelayMultiplier = 2.70f;
                 pelletCount = 8;
                 break;
             }

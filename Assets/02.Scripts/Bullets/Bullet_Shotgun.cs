@@ -11,7 +11,7 @@ public class Bullet_Shotgun : Bullet
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == ENEMY)
+        if(other.CompareTag(ENEMY))
         {
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
             Destroy(gameObject);
