@@ -66,5 +66,5 @@ MonoBehaviour:
   damageMultiplier: 10
   attackDelayMultiplier: 100
   attackRange: 10
-  knockbackSize: 5
+  knockbackSize: 2
   bulletSpeed: 15

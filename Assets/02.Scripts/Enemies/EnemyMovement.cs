@@ -6,48 +6,43 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     private EnemyInfo enemyInfo;
-    private NavMeshAgent agent;
-    private float enemySpeed = 1.0f;
+    public bool isStop = false;
 
     private void Start()
     {
         Initialize();
-        StartCoroutine(EnemySetDestination());
+    }
+    private void Initialize()
+    {
+        enemyInfo = GetComponent<EnemyInfo>();
+    }
+
+    private void Update() {
+        if(!isStop)
+        {
+            FollowTarget();
+        }
     }
 
     private void FixedUpdate() {
         if(transform.position.x - enemyInfo.targetTransform.position.x > 0)
             GetComponentInChildren<SpriteRenderer>().flipX = false;
-        else
+        else if(transform.position.x - enemyInfo.targetTransform.position.x < 0)
             GetComponentInChildren<SpriteRenderer>().flipX = true;
     }
 
-    private void Initialize()
+    void FollowTarget()
     {
-        agent = GetComponent<NavMeshAgent>();
-        enemyInfo = GetComponent<EnemyInfo>();
-        agent.speed = GameManager.Data.MonsterDict[enemyInfo.MonsterID].monsterSpeed;
-        enemySpeed = agent.speed;
-    }
-
-    IEnumerator EnemySetDestination()
-    {
-        while(!enemyInfo.IsDead)
-        {
-            yield return null;
-            agent.SetDestination(enemyInfo.targetTransform.position);
-        }
+        transform.position = Vector2.MoveTowards(transform.position, enemyInfo.targetTransform.position, enemyInfo.enemyMoveSpeed * Time.deltaTime);
     }
 
     public void StopMove()
     {
-        StopCoroutine(EnemySetDestination());
-        agent.isStopped = true;
+        isStop = true;
     }
     public void ResumeMove()
     {
-        agent.isStopped = false;
-        StartCoroutine(EnemySetDestination());
+        isStop = false;
     }
 
     IEnumerator EnemySetSlow(float speedMultiplier, float duration)

@@ -11,7 +11,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         Invoke("DestroyProjectile", 10.0f);
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == PLAYER)
         {
@@ -24,7 +24,7 @@ public class EnemyProjectile : MonoBehaviour
     private void DestroyProjectile()
     {
         CancelInvoke();
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Destroy(gameObject);
     }
 }

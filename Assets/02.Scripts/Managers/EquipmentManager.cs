@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum AttackEquipmentsNumber
 {
@@ -33,6 +34,7 @@ public enum AbilityEquipmentsNumber
 
 public enum WingEquipmentsNumber
 {
+    MilitaryGirl
 }
 
 public class EquipmentManager : MonoBehaviour
@@ -58,6 +60,8 @@ public class EquipmentManager : MonoBehaviour
     public int attackEquipmentsCount;
     public int abilityEquipmentsCount;
     public int wingEquipmentsCount;
+
+    public GameObject skillButton;
 
 
     // private void Start() {
@@ -147,6 +151,9 @@ public class EquipmentManager : MonoBehaviour
             wingEquipmentsLevel[EquipmentNumber] += 1;
             GameManager.playerInfo.wingNumber = EquipmentNumber;
 
+            skillButton.SetActive(true);
+            skillButton.GetComponent<Image>().sprite = wingEquipmentSprites[EquipmentNumber];
+            skillButton.GetComponent<Button>().onClick.AddListener(delegate {equipment.GetComponentInChildren<ActiveWing>().ActivateSkill();});
         }
         else if(0 < wingEquipmentsLevel[EquipmentNumber] && wingEquipmentsLevel[EquipmentNumber] < 5)
         {

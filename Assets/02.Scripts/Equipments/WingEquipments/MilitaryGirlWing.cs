@@ -21,14 +21,19 @@ public class MilitaryGirlWing : Equipment, ActiveWing
     void Initialize()
     {
         playerInfo = GameManager.playerInfo;
-        skillObject.GetComponent<MilitaryGirlSkill>().damage = playerInfo.damage * (damageMultiplier / 100f);
-        skillObject.GetComponent<MilitaryGirlSkill>().knockbackSize = knockbackSize;
+    }
+
+    private void LateUpdate() {
+        transform.eulerAngles = new Vector3(0,0,playerInfo.headAngle);
     }
 
     public void ActivateSkill()
     {
         //집중 포화
         if(isCoolDown) return;
+        
+        skillObject.GetComponent<MilitaryGirlSkill>().damage = playerInfo.damage * (damageMultiplier / 100f);
+        skillObject.GetComponent<MilitaryGirlSkill>().knockbackSize = knockbackSize;
         ConcentrateFire();
     }
 
