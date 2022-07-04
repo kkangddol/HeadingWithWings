@@ -7,7 +7,12 @@ public enum AttackEquipmentsNumber
 {
     Feather,
     Shotgun,
-    Sniper
+    Sniper,
+    Icicle,
+    Archon,
+    IronWall,
+    Satellite,
+    Meteor,
 }
 
 public enum AbilityEquipmentsNumber
@@ -87,7 +92,7 @@ public class EquipmentManager : MonoBehaviour
         // wingEquipmentDescriptions = new string[wingEquipmentsCount];
 
         //임시
-        TakeAttackEquipment((int)AttackEquipmentsNumber.Feather);
+        TakeAttackEquipment((int)AttackEquipmentsNumber.Meteor);
         //attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
         //임시끝
     }
@@ -101,7 +106,8 @@ public class EquipmentManager : MonoBehaviour
 
             GameObject equipment = Instantiate(attackEquipmentObjects[EquipmentNumber], GameManager.playerInfo.attackEquipmentsParent);
             GameManager.playerInfo.attackEquipments[EquipmentNumber] = equipment;
-            equipment.GetComponent<Equipment>().SetLevel(1);
+            // Test 때문에 변경 1 -> 5
+            equipment.GetComponent<Equipment>().SetLevel(5);
             
         }
         else if(0 < attackEquipmentsLevel[EquipmentNumber] && attackEquipmentsLevel[EquipmentNumber] < 5)

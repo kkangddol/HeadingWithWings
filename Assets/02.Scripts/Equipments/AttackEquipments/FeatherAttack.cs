@@ -36,7 +36,7 @@ public class FeatherAttack : Equipment
     void Fire()
     {
         Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
-        newBullet.damage = playerInfo.damage * (damageMultiplier / 100f);
+        newBullet.damage = playerInfo.damage * damageMultiplier;
         newBullet.knockbackSize = knockbackSize;
         newBullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
         isCoolDown = true;
@@ -63,7 +63,7 @@ public class FeatherAttack : Equipment
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(playerInfo.attackDelay * (attackDelayMultiplier / 100f));
+        yield return new WaitForSeconds(playerInfo.attackDelay * attackDelayMultiplier);
         isCoolDown = false;
     }
 
@@ -77,36 +77,36 @@ public class FeatherAttack : Equipment
             case 1:
             {
                 bullet = FeatherBullet;
-                damageMultiplier = 10;
-                attackDelayMultiplier = 100;
+                damageMultiplier = 0.10f;
+                attackDelayMultiplier = 1.00f;
                 break;
             }
             case 2:
             {
                 bullet = FeatherBullet;
-                damageMultiplier = 15;
-                attackDelayMultiplier = 95;
+                damageMultiplier = 0.15f;
+                attackDelayMultiplier = 0.95f;
                 break;
             }
             case 3:
             {
                 bullet = FeatherBullet;
-                damageMultiplier = 20;
-                attackDelayMultiplier = 90;
+                damageMultiplier = 0.20f;
+                attackDelayMultiplier = 0.90f;
                 break;
             }
             case 4:
             {
                 bullet = FeatherBullet;
-                damageMultiplier = 25;
-                attackDelayMultiplier = 85;
+                damageMultiplier = 0.25f;
+                attackDelayMultiplier = 0.85f;
                 break;
             }
             case 5:
             {
                 bullet = PenetrateFeatherBullet;
-                damageMultiplier = 30;
-                attackDelayMultiplier = 80;
+                damageMultiplier = 0.30f;
+                attackDelayMultiplier = 0.80f;
                 break;
             }
             default:

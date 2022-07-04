@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SniperAttack : Equipment
+public class ArchonAttack : Equipment
 {
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
     const string ENEMY = "ENEMY";
     public Bullet bullet;
+    public Bullet archonBullet;
+    public Bullet SplashArchonBullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
     public float attackRange;
     public float knockbackSize;
     public float bulletSpeed;
-    public float headShotChance = 0;
-
 
     private Transform targetTransform;
     private bool isCoolDown = false;
@@ -30,32 +30,32 @@ public class SniperAttack : Equipment
     {
         playerInfo = GameManager.playerInfo;
         detectEnemy = GetComponent<DetectEnemy>();
+        bullet = SplashArchonBullet;
     }
 
     void Fire()
     {
-        Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
+        Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation);
         newBullet.transform.LookAt(targetTransform);
         newBullet.damage = playerInfo.damage * damageMultiplier;
         newBullet.knockbackSize = knockbackSize;
-        ((Bullet_Sniper)newBullet).headShotChance = headShotChance;
-        newBullet.GetComponent<Rigidbody2D>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode2D.Impulse);
+        newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
         isCoolDown = true;
         StartCoroutine(CoolDown());
     }
 
     IEnumerator FireCycle()
     {
-        while(true)
+        while (true)
         {
             yield return null;
             targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
 
-            if(targetTransform == transform) continue;
+            if (targetTransform == transform) continue;
 
-            if(Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
+            if (Vector3.Distance(transform.position, targetTransform.position) > attackRange) continue;
 
-            if(!isCoolDown)
+            if (!isCoolDown)
             {
                 Fire();
             }
@@ -73,45 +73,46 @@ public class SniperAttack : Equipment
         this.level = newLevel;
 
         //220527 하드코딩이므로 DataManager 이용할 것.
-        switch(level)
+        switch (level)
         {
             case 1:
-            {
-                damageMultiplier = 0.80f;
-                attackDelayMultiplier = 10.00f;
-                headShotChance = 0;
-                break;
-            }
+                {
+                    bullet = archonBullet;
+                    damageMultiplier = 0.50f;
+                    attackDelayMultiplier = 2.50f;
+                    break;
+                }
             case 2:
-            {
-                damageMultiplier = 1.20f;
-                attackDelayMultiplier = 9.80f;
-                headShotChance = 0;
-                break;
-            }
+                {
+                    bullet = archonBullet;
+                    damageMultiplier = 0.55f;
+                    attackDelayMultiplier = 2.40f;
+                    break;
+                }
             case 3:
-            {
-                damageMultiplier = 1.60f;
-                attackDelayMultiplier = 9.60f;
-                headShotChance = 0;
-                break;
-            }
+                {
+                    bullet = archonBullet;
+                    damageMultiplier = 0.60f;
+                    attackDelayMultiplier = 2.35f;
+                    break;
+                }
             case 4:
-            {
-                damageMultiplier = 1.80f;
-                attackDelayMultiplier = 9.40f;
-                headShotChance = 0;
-                break;
-            }
+                {
+                    bullet = archonBullet;
+                    damageMultiplier = 0.65f;
+                    attackDelayMultiplier = 2.30f;
+                    break;
+                }
             case 5:
-            {
-                damageMultiplier = 2.00f;
-                attackDelayMultiplier = 9.20f;
-                headShotChance = 5;
-                break;
-            }
+                {
+                    bullet = SplashArchonBullet;
+                    damageMultiplier = 0.70f;
+                    attackDelayMultiplier = 2.25f;
+                    break;
+                }
             default:
                 break;
         }
     }
 }
+

@@ -44,4 +44,16 @@ public class EnemyMovement : MonoBehaviour
     {
         isStop = false;
     }
+
+    IEnumerator EnemySetSlow(float speedMultiplier, float duration)
+    {
+        agent.speed = enemySpeed * speedMultiplier;
+        yield return new WaitForSeconds(duration);
+        agent.speed = enemySpeed;
+    }
+
+    public void SlowMove(float speedMultiplier, float duration = 1.5f)
+    {
+        StartCoroutine(EnemySetSlow(speedMultiplier, duration));
+    }
 }
