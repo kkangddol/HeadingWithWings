@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     private EnemyInfo enemyInfo;
     public bool isStop = false;
+    private float enemySpeed = 0.0f;
 
     private void Start()
     {
@@ -15,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
     private void Initialize()
     {
         enemyInfo = GetComponent<EnemyInfo>();
+        enemySpeed = enemyInfo.enemyMoveSpeed;
     }
 
     private void Update() {
@@ -45,15 +47,15 @@ public class EnemyMovement : MonoBehaviour
         isStop = false;
     }
 
-    // IEnumerator EnemySetSlow(float speedMultiplier, float duration)
-    // {
-    //     agent.speed = enemySpeed * speedMultiplier;
-    //     yield return new WaitForSeconds(duration);
-    //     agent.speed = enemySpeed;
-    // }
+    IEnumerator EnemySetSlow(float speedMultiplier, float duration)
+    {
+        enemyInfo.enemyMoveSpeed = enemySpeed * speedMultiplier;
+        yield return new WaitForSeconds(duration);
+        enemyInfo.enemyMoveSpeed = enemySpeed;
+    }
 
-    // public void SlowMove(float speedMultiplier, float duration = 1.5f)
-    // {
-    //     StartCoroutine(EnemySetSlow(speedMultiplier, duration));
-    // }
+    public void SlowMove(float speedMultiplier, float duration = 1.5f)
+    {
+        StartCoroutine(EnemySetSlow(speedMultiplier, duration));
+    }
 }

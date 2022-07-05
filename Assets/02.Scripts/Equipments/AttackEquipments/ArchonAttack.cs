@@ -8,13 +8,12 @@ public class ArchonAttack : Equipment
     DetectEnemy detectEnemy;
     const string ENEMY = "ENEMY";
     public Bullet bullet;
-    public Bullet archonBullet;
-    public Bullet SplashArchonBullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
     public float attackRange;
     public float knockbackSize;
     public float bulletSpeed;
+    public float splashRange;
 
     private Transform targetTransform;
     private bool isCoolDown = false;
@@ -30,16 +29,15 @@ public class ArchonAttack : Equipment
     {
         playerInfo = GameManager.playerInfo;
         detectEnemy = GetComponent<DetectEnemy>();
-        bullet = SplashArchonBullet;
     }
 
     void Fire()
     {
         Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation);
-        newBullet.transform.LookAt(targetTransform);
         newBullet.damage = playerInfo.damage * damageMultiplier;
         newBullet.knockbackSize = knockbackSize;
-        newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
+        ((Bullet_Archon)newBullet).splashRange = splashRange;
+        newBullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
         isCoolDown = true;
         StartCoroutine(CoolDown());
     }
@@ -53,7 +51,7 @@ public class ArchonAttack : Equipment
 
             if (targetTransform == transform) continue;
 
-            if (Vector3.Distance(transform.position, targetTransform.position) > attackRange) continue;
+            if (Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
 
             if (!isCoolDown)
             {
@@ -77,37 +75,34 @@ public class ArchonAttack : Equipment
         {
             case 1:
                 {
-                    bullet = archonBullet;
                     damageMultiplier = 0.50f;
                     attackDelayMultiplier = 2.50f;
+                    splashRange = 3.0f;
                     break;
                 }
             case 2:
                 {
-                    bullet = archonBullet;
                     damageMultiplier = 0.55f;
                     attackDelayMultiplier = 2.40f;
                     break;
                 }
             case 3:
                 {
-                    bullet = archonBullet;
                     damageMultiplier = 0.60f;
                     attackDelayMultiplier = 2.35f;
                     break;
                 }
             case 4:
                 {
-                    bullet = archonBullet;
                     damageMultiplier = 0.65f;
                     attackDelayMultiplier = 2.30f;
                     break;
                 }
             case 5:
                 {
-                    bullet = SplashArchonBullet;
                     damageMultiplier = 0.70f;
                     attackDelayMultiplier = 2.25f;
+                    splashRange *= 2;
                     break;
                 }
             default:

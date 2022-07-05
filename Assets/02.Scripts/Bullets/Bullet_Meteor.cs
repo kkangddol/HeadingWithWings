@@ -7,7 +7,7 @@ public class Bullet_Meteor : Bullet
     const string TERRAIN = "TERRAIN";
     const float EXPLODE_RADIUS = 3.0f;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(TERRAIN))
         {

@@ -41,7 +41,7 @@ public class Bullet_GTAEMeteor : Bullet
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(TERRAIN))
         {
