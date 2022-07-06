@@ -15,6 +15,9 @@ public class ArchonAttack : Equipment
     public float bulletSpeed;
     public float splashRange;
 
+    private Vector3 toTargetNormal = Vector3.zero;
+    private float toTargetAngle = 0.0f;
+    private Vector3 Scaling = Vector3.one;
     private Transform targetTransform;
     private bool isCoolDown = false;
 
@@ -33,13 +36,26 @@ public class ArchonAttack : Equipment
 
     void Fire()
     {
-        Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation);
-        newBullet.damage = playerInfo.damage * damageMultiplier;
-        newBullet.knockbackSize = knockbackSize;
-        ((Bullet_Archon)newBullet).splashRange = splashRange;
-        newBullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
+        bullet.damage = playerInfo.damage * damageMultiplier;
+        bullet.knockbackSize = knockbackSize;
+        ((Bullet_Archon)bullet).splashRange = splashRange;
+        StartCoroutine(BulletScaling());
+        ((Bullet_Archon)bullet).SplashDamage(targetTransform);
         isCoolDown = true;
         StartCoroutine(CoolDown());
+    }
+
+    IEnumerator BulletScaling()
+    {
+        toTargetNormal = (targetTransform.position - this.transform.position).normalized;
+        toTargetAngle = Mathf.Atan2(toTargetNormal.y, toTargetNormal.x) * Mathf.Rad2Deg;
+        this.transform.rotation = Quaternion.AngleAxis(toTargetAngle, Vector3.forward);
+        Scaling.x = Vector2.Distance(targetTransform.position, this.transform.position);
+        transform.localScale = Scaling;
+
+        yield return new WaitForSeconds(0.2f);
+
+        transform.localScale = Vector3.zero;
     }
 
     IEnumerator FireCycle()
@@ -47,16 +63,16 @@ public class ArchonAttack : Equipment
         while (true)
         {
             yield return null;
+
+            if(isCoolDown)  continue;
+
             targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
 
-            if (targetTransform == transform) continue;
+            if (targetTransform == transform)  continue;
 
-            if (Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
+            if (Vector2.Distance(transform.position, targetTransform.position) > attackRange)  continue;
 
-            if (!isCoolDown)
-            {
-                Fire();
-            }
+            Fire();
         }
     }
 
@@ -76,32 +92,32 @@ public class ArchonAttack : Equipment
             case 1:
                 {
                     damageMultiplier = 0.50f;
-                    attackDelayMultiplier = 2.50f;
+                    attackDelayMultiplier = 1.50f;
                     splashRange = 3.0f;
                     break;
                 }
             case 2:
                 {
                     damageMultiplier = 0.55f;
-                    attackDelayMultiplier = 2.40f;
+                    attackDelayMultiplier = 1.40f;
                     break;
                 }
             case 3:
                 {
                     damageMultiplier = 0.60f;
-                    attackDelayMultiplier = 2.35f;
+                    attackDelayMultiplier = 1.30f;
                     break;
                 }
             case 4:
                 {
                     damageMultiplier = 0.65f;
-                    attackDelayMultiplier = 2.30f;
+                    attackDelayMultiplier = 1.20f;
                     break;
                 }
             case 5:
                 {
                     damageMultiplier = 0.70f;
-                    attackDelayMultiplier = 2.25f;
+                    attackDelayMultiplier = 1.10f;
                     splashRange *= 2;
                     break;
                 }
