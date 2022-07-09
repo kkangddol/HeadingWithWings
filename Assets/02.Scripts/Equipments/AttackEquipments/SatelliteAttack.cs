@@ -2,41 +2,226 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SatelliteAttack : MonoBehaviour
+public struct Satellites
 {
-    private GameObject go1 = null;
-    private GameObject go2 = null;
-
-    private bool isGo1 = false;
-    private bool isGo2 = false;
-    // Start is called before the first frame update
-    void Start()
+    public Satellites(GameObject go, Vector3 v3)
     {
-        go1 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        go1.transform.SetParent(this.transform);
-        go1.transform.localPosition = Vector3.right * 2f;
-        this.transform.rotation = Quaternion.AngleAxis(-45, Vector3.forward);
-
-        go2 = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        go2.transform.SetParent(this.transform);
-        go2.transform.localPosition = Vector3.left * 2f;
-        this.transform.rotation = Quaternion.AngleAxis(45, Vector3.forward);
+        this.go = go;
+        this.v3 = v3;
     }
 
-    private void Fire()
+    public GameObject go { get; set; }
+    public Vector3 v3 { get; set; }
+}
+
+public class SatelliteAttack : Equipment
+{
+    PlayerInfo playerInfo;
+    public Bullet bullet;
+    private List<Satellites> satellites = new List<Satellites>();
+    private float angle = 0.0f;
+    private bool isSpread = true;
+
+    public float damageMultiplier;
+    public float attackDelayMultiplier;
+    public float attackRange = 2f;
+    public float knockbackSize;
+    public float bulletSpeed;
+    public float attackDuration;
+    public int satelliteCount = 5;
+
+    private Transform targetTransform;
+    private bool isCoolDown = false;
+
+    void Start()
     {
-        float angle = 360 * 0.5f;
-        for (int i = 1; i <= 2; i++)
+        Initialize();
+        StartCoroutine(FireCycle());
+        StartCoroutine(Test());
+    }
+
+    IEnumerator Test()
+    {
+        while(true)
         {
-            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            go.transform.SetParent(this.transform);
-            go.transform.localPosition = Vector3.right * 2f;
-            this.transform.rotation = Quaternion.AngleAxis(angle*i, Vector3.forward);
+            yield return new WaitForSeconds(5f);
+
+            satelliteCount++;
         }
     }
 
     private void Update()
     {
-        this.transform.RotateAround(this.transform.position, this.transform.forward, Time.deltaTime * 1000f);
+        if(isSpread == false) return;
+
+        angle += Time.deltaTime * bulletSpeed;
+        this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    private void SetSatellites()
+    {
+        int index = 0;
+        float deg = 360f / satelliteCount;
+
+        for (float i = 0f; i < 360f; i += deg)
+        {
+            float rad = i * Mathf.Deg2Rad;
+            if(index < satellites.Count)
+            {
+                satellites[index].go.transform.localPosition = Vector3.zero;
+                satellites[index].go.transform.localRotation = Quaternion.identity;
+                satellites[index].v3.Set(Mathf.Cos(rad) * attackRange, Mathf.Sin(rad) * attackRange, 0f);
+            }
+            else
+            {
+                Satellites temp = new Satellites();
+                // Instantiate Prefab
+                temp.go = Object.Instantiate(bullet.gameObject);
+                temp.v3 = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * attackRange;
+                temp.go.transform.SetParent(this.transform);
+                temp.go.transform.localPosition = Vector3.zero;
+                temp.go.transform.localRotation = Quaternion.identity;
+                satellites.Add(temp);
+            }
+
+            index++;
+        }
+    }
+
+    IEnumerator Spreading()
+    {
+        if(satellites.Count != satelliteCount)  SetSatellites();
+
+        SetActiveAll(true);
+        while (Vector2.Distance(satellites[0].go.transform.position, this.transform.position) <= attackRange)
+        {
+            SpreadingPosition();
+
+            yield return null;
+        }
+
+        isSpread = true;
+    }
+    private void SpreadingPosition()
+    {
+        float spreadSpeed = Time.deltaTime * 2.5f;
+        foreach (Satellites satellite in satellites)
+        {
+            satellite.go.transform.localPosition += satellite.v3 * spreadSpeed;
+        }
+    }
+
+    IEnumerator Gathering()
+    {
+        while (satellites[0].go.transform.position != this.transform.position)
+        {
+            GatheringPosition();
+
+            yield return null;
+        }
+
+        SetActiveAll(false);
+        isSpread = false;
+        StartCoroutine(CoolDown());
+    }
+    private void GatheringPosition()
+    {
+        float spreadSpeed = Time.deltaTime * 5f;
+        foreach (Satellites satellite in satellites)
+        {
+            satellite.go.transform.position = Vector2.MoveTowards(satellite.go.transform.position, this.transform.position, spreadSpeed);
+        }
+    }
+
+    private void SetActiveAll(bool isActive)
+    {
+        foreach (Satellites satellite in satellites)
+        {
+            satellite.go.SetActive(isActive);
+        }
+    }
+
+    IEnumerator Fire()
+    {
+        isCoolDown = true;
+        
+        StartCoroutine(Spreading());
+
+        yield return new WaitForSeconds(attackDuration);
+
+        StartCoroutine(Gathering());
+    }
+
+    void Initialize()
+    {
+        playerInfo = GameManager.playerInfo;
+        if(bullet == null) return;
+        SetSatellites();
+    }
+
+    IEnumerator FireCycle()
+    {
+        while (true)
+        {
+            yield return null;
+            
+            if (!isCoolDown)
+            {
+                StartCoroutine(Fire());
+            }
+        }
+    }
+
+    IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(playerInfo.attackDelay * attackDelayMultiplier);
+        isCoolDown = false;
+    }
+
+    public override void SetLevel(int newLevel)
+    {
+        this.level = newLevel;
+
+        //220527 하드코딩이므로 DataManager 이용할 것.
+        switch (level)
+        {
+            case 1:
+                {
+                    damageMultiplier = 0.10f;
+                    attackDelayMultiplier = 1.00f;
+                    satelliteCount = 1;
+                    break;
+                }
+            case 2:
+                {
+                    damageMultiplier = 0.15f;
+                    attackDelayMultiplier = 0.95f;
+                    satelliteCount = 2;
+                    break;
+                }
+            case 3:
+                {
+                    damageMultiplier = 0.20f;
+                    attackDelayMultiplier = 0.90f;
+                    satelliteCount = 3;
+                    break;
+                }
+            case 4:
+                {
+                    damageMultiplier = 0.25f;
+                    attackDelayMultiplier = 0.85f;
+                    satelliteCount = 4;
+                    break;
+                }
+            case 5:
+                {
+                    damageMultiplier = 0.30f;
+                    attackDelayMultiplier = 0.80f;
+                    satelliteCount = 5;
+                    break;
+                }
+            default:
+                break;
+        }
     }
 }

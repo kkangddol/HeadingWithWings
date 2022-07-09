@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Satellite : MonoBehaviour
+public class Bullet_Satellite : Bullet
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    const string ENEMY = "ENEMY";
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.CompareTag(ENEMY))
+        {
+            other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
+        }
     }
 }
