@@ -5,27 +5,20 @@ using UnityEngine;
 public class MeteorAttack : Equipment
 {
     PlayerInfo playerInfo;
-    DetectEnemy detectEnemy;
     const string ENEMY = "ENEMY";
-    const int MAXMETEOR = 6;
-    public Bullet bullet;
-    public Bullet meteorBullet;
-    // Ground Target Area of Effect
-    public Bullet GTAEMeteorBullet;
+    const int MAXMETEOR = 10;
+    public GameObject bullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
-    public float attackRange;
+    public float attackRange = 2f;
     public float knockbackSize;
-    public float bulletSpeed;
+    // public float bulletSpeed;
 
-    public int meteorCount;
-
-    private float meteorHeight = 10.0f;
-    private float meteorRangeRadius = 3.0f;
-    private WaitForSeconds meteorInterval = new WaitForSeconds(0.25f);
-    private Vector3[] targetPositions;
+    public int meteorCount = 3;
+    // GTAE = Ground Target Area of Effect
+    private float meteorDelay = 0.3f;
+    private bool isGTAEMeteor = false;
     private bool isCoolDown = false;
-
 
     private void Start()
     {
@@ -36,28 +29,26 @@ public class MeteorAttack : Equipment
     void Initialize()
     {
         playerInfo = GameManager.playerInfo;
-        detectEnemy = GetComponent<DetectEnemy>();
-        bullet = meteorBullet;
     }
 
-    IEnumerator Fire()
+    public void Fire()
+    {
+        Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation).GetComponentInChildren<Bullet>();
+        newBullet.damage = playerInfo.damage * damageMultiplier;
+        newBullet.knockbackSize = knockbackSize;
+        ((Bullet_Meteor)newBullet).isGTAEMeteor = isGTAEMeteor;
+        newBullet.transform.parent.position = (Vector2)this.transform.position + Random.insideUnitCircle * attackRange;
+    }
+    
+    IEnumerator MeteorFire()
     {
         isCoolDown = true;
-        Debug.Log($"meteorCount = {meteorCount}");
         for (int i = 0; i < meteorCount; i++)
         {
-            Debug.Log($"i = {i}");
-            Bullet newBullet = Instantiate(bullet, 
-            Position.GetRandomInCircle(transform.position, meteorRangeRadius) + Vector3.up * meteorHeight,
-            Quaternion.identity);
-            newBullet.transform.LookAt(targetPositions[i]);
-            newBullet.damage = playerInfo.damage * damageMultiplier;
-            newBullet.knockbackSize = knockbackSize;
-            newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
-
-            yield return meteorInterval;
+            Fire();
+            yield return new WaitForSeconds(meteorDelay);
         }
-        
+
         StartCoroutine(CoolDown());
     }
 
@@ -66,12 +57,10 @@ public class MeteorAttack : Equipment
         while (true)
         {
             yield return null;
-            Debug.Log($"meteorCount = {meteorCount}");
-            targetPositions = detectEnemy.FindNearestEnemies(ENEMY, meteorCount, attackRange);
-            Debug.Log($"targetPositions.Length = {targetPositions.Length}");
+
             if (!isCoolDown)
             {
-                StartCoroutine(Fire());
+                StartCoroutine(MeteorFire());
             }
         }
     }
@@ -91,39 +80,35 @@ public class MeteorAttack : Equipment
         {
             case 1:
                 {
-                    bullet = meteorBullet;
                     damageMultiplier = 0.35f;
                     attackDelayMultiplier = 5.00f;
-                    meteorCount = 2;
+                    meteorCount = 3;
                     break;
                 }
             case 2:
                 {
-                    bullet = meteorBullet;
                     damageMultiplier = 0.40f;
                     attackDelayMultiplier = 4.90f;
-                    meteorCount = 3;
+                    meteorCount = 4;
                     break;
                 }
             case 3:
                 {
-                    bullet = meteorBullet;
                     damageMultiplier = 0.45f;
                     attackDelayMultiplier = 4.80f;
-                    meteorCount = 4;
+                    meteorCount = 5;
                     break;
                 }
             case 4:
                 {
-                    bullet = meteorBullet;
                     damageMultiplier = 0.50f;
                     attackDelayMultiplier = 4.70f;
-                    meteorCount = 5;
+                    meteorCount = 6;
                     break;
                 }
             case 5:
                 {
-                    bullet = GTAEMeteorBullet;
+                    isGTAEMeteor = true;
                     damageMultiplier = 0.55f;
                     attackDelayMultiplier = 4.60f;
                     meteorCount = MAXMETEOR;

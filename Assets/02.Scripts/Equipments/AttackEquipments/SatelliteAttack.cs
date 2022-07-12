@@ -27,6 +27,7 @@ public class SatelliteAttack : Equipment
     public float attackRange = 2f;
     public float knockbackSize;
     public float bulletSpeed;
+
     public float attackDuration;
     public int satelliteCount = 5;
 
@@ -37,17 +38,6 @@ public class SatelliteAttack : Equipment
     {
         Initialize();
         StartCoroutine(FireCycle());
-        StartCoroutine(Test());
-    }
-
-    IEnumerator Test()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(5f);
-
-            satelliteCount++;
-        }
     }
 
     private void Update()
@@ -68,9 +58,12 @@ public class SatelliteAttack : Equipment
             float rad = i * Mathf.Deg2Rad;
             if(index < satellites.Count)
             {
-                satellites[index].go.transform.localPosition = Vector3.zero;
-                satellites[index].go.transform.localRotation = Quaternion.identity;
-                satellites[index].v3.Set(Mathf.Cos(rad) * attackRange, Mathf.Sin(rad) * attackRange, 0f);
+                Satellites temp = new Satellites();
+                temp.go = satellites[index].go;
+                temp.go.transform.localPosition = Vector3.zero;
+                temp.go.transform.localRotation = Quaternion.identity;
+                temp.v3 = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * attackRange;
+                satellites[index] = temp;
             }
             else
             {
@@ -81,6 +74,7 @@ public class SatelliteAttack : Equipment
                 temp.go.transform.SetParent(this.transform);
                 temp.go.transform.localPosition = Vector3.zero;
                 temp.go.transform.localRotation = Quaternion.identity;
+                temp.go.SetActive(false);
                 satellites.Add(temp);
             }
 
