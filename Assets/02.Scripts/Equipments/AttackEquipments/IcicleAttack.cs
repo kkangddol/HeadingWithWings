@@ -38,6 +38,7 @@ public class IcicleAttack : Equipment
         Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation);
         newBullet.damage = playerInfo.damage * damageMultiplier;
         newBullet.knockbackSize = knockbackSize;
+        newBullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
         ((Bullet_Icicle)newBullet).speedMultiplier = speedMultiplier;
         ((Bullet_Icicle)newBullet).slowDuration = slowDuration;
         newBullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);

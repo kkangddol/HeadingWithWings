@@ -51,5 +51,5 @@ MonoBehaviour:
   attackRange: 2
   knockbackSize: 0
   bulletSpeed: 100
-  attackDuration: 2
+  attackDuration: 10
   satelliteCount: 1

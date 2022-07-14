@@ -6,6 +6,11 @@ public class Bullet_Satellite : Bullet
 {
     const string ENEMY = "ENEMY";
 
+    private void Update()
+    {
+        this.transform.rotation = Quaternion.identity;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(ENEMY))
