@@ -17,11 +17,14 @@ public class PlayerMoveController : MonoBehaviour
     public Transform modelTransform;
 	public GameObject test;
 
+	Rigidbody2D rb;
+
 
 	void Start()
 	{
         animator = GetComponentInChildren<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
+		rb = GetComponent<Rigidbody2D>();
 	}
 
 	void FixedUpdate()
@@ -49,7 +52,8 @@ public class PlayerMoveController : MonoBehaviour
 		//         );
 		// }
 			
-		GetComponent<Rigidbody2D>().velocity = stickDirection * speedOut * GameManager.playerInfo.moveSpeed;// + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
+		//rb.velocity = stickDirection * speedOut * GameManager.playerInfo.moveSpeed;// + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
+		rb.AddForce(stickDirection * speedOut * GameManager.playerInfo.moveSpeed);
 
 		if(stickDirection.x > 0)
 			GetComponentInChildren<SpriteRenderer>().flipX = true;
