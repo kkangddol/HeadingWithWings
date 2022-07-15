@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTakeDamage : MonoBehaviour
+public class PlayerTakeDamage : MonoBehaviour, ITakeBossAttack
 {
     PlayerInfo playerInfo;
     SpriteRenderer spriteRenderer;
+    Rigidbody2D rigid;
 
     private void Start()
     {
         playerInfo = GetComponent<PlayerInfo>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     public void TakeDamage(float damage)
@@ -23,5 +25,15 @@ public class PlayerTakeDamage : MonoBehaviour
     public void EndTakeDamage()
     {
         spriteRenderer.material.color = Color.white;
+    }
+
+    public void TakeBossAttack(Transform hitTr, float damage, float knockbackSize)
+    {
+        TakeDamage(damage);
+        Vector2 reactVec = transform.position - hitTr.position;
+
+        rigid.velocity = Vector2.zero;
+        reactVec = reactVec.normalized;
+        rigid.AddForce(reactVec * knockbackSize, ForceMode2D.Impulse);
     }
 }
