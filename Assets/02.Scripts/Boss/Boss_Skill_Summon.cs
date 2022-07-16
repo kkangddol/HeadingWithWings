@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boss_Skill_Summon : MonoBehaviour, IBoss_Skill
 {
     EnemyInfo enemyInfo;
-    EnemyMovement enemyMovement;
+    IEnemyStopHandler stopHandler;
 
     public GameObject summon;
     public GameObject effect;
@@ -13,11 +13,11 @@ public class Boss_Skill_Summon : MonoBehaviour, IBoss_Skill
 
     private void Start() {
         enemyInfo = GetComponent<EnemyInfo>();
-        enemyMovement = GetComponent<EnemyMovement>();
+        stopHandler = GetComponent<IEnemyStopHandler>();
     }   
     public void ActivateSkill()
     {
-        enemyMovement.StopMove();
+        stopHandler.StopMove();
 
         GameObject newEffect = Instantiate(effect, transform.position + Vector3.down * 2 , Quaternion.identity);
         Instantiate(summon, transform.position + transform.right, Quaternion.identity);
@@ -30,6 +30,6 @@ public class Boss_Skill_Summon : MonoBehaviour, IBoss_Skill
 
     void ResumeMove()
     {
-        enemyMovement.ResumeMove();
+        stopHandler.ResumeMove();
     }
 }

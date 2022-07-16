@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttackRange : MonoBehaviour
 {
     private EnemyInfo enemyInfo;
-    private EnemyMovement enemyMovement;
+    private IEnemyStopHandler stopHandler;
     public EnemyProjectile enemyProjectile;
     public float projectileDamage;
     public float projectileSpeed;
@@ -35,7 +35,7 @@ public class EnemyAttackRange : MonoBehaviour
     {
         if(IsInRange)
         {
-            enemyMovement.StopMove();
+            stopHandler.StopMove();
 
             if(isAttacking) return;
             
@@ -43,16 +43,16 @@ public class EnemyAttackRange : MonoBehaviour
             Fire();
             StartCoroutine(FireDelay());
         }
-        else if(!IsInRange && enemyMovement.isStop)
+        else if(!IsInRange && stopHandler.IsStop)
         {
-            enemyMovement.ResumeMove();
+            stopHandler.ResumeMove();
         }
     }
 
     void Initialize()
     {
         enemyInfo = GetComponent<EnemyInfo>();
-        enemyMovement = GetComponent<EnemyMovement>();
+        stopHandler = GetComponent<IEnemyStopHandler>();
         //attackRange = GameManager.Data.MonsterDict[enemyInfo.monsterID];
         //fireDelay = GameManager.Data.MonsterDict[int.Parse(gameObject.name)].projectileFireDelay;
         isInRange = false;

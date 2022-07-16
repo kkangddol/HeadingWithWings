@@ -3,10 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour, IEnemyStopHandler
 {
     private EnemyInfo enemyInfo;
-    public bool isStop = false;
+    bool isStop = false;
+    public bool IsStop
+    {
+        get{ return isStop;}
+        set{ isStop = value;}
+    }
+    Vector2 currentPos;
+    Rigidbody2D rigid;
+    Vector2 moveDirection;
+
+
 
     private void Start()
     {
@@ -15,30 +25,38 @@ public class EnemyMovement : MonoBehaviour
     private void Initialize()
     {
         enemyInfo = GetComponent<EnemyInfo>();
-    }
-
-    private void Update() {
-        if(!isStop)
-        {
-            FollowTarget();
-        }
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate() {
-        if(transform.position.x - GameManager.playerTransform.position.x > 0)
-            GetComponentInChildren<SpriteRenderer>().flipX = false;
-        else if(transform.position.x - GameManager.playerTransform.position.x < 0)
-            GetComponentInChildren<SpriteRenderer>().flipX = true;
+        if(!isStop)
+        {
+            MoveToTarget();
+        }
     }
 
-    void FollowTarget()
+    // void FollowTarget()
+    // {
+    //     //transform.position = Vector2.MoveTowards(transform.position, GameManager.playerTransform.position, enemyInfo.enemyMoveSpeed * Time.deltaTime);
+    //     currentPos = Vector2.MoveTowards(transform.position, GameManager.playerTransform.position, Time.fixedDeltaTime * enemyInfo.enemyMoveSpeed);
+    //     rigid.MovePosition(new Vector2(currentPos.x, currentPos.y));
+    // }
+
+    void Tracking()
     {
-        transform.position = Vector2.MoveTowards(transform.position, GameManager.playerTransform.position, enemyInfo.enemyMoveSpeed * Time.deltaTime);
+        moveDirection = (GameManager.playerRigidbody.position - rigid.position).normalized;
+    }
+
+    void MoveToTarget()
+    {
+        Tracking();
+        rigid.AddForce(moveDirection * enemyInfo.enemyMoveSpeed);
     }
 
     public void StopMove()
     {
         isStop = true;
+        rigid.velocity = Vector2.zero;
     }
     public void ResumeMove()
     {
