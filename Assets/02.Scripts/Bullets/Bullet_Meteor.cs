@@ -9,6 +9,7 @@ public class Bullet_Meteor : Bullet
     [HideInInspector]
     public bool isGTAEMeteor = false;
     public SpriteRenderer sr = null;
+    public GameObject GTAE = null;
     public float GTAERemainSec = 2.0f;
     public float DotDamageSec = 1.0f;
 
@@ -20,6 +21,7 @@ public class Bullet_Meteor : Bullet
 
         if(isGTAEMeteor)
         {
+            GTAE.SetActive(true);
             StartCoroutine(GTAEExplosion());
         }
         else

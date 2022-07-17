@@ -6,9 +6,11 @@ public class Bullet_Archon : Bullet
 {
     [HideInInspector]
     public float splashRange = 3.0f;
+    public ParticleSystem effect = null;
 
     public void SplashDamage(Transform target)
     {
+        Instantiate(effect, target.position, Quaternion.identity);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(target.position, splashRange);
         foreach (var hitCollider in hitColliders)
         {
