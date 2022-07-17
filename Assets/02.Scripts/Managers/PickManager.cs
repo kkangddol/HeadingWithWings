@@ -58,6 +58,17 @@ public class PickManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    int preventionCount = 0;
+    void PreventionInfiniteLoop(string str)
+    {
+            preventionCount++;
+            if(preventionCount > 5000)
+            {
+                UnityEditor.EditorApplication.isPlaying = false;
+                Debug.Log(str + " 에서 무한루프터짐");
+            }
+    }
+
 
     public void SetSlot()
     {
@@ -67,6 +78,10 @@ public class PickManager : MonoBehaviour
         pickedAttack.Clear();
         pickedAbility.Clear();
         pickedWing.Clear();
+
+
+
+
         for(int i = 0; i < 3; i++)
         {
             float abilityAccumulateRate = attackDropRate + abilityDropRate;
@@ -82,6 +97,7 @@ public class PickManager : MonoBehaviour
                 int randomAttack;
                 do
                 {
+                    PreventionInfiniteLoop("공격장비 생성");
                     randomAttack = Random.Range(0, equipmentManager.attackEquipmentsCount);
                 }while(pickedAttack.Contains(randomAttack));
 
@@ -106,6 +122,7 @@ public class PickManager : MonoBehaviour
                 int randomAbility;
                 do
                 {
+                    PreventionInfiniteLoop("능력치장비 생성");
                     randomAbility = Random.Range(0, equipmentManager.abilityEquipmentsCount);
                 }while(pickedAbility.Contains(randomAbility));
                 
@@ -138,6 +155,7 @@ public class PickManager : MonoBehaviour
                 int randomWing = Random.Range(0, equipmentManager.wingEquipmentsCount);
                 do
                 {
+                    PreventionInfiniteLoop("날개장비 생성");
                     randomWing = Random.Range(0, equipmentManager.wingEquipmentsCount);
                 }while(pickedWing.Contains(randomWing));
                 
@@ -167,7 +185,7 @@ public class PickManager : MonoBehaviour
         //대가 지불하고 (대가ex 랜덤한 장비 삭제, 체력감소, ReRoll아이템이 있어야함 등등)
         //SetSlot 다시.
         SetSlot();
-        //2205030 대가지불 아직 구현하지 않았음.
+        //220530 대가지불 아직 구현하지 않았음.
     }
 
     public void Skip()

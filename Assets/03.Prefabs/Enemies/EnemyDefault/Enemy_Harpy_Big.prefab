@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 6102667122217650956}
   - component: {fileID: 6102667122217650959}
   - component: {fileID: 6102667122217650958}
+  - component: {fileID: 7784729015387903094}
   - component: {fileID: -8818344069424935686}
   m_Layer: 0
   m_Name: Enemy_Harpy_Big
@@ -210,7 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa91984b4de2574a9a92ba5bebb756c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStop: 0
 --- !u!114 &6102667122217650956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +256,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageText: {fileID: 3997464698092151095, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
     type: 3}
+--- !u!114 &7784729015387903094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6102667122217650945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a450ae07ebdd644aecaf8b36ba4fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-8818344069424935686
 MonoBehaviour:
   m_ObjectHideFlags: 0

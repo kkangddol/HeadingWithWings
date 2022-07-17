@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 1566505126441050862}
   - component: {fileID: 7342154072330252326}
   - component: {fileID: 7342154072330252313}
+  - component: {fileID: -4958156208187927672}
   - component: {fileID: 7342154072330252312}
   m_Layer: 0
   m_Name: Enemy_SmallWhale
@@ -209,7 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8be49357e768249ac8c14d70d8b607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStop: 0
   moveCoolTime: 3
 --- !u!114 &7342154072330252326
 MonoBehaviour:
@@ -238,6 +238,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageText: {fileID: 3997464698092151095, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
     type: 3}
+--- !u!114 &-4958156208187927672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7342154072330252316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a450ae07ebdd644aecaf8b36ba4fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7342154072330252312
 MonoBehaviour:
   m_ObjectHideFlags: 0
