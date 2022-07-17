@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTakeDamage : MonoBehaviour
+public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
 {
     private EnemyInfo enemyInfo;
     private Rigidbody2D rigid;
@@ -70,5 +70,10 @@ public class EnemyTakeDamage : MonoBehaviour
         {
             enemyInfo.IsDead = true;
         }
+    }
+
+    public void TakeBossAttack(Transform hitTr, float damage, float knockbackSize)
+    {
+        TakeDamage(hitTr, damage, knockbackSize);
     }
 }

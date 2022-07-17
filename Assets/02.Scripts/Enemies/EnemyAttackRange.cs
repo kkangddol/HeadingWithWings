@@ -65,7 +65,7 @@ public class EnemyAttackRange : MonoBehaviour
         while(!enemyInfo.IsDead)
         {
             yield return waitTime;
-            if(Vector2.Distance(transform.position, enemyInfo.targetTransform.position) <= attackRange)
+            if(Vector2.Distance(transform.position, GameManager.playerTransform.position) <= attackRange)
             {
                 IsInRange = true;
             }
@@ -79,7 +79,7 @@ public class EnemyAttackRange : MonoBehaviour
     void Fire()
     {
         EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, transform.rotation);
-        newProjectile.transform.LookAt(enemyInfo.targetTransform);
+        newProjectile.transform.LookAt(GameManager.playerTransform);
         //newProjectile.damage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].projectileDamage;
         newProjectile.damage = projectileDamage;
         newProjectile.GetComponent<Rigidbody2D>().AddForce(newProjectile.transform.forward * projectileSpeed, ForceMode2D.Impulse);

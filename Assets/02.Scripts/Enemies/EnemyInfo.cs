@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyInfo : MonoBehaviour
 {
-    const string PLAYER = "PLAYER";
     [SerializeField]
     private int monsterID;
     public int MonsterID { get { return monsterID; } set { } }
@@ -28,7 +27,6 @@ public class EnemyInfo : MonoBehaviour
         }
     }
 
-    public Transform targetTransform;
 
     void Start()
     {
@@ -41,7 +39,6 @@ public class EnemyInfo : MonoBehaviour
         IsDead = false;
         //healthPoint = GameManager.Data.MonsterDict[monsterID].monsterHp;
         //enemyDamage = GameManager.Data.MonsterDict[monsterID].collisionDamage;
-        targetTransform = GameManager.playerInfo.GetComponent<Transform>();
     }
 
     private void EnemyDie()
@@ -50,6 +47,13 @@ public class EnemyInfo : MonoBehaviour
         enemyDamage = 0;
         GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
         GetComponent<EnemyDropItem>().DropItem();
+        Destroy(gameObject, 0.1f);
+    }
+
+    public void ChainDie()
+    {
+        enemyDamage = 0;
+        GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
         Destroy(gameObject, 0.1f);
     }
 }

@@ -89,6 +89,8 @@ public class GameManager : MonoBehaviour
     const string HEIGHTBAR = "HEIGHTBAR";
     const string PICKUI = "PICKUI";
     public static PlayerInfo playerInfo;
+    public static Transform playerTransform;
+    public static Rigidbody2D playerRigidbody;
     PickManager pickManager;
 
     public float heightItemDropRate;
@@ -139,6 +141,8 @@ public class GameManager : MonoBehaviour
         heightItemDropRate = 90;
         healItemDropRate = 5;
         playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
+        playerTransform = GameObject.FindWithTag(PLAYER).GetComponent<Transform>();
+        playerRigidbody = GameObject.FindWithTag(PLAYER).GetComponent<Rigidbody2D>();
         heightBar = GameObject.FindWithTag(HEIGHTBAR).GetComponent<HeightBar>();
         playingTimeText = GameObject.FindWithTag(TIMETEXT).GetComponent<TMPro.TextMeshProUGUI>();
         killCountText = GameObject.FindWithTag(KILLCOUNT).GetComponent<TMPro.TextMeshProUGUI>();
