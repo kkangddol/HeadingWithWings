@@ -15,6 +15,7 @@ public class IcicleAttack : Equipment
     public float bulletSpeed;
     // Reduce Speed
     public float speedMultiplier;
+    public float slowDuration;
 
     private Transform targetTransform;
     private bool isCoolDown = false;
@@ -35,11 +36,12 @@ public class IcicleAttack : Equipment
     public void Fire()
     {
         Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation);
-        newBullet.transform.LookAt(targetTransform);
         newBullet.damage = playerInfo.damage * damageMultiplier;
         newBullet.knockbackSize = knockbackSize;
+        newBullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
         ((Bullet_Icicle)newBullet).speedMultiplier = speedMultiplier;
-        newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
+        ((Bullet_Icicle)newBullet).slowDuration = slowDuration;
+        newBullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
         isCoolDown = true;
         StartCoroutine(CoolDown());
     }
@@ -53,7 +55,7 @@ public class IcicleAttack : Equipment
 
             if (targetTransform == transform) continue;
 
-            if (Vector3.Distance(transform.position, targetTransform.position) > attackRange) continue;
+            if (Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
 
             if (!isCoolDown)
             {
@@ -80,6 +82,7 @@ public class IcicleAttack : Equipment
                     damageMultiplier = 0.05f;
                     attackDelayMultiplier = 3.00f;
                     speedMultiplier = 0.95f;
+                    slowDuration = 1.5f;
                     break;
                 }
             case 2:
@@ -87,6 +90,7 @@ public class IcicleAttack : Equipment
                     damageMultiplier = 0.10f;
                     attackDelayMultiplier = 2.95f;
                     speedMultiplier = 0.90f;
+                    slowDuration = 1.5f;
                     break;
                 }
             case 3:
@@ -94,6 +98,7 @@ public class IcicleAttack : Equipment
                     damageMultiplier = 0.15f;
                     attackDelayMultiplier = 2.90f;
                     speedMultiplier = 0.85f;
+                    slowDuration = 1.5f;
                     break;
                 }
             case 4:
@@ -101,6 +106,7 @@ public class IcicleAttack : Equipment
                     damageMultiplier = 0.20f;
                     attackDelayMultiplier = 2.85f;
                     speedMultiplier = 0.80f;
+                    slowDuration = 1.5f;
                     break;
                 }
             case 5:
@@ -108,6 +114,7 @@ public class IcicleAttack : Equipment
                     damageMultiplier = 0.25f;
                     attackDelayMultiplier = 2.80f;
                     speedMultiplier = 0.00f;
+                    slowDuration = 1.5f;
                     break;
                 }
             default:

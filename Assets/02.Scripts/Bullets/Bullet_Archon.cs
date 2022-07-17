@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Bullet_Archon : Bullet
 {
-    const string ENEMY = "ENEMY";
+    [HideInInspector]
+    public float splashRange = 3.0f;
+    public ParticleSystem effect = null;
 
-    private void Start()
+    public void SplashDamage(Transform target)
     {
-        Destroy(gameObject, 5f);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(ENEMY))
+        Instantiate(effect, target.position, Quaternion.identity);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(target.position, splashRange);
+        foreach (var hitCollider in hitColliders)
         {
-            other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
-            Destroy(gameObject);
+            EnemyTakeDamage temp = hitCollider.GetComponent<EnemyTakeDamage>();
+            if (temp != null)
+            {
+                temp.TakeDamage(temp.transform, damage, knockbackSize);
+            }
         }
     }
 }

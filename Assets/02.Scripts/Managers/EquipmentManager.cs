@@ -92,7 +92,7 @@ public class EquipmentManager : MonoBehaviour
         // wingEquipmentDescriptions = new string[wingEquipmentsCount];
 
         //임시
-        //TakeAttackEquipment((int)AttackEquipmentsNumber.Meteor);
+        TakeAttackEquipment((int)AttackEquipmentsNumber.Meteor);
         attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
         //임시끝
     }

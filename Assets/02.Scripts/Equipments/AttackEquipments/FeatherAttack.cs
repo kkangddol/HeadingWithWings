@@ -30,7 +30,6 @@ public class FeatherAttack : Equipment
     {
         playerInfo = GameManager.playerInfo;
         detectEnemy = GetComponent<DetectEnemy>();
-        bullet = FeatherBullet;
     }
 
     void Fire()
@@ -38,6 +37,7 @@ public class FeatherAttack : Equipment
         Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
         newBullet.damage = playerInfo.damage * damageMultiplier;
         newBullet.knockbackSize = knockbackSize;
+        newBullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
         newBullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
         isCoolDown = true;
         StartCoroutine(CoolDown());

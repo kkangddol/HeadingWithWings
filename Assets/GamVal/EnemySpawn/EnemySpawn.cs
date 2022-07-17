@@ -31,7 +31,7 @@ public class EnemySpawn : MonoBehaviour
                 Vector2 offset = 3 * Random.insideUnitCircle;
                 go.transform.position = playerPos.position + spawnPos + new Vector3(offset.x, 0, offset.y);
             }
-            yield return new WaitForSeconds(10.0f);
+            yield return new WaitForSeconds(5.0f);
         }
     }
 
