@@ -826,6 +826,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667232591}
   m_CullTransparentMesh: 1
+--- !u!1001 &687012514
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2343973736123364068, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: healthPoint
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364069, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: isStop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364076, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2343973736123364083, guid: 6b4c9578665eec74486a5d5a4452d50a,
+        type: 3}
+      propertyPath: m_Name
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b4c9578665eec74486a5d5a4452d50a, type: 3}
 --- !u!1 &709423741 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5635263183712312469, guid: c7e5b297599b8db41852c536b21856b1,
@@ -2236,13 +2315,19 @@ PrefabInstance:
         type: 3}
       propertyPath: attackEquipmentObjects.Array.data[5]
       value: 
-      objectReference: {fileID: 7003791252261313227, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
+      objectReference: {fileID: 7376223446136594118, guid: f32a66959affa1d48aaeafcea167782a,
         type: 3}
     - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
         type: 3}
       propertyPath: attackEquipmentObjects.Array.data[6]
       value: 
-      objectReference: {fileID: 7003791252261313227, guid: 5a2db1f2eae618843b9bb46dcae5efa4,
+      objectReference: {fileID: 8465527149201360353, guid: 0dba29c4004e9774fa15beabf49760fb,
+        type: 3}
+    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
+        type: 3}
+      propertyPath: attackEquipmentObjects.Array.data[7]
+      value: 
+      objectReference: {fileID: 8971695223732354016, guid: 78e5818fb31473c4194f572ce0d71113,
         type: 3}
     - target: {fileID: 696987615641651895, guid: e8bd96acb3af0d7419b926e688f59d2e,
         type: 3}

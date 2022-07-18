@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   bullet: {fileID: 5790666120934562517, guid: e4a6f3b815a75784bb4b28f077acce2e, type: 3}
-  damageMultiplier: 0
+  damageMultiplier: 100
   attackDelayMultiplier: 5
   attackRange: 2
   knockbackSize: 0

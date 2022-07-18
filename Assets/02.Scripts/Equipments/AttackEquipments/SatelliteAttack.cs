@@ -33,6 +33,7 @@ public class SatelliteAttack : Equipment
 
     private Transform targetTransform;
     private bool isCoolDown = false;
+    private const int MAXLEVEL = 5;
 
     void Start()
     {
@@ -60,6 +61,9 @@ public class SatelliteAttack : Equipment
             {
                 Satellites temp = new Satellites();
                 temp.go = satellites[index].go;
+                Bullet tempBullet = temp.go.GetComponent<Bullet>();
+                tempBullet.damage = playerInfo.damage * damageMultiplier;
+                tempBullet.knockbackSize = knockbackSize;
                 temp.go.transform.localPosition = Vector3.zero;
                 temp.go.transform.localRotation = Quaternion.identity;
                 temp.v3 = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * attackRange;
@@ -70,6 +74,9 @@ public class SatelliteAttack : Equipment
                 Satellites temp = new Satellites();
                 // Instantiate Prefab
                 temp.go = Object.Instantiate(bullet.gameObject);
+                Bullet tempBullet = temp.go.GetComponent<Bullet>();
+                tempBullet.damage = playerInfo.damage * damageMultiplier;
+                tempBullet.knockbackSize = knockbackSize;
                 temp.v3 = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * attackRange;
                 temp.go.transform.SetParent(this.transform);
                 temp.go.transform.localPosition = Vector3.zero;
@@ -142,6 +149,9 @@ public class SatelliteAttack : Equipment
         StartCoroutine(Spreading());
 
         yield return new WaitForSeconds(attackDuration);
+
+        if(this.level == MAXLEVEL)
+            yield break;
 
         StartCoroutine(Gathering());
     }
