@@ -46,7 +46,7 @@ public class Bullet_Meteor : Bullet
     private void Explosion()
     {
         GiveDamage();
-        Destroy(this.transform.parent.gameObject);
+        Destroy(this.transform.parent.gameObject, DotDamageSec);
     }
 
     IEnumerator GTAEExplosion()
