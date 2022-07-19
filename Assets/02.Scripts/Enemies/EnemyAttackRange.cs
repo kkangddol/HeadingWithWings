@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAttackRange : MonoBehaviour
 {
+    private Transform playerTransform;
     private EnemyInfo enemyInfo;
     private IEnemyStopHandler stopHandler;
     public EnemyProjectile enemyProjectile;
@@ -51,6 +52,7 @@ public class EnemyAttackRange : MonoBehaviour
 
     void Initialize()
     {
+        playerTransform = GameObject.FindWithTag("PLAYER").GetComponent<Transform>();
         enemyInfo = GetComponent<EnemyInfo>();
         stopHandler = GetComponent<IEnemyStopHandler>();
         //attackRange = GameManager.Data.MonsterDict[enemyInfo.monsterID];
@@ -65,7 +67,7 @@ public class EnemyAttackRange : MonoBehaviour
         while(!enemyInfo.IsDead)
         {
             yield return waitTime;
-            if(Vector2.Distance(transform.position, GameManager.playerTransform.position) <= attackRange)
+            if(Vector2.Distance(transform.position, playerTransform.position) <= attackRange)
             {
                 IsInRange = true;
             }
@@ -79,7 +81,7 @@ public class EnemyAttackRange : MonoBehaviour
     void Fire()
     {
         EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, transform.rotation);
-        newProjectile.transform.LookAt(GameManager.playerTransform);
+        newProjectile.transform.LookAt(playerTransform.position);
         //newProjectile.damage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].projectileDamage;
         newProjectile.damage = projectileDamage;
         newProjectile.GetComponent<Rigidbody2D>().AddForce(newProjectile.transform.forward * projectileSpeed, ForceMode2D.Impulse);

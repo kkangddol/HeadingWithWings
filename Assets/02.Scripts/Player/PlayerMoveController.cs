@@ -53,7 +53,7 @@ public class PlayerMoveController : MonoBehaviour
 		// }
 			
 		//rb.velocity = stickDirection * speedOut * GameManager.playerInfo.moveSpeed;// + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
-		rb.AddForce(stickDirection * speedOut * GameManager.playerInfo.moveSpeed);
+		rb.AddForce(stickDirection * speedOut * playerInfo.moveSpeed);
 
 		if(stickDirection.x > 0)
 			GetComponentInChildren<SpriteRenderer>().flipX = true;

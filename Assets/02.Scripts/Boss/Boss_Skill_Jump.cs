@@ -7,6 +7,7 @@ using FirstGearGames.SmoothCameraShaker;
 
 public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 {
+    private Rigidbody2D playerRigid;
     public ShakeData WhaleImpactShake;
     TrailRenderer trailRenderer;
     EnemyInfo enemyInfo;
@@ -37,6 +38,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
     }
 
     private void Start() {
+        playerRigid = GameObject.FindWithTag("PLAYER").GetComponent<Rigidbody2D>();
         rb = GetComponent<Rigidbody2D>();
         enemyInfo = GetComponent<EnemyInfo>();
         stopHadnler = GetComponent<IEnemyStopHandler>();
@@ -57,7 +59,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
         {
             stopHadnler.StopMove();
             currentPos = rb.position;
-            landingPos = GameManager.playerTransform.position;
+            landingPos = playerRigid.position;
             landingDis = Vector2.Distance(landingPos,currentPos);
             timeElapsed = 0f;
             onGround = false;

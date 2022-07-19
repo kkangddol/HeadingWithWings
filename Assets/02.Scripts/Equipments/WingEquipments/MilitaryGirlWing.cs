@@ -20,11 +20,11 @@ public class MilitaryGirlWing : Equipment, ActiveWing
 
     void Initialize()
     {
-        playerInfo = GameManager.playerInfo;
+        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
     }
 
     private void LateUpdate() {
-        transform.eulerAngles = new Vector3(0,0,playerInfo.headAngle);
+        transform.eulerAngles = new Vector3(0, 0, playerInfo.headAngle);
     }
 
     public void ActivateSkill()

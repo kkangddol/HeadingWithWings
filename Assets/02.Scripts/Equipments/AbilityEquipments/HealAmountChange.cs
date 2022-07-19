@@ -6,6 +6,6 @@ public class HealAmountChange : AbilityChange
 {
     public override void ApplyChange()
     {
-        GameManager.playerInfo.healAmount += GameManager.playerInfo.healAmount * (changeMultiplier / 100f);
+        playerInfo.healAmount += playerInfo.healAmount * (changeMultiplier / 100f);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyInfo : MonoBehaviour
 {
+    private Transform playerTransform;
     [SerializeField]
     private int monsterID;
     public int MonsterID { get { return monsterID; } set { } }
@@ -35,6 +36,7 @@ public class EnemyInfo : MonoBehaviour
 
     void Initialize()
     {
+        playerTransform = GameObject.FindWithTag("PLAYER").GetComponent<Transform>();
         //monsterID = int.Parse(gameObject.name);
         IsDead = false;
         //healthPoint = GameManager.Data.MonsterDict[monsterID].monsterHp;
@@ -63,7 +65,7 @@ public class EnemyInfo : MonoBehaviour
 
     private void LookAtPlayer2D()
     {
-        float relativeX = transform.position.x - GameManager.playerTransform.position.x;
+        float relativeX = transform.position.x - playerTransform.position.x;
         
         if(relativeX > 0)
             GetComponentInChildren<SpriteRenderer>().flipX = false;

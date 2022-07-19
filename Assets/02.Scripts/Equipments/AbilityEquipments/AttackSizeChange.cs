@@ -6,6 +6,6 @@ public class AttackSizeChange : AbilityChange
 {
     public override void ApplyChange()
     {
-        GameManager.playerInfo.attackSize += GameManager.playerInfo.attackSize * (changeMultiplier / 100f);
+        playerInfo.attackSize += playerInfo.attackSize * (changeMultiplier / 100f);
     }
 }

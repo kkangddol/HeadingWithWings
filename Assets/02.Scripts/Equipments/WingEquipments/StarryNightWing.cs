@@ -20,7 +20,7 @@ public class StarryNightWing : Equipment, ActiveWing
 
     void Initialize()
     {
-        playerInfo = GameManager.playerInfo;
+        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
     }
 
     public void ActivateSkill()

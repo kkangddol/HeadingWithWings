@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour, IEnemyStopHandler
 {
+    private Rigidbody2D playerRigid;
     private EnemyInfo enemyInfo;
     bool isStop = false;
     public bool IsStop
@@ -26,6 +27,7 @@ public class EnemyMovement : MonoBehaviour, IEnemyStopHandler
     {
         enemyInfo = GetComponent<EnemyInfo>();
         rigid = GetComponent<Rigidbody2D>();
+        playerRigid = GameObject.FindWithTag("PLAYER").GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate() {
@@ -44,7 +46,7 @@ public class EnemyMovement : MonoBehaviour, IEnemyStopHandler
 
     void Tracking()
     {
-        moveDirection = (GameManager.playerRigidbody.position - rigid.position).normalized;
+        moveDirection = (playerRigid.position - rigid.position).normalized;
     }
 
     void MoveToTarget()
@@ -61,20 +63,5 @@ public class EnemyMovement : MonoBehaviour, IEnemyStopHandler
     public void ResumeMove()
     {
         isStop = false;
-    }
-
-    IEnumerator EnemySetSlow(float speedMultiplier, float duration)
-    {
-        // 느려지는 동안 색 변경도 이 안에 추가
-        enemySprite.color = freezeColor;
-        enemyInfo.enemyMoveSpeed = enemySpeed * speedMultiplier;
-        yield return new WaitForSeconds(duration);
-        enemyInfo.enemyMoveSpeed = enemySpeed;
-        enemySprite.color = Color.white;
-    }
-
-    public void SlowMove(float speedMultiplier, float duration = 1.5f)
-    {
-        StartCoroutine(EnemySetSlow(speedMultiplier, duration));
     }
 }
