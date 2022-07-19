@@ -34,7 +34,8 @@ public enum AbilityEquipmentsNumber
 
 public enum WingEquipmentsNumber
 {
-    MilitaryGirl
+    MilitaryGirl,
+    BlackHole
 }
 
 public class EquipmentManager : MonoBehaviour
