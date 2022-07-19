@@ -27,7 +27,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 
     public GameObject effect;
     bool isEffect = false;
-    EnemyMovement enemyMovement;
+    IEnemyStopHandler stopHadnler;
 
     Collider2D col;
 
@@ -39,7 +39,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         enemyInfo = GetComponent<EnemyInfo>();
-        enemyMovement = GetComponent<EnemyMovement>();
+        stopHadnler = GetComponent<IEnemyStopHandler>();
         trailRenderer = GetComponent<TrailRenderer>();
         col = GetComponent<Collider2D>();
     }
@@ -55,7 +55,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
     {
         if(onGround)
         {
-            enemyMovement.StopMove();
+            stopHadnler.StopMove();
             currentPos = rb.position;
             landingPos = GameManager.playerTransform.position;
             landingDis = Vector2.Distance(landingPos,currentPos);
@@ -103,7 +103,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 
                 Boss_Skill_Manager.animator.SetTrigger("reset");
 
-                enemyMovement.ResumeMove();
+                stopHadnler.ResumeMove();
             }
         }
     }

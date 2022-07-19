@@ -79,6 +79,13 @@ public class GameManager : MonoBehaviour
     public float PlayingTime{
         get {return playingTime;}
     }
+    #region 임시
+    public void ForDevelopTime()
+    {
+        playingTime += 10;
+    }
+    #endregion
+    public int playingTimeMinute = 0;
     [SerializeField]
     TMPro.TextMeshProUGUI playingTimeText;
 
@@ -144,6 +151,7 @@ public class GameManager : MonoBehaviour
         playerTransform = GameObject.FindWithTag(PLAYER).GetComponent<Transform>();
         playerRigidbody = GameObject.FindWithTag(PLAYER).GetComponent<Rigidbody2D>();
         heightBar = GameObject.FindWithTag(HEIGHTBAR).GetComponent<HeightBar>();
+        heightBar.SetMaxValue(PickHeight);
         playingTimeText = GameObject.FindWithTag(TIMETEXT).GetComponent<TMPro.TextMeshProUGUI>();
         killCountText = GameObject.FindWithTag(KILLCOUNT).GetComponent<TMPro.TextMeshProUGUI>();
         GetComponent<PickManager>().Initialize();
@@ -151,13 +159,23 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TimeFlow());
     }
 
-    public int tempPickHeight = 10;
+    int pickHeight = 2;
+    public int PickHeight
+    {
+        get{return pickHeight;}
+        set
+        {
+            pickHeight = value;
+            heightBar.SetMaxValue(value);
+        }
+    } 
     private void Update()
     {
 
-        if(playerHeight >= tempPickHeight)
+        if(playerHeight >= pickHeight)
         {
             PickStart();
+            PickHeight++;
         }
 
 
@@ -170,7 +188,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TimeFlow()
     {
-        int playingTimeMinute = 0;
         while(!isGameOver)
         {
             yield return null;

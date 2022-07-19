@@ -17,11 +17,6 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
         Initialize();
     }
 
-    private void FixedUpdate()
-    {
-        if(!isHit) rigid.velocity = Vector2.zero;
-    }
-
     private void Initialize()
     {
         enemyInfo = GetComponent<EnemyInfo>();
@@ -47,7 +42,7 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
 
     void ReactForDamage(Vector2 reactVec, float knockbackSize)
     {
-        rigid.velocity = Vector2.zero;
+        
         reactVec = reactVec.normalized;
         rigid.AddForce(reactVec * knockbackSize, ForceMode2D.Impulse);
         skinnedMeshRenderer.material.color = Color.red;
@@ -58,7 +53,6 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
     void endReact()
     {
         skinnedMeshRenderer.material.color = originalColor;
-        rigid.velocity = Vector2.zero;
 
         CheckDead();
         isHit = false;

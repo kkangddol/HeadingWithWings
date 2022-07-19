@@ -41,6 +41,10 @@ public class EnemyInfo : MonoBehaviour
         //enemyDamage = GameManager.Data.MonsterDict[monsterID].collisionDamage;
     }
 
+    private void FixedUpdate() {
+        LookAtPlayer2D();
+    }
+
     private void EnemyDie()
     {
         GameManager.Instance.KillCount++;
@@ -55,5 +59,15 @@ public class EnemyInfo : MonoBehaviour
         enemyDamage = 0;
         GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
         Destroy(gameObject, 0.1f);
+    }
+
+    private void LookAtPlayer2D()
+    {
+        float relativeX = transform.position.x - GameManager.playerTransform.position.x;
+        
+        if(relativeX > 0)
+            GetComponentInChildren<SpriteRenderer>().flipX = false;
+        else if(relativeX < 0)
+            GetComponentInChildren<SpriteRenderer>().flipX = true;
     }
 }

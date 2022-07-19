@@ -15,7 +15,7 @@ public class Boss_Skill_Manager : MonoBehaviour
     float trembleTime = 2f;
 
     IBoss_Skill[] skills;
-    EnemyMovement enemyMovement;
+    IEnemyStopHandler stopHandler;
 
     float skillCoolTime;
     bool isCoolTime = true;
@@ -24,7 +24,7 @@ public class Boss_Skill_Manager : MonoBehaviour
     private void Start() {
         animator = GetComponentInChildren<Animator>();
         skills = GetComponents<IBoss_Skill>();
-        enemyMovement = GetComponent<EnemyMovement>();
+        stopHandler = GetComponent<IEnemyStopHandler>();
         skillCoolTime = Random.Range(0, 5f);
     }
 
@@ -43,7 +43,7 @@ public class Boss_Skill_Manager : MonoBehaviour
     {
         GenerateRandomCoolTime();
 
-        enemyMovement.StopMove();
+        stopHandler.StopMove();
         animator.SetBool("isReady", true);
 
         StartCoroutine(TrembleHandler());
@@ -74,7 +74,7 @@ public class Boss_Skill_Manager : MonoBehaviour
 
         skills[randomNumber].ActivateSkill();
 
-        enemyMovement.ResumeMove();
+        stopHandler.ResumeMove();
     }
 
     void GenerateRandomCoolTime()
