@@ -62,19 +62,4 @@ public class EnemyMovement : MonoBehaviour, IEnemyStopHandler
     {
         isStop = false;
     }
-
-    IEnumerator EnemySetSlow(float speedMultiplier, float duration)
-    {
-        // 느려지는 동안 색 변경도 이 안에 추가
-        enemySprite.color = freezeColor;
-        enemyInfo.enemyMoveSpeed = enemySpeed * speedMultiplier;
-        yield return new WaitForSeconds(duration);
-        enemyInfo.enemyMoveSpeed = enemySpeed;
-        enemySprite.color = Color.white;
-    }
-
-    public void SlowMove(float speedMultiplier, float duration = 1.5f)
-    {
-        StartCoroutine(EnemySetSlow(speedMultiplier, duration));
-    }
 }
