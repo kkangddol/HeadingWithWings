@@ -201,7 +201,7 @@ MonoBehaviour:
   monsterID: 0
   healthPoint: 1000
   enemyDamage: 10
-  enemyMoveSpeed: 1
+  enemyMoveSpeed: 2
 --- !u!114 &3569655937651196636
 MonoBehaviour:
   m_ObjectHideFlags: 0

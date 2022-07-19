@@ -59,7 +59,7 @@ public class PlayerInfo : MonoBehaviour
     public GameObject[] attackEquipments;
     public int[] abilityEquipments;
     public GameObject wingEquipment;
-    public int wingNumber;
+    public int wingNumber = -1;
 
     public Transform attackEquipmentsParent;
     public Transform wingEquipmentParent;

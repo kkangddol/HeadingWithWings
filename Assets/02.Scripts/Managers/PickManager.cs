@@ -145,12 +145,12 @@ public class PickManager : MonoBehaviour
             {
                 //날개장비
 
-                //임시 시작
-                if(equipmentManager.wingEquipmentsCount == 0)
-                {
-                    i--;
-                    continue;
-                }//임시끝
+                // //임시 시작
+                // if(equipmentManager.wingEquipmentsCount == 0)
+                // {
+                //     i--;
+                //     continue;
+                // }//임시끝
                 
                 int randomWing = Random.Range(0, equipmentManager.wingEquipmentsCount);
                 do
@@ -161,6 +161,7 @@ public class PickManager : MonoBehaviour
                 
                 pickedWing.Add(randomWing);
                 
+                Debug.Log("randomWing : " + randomWing);
 
                 if(equipmentManager.wingEquipmentSprites.Length <= randomWing)
                 {

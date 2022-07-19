@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 696987615375855405}
   - component: {fileID: 696987615641651894}
   - component: {fileID: 696987615641651895}
+  - component: {fileID: 585721646}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GAMEMANAGER
@@ -188,3 +189,55 @@ MonoBehaviour:
   - {fileID: 0}
   noImage: {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
   noDescription: No Description.
+--- !u!114 &585721646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696987615375855404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f905048ae577a45ba861d7ef561461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  min0Enemies:
+  - {fileID: 5251713431125766484, guid: c05aac2eaeb837a45985710bcaeb890d, type: 3}
+  min1Enemies:
+  - {fileID: 5251713431125766484, guid: 81a3493f3becee648b3009cb2bdb742d, type: 3}
+  - {fileID: 5251713431125766484, guid: a50cd4504b33f274cb902f15c157549f, type: 3}
+  min2Enemies:
+  - {fileID: 5251713431125766484, guid: 96aa13b2d932c674b8d9fb10cebbc410, type: 3}
+  - {fileID: 5251713431125766484, guid: 0a8998314e0691a4196cba81a269b4e7, type: 3}
+  min3Enemies:
+  - {fileID: 5251713431125766484, guid: 62c3f20ca42acd24fa04119984f46436, type: 3}
+  - {fileID: 5251713431125766484, guid: 6a19a96a649cc7545b0ccdd0b2abef76, type: 3}
+  - {fileID: 1162447404438823695, guid: 09a2a872ceec10048a98e434ede60a3f, type: 3}
+  min4Enemies:
+  - {fileID: 5251713431125766484, guid: 656ba6ff4cf0d414797eae77126801e4, type: 3}
+  - {fileID: 5251713431125766484, guid: d3e735aac858d3a468f7d16c567479b0, type: 3}
+  - {fileID: 1162447404438823695, guid: e386810cb6d40cb428e08376c4c2c7ea, type: 3}
+  min5Enemies:
+  - {fileID: 5251713431125766484, guid: 7a9e4ef87da361148a9807dbe39b6f82, type: 3}
+  - {fileID: 5251713431125766484, guid: feab516c7170f664fa40abd4760f8507, type: 3}
+  - {fileID: 1162447404438823695, guid: c68a564aea0a2714a9d349d5f6eef6ce, type: 3}
+  min6Enemies:
+  - {fileID: 5251713431125766484, guid: 491d2ad65ba0e05418eb2d0d04aa882f, type: 3}
+  - {fileID: 5251713431125766484, guid: b2d27bc85a1a5a14f90f89f5841ec0f2, type: 3}
+  - {fileID: 1162447404438823695, guid: b313a8a88b205cb4cacf4de77dc4d934, type: 3}
+  min7Enemies: []
+  min8Enemies: []
+  min9Enemies: []
+  min10Enemies: []
+  min11Enemies: []
+  min12Enemies: []
+  min13Enemies: []
+  min14Enemies: []
+  min15Enemies: []
+  min16Enemies: []
+  min17Enemies: []
+  min18Enemies: []
+  min19Enemies: []
+  enemyParentObject: {fileID: 0}
+  WhaleBoss: {fileID: 3923775193761803308, guid: 740f46a5b73089240a2be4b7f580bbca,
+    type: 3}

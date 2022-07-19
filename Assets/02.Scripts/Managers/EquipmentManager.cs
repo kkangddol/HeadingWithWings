@@ -93,7 +93,7 @@ public class EquipmentManager : MonoBehaviour
 
         //임시
         TakeAttackEquipment((int)AttackEquipmentsNumber.Feather);
-        attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
+        //attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
         //임시끝
     }
     
@@ -136,10 +136,20 @@ public class EquipmentManager : MonoBehaviour
     {
         if(GameManager.playerInfo.wingNumber != EquipmentNumber)
         {
+            Debug.Log("날개장착~");
             //신규 장착
-            Destroy(GameManager.playerInfo.wingEquipmentParent.GetChild(0));
-            Destroy(GameManager.playerInfo.wingModelParent.GetChild(0));
-            wingEquipmentsLevel[GameManager.playerInfo.wingNumber] = 0;
+            if(GameManager.playerInfo.wingEquipmentParent.childCount != 0)
+            {
+                Destroy(GameManager.playerInfo.wingEquipmentParent.GetChild(0));
+            }
+            if(GameManager.playerInfo.wingModelParent.childCount != 0)
+            {
+                Destroy(GameManager.playerInfo.wingModelParent.GetChild(0));
+            }
+            if(GameManager.playerInfo.wingNumber != -1)
+            {
+                wingEquipmentsLevel[GameManager.playerInfo.wingNumber] = 0;
+            }
 
             GameObject equipment = Instantiate(wingEquipmentObjects[EquipmentNumber], GameManager.playerInfo.wingEquipmentParent);
             GameObject model = Instantiate(wingModels[EquipmentNumber], GameManager.playerInfo.wingModelParent);
