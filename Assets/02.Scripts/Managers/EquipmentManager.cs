@@ -34,7 +34,8 @@ public enum AbilityEquipmentsNumber
 
 public enum WingEquipmentsNumber
 {
-    MilitaryGirl
+    MilitaryGirl,
+    BlackHole
 }
 
 public class EquipmentManager : MonoBehaviour
@@ -92,7 +93,7 @@ public class EquipmentManager : MonoBehaviour
         // wingEquipmentDescriptions = new string[wingEquipmentsCount];
 
         //임시
-        TakeAttackEquipment((int)AttackEquipmentsNumber.Feather);
+        //TakeAttackEquipment((int)AttackEquipmentsNumber.Feather);
         //attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
         //임시끝
     }

@@ -29,7 +29,7 @@ public class IcicleAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameManager.playerInfo;
+        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
     }
 

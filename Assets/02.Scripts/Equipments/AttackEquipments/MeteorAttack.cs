@@ -28,7 +28,7 @@ public class MeteorAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameManager.playerInfo;
+        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
     }
 
     public void Fire()

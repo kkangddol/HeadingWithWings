@@ -5,13 +5,20 @@ using UnityEngine;
 public class MilitaryGirlWing : Equipment, ActiveWing
 {
     PlayerInfo playerInfo;
-    public GameObject skillObject;
+    PlayerMoveController playerMoveController;
+    private bool isCoolDown = false;
+    [HideInInspector] public float coolTime;
+    
+    public Bullet militaryBullet;
     public float damageMultiplier;
     public float skillDelayMultiplier;
-    public float knockbackSize;
-    public float skillTime;
-    private bool isCoolDown = false;
-    public float coolTime;
+    public float knockbackSize = 0.1f;
+    public int fireCount = 10;
+    public float fireInterval = 0.5f;
+    WaitForSeconds waitInterval;
+    public int bulletCount = 7;
+    public float bulletSpeed = 5;
+    public float bulletSpread = 30;
 
     private void Start()
     {
@@ -20,42 +27,49 @@ public class MilitaryGirlWing : Equipment, ActiveWing
 
     void Initialize()
     {
-        playerInfo = GameManager.playerInfo;
+        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
+        playerMoveController = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMoveController>();
+        waitInterval = new WaitForSeconds(fireInterval);
     }
 
     private void LateUpdate() {
-        transform.eulerAngles = new Vector3(0,0,playerInfo.headAngle);
+        transform.eulerAngles = new Vector3(0, 0, playerInfo.headAngle);
     }
 
     public void ActivateSkill()
     {
         //집중 포화
         if(isCoolDown) return;
-        
-        skillObject.GetComponent<MilitaryGirlSkill>().damage = playerInfo.damage * (damageMultiplier / 100f);
-        skillObject.GetComponent<MilitaryGirlSkill>().knockbackSize = knockbackSize;
-        ConcentrateFire();
+
+        StartCoroutine(ConcentrateFire());
     }
 
-    void ConcentrateFire()
+    IEnumerator ConcentrateFire()
     {
         isCoolDown = true;
-        skillObject.SetActive(true);
-        skillObject.GetComponent<MilitaryGirlSkill>().Init();
-        StartCoroutine(StopSkill());
-    }
+        playerMoveController.StopMove();
 
-    IEnumerator StopSkill()
-    {
-        yield return new WaitForSeconds(skillTime);
-        skillObject.SetActive(false);
+        for(int i = 0; i < fireCount; i++)
+        {
+            for(int j = 0; j < bulletCount; j++)
+            {
+                Bullet newBullet = Instantiate(militaryBullet, transform.position, transform.rotation);
+                newBullet.damage = playerInfo.damage * damageMultiplier;
+                newBullet.knockbackSize = this.knockbackSize;
+                //Vector2 bulletDirection = new Vector2()
+                newBullet.transform.Rotate(0, 0, j * (bulletSpread / bulletCount) - (bulletSpread / 2));
+                newBullet.GetComponent<Rigidbody2D>().AddForce(newBullet.transform.right * bulletSpeed, ForceMode2D.Impulse);
+            }
+            yield return waitInterval;
+        }
+
+        playerMoveController.ResumeMove();
         StartCoroutine(CoolDown());
     }
 
     IEnumerator CoolDown()
     {
-        isCoolDown = true;
-        coolTime = playerInfo.skillDelay * (skillDelayMultiplier / 100f);
+        coolTime = playerInfo.skillDelay * skillDelayMultiplier;
         while(isCoolDown)
         {
             yield return null;

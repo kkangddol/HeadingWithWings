@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class HealItem : MonoBehaviour, Item
 {
+    PlayerInfo playerInfo;
     public TextPopup textPopup;
+
+    private void Start() {
+        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
+    }
     public void UseItem()
     {
-        GameManager.playerInfo.HealthPoint += GameManager.playerInfo.healAmount;
+        playerInfo.HealthPoint += playerInfo.healAmount;
 
         TextPopup newTextPopup = Instantiate<TextPopup>(textPopup, transform.position + Vector3.up, transform.rotation);
-        newTextPopup.GetComponent<TextPopup>().SetHealAmount((int)GameManager.playerInfo.healAmount);
+        newTextPopup.GetComponent<TextPopup>().SetHealAmount((int)playerInfo.healAmount);
 
         Destroy(gameObject);
     }

@@ -30,7 +30,7 @@ public class ArchonAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameManager.playerInfo;
+        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
     }
 

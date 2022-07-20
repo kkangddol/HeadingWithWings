@@ -7,6 +7,7 @@ using FirstGearGames.SmoothCameraShaker;
 
 public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 {
+    private Rigidbody2D playerRigid;
     public ShakeData WhaleImpactShake;
     TrailRenderer trailRenderer;
     EnemyInfo enemyInfo;
@@ -27,7 +28,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 
     public GameObject effect;
     bool isEffect = false;
-    IEnemyStopHandler stopHadnler;
+    IEnemyStopHandler stopHandler;
 
     Collider2D col;
 
@@ -37,9 +38,10 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
     }
 
     private void Start() {
+        playerRigid = GameObject.FindWithTag("PLAYER").GetComponent<Rigidbody2D>();
         rb = GetComponent<Rigidbody2D>();
         enemyInfo = GetComponent<EnemyInfo>();
-        stopHadnler = GetComponent<IEnemyStopHandler>();
+        stopHandler = GetComponent<IEnemyStopHandler>();
         trailRenderer = GetComponent<TrailRenderer>();
         col = GetComponent<Collider2D>();
     }
@@ -55,9 +57,9 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
     {
         if(onGround)
         {
-            stopHadnler.StopMove();
+            stopHandler.StopMove();
             currentPos = rb.position;
-            landingPos = GameManager.playerTransform.position;
+            landingPos = playerRigid.position;
             landingDis = Vector2.Distance(landingPos,currentPos);
             timeElapsed = 0f;
             onGround = false;
@@ -103,7 +105,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 
                 Boss_Skill_Manager.animator.SetTrigger("reset");
 
-                stopHadnler.ResumeMove();
+                stopHandler.ResumeMove();
             }
         }
     }
