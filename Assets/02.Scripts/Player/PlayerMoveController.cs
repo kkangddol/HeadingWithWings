@@ -3,7 +3,9 @@ using System.Collections;
 
 public class PlayerMoveController : MonoBehaviour
 {
-	//private Animator animator;
+    public Sprite[] sprites = null;
+
+    //private Animator animator;
     private PlayerInfo playerInfo;
 
 	private float horizontal;
@@ -59,6 +61,13 @@ public class PlayerMoveController : MonoBehaviour
 				
 			//rb.velocity = stickDirection * speedOut * GameManager.playerInfo.moveSpeed;// + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
 			rb.AddForce(stickDirection * speedOut * playerInfo.moveSpeed);
+
+			// 임시
+            if (stickDirection.y > 0)
+                GetComponentInChildren<SpriteRenderer>().sprite = sprites[0];
+            else if (stickDirection.y < 0)
+                GetComponentInChildren<SpriteRenderer>().sprite = sprites[1];
+			// 임시 끝
 
 			if(stickDirection.x > 0)
 				GetComponentInChildren<SpriteRenderer>().flipX = true;

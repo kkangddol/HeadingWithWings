@@ -797,6 +797,7 @@ MonoBehaviour:
   wingEquipmentParent: {fileID: 4993941599742814833}
   wingModelParent: {fileID: 7158253829116695518}
   headAngle: 0
+  headVector: {x: 0, y: 0}
 --- !u!114 &7151687394177927266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,6 +834,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0be653b4a9dce846b871de0f7faefec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -1421167403, guid: 5ef50d8bf37a9fe43a3385d81974e36c, type: 3}
+  - {fileID: 77940187, guid: 5ef50d8bf37a9fe43a3385d81974e36c, type: 3}
   movement: {fileID: 0}
   modelTransform: {fileID: 4993941600481660328}
   test: {fileID: 0}
@@ -1109,7 +1113,7 @@ GameObject:
   - component: {fileID: 5972899461758745208}
   - component: {fileID: 8958453832415554607}
   m_Layer: 0
-  m_Name: bigwing-Sheet_0
+  m_Name: playerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1171,7 +1175,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 458672975, guid: 41d62a093bbc25547b173b7ac395ca87, type: 3}
+  m_Sprite: {fileID: -1421167403, guid: 5ef50d8bf37a9fe43a3385d81974e36c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1192,7 +1196,7 @@ Animator:
   m_GameObject: {fileID: 8517525847610343576}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fdd0fa232cf7db844a369fba4abdfb70, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
