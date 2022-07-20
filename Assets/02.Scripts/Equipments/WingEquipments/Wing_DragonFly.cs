@@ -8,7 +8,8 @@ public class Wing_DragonFly : Equipment, ActiveWing
     PlayerMoveController playerMoveController;
     private bool isCoolDown = false;
     [HideInInspector] public float coolTime;
-    Rigidbody2D rb;
+    Rigidbody2D playerRigid;
+    Collider2D col;
 
     public float damageMultiplier;
     public float skillDelayMultiplier;
@@ -32,9 +33,12 @@ public class Wing_DragonFly : Equipment, ActiveWing
     public int dashCount = 1;
     [SerializeField] private int currentDashCount;
     public float dashSpeed = 30f;
+    public float dashTime = 0.5f;
     float timeLimit = 1;
 
-    List<IEnumerator> DashCoroutines;
+    public GameObject effect;
+
+    private bool isAttacking = false;
 
     private void Start()
     {
@@ -45,7 +49,8 @@ public class Wing_DragonFly : Equipment, ActiveWing
     {
         playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
         playerMoveController = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMoveController>();
-        rb = GameObject.FindWithTag("PLAYER").GetComponent<Rigidbody2D>();
+        playerRigid = GameObject.FindWithTag("PLAYER").GetComponent<Rigidbody2D>();
+        col = GetComponent<CircleCollider2D>();
         currentDashCount = dashCount;
     }
 
@@ -54,13 +59,18 @@ public class Wing_DragonFly : Equipment, ActiveWing
         //특수 돌진
         if(isCoolDown) return;
 
+        if(isAttacking) return;
+
+        isAttacking = true;
         playerMoveController.StopMove();
         IsDashStarted = true;
         currentDashCount--;
-        rb.AddForce(playerInfo.headVector.normalized * dashSpeed, ForceMode2D.Impulse);
-        Invoke("StopShort", 0.1f);
+        playerRigid.AddForce(playerInfo.headVector.normalized * dashSpeed, ForceMode2D.Impulse);
+        effect.transform.rotation = Quaternion.Euler(0, 0, playerInfo.headAngle);
+        Invoke("StopShort", dashTime);
 
-        StartCoroutine(BodyTackle());
+        effect.SetActive(true);
+        col.enabled = true;
 
         if(currentDashCount <= 0)
         {
@@ -69,34 +79,20 @@ public class Wing_DragonFly : Equipment, ActiveWing
         }
     }
 
-    IEnumerator BodyTackle()
-    {
-        float dashTime = 0.1f;
-        while(dashTime > 0)
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("ENEMY"))
         {
-            yield return null;
-            dashTime -= Time.deltaTime;
-
-            Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, 0.8f);
-            foreach(var target in hit)
-            {
-                if(target.CompareTag("ENEMY"))
-                {
-                    target.GetComponent<EnemyTakeDamage>().TakeDamage(transform, playerInfo.damage * damageMultiplier, knockbackSize);
-                }
-            }
+            other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, playerInfo.damage * damageMultiplier, knockbackSize);
         }
     }
 
-    // private void OnDrawGizmos() {
-    //     Gizmos.color = Color.yellow;
-    //     Gizmos.DrawSphere(transform.position, 0.8f);
-    // }
-
     void StopShort()
     {
-        rb.velocity = Vector2.zero;
+        playerRigid.velocity = Vector2.zero;
         playerMoveController.ResumeMove();
+        col.enabled = false;
+        effect.SetActive(false);
+        isAttacking = false;
     }
 
     void StartCoolDown()
