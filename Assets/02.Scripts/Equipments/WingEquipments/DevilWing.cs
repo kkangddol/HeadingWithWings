@@ -11,11 +11,16 @@ public class DevilWing : Equipment, ActiveWing
     public float knockbackSize;
     public float skillTime;
     private bool isCoolDown = false;
-    public float coolTime;
+    private float coolTime;
 
     private void Start()
     {
         Initialize();
+    }
+
+    private void Update()
+    {
+        this.transform.rotation = Quaternion.AngleAxis(playerInfo.headAngle, Vector3.forward);
     }
 
     void Initialize()
@@ -40,13 +45,13 @@ public class DevilWing : Equipment, ActiveWing
             skillObject.SetActive(true);
             SetSkillInfo(skillObject);
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.25f);
 
             // skillTime 및 StopSkill 고려
-            skillObject.SetActive(false);
-            skillObject.transform.localRotation = Quaternion.AngleAxis(10, Vector3.forward);
         }
 
+        yield return new WaitForSeconds(0.3f);
+        SetActiveFalseAll();
         StartCoroutine(CoolDown());
     }
     private void SetSkillInfo(GameObject go)
