@@ -26,10 +26,7 @@ public class EnemyFreezingHandler : MonoBehaviour
     IEnumerator EnemySetSlow(float speedMultiplier, float duration)
     {
         // 느려지는 동안 색 변경도 이 안에 추가
-        if(speedMultiplier == 0)
-        {
-            enemySprite.color = freezeColor;
-        }  
+        enemySprite.color = freezeColor;
         enemyInfo.enemyMoveSpeed = enemySpeed * speedMultiplier;
         yield return new WaitForSeconds(duration);
         enemyInfo.enemyMoveSpeed = enemySpeed;
