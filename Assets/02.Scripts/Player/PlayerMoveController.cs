@@ -3,8 +3,7 @@ using System.Collections;
 
 public class PlayerMoveController : MonoBehaviour
 {
-
-	private Animator animator;
+	//private Animator animator;
     private PlayerInfo playerInfo;
 
 	private float horizontal;
@@ -12,6 +11,10 @@ public class PlayerMoveController : MonoBehaviour
 	//private float rotationDegreePerSecond = 1000;
 	private bool isAttacking = false;
 	private bool isStop = false;
+	public bool IsStop
+	{
+		get{return isStop;}
+	}
 
     public FloatingJoystick movement;
     public Transform modelTransform;
@@ -22,7 +25,7 @@ public class PlayerMoveController : MonoBehaviour
 
 	void Start()
 	{
-        animator = GetComponentInChildren<Animator>();
+        //animator = GetComponentInChildren<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
 		rb = GetComponent<Rigidbody2D>();
 	}
@@ -64,7 +67,11 @@ public class PlayerMoveController : MonoBehaviour
 			//animator.SetFloat("Speed", speedOut);
 
 			if(horizontal != 0 && vertical != 0)
-				playerInfo.headAngle = Mathf.Atan2(vertical,horizontal) * Mathf.Rad2Deg;
+			{
+				playerInfo.headAngle = Mathf.Atan2(vertical, horizontal) * Mathf.Rad2Deg;
+				playerInfo.headVector = stickDirection;
+			}
+				
 		}
 	}
 

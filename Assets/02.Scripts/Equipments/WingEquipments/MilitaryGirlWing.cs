@@ -7,8 +7,8 @@ public class MilitaryGirlWing : Equipment, ActiveWing
     PlayerInfo playerInfo;
     PlayerMoveController playerMoveController;
     private bool isCoolDown = false;
-
-
+    [HideInInspector] public float coolTime;
+    
     public Bullet militaryBullet;
     public float damageMultiplier;
     public float skillDelayMultiplier;
@@ -69,7 +69,7 @@ public class MilitaryGirlWing : Equipment, ActiveWing
 
     IEnumerator CoolDown()
     {
-        float coolTime = playerInfo.skillDelay * skillDelayMultiplier;
+        coolTime = playerInfo.skillDelay * skillDelayMultiplier;
         while(isCoolDown)
         {
             yield return null;

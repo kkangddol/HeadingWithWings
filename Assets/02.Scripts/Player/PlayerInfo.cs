@@ -66,6 +66,7 @@ public class PlayerInfo : MonoBehaviour
     public Transform wingModelParent;
 
     public float headAngle;
+    public Vector2 headVector;
 
     private void Awake()
     {

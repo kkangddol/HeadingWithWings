@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class Boss_Skill_Manager : MonoBehaviour
 {
-
-    enum BossSkill
-    {
-        jump,
-        summon
-    }
-
     public static Animator animator;
     float trembleTime = 2f;
 
@@ -60,18 +53,8 @@ public class Boss_Skill_Manager : MonoBehaviour
     {
         animator.SetBool("isReady", false);
 
-
         int randomNumber = Random.Range(0, skills.Length);
-
-        if(randomNumber == (int)BossSkill.jump)
-        {
-            animator.SetInteger("SkillNumber", (int)BossSkill.jump);
-        }
-        else if(randomNumber == (int)BossSkill.summon)
-        {
-            animator.SetInteger("SkillNumber", (int)BossSkill.summon);
-        }
-
+        animator.SetInteger("SkillNumber", randomNumber);
         skills[randomNumber].ActivateSkill();
 
         stopHandler.ResumeMove();
@@ -79,6 +62,7 @@ public class Boss_Skill_Manager : MonoBehaviour
 
     void GenerateRandomCoolTime()
     {
-        skillCoolTime = Random.Range(3f , 10f);
+        skillCoolTime = Random.Range(3f , 8f);
     }
+
 }
