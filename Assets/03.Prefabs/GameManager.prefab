@@ -95,7 +95,8 @@ MonoBehaviour:
   - {fileID: 3286775588667186500, guid: 303fe77d3b087144fa7a4e6d9c18c0d7, type: 3}
   wingEquipmentObjects:
   - {fileID: 5123391755663055077, guid: 248171d45c0f6db47a6ec590353674b4, type: 3}
-  - {fileID: 1976300552417655932, guid: d30252dd76eabe047a217e6e1ed47351, type: 3}
+  - {fileID: 5234888776444945210, guid: 19e5f811c6455944a867e5faf534414f, type: 3}
+  - {fileID: 2548575238224812806, guid: 61c3cbc1fc9feca459da174a3d699a07, type: 3}
   wingModels:
   - {fileID: 8193410510875309158, guid: 79e0789089ce7b54aa7b669c0635704a, type: 3}
   - {fileID: 8193410510875309158, guid: 79e0789089ce7b54aa7b669c0635704a, type: 3}
