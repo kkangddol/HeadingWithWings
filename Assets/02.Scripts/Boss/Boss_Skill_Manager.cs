@@ -64,5 +64,4 @@ public class Boss_Skill_Manager : MonoBehaviour
     {
         skillCoolTime = Random.Range(3f , 8f);
     }
-
 }

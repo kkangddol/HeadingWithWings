@@ -138,12 +138,12 @@ PrefabInstance:
     - target: {fileID: 3923775193761803306, guid: 740f46a5b73089240a2be4b7f580bbca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.92
+      value: 4.93
       objectReference: {fileID: 0}
     - target: {fileID: 3923775193761803306, guid: 740f46a5b73089240a2be4b7f580bbca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.84
+      value: 7.78
       objectReference: {fileID: 0}
     - target: {fileID: 3923775193761803306, guid: 740f46a5b73089240a2be4b7f580bbca,
         type: 3}
@@ -190,5 +190,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss_Whale
       objectReference: {fileID: 0}
+    - target: {fileID: 5803653837190109304, guid: 740f46a5b73089240a2be4b7f580bbca,
+        type: 3}
+      propertyPath: sprayTransform
+      value: 
+      objectReference: {fileID: 3923775192543961888}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 740f46a5b73089240a2be4b7f580bbca, type: 3}
+--- !u!4 &3923775192543961888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6783734238960437272, guid: 740f46a5b73089240a2be4b7f580bbca,
+    type: 3}
+  m_PrefabInstance: {fileID: 3923775192543961887}
+  m_PrefabAsset: {fileID: 0}

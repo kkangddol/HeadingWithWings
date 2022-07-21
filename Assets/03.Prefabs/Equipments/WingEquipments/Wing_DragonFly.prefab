@@ -156,11 +156,12 @@ MonoBehaviour:
   damageMultiplier: 0
   skillDelayMultiplier: 0
   knockbackSize: 0.1
-  dashCount: 3
-  currentDashCount: 0
-  dashSpeed: 20
+  maxDashCount: 2
+  dashCount: 2
+  dashSpeed: 30
   dashTime: 0.3
   effect: {fileID: 7361542833157620520}
+  skillButton: {fileID: 0}
 --- !u!58 &7361542833992323453
 CircleCollider2D:
   m_ObjectHideFlags: 0

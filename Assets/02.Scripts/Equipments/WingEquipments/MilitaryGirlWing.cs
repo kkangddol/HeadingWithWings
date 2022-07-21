@@ -20,6 +20,8 @@ public class MilitaryGirlWing : Equipment, ActiveWing
     public float bulletSpeed = 5;
     public float bulletSpread = 30;
 
+    public GameObject skillButton;
+
     private void Start()
     {
         Initialize();
@@ -70,6 +72,10 @@ public class MilitaryGirlWing : Equipment, ActiveWing
     IEnumerator CoolDown()
     {
         coolTime = playerInfo.skillDelay * skillDelayMultiplier;
+
+        skillButton.GetComponent<SkillCoolTimeHandler>().SetCoolTime(coolTime);
+        skillButton.GetComponent<SkillCoolTimeHandler>().StartCoolTime();
+
         while(isCoolDown)
         {
             yield return null;

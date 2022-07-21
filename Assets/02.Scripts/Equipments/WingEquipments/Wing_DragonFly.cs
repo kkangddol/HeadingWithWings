@@ -19,26 +19,30 @@ public class Wing_DragonFly : Equipment, ActiveWing
     public bool IsDashStarted
     {
         get{return isDashStarted;}
-        set
-        {
-            isDashStarted = value;
-            if(value == true)
-            {
-                CancelInvoke("StartCoolDown");
-                Invoke("StartCoolDown", timeLimit);
-            }
-        }
+        set{isDashStarted = value;}
     }
 
-    public int dashCount = 1;
-    [SerializeField] private int currentDashCount;
+    public int maxDashCount = 2;
+    [SerializeField] private int dashCount;
+    public int DashCount
+    {
+        get{return dashCount;}
+        set
+        {
+            dashCount = value;
+            skillButton.GetComponent<SkillStackHandler>().SetStackText(value);
+        }
+    }
     public float dashSpeed = 30f;
     public float dashTime = 0.5f;
     float timeLimit = 1;
+    float timeElapsed = 0;
 
     public GameObject effect;
 
     private bool isAttacking = false;
+
+    public GameObject skillButton;
 
     private void Start()
     {
@@ -51,7 +55,9 @@ public class Wing_DragonFly : Equipment, ActiveWing
         playerMoveController = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMoveController>();
         playerRigid = GameObject.FindWithTag("PLAYER").GetComponent<Rigidbody2D>();
         col = GetComponent<CircleCollider2D>();
-        currentDashCount = dashCount;
+        skillButton = GameObject.FindWithTag("SKILLBUTTON");
+        skillButton.GetComponent<SkillStackHandler>().SetStackText(maxDashCount);
+        DashCount = maxDashCount;
     }
 
     public void ActivateSkill()
@@ -64,7 +70,8 @@ public class Wing_DragonFly : Equipment, ActiveWing
         isAttacking = true;
         playerMoveController.StopMove();
         IsDashStarted = true;
-        currentDashCount--;
+        timeElapsed = 0;
+        DashCount--;
         playerRigid.AddForce(playerInfo.headVector.normalized * dashSpeed, ForceMode2D.Impulse);
         effect.transform.rotation = Quaternion.Euler(0, 0, playerInfo.headAngle);
         Invoke("StopShort", dashTime);
@@ -72,10 +79,21 @@ public class Wing_DragonFly : Equipment, ActiveWing
         effect.SetActive(true);
         col.enabled = true;
 
-        if(currentDashCount <= 0)
+        if(DashCount <= 0)
         {
             StartCoolDown();
             return;
+        }
+    }
+
+    private void Update() {
+        if(IsDashStarted)
+        {
+            timeElapsed += Time.deltaTime;
+            if(timeElapsed >= timeLimit)
+            {
+                StartCoolDown();
+            }
         }
     }
 
@@ -99,7 +117,7 @@ public class Wing_DragonFly : Equipment, ActiveWing
     {
         isCoolDown = true;
         IsDashStarted = false;
-        currentDashCount = 0;
+        DashCount = 0;
         StartCoroutine(CoolDown());
     }
 
@@ -107,6 +125,11 @@ public class Wing_DragonFly : Equipment, ActiveWing
     {
         isCoolDown = true;
         float coolTime = playerInfo.skillDelay * skillDelayMultiplier;
+        //임시
+        coolTime = 3;
+        //임시끝
+        skillButton.GetComponent<SkillCoolTimeHandler>().SetCoolTime(coolTime);
+        skillButton.GetComponent<SkillCoolTimeHandler>().StartCoolTime();
         while(isCoolDown)
         {
             yield return null;
@@ -114,7 +137,7 @@ public class Wing_DragonFly : Equipment, ActiveWing
             if(coolTime <= 0)
             {
                 isCoolDown = false;
-                currentDashCount = dashCount;
+                DashCount = maxDashCount;
                 break;
             }
         }
