@@ -47,6 +47,6 @@ MonoBehaviour:
   level: 0
   skillObject: {fileID: 1976300552417655932, guid: d30252dd76eabe047a217e6e1ed47351,
     type: 3}
-  skillDelayMultiplier: 1
+  skillDelayMultiplier: 0
   skillTime: 10
   coolTime: 0.5

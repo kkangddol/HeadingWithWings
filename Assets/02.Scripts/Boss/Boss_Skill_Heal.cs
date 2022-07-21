@@ -11,6 +11,8 @@ public class Boss_Skill_Heal : MonoBehaviour, IBoss_Skill
     private void Start()
     {
         enemyInfo = GetComponent<EnemyInfo>();
+
+        ActivateSkill();
     }
 
     public void ActivateSkill()

@@ -10,7 +10,6 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
     public Transform featherPrefab = null;
     public float bulletSpeed = 7f;
 
-    private Transform playerTr = null;
     private float angle = 0f;
 
     private void Start()
@@ -20,10 +19,7 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
 
     private void Initialize()
     {
-        playerTr = GameManager.playerInfo.transform;
         angle = 180f / featherCount;
-
-        StartCoroutine(PingPongAttack());
     }
 
     public void ActivateSkill()
@@ -59,7 +55,7 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
 
     private void SpreadAttack()
     {
-        float toPlayerAngle = Utilities.GetAngle(this.transform, playerTr);
+        float toPlayerAngle = Utilities.GetAngle(this.transform, GameManager.playerTransform);
         toPlayerAngle -= 90f;
 
         for (float i = 0f; i <= 180f; i += angle)
@@ -75,7 +71,7 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
         int flip = 1;
         for (float i = 0f; i >= 0; i += angle * flip)
         {
-            float toPlayerAngle = Utilities.GetAngle(this.transform, playerTr);
+            float toPlayerAngle = Utilities.GetAngle(this.transform, GameManager.playerTransform);
             toPlayerAngle -= 90f;
 
             Fire(toPlayerAngle + i);
@@ -94,7 +90,7 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
 
         while(firedFeather < featherCount)
         {
-            Fire(Utilities.GetAngle(this.transform, playerTr));
+            Fire(Utilities.GetAngle(this.transform, GameManager.playerTransform));
             firedFeather++;
             yield return new WaitForSeconds(0.15f);
         }

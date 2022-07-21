@@ -50,10 +50,9 @@ MonoBehaviour:
   - {fileID: 6615052856391824126}
   - {fileID: 6615052856115713947}
   damageMultiplier: 0.5
-  skillDelayMultiplier: 1
+  skillDelayMultiplier: 0
   knockbackSize: 1
   skillTime: 999
-  coolTime: 0.1
 --- !u!1 &2548575239501367075
 GameObject:
   m_ObjectHideFlags: 0
