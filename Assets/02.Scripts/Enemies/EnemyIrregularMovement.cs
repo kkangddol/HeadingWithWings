@@ -57,10 +57,6 @@ public class EnemyIrregularMovement : MonoBehaviour
 
     void StopShort()
     {
-        for(int i=0; i<5; i++)
-        {
-            rigid.velocity /= 2;
-        }
         rigid.velocity = Vector2.zero;
     }
 
