@@ -12,6 +12,8 @@ TagManager:
   - HEIGHTBAR
   - ATTACK
   - PICKUI
+  - SKILLBUTTON
+  - ITEM
   layers:
   - Default
   - TransparentFX

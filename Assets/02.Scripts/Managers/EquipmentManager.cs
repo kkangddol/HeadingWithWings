@@ -35,7 +35,9 @@ public enum AbilityEquipmentsNumber
 public enum WingEquipmentsNumber
 {
     MilitaryGirl,
-    BlackHole
+    BlackHole,
+    Devil,
+    DragonFly
 }
 
 public class EquipmentManager : MonoBehaviour
@@ -78,6 +80,8 @@ public class EquipmentManager : MonoBehaviour
         attackEquipmentsLevel = new int[attackEquipmentsCount];     
         abilityEquipmentsLevel = new int[abilityEquipmentsCount];        
         wingEquipmentsLevel = new int[wingEquipmentsCount];
+
+        skillButton = GameObject.FindWithTag("SKILLBUTTON");
 
         // attackEquipmentObjects = new GameObject[attackEquipmentsCount];
         // abilityEquipmentObjects = new GameObject[abilityEquipmentsCount];
@@ -161,8 +165,16 @@ public class EquipmentManager : MonoBehaviour
             wingEquipmentsLevel[EquipmentNumber] += 1;
             GameManager.playerInfo.wingNumber = EquipmentNumber;
 
+            skillButton.GetComponent<SkillCoolTimeHandler>().ResetCool();
+            skillButton.GetComponent<SkillStackHandler>().ResetStack();
+
             skillButton.SetActive(true);
-            skillButton.GetComponent<Image>().sprite = wingEquipmentSprites[EquipmentNumber];
+
+            Image[] skillImages = skillButton.GetComponentsInChildren<Image>();
+            foreach(var img in skillImages)
+            {
+                img.sprite = wingEquipmentSprites[EquipmentNumber];
+            }
             skillButton.GetComponent<Button>().onClick.AddListener(delegate {equipment.GetComponentInChildren<ActiveWing>().ActivateSkill();});
         }
         else if(0 < wingEquipmentsLevel[EquipmentNumber] && wingEquipmentsLevel[EquipmentNumber] < 5)

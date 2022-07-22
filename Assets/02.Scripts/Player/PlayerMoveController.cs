@@ -18,9 +18,8 @@ public class PlayerMoveController : MonoBehaviour
 
     public FloatingJoystick movement;
     public Transform modelTransform;
-	public GameObject test;
-
 	Rigidbody2D rb;
+	public TrailRenderer trail;
 
 
 	void Start()
@@ -28,6 +27,17 @@ public class PlayerMoveController : MonoBehaviour
         //animator = GetComponentInChildren<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
 		rb = GetComponent<Rigidbody2D>();
+	}
+
+	private void Update() {
+		if(rb.velocity.magnitude >= 5)
+		{
+			trail.emitting = true;
+		}
+		else
+		{
+			trail.emitting = false;
+		}
 	}
 
 	void FixedUpdate()

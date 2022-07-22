@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1274085816530770397}
   - component: {fileID: -5782094849849995031}
+  - component: {fileID: 5821465474833486206}
   - component: {fileID: 1435694149529382386}
   - component: {fileID: 8694400404539397174}
   m_Layer: 0
   m_Name: HealItem
-  m_TagString: Untagged
+  m_TagString: ITEM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +88,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &5821465474833486206
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483643955154888932}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 2
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &1435694149529382386
 CircleCollider2D:
   m_ObjectHideFlags: 0

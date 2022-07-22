@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &142951050490823712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6783734238960437272}
+  m_Layer: 0
+  m_Name: SprayPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6783734238960437272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142951050490823712}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -0.892, y: 1.056, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3923775193761803306}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &3923775192473932333
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +155,7 @@ GameObject:
   - component: {fileID: 917981209102636225}
   - component: {fileID: 917981209102636227}
   - component: {fileID: 917981209102636287}
+  - component: {fileID: 5803653837190109304}
   - component: {fileID: 917981209102636286}
   m_Layer: 0
   m_Name: Boss_Whale
@@ -145,6 +177,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3923775192473932330}
+  - {fileID: 6783734238960437272}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -390,6 +423,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   summon: {fileID: 7342154072330252316, guid: b87d04b5a1a94764ab3897eb88e74941, type: 3}
   effect: {fileID: 1876081050882714, guid: 0a596bbe2b6747844a78a619e9fd12b2, type: 3}
+--- !u!114 &5803653837190109304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923775193761803308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d94d56bc6dbd2994ba2484bf80610797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprayTransform: {fileID: 0}
+  projectile: {fileID: -7417353412065941882, guid: 655237fe8a614104c9f435c99abe4dce,
+    type: 3}
+  damage: 0
+  shotInterval: 0.1
+  maxSpread: 1
+  projectileSpeed: 10
+  projectileCount: 20
+  effect: {fileID: 0}
 --- !u!96 &917981209102636286
 TrailRenderer:
   serializedVersion: 2
