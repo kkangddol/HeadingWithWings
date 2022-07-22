@@ -36,7 +36,7 @@ public class PropRandomGenerate : MonoBehaviour
     private void GenerateRandomNature()
     {
         int randomPrefabIndex = (int)Random.Range(0,naturePrefabs.Length);
-        float randomX = Random.Range(-tempGenSize,tempGenSize);
+        float randomX = Random.Range(-tempGenSize - 10,tempGenSize + 10);
         float randomY = Random.Range(-tempGenSize,tempGenSize);
         GameObject newPrefabs = Instantiate(naturePrefabs[randomPrefabIndex], new Vector3(randomX, randomY, 0), Quaternion.identity);
         newPrefabs.transform.SetParent(transform);

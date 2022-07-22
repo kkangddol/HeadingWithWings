@@ -8,6 +8,7 @@ public class EnemyInfo : MonoBehaviour
     [SerializeField]
     private int monsterID;
     public int MonsterID { get { return monsterID; } set { } }
+    private float maxHealthPoint;
     public float healthPoint;
     public float enemyDamage;
     public float enemyMoveSpeed;
@@ -40,6 +41,7 @@ public class EnemyInfo : MonoBehaviour
         //monsterID = int.Parse(gameObject.name);
         IsDead = false;
         //healthPoint = GameManager.Data.MonsterDict[monsterID].monsterHp;
+        maxHealthPoint = healthPoint;
         //enemyDamage = GameManager.Data.MonsterDict[monsterID].collisionDamage;
     }
 
@@ -71,5 +73,14 @@ public class EnemyInfo : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().flipX = false;
         else if(relativeX < 0)
             GetComponentInChildren<SpriteRenderer>().flipX = true;
+    }
+
+    public void SumHealthPoint(float value)
+    {
+        healthPoint += value;
+        if(healthPoint > maxHealthPoint)
+        {
+            healthPoint = maxHealthPoint;
+        }
     }
 }
