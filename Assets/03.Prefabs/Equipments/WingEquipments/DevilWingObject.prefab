@@ -162,11 +162,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClawAttack
       objectReference: {fileID: 0}
-    - target: {fileID: 3489557372279541948, guid: dea432e903744a543835576b960ac2c1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3489557372279541949, guid: dea432e903744a543835576b960ac2c1,
         type: 3}
       propertyPath: m_RootOrder
@@ -247,11 +242,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ClawAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 3489557372279541948, guid: dea432e903744a543835576b960ac2c1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3489557372279541949, guid: dea432e903744a543835576b960ac2c1,
         type: 3}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PropRandomGenerate : MonoBehaviour
 {
     public GameObject[] naturePrefabs;
+    public int offsetX = 10;
     public float tempGenSize = 50;
     public float tempGenRatio = 50;
     public int propCount = 200;
@@ -36,7 +37,7 @@ public class PropRandomGenerate : MonoBehaviour
     private void GenerateRandomNature()
     {
         int randomPrefabIndex = (int)Random.Range(0,naturePrefabs.Length);
-        float randomX = Random.Range(-tempGenSize - 10,tempGenSize + 10);
+        float randomX = Random.Range(-tempGenSize - offsetX,tempGenSize + offsetX);
         float randomY = Random.Range(-tempGenSize,tempGenSize);
         GameObject newPrefabs = Instantiate(naturePrefabs[randomPrefabIndex], new Vector3(randomX, randomY, 0), Quaternion.identity);
         newPrefabs.transform.SetParent(transform);
