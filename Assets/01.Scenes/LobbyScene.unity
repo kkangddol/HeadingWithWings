@@ -459,33 +459,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
-        type: 3}
-      propertyPath: wingEquipmentObjects.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
-        type: 3}
-      propertyPath: attackEquipmentsLevel.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
-        type: 3}
-      propertyPath: wingEquipmentObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 5234888776444945210, guid: 19e5f811c6455944a867e5faf534414f,
-        type: 3}
-    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
-        type: 3}
-      propertyPath: wingEquipmentObjects.Array.data[2]
-      value: 
-      objectReference: {fileID: 2548575238224812806, guid: 61c3cbc1fc9feca459da174a3d699a07,
-        type: 3}
-    - target: {fileID: 696987615641651894, guid: e8bd96acb3af0d7419b926e688f59d2e,
-        type: 3}
-      propertyPath: attackEquipmentsLevel.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8bd96acb3af0d7419b926e688f59d2e, type: 3}
 --- !u!1 &559142481
