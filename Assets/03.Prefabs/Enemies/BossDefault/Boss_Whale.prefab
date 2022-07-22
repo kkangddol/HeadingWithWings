@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94d56bc6dbd2994ba2484bf80610797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprayTransform: {fileID: 0}
+  sprayTransform: {fileID: 6783734238960437272}
   projectile: {fileID: -7417353412065941882, guid: 655237fe8a614104c9f435c99abe4dce,
     type: 3}
   damage: 0

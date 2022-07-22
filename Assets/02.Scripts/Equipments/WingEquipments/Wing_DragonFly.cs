@@ -44,6 +44,8 @@ public class Wing_DragonFly : Equipment, ActiveWing
 
     public GameObject skillButton;
 
+    public GameObject hitEffect;
+
     private void Start()
     {
         Initialize();
@@ -101,6 +103,7 @@ public class Wing_DragonFly : Equipment, ActiveWing
         if(other.CompareTag("ENEMY"))
         {
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, playerInfo.damage * damageMultiplier, knockbackSize);
+            Instantiate(hitEffect, other.transform.position, Quaternion.identity);
         }
     }
 
