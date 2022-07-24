@@ -4,5 +4,6 @@ using UnityEngine;
 
 interface ActiveWing
 {
-    void ActivateSkill();
+    public void ActivateSkill();
+    public void SetButton(GameObject button);
 }

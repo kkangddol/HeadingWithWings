@@ -54,6 +54,11 @@ public class PickManager : MonoBehaviour
     }
 
      private void Awake() {
+        if(Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Initialize();
      }
 
@@ -128,7 +133,7 @@ public class PickManager : MonoBehaviour
 
             switch(chosenEquip)
             {
-                case 1:
+                case 0:
                 {
                     randomEquip = Random.Range(0,EquipmentManager.Instance.attackEquipmentObjects.Length);
                     
@@ -146,7 +151,7 @@ public class PickManager : MonoBehaviour
                     button.onClick.AddListener(delegate {EquipmentManager.Instance.TakeAttackEquipment(randomEquip);});
                     break;
                 }
-                case 2:
+                case 1:
                 {
                     randomEquip = Random.Range(0,EquipmentManager.Instance.abilityEquipmentObjects.Length);
 
@@ -165,9 +170,9 @@ public class PickManager : MonoBehaviour
 
                     break;
                 }
-                case 3:
+                case 2:
                 {
-                    randomEquip = Random.Range(0,EquipmentManager.Instance.abilityEquipmentObjects.Length);
+                    randomEquip = Random.Range(0,EquipmentManager.Instance.wingEquipmentObjects.Length);
 
                     if(EquipmentManager.Instance.wingEquipmentSprites.Length <= randomEquip)
                     {

@@ -12,6 +12,7 @@ public class DevilWing : Equipment, ActiveWing
     public float skillTime;
     private bool isCoolDown = false;
     private float coolTime;
+    private GameObject skillButton;
 
     private void Start()
     {
@@ -26,6 +27,11 @@ public class DevilWing : Equipment, ActiveWing
     void Initialize()
     {
         playerInfo = GameManager.playerInfo;
+    }
+
+    public void SetButton(GameObject button)
+    {
+        skillButton = button;
     }
 
     public void ActivateSkill()
@@ -74,6 +80,9 @@ public class DevilWing : Equipment, ActiveWing
     {
         isCoolDown = true;
         coolTime = playerInfo.skillDelay * skillDelayMultiplier;
+
+        skillButton.GetComponent<SkillCoolTimeHandler>().SetCoolTime(coolTime);
+        skillButton.GetComponent<SkillCoolTimeHandler>().StartCoolTime();
         while (isCoolDown)
         {
             yield return null;
@@ -118,4 +127,6 @@ public class DevilWing : Equipment, ActiveWing
                 break;
         }
     }
+
+
 }

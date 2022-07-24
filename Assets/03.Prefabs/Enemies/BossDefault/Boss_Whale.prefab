@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterID: 0
-  healthPoint: 1000
+  healthPoint: 500
   enemyDamage: 10
   enemyMoveSpeed: 2
 --- !u!114 &3569655937651196636
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprayTransform: {fileID: 6783734238960437272}
-  projectile: {fileID: -7417353412065941882, guid: 655237fe8a614104c9f435c99abe4dce,
+  projectile: {fileID: 1781237778421337192, guid: 655237fe8a614104c9f435c99abe4dce,
     type: 3}
   damage: 0
   shotInterval: 0.1

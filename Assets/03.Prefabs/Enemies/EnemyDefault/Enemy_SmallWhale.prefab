@@ -262,7 +262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89a8d290ab87164a904709fc99d3fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heightItemPrefab: {fileID: 3810181411317358590, guid: c629a69eb7935954e904c6e792939e9f,
+  silverPrefab: {fileID: 3810181411317358590, guid: c629a69eb7935954e904c6e792939e9f,
+    type: 3}
+  goldPrefab: {fileID: 3810181411317358590, guid: 0dde7b16107d56c48825819e4b00b637,
     type: 3}
   healItemPrefab: {fileID: 3483643955154888932, guid: a33de5b9ff484394181fb6d8744ee25a,
     type: 3}

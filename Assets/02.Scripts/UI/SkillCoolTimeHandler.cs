@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class SkillCoolTimeHandler : MonoBehaviour
 {
-    Slider slider;
-    TMPro.TextMeshProUGUI coolTimeText;
+    public Slider slider;
+    public TMPro.TextMeshProUGUI coolTimeText;
     public float _coolTime;
 
     private void Start() {
-        slider = GetComponentInChildren<Slider>();
-        coolTimeText = GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0];
+        //slider = GetComponentInChildren<Slider>();
+        //coolTimeText = GetComponentsInChildren<TMPro.TextMeshProUGUI>()[0];
     }
 
     public void StartCoolTime()

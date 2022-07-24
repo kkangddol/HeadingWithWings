@@ -111,7 +111,7 @@ MonoBehaviour:
   damageMultiplier: 0.5
   attackDelayMultiplier: 1.5
   attackRange: 3.5
-  knockbackSize: 3
+  knockbackSize: 0.1
   bulletSpeed: 15
   splashRange: 3
 --- !u!1 &6422914405070630789
@@ -131,7 +131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4463822774171622558
 Transform:
   m_ObjectHideFlags: 0

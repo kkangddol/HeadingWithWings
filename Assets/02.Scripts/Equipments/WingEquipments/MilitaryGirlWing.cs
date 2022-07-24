@@ -34,6 +34,11 @@ public class MilitaryGirlWing : Equipment, ActiveWing
         waitInterval = new WaitForSeconds(fireInterval);
     }
 
+    public void SetButton(GameObject button)
+    {
+        skillButton = button;
+    }
+
     private void LateUpdate() {
         transform.eulerAngles = new Vector3(0, 0, playerInfo.headAngle);
     }

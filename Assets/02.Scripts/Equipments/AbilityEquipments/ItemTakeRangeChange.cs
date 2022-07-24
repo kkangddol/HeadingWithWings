@@ -6,6 +6,6 @@ public class ItemTakeRangeChange : AbilityChange
 {
     public override void ApplyChange()
     {
-        playerInfo.itemTakeRange += playerInfo.itemTakeRange * (changeMultiplier / 100f);
+        GameManager.playerInfo.itemTakeRange += GameManager.playerInfo.itemTakeRange * (changeMultiplier / 100f);
     }
 }

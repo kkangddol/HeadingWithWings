@@ -14,20 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/01TroposphereScene.unity
     guid: 7eb20733473abfb46ade82e353852751
-  - enabled: 1
-    path: Assets/01.Scenes/02StratosphereScene.unity
-    guid: ea87c9a6f91e9c6439ae1e5c203633cb
-  - enabled: 1
-    path: Assets/01.Scenes/03MesosphereScene.unity
-    guid: e26a7f0ca21fda04e8aa729486524132
-  - enabled: 1
-    path: Assets/01.Scenes/04ThermosphereScene.unity
-    guid: bef9745c893328143b8ddad2802ba65e
-  - enabled: 1
-    path: Assets/01.Scenes/05ExosphereScene.unity
-    guid: 52a5b6102bcad624fa62491abbaca2c3
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6ce86aeb5d6e03c408e22467ea2fdbc1,
       type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000,
+      guid: 55d7e795050f9204e9f96e86e4196210, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: be235f28309b9ad40b05dd1689831f27, type: 2}

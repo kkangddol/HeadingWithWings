@@ -26,27 +26,31 @@ public class EquipmentManager : MonoBehaviour
             return instance;
         }
     }
+
     public int[] attackEquipmentsLevel;
-    public int[] abilityEquipmentsLevel;
-    public int[] wingEquipmentsLevel;
-
     public GameObject[] attackEquipmentObjects;
-    public GameObject[] abilityEquipmentObjects;
-    public GameObject[] wingEquipmentObjects;
-
     public Sprite[] attackEquipmentSprites;
-    public Sprite[] abilityEquipmentSprites;
-    public Sprite[] wingEquipmentSprites;
-
-    //220528 이 설명들도 DataManager로 관리하면 좋을듯
     public string[] attackEquipmentDescriptions;
+
+    public int[] abilityEquipmentsLevel;
+    public GameObject[] abilityEquipmentObjects;
+    public Sprite[] abilityEquipmentSprites;
     public string[] abilityEquipmentDescriptions;
+
+    public int[] wingEquipmentsLevel;
+    public GameObject[] wingEquipmentObjects;
+    public Sprite[] wingEquipmentSprites;
     public string[] wingEquipmentDescriptions;
 
     public GameObject skillButton;
 
 
     private void Awake() {
+        if(Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Initialize();
     }
 
@@ -126,12 +130,15 @@ public class EquipmentManager : MonoBehaviour
             //신규 장착
             if(GameManager.playerInfo.wingEquipmentParent.childCount != 0)
             {
-                Destroy(GameManager.playerInfo.wingEquipmentParent.GetChild(0));
+                Destroy(GameManager.playerInfo.wingEquipment);
+                Destroy(GameManager.playerInfo.wingModel);
             }
             if(GameManager.playerInfo.wingNumber != -1)
             {
                 wingEquipmentsLevel[GameManager.playerInfo.wingNumber] = 0;
             }
+
+            //모델링 오면 추가로 달아줘야 함
 
             GameObject equipment = Instantiate(wingEquipmentObjects[EquipmentNumber], GameManager.playerInfo.wingEquipmentParent);
 
@@ -146,12 +153,14 @@ public class EquipmentManager : MonoBehaviour
 
             skillButton.SetActive(true);
 
+            equipment.GetComponent<ActiveWing>().SetButton(skillButton);
+
             Image[] skillImages = skillButton.GetComponentsInChildren<Image>();
             foreach(var img in skillImages)
             {
                 img.sprite = wingEquipmentSprites[EquipmentNumber];
             }
-            skillButton.GetComponent<Button>().onClick.AddListener(delegate {equipment.GetComponentInChildren<ActiveWing>().ActivateSkill();});
+            skillButton.GetComponent<Button>().onClick.AddListener(delegate {GameManager.playerInfo.wingEquipment.GetComponent<ActiveWing>().ActivateSkill();});
         }
         else if(0 < wingEquipmentsLevel[EquipmentNumber] && wingEquipmentsLevel[EquipmentNumber] < 5)
         {

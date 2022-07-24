@@ -59,6 +59,7 @@ public class PlayerInfo : MonoBehaviour
     public GameObject[] attackEquipments;
     public int[] abilityEquipments;
     public GameObject wingEquipment;
+    public GameObject wingModel;
     public int wingNumber = -1;
 
     public Transform attackEquipmentsParent;
@@ -70,7 +71,7 @@ public class PlayerInfo : MonoBehaviour
 
     public int startAttack;
 
-    private void Awake()
+    private void Start()
     {
         Initialize();
     }

@@ -6,6 +6,6 @@ public class AttackDelayChange : AbilityChange
 {
     public override void ApplyChange()
     {
-        playerInfo.attackDelay += playerInfo.attackDelay * (changeMultiplier / 100f);
+        GameManager.playerInfo.attackDelay += GameManager.playerInfo.attackDelay * (changeMultiplier / 100f);
     }
 }
