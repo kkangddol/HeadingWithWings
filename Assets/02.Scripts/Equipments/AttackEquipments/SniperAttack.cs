@@ -98,14 +98,14 @@ public class SniperAttack : Equipment
             }
             case 4:
             {
-                damageMultiplier = 1.80f;
+                damageMultiplier = 2.00f;
                 attackDelayMultiplier = 9.40f;
                 headShotChance = 0;
                 break;
             }
             case 5:
             {
-                damageMultiplier = 2.00f;
+                damageMultiplier = 2.40f;
                 attackDelayMultiplier = 9.20f;
                 headShotChance = 5;
                 break;

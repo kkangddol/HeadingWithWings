@@ -2026,10 +2026,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2925020641328711477}
     m_Modifications:
+    - target: {fileID: 5635263183316487934, guid: c7e5b297599b8db41852c536b21856b1,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5635263183726259181, guid: c7e5b297599b8db41852c536b21856b1,
         type: 3}
       propertyPath: m_Name
       value: PickEquipmentUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635263183726259181, guid: c7e5b297599b8db41852c536b21856b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5635263183726259182, guid: c7e5b297599b8db41852c536b21856b1,
         type: 3}
@@ -2135,6 +2145,30 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635263183857181533, guid: c7e5b297599b8db41852c536b21856b1,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635263184443860923, guid: c7e5b297599b8db41852c536b21856b1,
+        type: 3}
+      propertyPath: m_text
+      value: 'ReRoll
+
+        (cost -20% HP)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635263184850590921, guid: c7e5b297599b8db41852c536b21856b1,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635263184852777449, guid: c7e5b297599b8db41852c536b21856b1,
+        type: 3}
+      propertyPath: m_text
+      value: 'Skip
+
+        (+30% EXP)'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7e5b297599b8db41852c536b21856b1, type: 3}

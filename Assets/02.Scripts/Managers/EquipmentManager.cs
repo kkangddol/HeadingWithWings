@@ -3,45 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum AttackEquipmentsNumber
-{
-    Feather,
-    Shotgun,
-    Sniper,
-    Icicle,
-    Archon,
-    IronWall,
-    Satellite,
-    Meteor
-}
-
-public enum AbilityEquipmentsNumber
-{
-    AddFeather,
-    IronFeather,
-    DumbBell,
-    BarBell,
-    JumpRope,
-    PullUp,
-    GoldenHeart,
-    Stethoscope,
-    Magnifier,
-    Microscope,
-    Coffee,
-    CoolWater,
-    FirstAidKit
-}
-
-public enum WingEquipmentsNumber
-{
-    MilitaryGirl,
-    BlackHole,
-    Devil,
-    DragonFly
-}
-
 public class EquipmentManager : MonoBehaviour
 {
+
+    private static EquipmentManager instance;
+    public static EquipmentManager Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                var obj = FindObjectOfType<EquipmentManager>();
+                if(obj != null)
+                {
+                    instance = obj;
+                }
+                else
+                {
+                    instance = Create();
+                }
+            }
+            return instance;
+        }
+    }
     public int[] attackEquipmentsLevel;
     public int[] abilityEquipmentsLevel;
     public int[] wingEquipmentsLevel;
@@ -49,7 +33,6 @@ public class EquipmentManager : MonoBehaviour
     public GameObject[] attackEquipmentObjects;
     public GameObject[] abilityEquipmentObjects;
     public GameObject[] wingEquipmentObjects;
-    public GameObject[] wingModels;
 
     public Sprite[] attackEquipmentSprites;
     public Sprite[] abilityEquipmentSprites;
@@ -60,28 +43,21 @@ public class EquipmentManager : MonoBehaviour
     public string[] abilityEquipmentDescriptions;
     public string[] wingEquipmentDescriptions;
 
-    public int attackEquipmentsCount;
-    public int abilityEquipmentsCount;
-    public int wingEquipmentsCount;
-
     public GameObject skillButton;
 
 
-    // private void Start() {
-    //     Initialize();
-    // }
+    private void Awake() {
+        Initialize();
+    }
 
     public void Initialize()
     {
-        attackEquipmentsCount = System.Enum.GetValues(typeof(AttackEquipmentsNumber)).Length;
-        abilityEquipmentsCount = System.Enum.GetValues(typeof(AbilityEquipmentsNumber)).Length;
-        wingEquipmentsCount = System.Enum.GetValues(typeof(WingEquipmentsNumber)).Length;
-
-        attackEquipmentsLevel = new int[attackEquipmentsCount];     
-        abilityEquipmentsLevel = new int[abilityEquipmentsCount];        
-        wingEquipmentsLevel = new int[wingEquipmentsCount];
+        attackEquipmentsLevel = new int[attackEquipmentObjects.Length];     
+        abilityEquipmentsLevel = new int[abilityEquipmentObjects.Length];        
+        wingEquipmentsLevel = new int[wingEquipmentObjects.Length];
 
         skillButton = GameObject.FindWithTag("SKILLBUTTON");
+        skillButton.SetActive(false);
 
         // attackEquipmentObjects = new GameObject[attackEquipmentsCount];
         // abilityEquipmentObjects = new GameObject[abilityEquipmentsCount];
@@ -100,6 +76,11 @@ public class EquipmentManager : MonoBehaviour
         //TakeAttackEquipment((int)AttackEquipmentsNumber.Feather);
         //attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
         //임시끝
+    }
+
+    private static EquipmentManager Create()
+    {
+        return Instantiate(Resources.Load<EquipmentManager>("Manager\\EquipmentManager"));
     }
     
     public void TakeAttackEquipment(int EquipmentNumber)
@@ -147,17 +128,12 @@ public class EquipmentManager : MonoBehaviour
             {
                 Destroy(GameManager.playerInfo.wingEquipmentParent.GetChild(0));
             }
-            if(GameManager.playerInfo.wingModelParent.childCount != 0)
-            {
-                Destroy(GameManager.playerInfo.wingModelParent.GetChild(0));
-            }
             if(GameManager.playerInfo.wingNumber != -1)
             {
                 wingEquipmentsLevel[GameManager.playerInfo.wingNumber] = 0;
             }
 
             GameObject equipment = Instantiate(wingEquipmentObjects[EquipmentNumber], GameManager.playerInfo.wingEquipmentParent);
-            GameObject model = Instantiate(wingModels[EquipmentNumber], GameManager.playerInfo.wingModelParent);
 
             equipment.GetComponent<Equipment>().SetLevel(1);
             GameManager.playerInfo.wingEquipment = equipment;

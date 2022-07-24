@@ -25,6 +25,10 @@ public class PlayerInfo : MonoBehaviour
     private float healthPoint;
     public float HealthPoint
     {
+        get
+        {
+            return healthPoint;
+        }
         set
         {
             healthPoint = value;
@@ -37,10 +41,6 @@ public class PlayerInfo : MonoBehaviour
             {
                 PlayerDie();
             }
-        }
-        get
-        {
-            return healthPoint;
         }
     }
 
@@ -68,6 +68,8 @@ public class PlayerInfo : MonoBehaviour
     public float headAngle;
     public Vector2 headVector;
 
+    public int startAttack;
+
     private void Awake()
     {
         Initialize();
@@ -76,11 +78,12 @@ public class PlayerInfo : MonoBehaviour
     void Initialize()
     {
         healthBar = GetComponentInChildren<HealthBar>();
-        int attackEquipmentsCount = System.Enum.GetValues(typeof(AttackEquipmentsNumber)).Length;
-        int abilityEquipmentsCount = System.Enum.GetValues(typeof(AbilityEquipmentsNumber)).Length;
+        int attackEquipmentsCount = EquipmentManager.Instance.attackEquipmentObjects.Length;
+        int abilityEquipmentsCount = EquipmentManager.Instance.abilityEquipmentObjects.Length;
 
         attackEquipments = new GameObject[attackEquipmentsCount];
         abilityEquipments = new int[abilityEquipmentsCount];
+        EquipmentManager.Instance.TakeAttackEquipment(startAttack);
     }
 
     private void OnMaxHealthPointChange(float maxHealthPoint)

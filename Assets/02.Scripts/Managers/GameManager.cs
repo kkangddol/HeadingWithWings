@@ -9,13 +9,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-
-    private DataManager data = new DataManager();
-    public static DataManager Data { get { return Instance.data; } }
-
-    public Action<int> stageEvents;
-    private bool eventCall = false;
-
     public static GameManager Instance
     {
         get
@@ -35,6 +28,14 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
+
+    private DataManager data = new DataManager();
+    public static DataManager Data { get { return Instance.data; } }
+
+    public Action<int> stageEvents;
+    private bool eventCall = false;
+
+
     [SerializeField]
     private GameObject gameoverUI;
     private HeightBar heightBar;
@@ -204,7 +205,7 @@ public class GameManager : MonoBehaviour
 
     private static GameManager Create()
     {
-        return Instantiate(Resources.Load<GameManager>("GameManager"));
+        return Instantiate(Resources.Load<GameManager>("Manager\\GameManager"));
     }
 
     public void OnGameOver()

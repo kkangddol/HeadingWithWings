@@ -109,8 +109,8 @@ public class ShotgunAttack : Equipment
             }
             case 5:
             {
-                damageMultiplier = 0.06f;
-                attackDelayMultiplier = 2.70f;
+                damageMultiplier = 0.07f;
+                attackDelayMultiplier = 2.60f;
                 pelletCount = 8;
                 break;
             }

@@ -61,7 +61,7 @@ MonoBehaviour:
   bullet: {fileID: -870538336479471407, guid: 115bba4fe49bad04d9da4b2957328b73, type: 3}
   damageMultiplier: 0
   attackDelayMultiplier: 0
-  attackRange: 5
+  attackRange: 4
   knockbackSize: 3
   bulletSpeed: 15
   pelletCount: 0

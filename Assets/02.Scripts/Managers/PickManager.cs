@@ -12,15 +12,32 @@ public class PickManager : MonoBehaviour
     //ReRoll 기능
     //Skip 기능
 
-    EquipmentManager equipmentManager;
+    private static PickManager instance;
+    public static PickManager Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                var obj = FindObjectOfType<PickManager>();
+                if(obj != null)
+                {
+                    instance = obj;
+                }
+                else
+                {
+                    instance = Create();
+                }
+            }
+            return instance;
+        }
+    }
 
     public GameObject pickUI;
 
     public float attackDropRate;
     public float abilityDropRate;
     public float wingDropRate;
-
-    public float skipRewardHeight;
 
     public GameObject[] slots = new GameObject[3];
 
@@ -31,17 +48,27 @@ public class PickManager : MonoBehaviour
     private List<int> pickedAbility = new List<int>();
     private List<int> pickedWing = new List<int>();
 
-    // private void Awake() {
-    //     Initialize();
-    // }
+    private static PickManager Create()
+    {
+        return Instantiate(Resources.Load<PickManager>("Manager\\PickManager"));
+    }
+
+     private void Awake() {
+        Initialize();
+     }
 
     public void Initialize()
     {
-        equipmentManager = GameManager.Instance.GetComponent<EquipmentManager>(); 
-        pickUI = GameObject.Find("GameCanvas").transform.Find("PickEquipmentUI").gameObject;
+        //pickUI = GameObject.Find("GameCanvas").transform.Find("PickEquipmentUI").gameObject;
+        pickUI = GameObject.FindWithTag("PICKUI");
+        pickUI.SetActive(false);
         slots[0] = pickUI.transform.Find("ItemSlot1").gameObject;
         slots[1] = pickUI.transform.Find("ItemSlot2").gameObject;
         slots[2] = pickUI.transform.Find("ItemSlot3").gameObject;
+
+        Button[] buttons = pickUI.GetComponentsInChildren<Button>();
+        buttons[3].onClick.AddListener(delegate {ReRoll();});
+        buttons[4].onClick.AddListener(delegate {Skip();});
     }
 
     public void StartPickSequence()
@@ -58,17 +85,26 @@ public class PickManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    int preventionCount = 0;
-    void PreventionInfiniteLoop(string str)
-    {
-            preventionCount++;
-            if(preventionCount > 5000)
-            {
-                UnityEditor.EditorApplication.isPlaying = false;
-                Debug.Log(str + " 에서 무한루프터짐");
-            }
-    }
+    int Choose (float[] probs) {
 
+        float total = 0;
+
+        foreach (float elem in probs) {
+            total += elem;
+        }
+
+        float randomPoint = Random.value * total;
+
+        for (int i= 0; i < probs.Length; i++) {
+            if (randomPoint < probs[i]) {
+                return i;
+            }
+            else {
+                randomPoint -= probs[i];
+            }
+        }
+        return probs.Length - 1;
+    }
 
     public void SetSlot()
     {
@@ -79,104 +115,80 @@ public class PickManager : MonoBehaviour
         pickedAbility.Clear();
         pickedWing.Clear();
 
-
-
-
         for(int i = 0; i < 3; i++)
         {
-            float abilityAccumulateRate = attackDropRate + abilityDropRate;
-            int randomEquipment = Random.Range(0,100);
-
             Button button = slots[i].GetComponent<Button>();
 
             button.onClick.RemoveAllListeners();
 
-            if(0 <= randomEquipment && randomEquipment <= attackDropRate)
+            float[] probs = {attackDropRate, abilityDropRate, wingDropRate};
+            int chosenEquip = Choose(probs);
+
+            int randomEquip;
+
+            switch(chosenEquip)
             {
-                //공격장비
-                int randomAttack;
-                do
+                case 1:
                 {
-                    PreventionInfiniteLoop("공격장비 생성");
-                    randomAttack = Random.Range(0, equipmentManager.attackEquipmentsCount);
-                }while(pickedAttack.Contains(randomAttack));
+                    randomEquip = Random.Range(0,EquipmentManager.Instance.attackEquipmentObjects.Length);
+                    
+                    if(EquipmentManager.Instance.attackEquipmentSprites.Length <= randomEquip)
+                    {
+                        button.GetComponentsInChildren<Image>()[1].sprite = noImage;
+                        button.GetComponentInChildren<TMPro.TMP_Text>().text = noDescription;
+                    }
+                    else
+                    {
+                        button.GetComponentsInChildren<Image>()[1].sprite = EquipmentManager.Instance.attackEquipmentSprites[randomEquip];
+                        button.GetComponentInChildren<TMPro.TMP_Text>().text = EquipmentManager.Instance.attackEquipmentDescriptions[randomEquip];
+                    }
 
-                pickedAttack.Add(randomAttack);
-
-                if(equipmentManager.attackEquipmentSprites.Length <= randomAttack)
-                {
-                    button.GetComponentsInChildren<Image>()[1].sprite = noImage;
-                    button.GetComponentInChildren<TMPro.TMP_Text>().text = noDescription;
+                    button.onClick.AddListener(delegate {EquipmentManager.Instance.TakeAttackEquipment(randomEquip);});
+                    break;
                 }
-                else
+                case 2:
                 {
-                    button.GetComponentsInChildren<Image>()[1].sprite = equipmentManager.attackEquipmentSprites[randomAttack];
-                    button.GetComponentInChildren<TMPro.TMP_Text>().text = equipmentManager.attackEquipmentDescriptions[randomAttack];
-                }
+                    randomEquip = Random.Range(0,EquipmentManager.Instance.abilityEquipmentObjects.Length);
 
-                button.onClick.AddListener(delegate {equipmentManager.TakeAttackEquipment(randomAttack);});
+                    if(EquipmentManager.Instance.abilityEquipmentSprites.Length <= randomEquip)
+                    {
+                        button.GetComponentsInChildren<Image>()[1].sprite = noImage;
+                        button.GetComponentInChildren<TMPro.TMP_Text>().text = noDescription;
+                    }
+                    else
+                    {
+                        button.GetComponentsInChildren<Image>()[1].sprite = EquipmentManager.Instance.abilityEquipmentSprites[randomEquip];
+                        button.GetComponentInChildren<TMPro.TMP_Text>().text = EquipmentManager.Instance.abilityEquipmentDescriptions[randomEquip];
+                    }
+
+                    button.onClick.AddListener(delegate {EquipmentManager.Instance.TakeAbilityItem(randomEquip);});
+
+                    break;
+                }
+                case 3:
+                {
+                    randomEquip = Random.Range(0,EquipmentManager.Instance.abilityEquipmentObjects.Length);
+
+                    if(EquipmentManager.Instance.wingEquipmentSprites.Length <= randomEquip)
+                    {
+                        button.GetComponentsInChildren<Image>()[1].sprite = noImage;
+                        button.GetComponentInChildren<TMPro.TMP_Text>().text = noDescription;
+                    }
+                    else
+                    {
+                        button.GetComponentsInChildren<Image>()[1].sprite = EquipmentManager.Instance.wingEquipmentSprites[randomEquip];
+                        button.GetComponentInChildren<TMPro.TMP_Text>().text = EquipmentManager.Instance.wingEquipmentDescriptions[randomEquip];
+                    }
+
+                    button.onClick.AddListener(delegate {EquipmentManager.Instance.TakeWingItem(randomEquip);});
+                    break;
+                }
+                default:
+                {
+                    button.onClick.AddListener(EndPickSequence);
+                    break;
+                }
             }
-            else if(attackDropRate < randomEquipment && randomEquipment <= abilityAccumulateRate)
-            {
-                //능력치장비
-                int randomAbility;
-                do
-                {
-                    PreventionInfiniteLoop("능력치장비 생성");
-                    randomAbility = Random.Range(0, equipmentManager.abilityEquipmentsCount);
-                }while(pickedAbility.Contains(randomAbility));
-                
-                pickedAbility.Add(randomAbility);
-
-                if(equipmentManager.abilityEquipmentSprites.Length <= randomAbility)
-                {
-                    button.GetComponentsInChildren<Image>()[1].sprite = noImage;
-                    button.GetComponentInChildren<TMPro.TMP_Text>().text = noDescription;
-                }
-                else
-                {
-                    button.GetComponentsInChildren<Image>()[1].sprite = equipmentManager.abilityEquipmentSprites[randomAbility];
-                    button.GetComponentInChildren<TMPro.TMP_Text>().text = equipmentManager.abilityEquipmentDescriptions[randomAbility];
-                }
-
-                button.onClick.AddListener(delegate {equipmentManager.TakeAbilityItem(randomAbility);});
-            }
-            else
-            {
-                //날개장비
-
-                // //임시 시작
-                // if(equipmentManager.wingEquipmentsCount == 0)
-                // {
-                //     i--;
-                //     continue;
-                // }//임시끝
-                
-                int randomWing = Random.Range(0, equipmentManager.wingEquipmentsCount);
-                do
-                {
-                    PreventionInfiniteLoop("날개장비 생성");
-                    randomWing = Random.Range(0, equipmentManager.wingEquipmentsCount);
-                }while(pickedWing.Contains(randomWing));
-                
-                pickedWing.Add(randomWing);
-                
-                Debug.Log("randomWing : " + randomWing);
-
-                if(equipmentManager.wingEquipmentSprites.Length <= randomWing)
-                {
-                    button.GetComponentsInChildren<Image>()[1].sprite = noImage;
-                    button.GetComponentInChildren<TMPro.TMP_Text>().text = noDescription;
-                }
-                else
-                {
-                    button.GetComponentsInChildren<Image>()[1].sprite = equipmentManager.wingEquipmentSprites[randomWing];
-                    button.GetComponentInChildren<TMPro.TMP_Text>().text = equipmentManager.wingEquipmentDescriptions[randomWing];
-                }
-
-                button.onClick.AddListener(delegate {equipmentManager.TakeWingItem(randomWing);});
-            }
-
             button.onClick.AddListener(EndPickSequence);
         }
     }
@@ -185,13 +197,14 @@ public class PickManager : MonoBehaviour
     {
         //대가 지불하고 (대가ex 랜덤한 장비 삭제, 체력감소, ReRoll아이템이 있어야함 등등)
         //SetSlot 다시.
+        GameManager.playerInfo.HealthPoint = GameManager.playerInfo.HealthPoint * 0.8f;
         SetSlot();
-        //220530 대가지불 아직 구현하지 않았음.
     }
 
     public void Skip()
     {
         //높이만 올려주고 스킵
+        float skipRewardHeight = GameManager.Instance.PickHeight * 0.3f;
         GameManager.Instance.PlayerHeight += skipRewardHeight;
         EndPickSequence();
     }
