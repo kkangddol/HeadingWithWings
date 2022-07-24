@@ -216,6 +216,18 @@ PrefabInstance:
       propertyPath: movement
       value: 
       objectReference: {fileID: 515632402}
+    - target: {fileID: 1608306149747508940, guid: 323e8b40815361c4382dd3207404a85e,
+        type: 3}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 77940187, guid: 5ef50d8bf37a9fe43a3385d81974e36c,
+        type: 3}
+    - target: {fileID: 1608306149747508940, guid: 323e8b40815361c4382dd3207404a85e,
+        type: 3}
+      propertyPath: sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: -1421167403, guid: 5ef50d8bf37a9fe43a3385d81974e36c,
+        type: 3}
     - target: {fileID: 1608306149747508943, guid: 323e8b40815361c4382dd3207404a85e,
         type: 3}
       propertyPath: m_Name
