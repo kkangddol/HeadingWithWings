@@ -839,7 +839,7 @@ MonoBehaviour:
   - {fileID: 77940187, guid: 5ef50d8bf37a9fe43a3385d81974e36c, type: 3}
   movement: {fileID: 0}
   modelTransform: {fileID: 4993941600481660328}
-  test: {fileID: 0}
+  trail: {fileID: 0}
 --- !u!114 &7151687394177927261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,7 +1174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 40
   m_Sprite: {fileID: -1421167403, guid: 5ef50d8bf37a9fe43a3385d81974e36c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
