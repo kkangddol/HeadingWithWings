@@ -1,60 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum AttackEquipmentsNumber
-{
-    Feather
-}
-
-public enum AbilityEquipmentsNumber
-{
-}
-
-public enum WingEquipmentsNumber
-{
-}
+using UnityEngine.UI;
 
 public class EquipmentManager : MonoBehaviour
 {
-    PlayerInfo playerInfo;
+
+    private static EquipmentManager instance;
+    public static EquipmentManager Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                var obj = FindObjectOfType<EquipmentManager>();
+                if(obj != null)
+                {
+                    instance = obj;
+                }
+                else
+                {
+                    instance = Create();
+                }
+            }
+            return instance;
+        }
+    }
 
     public int[] attackEquipmentsLevel;
-    public int[] abilityEquipmentsLevel;
-    public int[] wingEquipmentsLevel;
-
     public GameObject[] attackEquipmentObjects;
-    public GameObject[] abilityEquipmentObjects;
-    public GameObject[] wingEquipmentObjects;
-    public GameObject[] wingModels;
-
     public Sprite[] attackEquipmentSprites;
-    public Sprite[] abilityEquipmentSprites;
-    public Sprite[] wingEquipmentSprites;
-
-    //220528 이 설명들도 DataManager로 관리하면 좋을듯
     public string[] attackEquipmentDescriptions;
+
+    public int[] abilityEquipmentsLevel;
+    public GameObject[] abilityEquipmentObjects;
+    public Sprite[] abilityEquipmentSprites;
     public string[] abilityEquipmentDescriptions;
+
+    public int[] wingEquipmentsLevel;
+    public GameObject[] wingEquipmentObjects;
+    public Sprite[] wingEquipmentSprites;
     public string[] wingEquipmentDescriptions;
 
-    public int attackEquipmentsCount;
-    public int abilityEquipmentsCount;
-    public int wingEquipmentsCount;
+    public GameObject skillButton;
 
 
-    private void Start() {
+    private void Awake() {
+        if(Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Initialize();
     }
 
-    void Initialize()
+    public void Initialize()
     {
-        attackEquipmentsCount = System.Enum.GetValues(typeof(AttackEquipmentsNumber)).Length;
-        abilityEquipmentsCount = System.Enum.GetValues(typeof(AbilityEquipmentsNumber)).Length;
-        wingEquipmentsCount = System.Enum.GetValues(typeof(WingEquipmentsNumber)).Length;
+        attackEquipmentsLevel = new int[attackEquipmentObjects.Length];     
+        abilityEquipmentsLevel = new int[abilityEquipmentObjects.Length];        
+        wingEquipmentsLevel = new int[wingEquipmentObjects.Length];
 
-        attackEquipmentsLevel = new int[attackEquipmentsCount];     
-        abilityEquipmentsLevel = new int[abilityEquipmentsCount];        
-        wingEquipmentsLevel = new int[wingEquipmentsCount];
+        skillButton = GameObject.FindWithTag("SKILLBUTTON");
+        skillButton.SetActive(false);
 
         // attackEquipmentObjects = new GameObject[attackEquipmentsCount];
         // abilityEquipmentObjects = new GameObject[abilityEquipmentsCount];
@@ -69,12 +76,15 @@ public class EquipmentManager : MonoBehaviour
         // abilityEquipmentDescriptions = new string[abilityEquipmentsCount];
         // wingEquipmentDescriptions = new string[wingEquipmentsCount];
 
-        playerInfo = GameManager.playerInfo;
-
         //임시
-        TakeAttackEquipment((int)AttackEquipmentsNumber.Feather);
+        //TakeAttackEquipment((int)AttackEquipmentsNumber.Feather);
         //attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
         //임시끝
+    }
+
+    private static EquipmentManager Create()
+    {
+        return Instantiate(Resources.Load<EquipmentManager>("Manager\\EquipmentManager"));
     }
     
     public void TakeAttackEquipment(int EquipmentNumber)
@@ -84,10 +94,10 @@ public class EquipmentManager : MonoBehaviour
             //신규 장착
             attackEquipmentsLevel[EquipmentNumber] = 1;
 
-            GameObject equipment = Instantiate(attackEquipmentObjects[EquipmentNumber], playerInfo.attackEquipmentsParent);
-            playerInfo.attackEquipments[EquipmentNumber] = equipment;
+            GameObject equipment = Instantiate(attackEquipmentObjects[EquipmentNumber], GameManager.playerInfo.attackEquipmentsParent);
+            GameManager.playerInfo.attackEquipments[EquipmentNumber] = equipment;
+
             equipment.GetComponent<Equipment>().SetLevel(1);
-            
         }
         else if(0 < attackEquipmentsLevel[EquipmentNumber] && attackEquipmentsLevel[EquipmentNumber] < 5)
         {
@@ -95,7 +105,7 @@ public class EquipmentManager : MonoBehaviour
             int newLevel = attackEquipmentsLevel[EquipmentNumber] + 1;
             attackEquipmentsLevel[EquipmentNumber] = newLevel;
 
-            playerInfo.attackEquipments[EquipmentNumber].GetComponent<Equipment>().SetLevel(newLevel);
+            GameManager.playerInfo.attackEquipments[EquipmentNumber].GetComponent<Equipment>().SetLevel(newLevel);
         }
         else
         {
@@ -106,7 +116,7 @@ public class EquipmentManager : MonoBehaviour
     public void TakeAbilityItem(int EquipmentNumber)
     {
         abilityEquipmentsLevel[EquipmentNumber] += 1;
-        playerInfo.abilityEquipments[EquipmentNumber] += 1;
+        GameManager.playerInfo.abilityEquipments[EquipmentNumber] += 1;
         foreach(var change in abilityEquipmentObjects[EquipmentNumber].GetComponents<AbilityChange>())
         {
             change.ApplyChange();
@@ -114,22 +124,43 @@ public class EquipmentManager : MonoBehaviour
     }
     public void TakeWingItem(int EquipmentNumber)
     {
-        if(playerInfo.wingNumber != EquipmentNumber)
+        if(GameManager.playerInfo.wingNumber != EquipmentNumber)
         {
+            Debug.Log("날개장착~");
             //신규 장착
-            Destroy(playerInfo.wingEquipmentParent.GetChild(0));
-            Destroy(playerInfo.wingModelParent.GetChild(0));
-            wingEquipmentsLevel[playerInfo.wingNumber] = 0;
+            if(GameManager.playerInfo.wingEquipmentParent.childCount != 0)
+            {
+                Destroy(GameManager.playerInfo.wingEquipment);
+                Destroy(GameManager.playerInfo.wingModel);
+            }
+            if(GameManager.playerInfo.wingNumber != -1)
+            {
+                wingEquipmentsLevel[GameManager.playerInfo.wingNumber] = 0;
+            }
 
-            GameObject equipment = Instantiate(wingEquipmentObjects[EquipmentNumber], playerInfo.wingEquipmentParent);
-            GameObject model = Instantiate(wingModels[EquipmentNumber], playerInfo.wingModelParent);
+            //모델링 오면 추가로 달아줘야 함
 
-            equipment.GetComponent<WingEquipment>().SetLevel(1);
-            playerInfo.wingEquipment = equipment;
+            GameObject equipment = Instantiate(wingEquipmentObjects[EquipmentNumber], GameManager.playerInfo.wingEquipmentParent);
+
+            equipment.GetComponent<Equipment>().SetLevel(1);
+            GameManager.playerInfo.wingEquipment = equipment;
 
             wingEquipmentsLevel[EquipmentNumber] += 1;
-            playerInfo.wingNumber = EquipmentNumber;
+            GameManager.playerInfo.wingNumber = EquipmentNumber;
 
+            skillButton.GetComponent<SkillCoolTimeHandler>().ResetCool();
+            skillButton.GetComponent<SkillStackHandler>().ResetStack();
+
+            skillButton.SetActive(true);
+
+            equipment.GetComponent<ActiveWing>().SetButton(skillButton);
+
+            Image[] skillImages = skillButton.GetComponentsInChildren<Image>();
+            foreach(var img in skillImages)
+            {
+                img.sprite = wingEquipmentSprites[EquipmentNumber];
+            }
+            skillButton.GetComponent<Button>().onClick.AddListener(delegate {GameManager.playerInfo.wingEquipment.GetComponent<ActiveWing>().ActivateSkill();});
         }
         else if(0 < wingEquipmentsLevel[EquipmentNumber] && wingEquipmentsLevel[EquipmentNumber] < 5)
         {
@@ -137,7 +168,7 @@ public class EquipmentManager : MonoBehaviour
             int newLevel = wingEquipmentsLevel[EquipmentNumber] + 1;
             wingEquipmentsLevel[EquipmentNumber] = newLevel;
 
-            playerInfo.wingEquipment.GetComponent<WingEquipment>().SetLevel(newLevel);
+            GameManager.playerInfo.wingEquipment.GetComponent<Equipment>().SetLevel(newLevel);
         }
         else
         {

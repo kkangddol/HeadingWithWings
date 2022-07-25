@@ -3,41 +3,53 @@ using System.Collections;
 
 public class PlayerMoveController : MonoBehaviour
 {
+    public Sprite[] sprites = null;
 
-	private Animator animator;
-
+    //private Animator animator;
     private PlayerInfo playerInfo;
 
-	public float moveSpeed = 5;
 	private float horizontal;
 	private float vertical;
-	private float rotationDegreePerSecond = 1000;
+	//private float rotationDegreePerSecond = 1000;
 	private bool isAttacking = false;
-
-	public Camera gamecam;
-	public Vector2 camPosition;
+	private bool isStop = false;
+	public bool IsStop
+	{
+		get{return isStop;}
+	}
 
     public FloatingJoystick movement;
-    public Transform modelTransform;
+	Rigidbody2D rb;
+	public TrailRenderer trail;
 
 
 	void Start()
 	{
-        animator = GetComponentInChildren<Animator>();
+        //animator = GetComponentInChildren<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
-        moveSpeed = playerInfo.moveSpeed;
-		gamecam = Camera.main;
+		rb = GetComponent<Rigidbody2D>();
+	}
+
+	private void Update() {
+		if(rb.velocity.magnitude >= 5)
+		{
+			trail.emitting = true;
+		}
+		else
+		{
+			trail.emitting = false;
+		}
 	}
 
 	void FixedUpdate()
 	{
-		if (animator)
+		if(!isStop)
 		{
 			//walk
 			horizontal = movement.Horizontal;
 			vertical = movement.Vertical;
 
-			Vector3 stickDirection = new Vector3(horizontal, 0, vertical);
+			Vector2 stickDirection = new Vector2(horizontal, vertical);
 			float speedOut;
 
 			if (stickDirection.sqrMagnitude > 1) stickDirection.Normalize();
@@ -47,27 +59,47 @@ public class PlayerMoveController : MonoBehaviour
 			else
 				speedOut = 0;
 
-			if (stickDirection != Vector3.zero && !isAttacking)
-            {
-                modelTransform.rotation = Quaternion.RotateTowards(
-                    modelTransform.rotation, 
-                    Quaternion.LookRotation(stickDirection, Vector3.up), 
-                    rotationDegreePerSecond * Time.deltaTime
-                    );
-            }
+			// if (stickDirection != Vector3.zero && !isAttacking)
+			// {
+			//     modelTransform.rotation = Quaternion.RotateTowards(
+			//         modelTransform.rotation, 
+			//         Quaternion.LookRotation(stickDirection, Vector3.up), 
+			//         rotationDegreePerSecond * Time.deltaTime
+			//         );
+			// }
 				
-			GetComponent<Rigidbody>().velocity = modelTransform.forward * speedOut * moveSpeed + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
+			//rb.velocity = stickDirection * speedOut * GameManager.playerInfo.moveSpeed;// + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
+			rb.AddForce(stickDirection * speedOut * playerInfo.moveSpeed);
 
-			animator.SetFloat("Speed", speedOut);
+			// 임시
+            if (stickDirection.y > 0)
+                GetComponentInChildren<SpriteRenderer>().sprite = sprites[0];
+            else if (stickDirection.y < 0)
+                GetComponentInChildren<SpriteRenderer>().sprite = sprites[1];
+			// 임시 끝
+
+			if(stickDirection.x > 0)
+				GetComponentInChildren<SpriteRenderer>().flipX = true;
+			else if (stickDirection.x < 0)
+				GetComponentInChildren<SpriteRenderer>().flipX = false;
+			//animator.SetFloat("Speed", speedOut);
+
+			if(horizontal != 0 && vertical != 0)
+			{
+				playerInfo.headAngle = Mathf.Atan2(vertical, horizontal) * Mathf.Rad2Deg;
+				playerInfo.headVector = stickDirection;
+			}
+				
 		}
 	}
 
-	void LateUpdate()
+	public void StopMove()
 	{
-        // move camera
-        if (gamecam)
-        {
-            gamecam.transform.position = transform.position + new Vector3(0, camPosition.x, -camPosition.y);
-        }
+		isStop = true;
+	}
+
+	public void ResumeMove()
+	{
+		isStop = false;
 	}
 }

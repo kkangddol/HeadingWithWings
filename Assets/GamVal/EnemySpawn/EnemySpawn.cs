@@ -13,7 +13,26 @@ public class EnemySpawn : MonoBehaviour
     private void Start()
     {
         playerPos = GameObject.Find("PlayerController").GetComponent<Transform>();
-        enemyParent = GameObject.Find("Enemies").GetComponent<Transform>();
+        // enemyParent = GameObject.Find("Enemies").GetComponent<Transform>();
+        // for Test
+        StartCoroutine(Spawn());
+    }
+
+    IEnumerator Spawn()
+    {
+        while(true)
+        {
+            StageMonsterGenerate stageMonsterinfo = GameManager.Data.StageMonsterGenerateDict[1];
+            Vector3 spawnPos = RandomCirclePosition(20);
+            for (int i = 0; i < stageMonsterinfo.monsterGroupGenerateInfo.amount.Length; i++)
+            {
+                GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{stageMonsterinfo.monsterGroupGenerateInfo.id[i]}"));
+                go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
+                Vector2 offset = 3 * Random.insideUnitCircle;
+                go.transform.position = playerPos.position + spawnPos + new Vector3(offset.x, 0, offset.y);
+            }
+            yield return new WaitForSeconds(5.0f);
+        }
     }
 
     // 플레이어를 기준으로 위아래로 번갈아가면서 몬스터가 스폰될 수 있도록 설정

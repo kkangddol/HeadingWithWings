@@ -7,10 +7,18 @@ public class FeatherAttack : Equipment
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
     const string ENEMY = "ENEMY";
-    public Bullets bullet;
+    public Bullet bullet;
+    public Bullet FeatherBullet;
+    public Bullet PenetrateFeatherBullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
+    public float attackRange;
+    public float knockbackSize;
     public float bulletSpeed;
+
+    private Transform targetTransform;
+    private bool isCoolDown = false;
+
 
     private void Start()
     {
@@ -20,30 +28,43 @@ public class FeatherAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameManager.playerInfo;
+        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
     }
 
     void Fire()
     {
-        Transform targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
-        if(targetTransform == transform)
-        {
-            return;
-        }
-        Bullets newBullet = Instantiate(bullet,transform.position,transform.rotation);
-        newBullet.transform.LookAt(targetTransform);
-        newBullet.damage = playerInfo.damage * (damageMultiplier / 100f);
-        newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode.Impulse);
+        Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
+        newBullet.damage = playerInfo.damage * damageMultiplier;
+        newBullet.knockbackSize = knockbackSize;
+        newBullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
+        newBullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
+        isCoolDown = true;
+        StartCoroutine(CoolDown());
     }
 
     IEnumerator FireCycle()
     {
         while(true)
         {
-            yield return new WaitForSeconds(playerInfo.attackDelay * (attackDelayMultiplier / 100f));
-            Fire();
+            yield return null;
+            targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
+
+            if(targetTransform == transform) continue;
+
+            if(Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
+
+            if(!isCoolDown)
+            {
+                Fire();
+            }
         }
+    }
+
+    IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(playerInfo.attackDelay * attackDelayMultiplier);
+        isCoolDown = false;
     }
 
     public override void SetLevel(int newLevel)
@@ -55,32 +76,37 @@ public class FeatherAttack : Equipment
         {
             case 1:
             {
-                damageMultiplier = 100;
-                attackDelayMultiplier = 100;
+                bullet = FeatherBullet;
+                damageMultiplier = 0.10f;
+                attackDelayMultiplier = 1.00f;
                 break;
             }
             case 2:
             {
-                damageMultiplier = 105;
-                attackDelayMultiplier = 95;
+                bullet = FeatherBullet;
+                damageMultiplier = 0.15f;
+                attackDelayMultiplier = 0.95f;
                 break;
             }
             case 3:
             {
-                damageMultiplier = 110;
-                attackDelayMultiplier = 90;
+                bullet = FeatherBullet;
+                damageMultiplier = 0.20f;
+                attackDelayMultiplier = 0.90f;
                 break;
             }
             case 4:
             {
-                damageMultiplier = 115;
-                attackDelayMultiplier = 85;
+                bullet = FeatherBullet;
+                damageMultiplier = 0.25f;
+                attackDelayMultiplier = 0.85f;
                 break;
             }
             case 5:
             {
-                damageMultiplier = 120;
-                attackDelayMultiplier = 80;
+                bullet = PenetrateFeatherBullet;
+                damageMultiplier = 0.30f;
+                attackDelayMultiplier = 0.80f;
                 break;
             }
             default:

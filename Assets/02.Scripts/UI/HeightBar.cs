@@ -20,4 +20,8 @@ public class HeightBar : MonoBehaviour
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
+    public void SetMaxValue(int value)
+    {
+        slider.maxValue = value;
+    }
 }

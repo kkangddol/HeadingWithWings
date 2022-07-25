@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Feather : Bullets
+public class Bullet_Feather : Bullet
 {
     const string ENEMY = "ENEMY";
 
@@ -10,9 +10,9 @@ public class Bullet_Feather : Bullets
         Destroy(gameObject, 5f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == ENEMY)
+        if(other.CompareTag(ENEMY))
         {
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
             Destroy(gameObject);

@@ -6,6 +6,6 @@ public class DamageChange : AbilityChange
 {
     public override void ApplyChange()
     {
-        playerInfo.damage += playerInfo.damage * (changeMultiplier / 100f);
+        GameManager.playerInfo.damage += GameManager.playerInfo.damage * (changeMultiplier / 100f);
     }
 }

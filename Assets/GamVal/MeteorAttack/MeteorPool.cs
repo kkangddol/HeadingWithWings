@@ -56,7 +56,7 @@ public class MeteorPool : MonoBehaviour
         obj.gameObject.SetActive(false);
         obj.transform.SetParent(Instance.transform);
         Instance.poolingObjectQueue.Enqueue(obj);
-        obj.transform.position.Set(0, 0, 0);
-        obj.transform.rotation.Set(0, 0, 0, 0);
+        obj.transform.position = Vector3.zero;
+        obj.transform.rotation = Quaternion.identity;
     }
 }

@@ -7,7 +7,7 @@ public class LobbySceneManager : MonoBehaviour
 {
     public GameObject collectionPrefab;
     public GameObject optionPrefab;
-
+    
     public void OnClickStartButton()
     {
         //SceneManager.LoadSceneAsync("MainGameScene");
@@ -19,7 +19,7 @@ public class LobbySceneManager : MonoBehaviour
     {
         if(collectionPrefab == null)
         {
-            Debug.Log("CollectionPrefabÀÌ ¾ø½À´Ï´Ù!");
+            Debug.Log("CollectionPrefabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
             return;
         }
         Instantiate(collectionPrefab);
@@ -28,7 +28,7 @@ public class LobbySceneManager : MonoBehaviour
     {
         if (optionPrefab == null)
         {
-            Debug.Log("optionPrefabÀÌ ¾ø½À´Ï´Ù!");
+            Debug.Log("optionPrefabï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
             return;
         }
         Instantiate(optionPrefab);

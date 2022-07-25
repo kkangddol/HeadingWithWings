@@ -3,41 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour, IEnemyStopHandler
 {
+    private Rigidbody2D playerRigid;
     private EnemyInfo enemyInfo;
-    private NavMeshAgent agent;
+    bool isStop = false;
+    public bool IsStop
+    {
+        get{ return isStop;}
+        set{ isStop = value;}
+    }
+    Vector2 currentPos;
+    Rigidbody2D rigid;
+    Vector2 moveDirection;
+
+
 
     private void Start()
     {
         Initialize();
-        StartCoroutine(EnemySetDestination());
     }
-
     private void Initialize()
     {
-        agent = GetComponent<NavMeshAgent>();
         enemyInfo = GetComponent<EnemyInfo>();
-        agent.speed = GameManager.Data.MonsterDict[enemyInfo.MonsterID].monsterSpeed;
+        rigid = GetComponent<Rigidbody2D>();
+        playerRigid = GameObject.FindWithTag("PLAYER").GetComponent<Rigidbody2D>();
     }
 
-    IEnumerator EnemySetDestination()
-    {
-        while(!enemyInfo.IsDead)
+    private void FixedUpdate() {
+        if(!isStop)
         {
-            yield return null;
-            agent.SetDestination(enemyInfo.targetTransform.position);
+            MoveToTarget();
         }
+    }
+
+    // void FollowTarget()
+    // {
+    //     //transform.position = Vector2.MoveTowards(transform.position, GameManager.playerTransform.position, enemyInfo.enemyMoveSpeed * Time.deltaTime);
+    //     currentPos = Vector2.MoveTowards(transform.position, GameManager.playerTransform.position, Time.fixedDeltaTime * enemyInfo.enemyMoveSpeed);
+    //     rigid.MovePosition(new Vector2(currentPos.x, currentPos.y));
+    // }
+
+    void Tracking()
+    {
+        moveDirection = (playerRigid.position - rigid.position).normalized;
+    }
+
+    void MoveToTarget()
+    {
+        Tracking();
+        rigid.AddForce(moveDirection * enemyInfo.enemyMoveSpeed);
     }
 
     public void StopMove()
     {
-        StopCoroutine(EnemySetDestination());
-        agent.isStopped = true;
+        isStop = true;
+        rigid.velocity = Vector2.zero;
     }
     public void ResumeMove()
     {
-        agent.isStopped = false;
-        StartCoroutine(EnemySetDestination());
+        isStop = false;
     }
 }
