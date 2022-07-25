@@ -62,6 +62,6 @@ MonoBehaviour:
   damageMultiplier: 0
   attackDelayMultiplier: 0
   attackRange: 20
-  knockbackSize: 8
+  knockbackSize: 3
   bulletSpeed: 25
   headShotChance: 0

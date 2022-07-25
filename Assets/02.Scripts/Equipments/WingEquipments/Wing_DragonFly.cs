@@ -57,9 +57,13 @@ public class Wing_DragonFly : Equipment, ActiveWing
         playerMoveController = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMoveController>();
         playerRigid = GameObject.FindWithTag("PLAYER").GetComponent<Rigidbody2D>();
         col = GetComponent<CircleCollider2D>();
-        skillButton = GameObject.FindWithTag("SKILLBUTTON");
-        skillButton.GetComponent<SkillStackHandler>().SetStackText(maxDashCount);
         DashCount = maxDashCount;
+    }
+
+    public void SetButton(GameObject button)
+    {
+        skillButton = button;
+        skillButton.GetComponent<SkillStackHandler>().SetStackText(maxDashCount);
     }
 
     public void ActivateSkill()
@@ -128,9 +132,6 @@ public class Wing_DragonFly : Equipment, ActiveWing
     {
         isCoolDown = true;
         float coolTime = playerInfo.skillDelay * skillDelayMultiplier;
-        //임시
-        coolTime = 3;
-        //임시끝
         skillButton.GetComponent<SkillCoolTimeHandler>().SetCoolTime(coolTime);
         skillButton.GetComponent<SkillCoolTimeHandler>().StartCoolTime();
         while(isCoolDown)
@@ -182,4 +183,6 @@ public class Wing_DragonFly : Equipment, ActiveWing
                 break;
         }
     }
+
+
 }

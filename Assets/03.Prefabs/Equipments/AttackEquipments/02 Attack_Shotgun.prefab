@@ -62,7 +62,7 @@ MonoBehaviour:
   damageMultiplier: 0
   attackDelayMultiplier: 0
   attackRange: 4
-  knockbackSize: 3
+  knockbackSize: 1
   bulletSpeed: 15
   pelletCount: 0
   maxSpread: 0.3

@@ -678,7 +678,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 227, y: 863.66}
+  m_AnchoredPosition: {x: 413.36, y: 863.66}
   m_SizeDelta: {x: 160, y: 132.6877}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2925020641554671689
@@ -702,7 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2925020641737046981}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -1192,7 +1192,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1241,6 +1241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fa13e945d269f41b0db79abbc73923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 2925020641079079257}
+  coolTimeText: {fileID: 2925020642885448876}
   _coolTime: 0
 --- !u!114 &2925020641750412286
 MonoBehaviour:
@@ -1254,6 +1256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07e0c2a58dbef841bc1707e4419ae7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stackText: {fileID: 2925020641714033131}
   _stackCount: 0
 --- !u!1 &2925020642080059895
 GameObject:
@@ -1347,7 +1350,7 @@ GameObject:
   - component: {fileID: 2925020642450782081}
   m_Layer: 5
   m_Name: DashButton
-  m_TagString: Untagged
+  m_TagString: DASHBUTTON
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1482,6 +1485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fa13e945d269f41b0db79abbc73923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 2925020642566483655}
+  coolTimeText: {fileID: 2925020642559869130}
   _coolTime: 0
 --- !u!114 &2925020642450782081
 MonoBehaviour:
@@ -1495,6 +1500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07e0c2a58dbef841bc1707e4419ae7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stackText: {fileID: 2925020641207200342}
   _stackCount: 0
 --- !u!1 &2925020642559869132
 GameObject:

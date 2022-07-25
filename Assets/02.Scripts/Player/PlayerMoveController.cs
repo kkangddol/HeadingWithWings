@@ -19,7 +19,6 @@ public class PlayerMoveController : MonoBehaviour
 	}
 
     public FloatingJoystick movement;
-    public Transform modelTransform;
 	Rigidbody2D rb;
 	public TrailRenderer trail;
 

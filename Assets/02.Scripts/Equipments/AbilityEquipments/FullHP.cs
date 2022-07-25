@@ -6,6 +6,6 @@ public class FullHP : AbilityChange
 {
     public override void ApplyChange()
     {
-        playerInfo.HealthPoint = playerInfo.MaxHealthPoint;
+        GameManager.playerInfo.HealthPoint = GameManager.playerInfo.MaxHealthPoint;
     }
 }

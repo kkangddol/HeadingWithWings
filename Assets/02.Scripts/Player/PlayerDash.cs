@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDash : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class PlayerDash : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerInfo = GetComponent<PlayerInfo>();
         playerMoveController = GetComponent<PlayerMoveController>();
+        // dashButton = GameObject.FindWithTag("DASHBUTTON");
+        // dashButton.GetComponent<Button>().onClick.AddListener(delegate {Dash();});
         DashCount = MaxDashCount;
     }
 

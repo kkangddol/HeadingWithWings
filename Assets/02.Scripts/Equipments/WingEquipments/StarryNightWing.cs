@@ -13,6 +13,8 @@ public class StarryNightWing : Equipment, ActiveWing
 
     private const float SKILLSPEED = 1.0f;
 
+    public GameObject skillButton;
+
     private void Start()
     {
         Initialize();
@@ -22,10 +24,13 @@ public class StarryNightWing : Equipment, ActiveWing
     {
         playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
     }
+    public void SetButton(GameObject button)
+    {
+        skillButton = button;
+    }
 
     public void ActivateSkill()
     {
-        //집중 포화
         if (isCoolDown) return;
 
         isCoolDown = true;
@@ -36,8 +41,9 @@ public class StarryNightWing : Equipment, ActiveWing
     private void Fire()
     {
         GameObject go = Instantiate(skillObject, this.transform.position, Quaternion.identity);
-        go.transform.rotation = Quaternion.AngleAxis(playerInfo.headAngle, Vector3.forward);
-        go.GetComponent<Rigidbody2D>().AddForce(Vector2.right, ForceMode2D.Impulse);
+        //go.transform.rotation = Quaternion.AngleAxis(playerInfo.headAngle, Vector3.forward);
+        go.transform.eulerAngles = new Vector3(0, 0, playerInfo.headAngle);
+        go.GetComponent<Rigidbody2D>().AddForce(go.transform.right, ForceMode2D.Impulse);
         Destroy(go, skillTime);
     }
 
@@ -51,6 +57,10 @@ public class StarryNightWing : Equipment, ActiveWing
     {
         isCoolDown = true;
         coolTime = playerInfo.skillDelay * skillDelayMultiplier;
+
+        skillButton.GetComponent<SkillCoolTimeHandler>().SetCoolTime(coolTime);
+        skillButton.GetComponent<SkillCoolTimeHandler>().StartCoolTime();
+
         while (isCoolDown)
         {
             yield return null;

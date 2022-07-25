@@ -4,27 +4,62 @@ using UnityEngine;
 
 public class EnemyDropItem : MonoBehaviour
 {
-    public GameObject heightItemPrefab;
+    public GameObject silverPrefab;
+    public GameObject goldPrefab;
     public GameObject healItemPrefab;
+    Transform itemParent;
+    private void Start() {
+        itemParent = GameObject.FindWithTag("ITEMPARENT").GetComponent<Transform>();
+    }
+
     public void DropItem()
     {
-        float heightItemDropRate = GameManager.Instance.heightItemDropRate;
+        float silverDropRate = GameManager.Instance.heightSilverDropRate;
+        float goldDropRate = GameManager.Instance.heightGoldDropRate;
         float healItemDropRate = GameManager.Instance.healItemDropRate;
 
-        float randomX;
+        float randomX = Random.Range(-1f, 1f);
 
-        float randomNumber = Random.Range(0f,100f);
-        if(randomNumber < heightItemDropRate)
+        float[] probs = {silverDropRate, goldDropRate, healItemDropRate};
+
+        switch(Choose(probs))
         {
-            randomX = Random.Range(-1f, 1f);
-            GameObject item = Instantiate(heightItemPrefab, transform.position + (Vector3.right * randomX), Quaternion.identity);
+            case 0:
+            {
+                GameObject item = Instantiate(silverPrefab, transform.position + (Vector3.right * randomX), Quaternion.identity, itemParent);
+                break;
+            }
+            case 1:
+            {
+                GameObject item = Instantiate(goldPrefab, transform.position + (Vector3.right * randomX), Quaternion.identity, itemParent);
+                break;
+            }
+            case 2:
+            {
+                GameObject item = Instantiate(healItemPrefab, transform.position + (Vector3.right * randomX), Quaternion.identity, itemParent);
+                break;
+            }
+        }
+    }
+
+    int Choose (float[] probs) {
+
+        float total = 0;
+
+        foreach (float elem in probs) {
+            total += elem;
         }
 
-        randomNumber = Random.Range(0f,100f);
-        if(randomNumber < healItemDropRate)
-        {
-            randomX = Random.Range(-1f, 1f);
-            GameObject item = Instantiate(healItemPrefab, transform.position + (Vector3.right * randomX), Quaternion.identity);
+        float randomPoint = Random.value * total;
+
+        for (int i= 0; i < probs.Length; i++) {
+            if (randomPoint < probs[i]) {
+                return i;
+            }
+            else {
+                randomPoint -= probs[i];
+            }
         }
+        return probs.Length - 1;
     }
 }

@@ -80,12 +80,6 @@ public class GameManager : MonoBehaviour
     public float PlayingTime{
         get {return playingTime;}
     }
-    #region 임시
-    public void ForDevelopTime()
-    {
-        playingTime += 10;
-    }
-    #endregion
     public int playingTimeMinute = 0;
     [SerializeField]
     TMPro.TextMeshProUGUI playingTimeText;
@@ -99,27 +93,27 @@ public class GameManager : MonoBehaviour
     public static PlayerInfo playerInfo;
     public static Transform playerTransform;
     public static Rigidbody2D playerRigidbody;
-    PickManager pickManager;
 
-    public float heightItemDropRate;
+    public float heightSilverDropRate;
+    public float heightGoldDropRate;
     public float healItemDropRate;
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
+
         //GameStartInit();
-        pickManager = GetComponent<PickManager>();
 
         if(Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
 
         isGameOver = false;
 
         // Data 불러오기
-        instance.data.Init();
+        //instance.data.Init();
         // Debug.Log(instance.data.StageMonsterGenerateDict[3].bigwaveGenerateInfo.monsterGenerateInfo.id[3]);
     }
 
@@ -146,8 +140,9 @@ public class GameManager : MonoBehaviour
         playingTime = 0;
         killCount = 0;
         playerHeight = 0;
-        heightItemDropRate = 90;
-        healItemDropRate = 5;
+        heightSilverDropRate = 70;
+        heightGoldDropRate = 20;
+        healItemDropRate = 10;
         playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
         playerTransform = GameObject.FindWithTag(PLAYER).GetComponent<Transform>();
         playerRigidbody = GameObject.FindWithTag(PLAYER).GetComponent<Rigidbody2D>();
@@ -155,8 +150,6 @@ public class GameManager : MonoBehaviour
         heightBar.SetMaxValue(PickHeight);
         playingTimeText = GameObject.FindWithTag(TIMETEXT).GetComponent<TMPro.TextMeshProUGUI>();
         killCountText = GameObject.FindWithTag(KILLCOUNT).GetComponent<TMPro.TextMeshProUGUI>();
-        GetComponent<PickManager>().Initialize();
-        GetComponent<EquipmentManager>().Initialize();
         StartCoroutine(TimeFlow());
     }
 
@@ -224,6 +217,19 @@ public class GameManager : MonoBehaviour
     public void PickStart()
     {
         //tempPickHeight += tempPickHeight + 2;
-        pickManager.StartPickSequence();
+        PickManager.Instance.StartPickSequence();
     }
+
+    #region 임시
+    public void ForDevelopTime()
+    {
+        Time.timeScale = 10;
+        Invoke("TEST",10);
+    }
+    
+    void TEST()
+    {
+        Time.timeScale = 1;
+    }
+    #endregion
 }

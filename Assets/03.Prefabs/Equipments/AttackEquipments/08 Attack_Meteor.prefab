@@ -49,5 +49,5 @@ MonoBehaviour:
   damageMultiplier: 0.5
   attackDelayMultiplier: 1
   attackRange: 2
-  knockbackSize: 4
+  knockbackSize: 3
   meteorCount: 3

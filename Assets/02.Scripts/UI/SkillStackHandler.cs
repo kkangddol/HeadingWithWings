@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SkillStackHandler : MonoBehaviour
 {
-    TMPro.TextMeshProUGUI stackText;
+    public TMPro.TextMeshProUGUI stackText;
     public int _stackCount;
 
     private void Start() {
-        stackText = GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1];
+        //stackText = GetComponentsInChildren<TMPro.TextMeshProUGUI>()[1];
     }
 
     public void SetStackText(int stackCount)
