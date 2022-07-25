@@ -52,7 +52,7 @@ public class EnemyMovement : MonoBehaviour, IEnemyStopHandler
     void MoveToTarget()
     {
         Tracking();
-        rigid.AddForce(moveDirection * enemyInfo.enemyMoveSpeed);
+        rigid.AddForce(moveDirection * enemyInfo.moveSpeed);
     }
 
     public void StopMove()

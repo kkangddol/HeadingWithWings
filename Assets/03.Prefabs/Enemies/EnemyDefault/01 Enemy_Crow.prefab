@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -7320850510917056429}
   - component: {fileID: 7522878604300110779}
   m_Layer: 0
-  m_Name: Enemy_Crow
+  m_Name: 01 Enemy_Crow
   m_TagString: ENEMY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

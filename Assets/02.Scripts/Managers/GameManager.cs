@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private DataManager data = new DataManager();
-    public static DataManager Data { get { return Instance.data; } }
+    private static DataManager data;// = new DataManager();
+    public static DataManager Data { get { return data; } }
 
     public Action<int> stageEvents;
     private bool eventCall = false;
@@ -112,9 +112,9 @@ public class GameManager : MonoBehaviour
 
         isGameOver = false;
 
+        data = new DataManager();
         // Data 불러오기
-        //instance.data.Init();
-        // Debug.Log(instance.data.StageMonsterGenerateDict[3].bigwaveGenerateInfo.monsterGenerateInfo.id[3]);
+        data.Init();
     }
 
     private void OnEnable() {

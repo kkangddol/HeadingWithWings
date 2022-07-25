@@ -15,7 +15,7 @@ public class EnemyFreezingHandler : MonoBehaviour
     {
         enemyInfo = GetComponent<EnemyInfo>();
         enemySprite = GetComponentInChildren<SpriteRenderer>();
-        enemySpeed = enemyInfo.enemyMoveSpeed;
+        enemySpeed = enemyInfo.moveSpeed;
     }
 
     public void SlowMove(float speedMultiplier, float duration = 1.5f)
@@ -27,9 +27,9 @@ public class EnemyFreezingHandler : MonoBehaviour
     {
         // 느려지는 동안 색 변경도 이 안에 추가
         enemySprite.color = freezeColor;
-        enemyInfo.enemyMoveSpeed = enemySpeed * speedMultiplier;
+        enemyInfo.moveSpeed = enemySpeed * speedMultiplier;
         yield return new WaitForSeconds(duration);
-        enemyInfo.enemyMoveSpeed = enemySpeed;
+        enemyInfo.moveSpeed = enemySpeed;
         enemySprite.color = Color.white;
     }
 }
