@@ -164,7 +164,7 @@ public class StageMonsterGenerateData : ILoader<int, StageMonsterGenerate>
 
         if(ProcessData.CheckMatch(rawData.monsterGenerateIDs, rawData.monsterGenerateAmounts) == false && rawData.monsterGenerateIDs != "-1")
         {
-            Debug.LogError("monsterGenerateDataµéÀÌ ¸ÅÄ¡µÇÁö ¾Ê½À´Ï´Ù!");
+            Debug.LogError("monsterGenerateDataï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½!");
             return null;
         }
         temp.monsterGroupGenerateInfo.id = ProcessData.CutStringToInt(rawData.monsterGenerateIDs);
@@ -174,7 +174,7 @@ public class StageMonsterGenerateData : ILoader<int, StageMonsterGenerate>
 
         if (ProcessData.CheckMatch(rawData.specialGenerateIDs, rawData.specialGenerateSecs, rawData.specialGenerateAmounts) == false && rawData.specialGenerateIDs != "-1")
         {
-            Debug.LogError("specialGenerateDataµéÀÌ ¸ÅÄ¡µÇÁö ¾Ê½À´Ï´Ù!");
+            Debug.LogError("specialGenerateDataï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½!");
             return null;
         }
         temp.specialGenerateInfo.id = ProcessData.CutStringToInt(rawData.specialGenerateIDs);
@@ -190,7 +190,7 @@ public class StageMonsterGenerateData : ILoader<int, StageMonsterGenerate>
 
         if(ProcessData.CheckMatch(rawData.bigwaveMonsterIDs, rawData.bigwaveMonsterAmounts, true) == false && rawData.bigwaveMonsterIDs != "-1")
         {
-            Debug.LogError("bigwaveGenerateDataµéÀÌ ¸ÅÄ¡µÇÁö ¾Ê½À´Ï´Ù!");
+            Debug.LogError("bigwaveGenerateDataï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½!");
             return null;
         }
         temp.bigwaveGenerateInfo.monsterGenerateInfo.id = ProcessData.CutStringToInt(rawData.bigwaveMonsterIDs);
@@ -225,102 +225,106 @@ public class StageMonsterGenerateData : ILoader<int, StageMonsterGenerate>
 
 
 #region MonsterData
-[Serializable]
-public class MonsterRaw
-{
-    public int monsterID = 0;
-    public int monsterHp = 0;
-    public float monsterSpeed = 0.0f;
+// [Serializable]
+// public class MonsterRaw
+// {
+//     public int monsterID = 0;
+//     public int monsterHp = 0;
+//     public float moveSpeed = 0.0f;
 
-    public float collisionDamage = 0.0f;
+//     public float meleeDamage = 0.0f;
 
-    public float projectileDamage = 0.0f;
-    public float projectileSpeed = 0.0f;
-    public float projectileFireDelay = 0.0f;
+//     public float projectileDamage = 0.0f;
+//     public float projectileSpeed = 0.0f;
+//     public float projectileFireDelay = 0.0f;
 
-    public string skillProjectileSpeeds ="";
-    public string skillCycleSecs = "";
+//     public float attackRange = 0.0f;
 
-    public string dropItemTypes = "";
-    public string dropItemDrops = "";
-}
+//     public float skillCoolTime = 0.0f;
+//     public float skillDamage = 0.0f;
+//     public float skillKnockBackSiae = 0.0f;
+//     public float skillProjectileDamage = 0.0f;
+//     public float skillProjectileSpeed = 0.0f;
+// }
 [Serializable]
 public class Monster
 {
+    public string monsterName = "";
     public int monsterID = 0;
     public int monsterHp = 0;
-    public float monsterSpeed = 0.0f;
+    public float moveSpeed = 0.0f;
 
-    public float collisionDamage = 0.0f;
+    public float meleeDamage = 0.0f;
 
     public float projectileDamage = 0.0f;
     public float projectileSpeed = 0.0f;
     public float projectileFireDelay = 0.0f;
+    public float attackRange = 0.0f;
 
-    public float[] skillProjectileSpeeds;
-    public float[] skillCycleSecs;
-
-    public int[] dropItemTypes;
-    public float[] dropItemDrops;
+    public float skillCoolTime = 0.0f;
+    public float skillDamage = 0.0f;
+    public float skillKnockBackSiae = 0.0f;
+    public float skillProjectileDamage = 0.0f;
+    public float skillProjectileSpeed = 0.0f;
 }
 [Serializable]
 public class MonsterData: ILoader<int, Monster>
 {
-    public List<MonsterRaw> monsters = new List<MonsterRaw>();
-
-    #region SetData
-    private Monster SetData(MonsterRaw rawData)
-    {
-        Monster temp = new Monster();
-
-        temp.monsterID = rawData.monsterID;
-        temp.monsterHp = rawData.monsterHp;
-        temp.monsterSpeed = rawData.monsterSpeed;
-
-        temp.collisionDamage = rawData.collisionDamage;
-
-        temp.projectileDamage = rawData.projectileDamage;
-        temp.projectileSpeed = rawData.projectileSpeed;
-        temp.projectileFireDelay = rawData.projectileFireDelay;
-        
-        if(ProcessData.CheckMatch(rawData.skillProjectileSpeeds, rawData.skillCycleSecs) == false && rawData.skillProjectileSpeeds != "-1")
-        {
-            Debug.LogError("skillDataµéÀÌ ¸ÅÄ¡µÇÁö ¾Ê½À´Ï´Ù!");
-            return null;
-        }
-        temp.skillProjectileSpeeds = ProcessData.CutStringToFloat(rawData.skillProjectileSpeeds);
-        temp.skillCycleSecs = ProcessData.CutStringToFloat(rawData.skillCycleSecs);
-
-        if (ProcessData.CheckMatch(rawData.dropItemTypes, rawData.dropItemDrops) == false && rawData.dropItemTypes != "-1")
-        {
-            Debug.LogError("dropitemdataµéÀÌ ¸ÅÄ¡µÇÁö ¾Ê½À´Ï´Ù!");
-            return null;
-        }
-        temp.dropItemTypes = ProcessData.CutStringToInt(rawData.dropItemTypes);
-        temp.dropItemDrops = ProcessData.CutStringToFloat(rawData.dropItemDrops);
-
-        return temp;
-    }
-    #endregion
+    public List<Monster> monsters = new List<Monster>();
 
     public Dictionary<int, Monster> MakeDict()
     {
         Dictionary<int, Monster> dict = new Dictionary<int, Monster>();
 
-        foreach (MonsterRaw monster in monsters)
+        foreach (Monster monster in monsters)
         {
-            Monster temp = SetData(monster);
-
-            if (temp == null)
+            if (monster == null)
             {
                 return null;
             }
 
-            dict.Add(monster.monsterID, temp);
+            dict.Add(monster.monsterID, monster);
         }
 
         return dict;
     }
+
+    //public List<MonsterRaw> monsters = new List<MonsterRaw>();
+
+    #region SetData
+    // private Monster SetData(MonsterRaw rawData)
+    // {
+    //     Monster temp = new Monster();
+
+    //     temp.monsterID = rawData.monsterID;
+    //     temp.monsterHp = rawData.monsterHp;
+    //     temp.moveSpeed = rawData.moveSpeed;
+
+    //     temp.meleeDamage = rawData.meleeDamage;
+
+    //     temp.projectileDamage = rawData.projectileDamage;
+    //     temp.projectileSpeed = rawData.projectileSpeed;
+    //     temp.projectileFireDelay = rawData.projectileFireDelay;
+        
+    //     if(ProcessData.CheckMatch(rawData.skillProjectileSpeeds, rawData.skillCycleSecs) == false && rawData.skillProjectileSpeeds != "-1")
+    //     {
+    //         Debug.LogError("skillDataï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½!");
+    //         return null;
+    //     }
+    //     temp.skillProjectileSpeeds = ProcessData.CutStringToFloat(rawData.skillProjectileSpeeds);
+    //     temp.skillCycleSecs = ProcessData.CutStringToFloat(rawData.skillCycleSecs);
+
+    //     if (ProcessData.CheckMatch(rawData.dropItemTypes, rawData.dropItemDrops) == false && rawData.dropItemTypes != "-1")
+    //     {
+    //         Debug.LogError("dropitemdataï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½!");
+    //         return null;
+    //     }
+    //     temp.dropItemTypes = ProcessData.CutStringToInt(rawData.dropItemTypes);
+    //     temp.dropItemDrops = ProcessData.CutStringToFloat(rawData.dropItemDrops);
+
+    //     return temp;
+    // }
+    #endregion
 }
 #endregion
 
@@ -404,14 +408,14 @@ public class WingData : ILoader<int, Wing>
 
         if (CheckLevels(rawData.damagePerLevels) == false)
         {
-            Debug.LogError("damageDat°¡ ºÎÁ·ÇÕ´Ï´Ù!");
+            Debug.LogError("damageDatï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½!");
             return null;
         }
         temp.damagePerLevels = ProcessData.CutStringToInt(rawData.damagePerLevels);
 
         if (CheckLevels(rawData.attackSpeedPerLevels) == false)
         {
-            Debug.LogError("attackSpeedData°¡ ºÎÁ·ÇÕ´Ï´Ù!");
+            Debug.LogError("attackSpeedDataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½!");
             return null;
         }
         temp.attackSpeedPerLevels = ProcessData.CutStringToFloat(rawData.attackSpeedPerLevels);
@@ -421,21 +425,21 @@ public class WingData : ILoader<int, Wing>
         {
             if(CheckLevels(rawData.passiveSkillDamagePerLevels) == false)
             {
-                Debug.LogError("passiveSkillDamageData°¡ ºÎÁ·ÇÕ´Ï´Ù!");
+                Debug.LogError("passiveSkillDamageDataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½!");
                 return null;
             }
             temp.passiveSkillDamagePerLevels = ProcessData.CutStringToInt(rawData.passiveSkillDamagePerLevels);
 
             if (CheckLevels(rawData.passiveAttackSpeedIncreasePerLevels) == false)
             {
-                Debug.LogError($"passiveAttackSpeedIncreaseData°¡ ºÎÁ·ÇÕ´Ï´Ù!");
+                Debug.LogError($"passiveAttackSpeedIncreaseDataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½!");
                 return null;
             }
             temp.passiveAttackSpeedIncreasePerLevels = ProcessData.CutStringToInt(rawData.passiveAttackSpeedIncreasePerLevels);
 
             if (CheckLevels(rawData.passiveMoveSpeedIncreasePerLevels) == false)
             {
-                Debug.LogError("passiveMoveSpeedIncreaseData°¡ ºÎÁ·ÇÕ´Ï´Ù!");
+                Debug.LogError("passiveMoveSpeedIncreaseDataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½!");
                 return null;
             }
             temp.passiveMoveSpeedIncreasePerLevels = ProcessData.CutStringToInt(rawData.passiveMoveSpeedIncreasePerLevels);
@@ -448,7 +452,7 @@ public class WingData : ILoader<int, Wing>
         {
             if (CheckLevels(rawData.activeSkillDamagePerLevels, true) == false)
             {
-                Debug.LogError("activeSkillDamageData°¡ ºÎÁ·ÇÕ´Ï´Ù!");
+                Debug.LogError("activeSkillDamageDataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½!");
                 return null;
             }
             temp.activeSkillDamagePerLevels = ProcessData.CutStringToInt(rawData.activeSkillDamagePerLevels);

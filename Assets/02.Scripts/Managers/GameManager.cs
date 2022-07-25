@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
         data = new DataManager();
         // Data 불러오기
         data.Init();
+        //Debug.Log(data.MonsterDict[100].monsterName);
     }
 
     private void OnEnable() {

@@ -37,22 +37,20 @@ public class EnemyInfo : MonoBehaviour
 
     void Start()
     {
-        Initialize();
+        playerTransform = GameObject.FindWithTag("PLAYER").GetComponent<Transform>();
+        IsDead = false;
+        maxHealthPoint = healthPoint;
     }
 
-    void Initialize()
+    public void DataInit()
     {
-        playerTransform = GameObject.FindWithTag("PLAYER").GetComponent<Transform>();
-        //monsterID = int.Parse(gameObject.name);
-        IsDead = false;
-        //healthPoint = GameManager.Data.MonsterDict[monsterID].monsterHp;
-        maxHealthPoint = healthPoint;
-        //meleeDamage = GameManager.Data.MonsterDict[monsterID].collisionDamage;
-        // gameObject.name = crowData.MonsterName;
-        // MonsterID = crowData.ID;
-        // maxHealthPoint = crowData.HP;
-        // meleeDamage = crowData.Damage;
-        // enemyMoveSpeed = crowData.MoveSpeed;
+        maxHealthPoint = GameManager.Data.MonsterDict[MonsterID].monsterHp;
+        moveSpeed = GameManager.Data.MonsterDict[MonsterID].moveSpeed;
+    }
+
+    public void SetID(int id)
+    {
+        MonsterID = id;
     }
 
     private void FixedUpdate() {

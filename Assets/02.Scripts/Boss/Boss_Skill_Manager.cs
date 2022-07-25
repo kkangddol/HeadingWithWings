@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss_Skill_Manager : MonoBehaviour
 {
+    private EnemyInfo enemyInfo;
     public static Animator animator;
     float trembleTime = 2f;
 
@@ -15,10 +16,12 @@ public class Boss_Skill_Manager : MonoBehaviour
     
 
     private void Start() {
+        enemyInfo = GetComponent<EnemyInfo>();
         animator = GetComponentInChildren<Animator>();
         skills = GetComponents<IBoss_Skill>();
         stopHandler = GetComponent<IEnemyStopHandler>();
         skillCoolTime = Random.Range(0, 5f);
+
     }
 
     private void Update() {

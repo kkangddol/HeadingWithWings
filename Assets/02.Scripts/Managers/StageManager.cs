@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    public GameObject crow;
+    public GameObject eagle;
+    public GameObject s_harpy;
+    public GameObject b_harpy;
+    public GameObject snitch;
+    public GameObject cupid;
+    public GameObject B_Whale;
+    public GameObject B_Pegasus;
+
     public GameObject[] min0Enemies;
     public GameObject[] min1Enemies;
     public GameObject[] min2Enemies;
