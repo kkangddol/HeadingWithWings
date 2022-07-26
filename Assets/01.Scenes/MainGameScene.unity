@@ -915,6 +915,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 275711263}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1488616004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8337691530222324539, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+    type: 3}
+  m_PrefabInstance: {fileID: 8194601882925902000}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1559310756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,6 +1034,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2082136861 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8090667087599287181, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+    type: 3}
+  m_PrefabInstance: {fileID: 8194601882925902000}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13b161be4d469942b3c504a94c3fa88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1107754387294122240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,12 +1411,11 @@ MonoBehaviour:
   maxOxygen: 0
   oxygen: 0
   moveSpeed: 7
-  damage: 100
-  attackDelay: 1
-  attackSize: 1
+  damage: 10
+  attackDelay: 3
   itemTakeRange: 1
-  healAmount: 30
-  skillDelay: 10
+  healAmount: 10
+  skillDelay: 30
   attackEquipments: []
   abilityEquipments: 
   wingEquipment: {fileID: 0}
@@ -1479,7 +1496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3078406b1eba0df43b3c61378cca25cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashButton: {fileID: 81482614}
+  dashButton: {fileID: 1488616004}
   maxDashCount: 3
   dashCoolTime: 2
   dashSpeed: 12.5
@@ -1647,7 +1664,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 77940187, guid: 5ef50d8bf37a9fe43a3385d81974e36c, type: 3}
   - {fileID: -1421167403, guid: 5ef50d8bf37a9fe43a3385d81974e36c, type: 3}
-  movement: {fileID: 515632402}
+  movement: {fileID: 2082136861}
   trail: {fileID: 1107754389067658582}
 --- !u!224 &1107754388291010720
 RectTransform:
@@ -7235,16 +7252,61 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6258253972370198366, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258253973990249112, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6258253973990249112, guid: 03d27aeea00d3e94e84f39bad03ebb06,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6258253974355625561, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258253974355625561, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258253974355625561, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258253974355625561, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090667087390044916, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8194601882195704710, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8337691530222324537, guid: 03d27aeea00d3e94e84f39bad03ebb06,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 464770020}
+      objectReference: {fileID: 1107754388255959798}
+    - target: {fileID: 8337691530222324537, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Dash
+      objectReference: {fileID: 0}
     - target: {fileID: 8337691530924133706, guid: 03d27aeea00d3e94e84f39bad03ebb06,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -7385,5 +7447,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1044561805}
+    - target: {fileID: 8337691531792923530, guid: 03d27aeea00d3e94e84f39bad03ebb06,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03d27aeea00d3e94e84f39bad03ebb06, type: 3}

@@ -14,7 +14,16 @@ public class MilitaryGirlWing : Equipment, ActiveWing
     public float skillDelayMultiplier;
     public float knockbackSize = 0.1f;
     public int fireCount = 10;
-    public float fireInterval = 0.5f;
+    private float fireInterval = 0.5f;
+    public float FireInterval
+    {
+        get {return fireInterval;}
+        set
+        {
+            fireInterval = value;
+            waitInterval = new WaitForSeconds(value);
+        }
+    }
     WaitForSeconds waitInterval;
     public int bulletCount = 7;
     public float bulletSpeed = 5;

@@ -46,6 +46,93 @@ public static class ProcessData
 }
 #endregion
 
+#region MonsterData
+[Serializable]
+public class Monster
+{
+    public string monsterName = "";
+    public int monsterID = 0;
+    public int monsterHp = 0;
+    public float moveSpeed = 0.0f;
+
+    public float meleeDamage = 0.0f;
+
+    public float projectileDamage = 0.0f;
+    public float projectileSpeed = 0.0f;
+    public float projectileFireDelay = 0.0f;
+    public float attackRange = 0.0f;
+
+    public float skillCoolTime = 0.0f;
+    public float skillDamage = 0.0f;
+    public float skillKnockBackSize = 0.0f;
+    public float skillProjectileDamage = 0.0f;
+    public float skillProjectileSpeed = 0.0f;
+}
+[Serializable]
+public class MonsterData: ILoader<int, Monster>
+{
+    public List<Monster> monsters = new List<Monster>();
+
+    public Dictionary<int, Monster> MakeDict()
+    {
+        Dictionary<int, Monster> dict = new Dictionary<int, Monster>();
+
+        foreach (Monster monster in monsters)
+        {
+            if (monster == null)
+            {
+                return null;
+            }
+
+            dict.Add(monster.monsterID, monster);
+        }
+
+        return dict;
+    }
+}
+#endregion
+
+#region FeatherData
+[Serializable]
+public class Feather
+{
+    public int equipID = 0;
+    public int attackLevel = 0;
+    public float damageMultiplier = 0.0f;
+    public float delayMultiplier = 0.0f;
+    public float attackRange = 0.0f;
+    public float knockBackSize = 0.0f;
+    public float bulletSpeed = 0.0f;
+}
+
+[Serializable]
+public class FeatherData: ILoader<int, Feather>
+{
+    public List<Feather> featherData = new List<Feather>();
+
+    public Dictionary<int, Feather> MakeDict()
+    {
+        Dictionary<int, Feather> dict = new Dictionary<int, Feather>();
+
+        foreach (Feather feather in featherData)
+        {
+            if (feather == null)
+            {
+                return null;
+            }
+
+            dict.Add(feather.attackLevel, feather);
+        }
+
+        return dict;
+    }
+}
+
+#endregion
+
+
+
+
 
 #region Stage
 [Serializable]
@@ -220,157 +307,6 @@ public class StageMonsterGenerateData : ILoader<int, StageMonsterGenerate>
 
         return dict;
     }
-}
-#endregion
-
-#region EquipmentData
-[Serializable]
-public class AttackEquipmentRaw
-{
-    public int wingID = 0;
-    public int wingTier = 0;
-    public int hasRange = 0;
-
-    public string damagePerLevels = "";
-    public string attackSpeedPerLevels = "";
-
-    public int hasPassive = 0;
-    public string passiveSkillDamagePerLevels = "";
-    public string passiveAttackSpeedIncreasePerLevels = "";
-    public string passiveMoveSpeedIncreasePerLevels = "";
-    public float passiveSkillCooltime = 0.0f;
-
-    public int hasActive = 0;
-    public string activeSkillDamagePerLevels = "";
-    public string activeSkillLifetimePerLevels = "";
-    public float activeSkillCooltime = 0.0f;
-}
-[Serializable]
-public class AttackEquipment
-{
-    public int wingID = 0;
-    public int wingTier = 0;
-    public bool hasRange = false;
-
-    public int[] damagePerLevels;
-    public float[] attackSpeedPerLevels;
-
-    public bool hasPassive = false;
-    public int[] passiveSkillDamagePerLevels;
-    public int[] passiveAttackSpeedIncreasePerLevels;
-    public int[] passiveMoveSpeedIncreasePerLevels;
-    public float passiveSkillCooltime = 0.0f;
-
-    public bool hasActive = false;
-    public int[] activeSkillDamagePerLevels;
-    public float[] activeSkillLifetimePerLevels;
-    public float activeSkillCooltime = 0.0f;
-}
-
-#endregion
-
-
-#region MonsterData
-// [Serializable]
-// public class MonsterRaw
-// {
-//     public int monsterID = 0;
-//     public int monsterHp = 0;
-//     public float moveSpeed = 0.0f;
-
-//     public float meleeDamage = 0.0f;
-
-//     public float projectileDamage = 0.0f;
-//     public float projectileSpeed = 0.0f;
-//     public float projectileFireDelay = 0.0f;
-
-//     public float attackRange = 0.0f;
-
-//     public float skillCoolTime = 0.0f;
-//     public float skillDamage = 0.0f;
-//     public float skillKnockBackSiae = 0.0f;
-//     public float skillProjectileDamage = 0.0f;
-//     public float skillProjectileSpeed = 0.0f;
-// }
-[Serializable]
-public class Monster
-{
-    public string monsterName = "";
-    public int monsterID = 0;
-    public int monsterHp = 0;
-    public float moveSpeed = 0.0f;
-
-    public float meleeDamage = 0.0f;
-
-    public float projectileDamage = 0.0f;
-    public float projectileSpeed = 0.0f;
-    public float projectileFireDelay = 0.0f;
-    public float attackRange = 0.0f;
-
-    public float skillCoolTime = 0.0f;
-    public float skillDamage = 0.0f;
-    public float skillKnockBackSize = 0.0f;
-    public float skillProjectileDamage = 0.0f;
-    public float skillProjectileSpeed = 0.0f;
-}
-[Serializable]
-public class MonsterData: ILoader<int, Monster>
-{
-    public List<Monster> monsters = new List<Monster>();
-
-    public Dictionary<int, Monster> MakeDict()
-    {
-        Dictionary<int, Monster> dict = new Dictionary<int, Monster>();
-
-        foreach (Monster monster in monsters)
-        {
-            if (monster == null)
-            {
-                return null;
-            }
-
-            dict.Add(monster.monsterID, monster);
-        }
-
-        return dict;
-    }
-
-    //public List<MonsterRaw> monsters = new List<MonsterRaw>();
-
-    #region SetData
-    // private Monster SetData(MonsterRaw rawData)
-    // {
-    //     Monster temp = new Monster();
-
-    //     temp.monsterID = rawData.monsterID;
-    //     temp.monsterHp = rawData.monsterHp;
-    //     temp.moveSpeed = rawData.moveSpeed;
-
-    //     temp.meleeDamage = rawData.meleeDamage;
-
-    //     temp.projectileDamage = rawData.projectileDamage;
-    //     temp.projectileSpeed = rawData.projectileSpeed;
-    //     temp.projectileFireDelay = rawData.projectileFireDelay;
-        
-    //     if(ProcessData.CheckMatch(rawData.skillProjectileSpeeds, rawData.skillCycleSecs) == false && rawData.skillProjectileSpeeds != "-1")
-    //     {
-    //         Debug.LogError("skillData���� ��ġ���� �ʽ��ϴ�!");
-    //         return null;
-    //     }
-    //     temp.skillProjectileSpeeds = ProcessData.CutStringToFloat(rawData.skillProjectileSpeeds);
-    //     temp.skillCycleSecs = ProcessData.CutStringToFloat(rawData.skillCycleSecs);
-
-    //     if (ProcessData.CheckMatch(rawData.dropItemTypes, rawData.dropItemDrops) == false && rawData.dropItemTypes != "-1")
-    //     {
-    //         Debug.LogError("dropitemdata���� ��ġ���� �ʽ��ϴ�!");
-    //         return null;
-    //     }
-    //     temp.dropItemTypes = ProcessData.CutStringToInt(rawData.dropItemTypes);
-    //     temp.dropItemDrops = ProcessData.CutStringToFloat(rawData.dropItemDrops);
-
-    //     return temp;
-    // }
-    #endregion
 }
 #endregion
 

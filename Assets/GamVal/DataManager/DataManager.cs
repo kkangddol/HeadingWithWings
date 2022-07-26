@@ -14,6 +14,7 @@ public class DataManager
     public Dictionary<int, StageMonsterGenerate> StageMonsterGenerateDict { get; private set; } = new Dictionary<int, StageMonsterGenerate>();
     public Dictionary<int, Wing> WingDict { get; private set; } = new Dictionary<int, Wing>();
     public Dictionary<int, Monster> MonsterDict { get; private set; } = new Dictionary<int, Monster>();
+    public Dictionary<int, Feather> FeatherDict { get; private set; } = new Dictionary<int, Feather>();
 
     public void Init()
     {
@@ -21,6 +22,7 @@ public class DataManager
         // StageMonsterGenerateDict = LoadJson<StageMonsterGenerateData, int, StageMonsterGenerate>("StageMonsterGenerateData").MakeDict();
         // WingDict = LoadJson<WingData, int, Wing>("WingData").MakeDict();
         MonsterDict = LoadJson<MonsterData, int, Monster>("MonsterData").MakeDict();
+        FeatherDict = LoadJson<FeatherData, int, Feather>("AttackEquipData/01featherData").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader: ILoader<Key, Value>

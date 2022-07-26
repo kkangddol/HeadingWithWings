@@ -16,6 +16,7 @@ TagManager:
   - ITEM
   - ITEMPARENT
   - DASHBUTTON
+  - IRONWALL
   layers:
   - Default
   - TransparentFX

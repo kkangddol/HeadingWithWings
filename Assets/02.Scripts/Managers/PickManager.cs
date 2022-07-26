@@ -66,7 +66,7 @@ public class PickManager : MonoBehaviour
     {
         //pickUI = GameObject.Find("GameCanvas").transform.Find("PickEquipmentUI").gameObject;
         pickUI = GameObject.FindWithTag("PICKUI");
-        pickUI.SetActive(false);
+        pickUI.transform.parent.gameObject.SetActive(false);
         slots[0] = pickUI.transform.Find("ItemSlot1").gameObject;
         slots[1] = pickUI.transform.Find("ItemSlot2").gameObject;
         slots[2] = pickUI.transform.Find("ItemSlot3").gameObject;
@@ -80,13 +80,13 @@ public class PickManager : MonoBehaviour
     {
         GameManager.Instance.PlayerHeight = 0;
         Time.timeScale = 0;
-        pickUI.SetActive(true);
+        pickUI.transform.parent.gameObject.SetActive(true);
         SetSlot();
     }
 
     public void EndPickSequence()
     {
-        pickUI.SetActive(false);
+        pickUI.transform.parent.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
 

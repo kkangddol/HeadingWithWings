@@ -17,14 +17,16 @@ public class IronWallAttack : Equipment
     public int collisionCount;
 
     private bool isPair = false;
+    private int wallCount = 0;
     private Transform targetTransform;
     private bool isCoolDown = false;
+    Coroutine coroutine;
 
 
     private void Start()
     {
         Initialize();
-        StartCoroutine(FireCycle());
+        //StartCoroutine(FireCycle());
     }
 
     void Initialize()
@@ -36,6 +38,10 @@ public class IronWallAttack : Equipment
     private void Update()
     {
         this.transform.rotation = Quaternion.AngleAxis(playerInfo.headAngle, Vector3.forward);
+        if(!isCoolDown)
+        {
+            Fire();
+        } 
     }
 
     void Fire()
@@ -44,6 +50,7 @@ public class IronWallAttack : Equipment
         if(bulletFront.gameObject.activeSelf == false)
         {
             bulletFront.gameObject.SetActive(true);
+            wallCount++;
             bulletFront.damage = playerInfo.damage * damageMultiplier;
             bulletFront.knockbackSize = knockbackSize;
             ((Bullet_IronWall)bulletFront).collisionCount = collisionCount;
@@ -52,6 +59,7 @@ public class IronWallAttack : Equipment
 
         if(bulletBack.gameObject.activeSelf == false && isPair)
         {
+            wallCount++;
             bulletBack.gameObject.SetActive(true);
             bulletBack.damage = playerInfo.damage * damageMultiplier;
             bulletBack.knockbackSize = knockbackSize;
@@ -61,22 +69,31 @@ public class IronWallAttack : Equipment
         
     }
 
-    IEnumerator FireCycle()
-    {
-        while (true)
-        {
-            yield return null;
+    // IEnumerator FireCycle()
+    // {
+    //     while (true)
+    //     {
+    //         yield return null;
 
-            if (isCoolDown) continue;
+    //         if (isCoolDown) continue;
 
-            Fire();
-        }
-    }
+    //         Fire();
+    //     }
+    // }
 
     public IEnumerator CoolDown()
     {
         yield return new WaitForSeconds(playerInfo.attackDelay * attackDelayMultiplier);
         isCoolDown = false;
+        wallCount = 0;
+    }
+
+    public void WallBroken()
+    {
+        if(--wallCount <= 0)
+        {
+            coroutine = StartCoroutine(CoolDown());
+        }
     }
 
     public override void SetLevel(int newLevel)

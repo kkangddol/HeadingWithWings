@@ -9,7 +9,6 @@ public class DevilWing : Equipment, ActiveWing
     public float damageMultiplier;
     public float skillDelayMultiplier;
     public float knockbackSize;
-    public float skillTime;
     private bool isCoolDown = false;
     private float coolTime;
     private GameObject skillButton;

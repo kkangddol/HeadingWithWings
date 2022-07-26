@@ -35,7 +35,7 @@ public class Wing_DragonFly : Equipment, ActiveWing
     }
     public float dashSpeed = 30f;
     public float dashTime = 0.5f;
-    float timeLimit = 1;
+    float timeLimit = 2;
     float timeElapsed = 0;
 
     public GameObject effect;

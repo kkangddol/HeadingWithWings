@@ -9,7 +9,7 @@ public class StarryNightWing : Equipment, ActiveWing
     public float skillDelayMultiplier;
     public float skillTime;
     private bool isCoolDown = false;
-    public float coolTime;
+    private float coolTime;
 
     private const float SKILLSPEED = 1.0f;
 

@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour
         // Data 불러오기
         data.Init();
         //Debug.Log(data.MonsterDict[100].monsterName);
+        //Debug.Log(data.FeatherDict[1].equipID);
     }
 
     private void OnEnable() {
