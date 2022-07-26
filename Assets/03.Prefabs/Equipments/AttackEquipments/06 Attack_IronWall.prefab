@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8516503939474478745}
   m_Layer: 0
   m_Name: ironWallBack
-  m_TagString: Untagged
+  m_TagString: IRONWALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 8716730034909619017}
   m_Layer: 0
   m_Name: ironWallFront
-  m_TagString: Untagged
+  m_TagString: IRONWALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

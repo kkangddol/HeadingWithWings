@@ -27,12 +27,17 @@ public class Bullet_IronWall : Bullet
 
         if(--collisionCount == 0)
         {
-            this.gameObject.SetActive(false);
             anim.CrossFade(IDLE, 0.0f);
             if(ironWallAttack != null)
             {
-                ironWallAttack.StartCoroutine(ironWallAttack.CoolDown());
+                ironWallAttack.WallBroken();
             }
+            this.gameObject.SetActive(false);
         }
+    }
+
+    public void TakeDamage()
+    {
+        collisionCount--;
     }
 }

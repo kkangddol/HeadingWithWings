@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     const string PLAYER = "PLAYER";
+    const string IRONWALL = "IRONWALL";
     public float damage;
 
     private void Start()
@@ -13,10 +14,14 @@ public class EnemyProjectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == PLAYER)
+        if(other.CompareTag(PLAYER))
         {
             other.GetComponent<PlayerTakeDamage>().TakeDamage(damage);
-            //Destroy(gameObject);
+            DestroyProjectile();
+        }
+        if(other.CompareTag(IRONWALL))
+        {
+            other.GetComponent<Bullet_IronWall>().TakeDamage();
             DestroyProjectile();
         }
     }
