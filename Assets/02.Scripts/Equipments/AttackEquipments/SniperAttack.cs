@@ -14,6 +14,7 @@ public class SniperAttack : Equipment
     public float knockbackSize;
     public float bulletSpeed;
     public float headShotChance = 0;
+    public float headShotDamageMultiplier;
 
 
     private Transform targetTransform;
@@ -39,6 +40,7 @@ public class SniperAttack : Equipment
         newBullet.damage = playerInfo.damage * damageMultiplier;
         newBullet.knockbackSize = knockbackSize;
         ((Bullet_Sniper)newBullet).headShotChance = headShotChance;
+        ((Bullet_Sniper)newBullet).headShotChance = headShotDamageMultiplier;
         newBullet.GetComponent<Rigidbody2D>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode2D.Impulse);
         isCoolDown = true;
         StartCoroutine(CoolDown());
