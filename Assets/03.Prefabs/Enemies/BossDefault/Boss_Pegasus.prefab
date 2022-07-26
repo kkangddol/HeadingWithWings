@@ -317,8 +317,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterID: 0
   healthPoint: 1000
-  enemyDamage: 1
-  enemyMoveSpeed: 1
+  moveSpeed: 0
+  meleeDamage: 0
+  projectileDamage: 0
+  projectileSpeed: 0
+  projectileFireDelay: 0
+  attackRange: 0
 --- !u!114 &6205913365365037538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +386,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73ccbf11b622e14cbf1b410489d954e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillCoolTime: 0
+  skillDamage: 0
+  skillKnockBackSize: 0
+  skillProjectileDamage: 0
+  skillProjectileSpeed: 0
 --- !u!114 &6205913365365037565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,8 +403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229d381eadf82354c83bb55917616b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  knockbackSize: 10
   dotDamageTime: 0.1
   damageZone: {fileID: 976287903}
 --- !u!114 &6205913365365037564
@@ -425,6 +432,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   featherCount: 50
-  featherPrefab: {fileID: 5051587610120870847, guid: 16441a3fcd5427e42a9832f7dda4c593,
+  featherPrefab: {fileID: 3476705438566311873, guid: ac684a874d75a1d49a190dd77396b946,
     type: 3}
   bulletSpeed: 7

@@ -11,7 +11,11 @@ public class Boss_Skill_Manager : MonoBehaviour
     IBoss_Skill[] skills;
     IEnemyStopHandler stopHandler;
 
-    float skillCoolTime;
+    public float skillCoolTime;
+    public float skillDamage;
+    public float skillKnockBackSize;
+    public float skillProjectileDamage;
+    public float skillProjectileSpeed;
     bool isCoolTime = true;
     
 
@@ -21,7 +25,6 @@ public class Boss_Skill_Manager : MonoBehaviour
         skills = GetComponents<IBoss_Skill>();
         stopHandler = GetComponent<IEnemyStopHandler>();
         skillCoolTime = Random.Range(0, 5f);
-
     }
 
     private void Update() {
@@ -33,6 +36,16 @@ public class Boss_Skill_Manager : MonoBehaviour
         skillCoolTime -= Time.deltaTime;
 
         isCoolTime = skillCoolTime <= 0 ? false : true;
+    }
+
+    public void DataInit()
+    {
+        this.name = GameManager.Data.MonsterDict[enemyInfo.MonsterID].monsterName;
+        skillCoolTime = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillCoolTime;
+        skillDamage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillDamage;
+        skillKnockBackSize = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillKnockBackSize;
+        skillProjectileDamage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillProjectileDamage;
+        skillProjectileSpeed = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillProjectileSpeed;
     }
 
     public void SkillSequence()

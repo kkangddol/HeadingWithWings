@@ -223,6 +223,52 @@ public class StageMonsterGenerateData : ILoader<int, StageMonsterGenerate>
 }
 #endregion
 
+#region EquipmentData
+[Serializable]
+public class AttackEquipmentRaw
+{
+    public int wingID = 0;
+    public int wingTier = 0;
+    public int hasRange = 0;
+
+    public string damagePerLevels = "";
+    public string attackSpeedPerLevels = "";
+
+    public int hasPassive = 0;
+    public string passiveSkillDamagePerLevels = "";
+    public string passiveAttackSpeedIncreasePerLevels = "";
+    public string passiveMoveSpeedIncreasePerLevels = "";
+    public float passiveSkillCooltime = 0.0f;
+
+    public int hasActive = 0;
+    public string activeSkillDamagePerLevels = "";
+    public string activeSkillLifetimePerLevels = "";
+    public float activeSkillCooltime = 0.0f;
+}
+[Serializable]
+public class AttackEquipment
+{
+    public int wingID = 0;
+    public int wingTier = 0;
+    public bool hasRange = false;
+
+    public int[] damagePerLevels;
+    public float[] attackSpeedPerLevels;
+
+    public bool hasPassive = false;
+    public int[] passiveSkillDamagePerLevels;
+    public int[] passiveAttackSpeedIncreasePerLevels;
+    public int[] passiveMoveSpeedIncreasePerLevels;
+    public float passiveSkillCooltime = 0.0f;
+
+    public bool hasActive = false;
+    public int[] activeSkillDamagePerLevels;
+    public float[] activeSkillLifetimePerLevels;
+    public float activeSkillCooltime = 0.0f;
+}
+
+#endregion
+
 
 #region MonsterData
 // [Serializable]
@@ -263,7 +309,7 @@ public class Monster
 
     public float skillCoolTime = 0.0f;
     public float skillDamage = 0.0f;
-    public float skillKnockBackSiae = 0.0f;
+    public float skillKnockBackSize = 0.0f;
     public float skillProjectileDamage = 0.0f;
     public float skillProjectileSpeed = 0.0f;
 }

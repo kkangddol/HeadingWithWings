@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 6102667122217650954}
   - component: {fileID: 6102667122217650957}
   - component: {fileID: 6102667122217650956}
-  - component: {fileID: 6102667122217650959}
+  - component: {fileID: 1416647059962656836}
   - component: {fileID: 6102667122217650958}
   - component: {fileID: 7784729015387903094}
   - component: {fileID: -8818344069424935686}
@@ -197,8 +197,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterID: 0
   healthPoint: 80
-  enemyDamage: 1
-  enemyMoveSpeed: 1
+  moveSpeed: 0
+  meleeDamage: 0
+  projectileDamage: 0
+  projectileSpeed: 0
+  projectileFireDelay: 0
+  attackRange: 0
 --- !u!114 &6102667122217650957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDelay: 0.1
---- !u!114 &6102667122217650959
+--- !u!114 &1416647059962656836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,15 +237,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6102667122217650945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c64d53876b5b7704986d0d0f37a0736c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bb25f7f64632cb4686d778917884e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyProjectile: {fileID: 8040205903655349996, guid: ac684a874d75a1d49a190dd77396b946,
     type: 3}
-  projectileDamage: 15
-  projectileSpeed: 10
-  fireDelay: 1.5
-  attackRange: 4
+  projectileCount: 3
+  projectileSpread: 30
 --- !u!114 &6102667122217650958
 MonoBehaviour:
   m_ObjectHideFlags: 0

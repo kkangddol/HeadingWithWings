@@ -7,6 +7,7 @@ using FirstGearGames.SmoothCameraShaker;
 
 public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 {
+    Boss_Skill_Manager skillManager;
     private Rigidbody2D playerRigid;
     public ShakeData WhaleImpactShake;
     TrailRenderer trailRenderer;
@@ -18,8 +19,6 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
     Vector2 currentPos;
     Vector2 landingPos;
     float landingDis;
-    public float impactDamage;
-    public float knockbackSize;
     float speed = 5f;
     float timeElapsed = 0f;
     bool onGround = true;
@@ -44,6 +43,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
         stopHandler = GetComponent<IEnemyStopHandler>();
         trailRenderer = GetComponent<TrailRenderer>();
         col = GetComponent<Collider2D>();
+        skillManager = GetComponent<Boss_Skill_Manager>();
     }
 
     private void FixedUpdate() {
@@ -84,7 +84,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
                 foreach(var target in targets)
                 {
                     if(target.CompareTag("PLAYER") || target.CompareTag("ENEMY"))
-                    target.GetComponent<ITakeBossAttack>().TakeBossAttack(transform, impactDamage, knockbackSize);
+                    target.GetComponent<ITakeBossAttack>().TakeBossAttack(transform, skillManager.skillDamage, skillManager.skillKnockBackSize);
                 }
             }
             

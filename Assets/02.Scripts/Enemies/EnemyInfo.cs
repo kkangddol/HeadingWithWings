@@ -42,10 +42,8 @@ public class EnemyInfo : MonoBehaviour
         maxHealthPoint = healthPoint;
     }
 
-    public void DataInit()
-    {
-        maxHealthPoint = GameManager.Data.MonsterDict[MonsterID].monsterHp;
-        moveSpeed = GameManager.Data.MonsterDict[MonsterID].moveSpeed;
+    private void FixedUpdate() {
+        LookAtPlayer2D();
     }
 
     public void SetID(int id)
@@ -53,8 +51,16 @@ public class EnemyInfo : MonoBehaviour
         MonsterID = id;
     }
 
-    private void FixedUpdate() {
-        LookAtPlayer2D();
+    public void DataInit()
+    {
+        this.name = GameManager.Data.MonsterDict[MonsterID].monsterName;
+        maxHealthPoint = GameManager.Data.MonsterDict[MonsterID].monsterHp;
+        moveSpeed = GameManager.Data.MonsterDict[MonsterID].moveSpeed;
+        meleeDamage = GameManager.Data.MonsterDict[MonsterID].meleeDamage;
+        projectileDamage = GameManager.Data.MonsterDict[MonsterID].projectileDamage;
+        projectileSpeed = GameManager.Data.MonsterDict[MonsterID].projectileSpeed;
+        projectileFireDelay = GameManager.Data.MonsterDict[MonsterID].projectileFireDelay;
+        attackRange = GameManager.Data.MonsterDict[MonsterID].attackRange;
     }
 
     private void EnemyDie()

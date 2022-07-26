@@ -35,6 +35,7 @@ public class MeteorAttack : Equipment
     {
         Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation).GetComponentInChildren<Bullet>();
         newBullet.damage = playerInfo.damage * damageMultiplier;
+        ((Bullet_Meteor)newBullet).dotDamage = newBullet.damage * 0.1f;
         newBullet.knockbackSize = knockbackSize;
         ((Bullet_Meteor)newBullet).isGTAEMeteor = isGTAEMeteor;
         newBullet.transform.parent.position = (Vector2)this.transform.position + Random.insideUnitCircle * attackRange;

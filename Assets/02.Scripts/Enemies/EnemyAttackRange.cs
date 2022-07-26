@@ -77,11 +77,10 @@ public class EnemyAttackRange : MonoBehaviour
     void Fire()
     {
         EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, transform.rotation);
-        newProjectile.transform.LookAt(playerTransform.position);
-        //newProjectile.damage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].projectileDamage;
         newProjectile.damage = enemyInfo.projectileDamage;
-        newProjectile.GetComponent<Rigidbody2D>().AddForce(newProjectile.transform.forward * enemyInfo.projectileSpeed, ForceMode2D.Impulse);
-        //newProjectile.GetComponent<Rigidbody2D>().AddForce(enemyInfo.targetTransform.position.normalized * projectileSpeed, ForceMode2D.Impulse);
+        Vector2 direction = (playerTransform.position - transform.position).normalized;
+        newProjectile.transform.right = direction;
+        newProjectile.GetComponent<Rigidbody2D>().AddForce(newProjectile.transform.right * enemyInfo.projectileSpeed, ForceMode2D.Impulse);
     }
 
     // IEnumerator FireCycle()

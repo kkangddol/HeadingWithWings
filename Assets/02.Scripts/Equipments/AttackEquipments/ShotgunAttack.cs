@@ -15,6 +15,7 @@ public class ShotgunAttack : Equipment
     public float bulletSpeed;
     public int pelletCount;
     public float maxSpread;
+    public float pelletSpread = 30;
 
     private Transform targetTransform;
     private bool isCoolDown = false;
@@ -39,10 +40,13 @@ public class ShotgunAttack : Equipment
         {
             Bullet newPellet = Instantiate(bullet,transform.position,transform.rotation);
             newPellet.damage = playerInfo.damage * damageMultiplier;
-            newPellet.knockbackSize = this.knockbackSize;   //스크립터블 오브젝트로 처리할 예정
-            // newPellet.transform.LookAt(targetTransform);
-            Vector2 pelletDirection = enemyDirection + new Vector2(Random.Range(-maxSpread,maxSpread), Random.Range(-maxSpread,maxSpread));
-            newPellet.GetComponent<Rigidbody2D>().AddForce(pelletDirection * bulletSpeed, ForceMode2D.Impulse);
+            newPellet.knockbackSize = this.knockbackSize;
+            newPellet.transform.right = enemyDirection;
+            newPellet.transform.Rotate(0, 0, i * (pelletSpread / pelletCount) - (pelletSpread / 2));
+            newPellet.GetComponent<Rigidbody2D>().AddForce(newPellet.transform.right * bulletSpeed, ForceMode2D.Impulse);
+
+            // Vector2 pelletDirection = enemyDirection + new Vector2(Random.Range(-maxSpread,maxSpread), Random.Range(-maxSpread,maxSpread));
+            // newPellet.GetComponent<Rigidbody2D>().AddForce(pelletDirection * bulletSpeed, ForceMode2D.Impulse);
         }
         isCoolDown = true;
         StartCoroutine(CoolDown());
