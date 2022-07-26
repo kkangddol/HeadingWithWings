@@ -14,6 +14,7 @@ public class Bullet_Meteor : Bullet
     public float DotDamageSec = 1.0f;
 
     private bool isDotDamage = false;
+    public float dotDamage;
 
     private void IsGroundEvent()
     {
@@ -30,7 +31,7 @@ public class Bullet_Meteor : Bullet
         }
     }
 
-    private void GiveDamage()
+    private void GiveDamage(float damage)
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(this.transform.position, EXPLODE_RADIUS);
 
@@ -45,7 +46,7 @@ public class Bullet_Meteor : Bullet
 
     private void Explosion()
     {
-        GiveDamage();
+        GiveDamage(this.damage);
         Destroy(this.transform.parent.gameObject, DotDamageSec);
     }
 
@@ -61,7 +62,7 @@ public class Bullet_Meteor : Bullet
     {
         while(isDotDamage)
         {
-            GiveDamage();
+            GiveDamage(dotDamage);
             yield return new WaitForSeconds(DotDamageSec);
         }
         Destroy(this.transform.parent.gameObject);

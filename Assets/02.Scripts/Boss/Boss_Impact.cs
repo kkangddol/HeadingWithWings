@@ -27,7 +27,7 @@ public class Boss_Impact : MonoBehaviour
         if(other.tag == PLAYER || other.tag == ENEMY)
         {
             isAttacked = true;
-            other.GetComponent<PlayerTakeDamage>().TakeDamage(enemyInfo.enemyDamage * damageMultiplier);
+            other.GetComponent<PlayerTakeDamage>().TakeDamage(enemyInfo.meleeDamage * damageMultiplier);
             StartCoroutine(CoolDown());
         }
     }

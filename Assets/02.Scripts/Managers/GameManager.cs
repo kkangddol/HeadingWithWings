@@ -29,11 +29,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private DataManager data = new DataManager();
-    public static DataManager Data { get { return Instance.data; } }
+    private static DataManager data;// = new DataManager();
+    public static DataManager Data { get { return data; } }
 
-    public Action<int> stageEvents;
-    private bool eventCall = false;
+    public StageManager stageManager;
 
 
     [SerializeField]
@@ -80,7 +79,16 @@ public class GameManager : MonoBehaviour
     public float PlayingTime{
         get {return playingTime;}
     }
-    public int playingTimeMinute = 0;
+    private int playingTimeMinute;
+    public int PlayingTimeMinute
+    {
+        get{return playingTimeMinute;}
+        set
+        {
+            playingTimeMinute = value;
+            stageManager.SetWave(value);
+        }
+    }
     [SerializeField]
     TMPro.TextMeshProUGUI playingTimeText;
 
@@ -112,9 +120,10 @@ public class GameManager : MonoBehaviour
 
         isGameOver = false;
 
+        data = new DataManager();
         // Data 불러오기
-        //instance.data.Init();
-        // Debug.Log(instance.data.StageMonsterGenerateDict[3].bigwaveGenerateInfo.monsterGenerateInfo.id[3]);
+        data.Init();
+        //Debug.Log(data.MonsterDict[100].monsterName);
     }
 
     private void OnEnable() {
@@ -186,12 +195,12 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
             playingTime += Time.deltaTime;
-            playingTimeText.text = string.Format("{0:D2}:{1:D2}", playingTimeMinute, (int)playingTime);
+            playingTimeText.text = string.Format("{0:D2}:{1:D2}", PlayingTimeMinute, (int)playingTime);
 
             if((int)playingTime > 59)
             {
                 playingTime = 0;
-                playingTimeMinute++;
+                PlayingTimeMinute++;
             }
         }
     }

@@ -47,7 +47,7 @@ public class EnemyPeriodicMovement : MonoBehaviour, IEnemyStopHandler
     {
         Tracking();
         isMoving = true;
-        rigid.AddForce(moveDirection * enemyInfo.enemyMoveSpeed, ForceMode2D.Impulse);
+        rigid.AddForce(moveDirection * enemyInfo.moveSpeed, ForceMode2D.Impulse);
         Invoke("ResetMoving", moveCoolTime + Random.Range(-0.5f, 0.5f));
     }
 

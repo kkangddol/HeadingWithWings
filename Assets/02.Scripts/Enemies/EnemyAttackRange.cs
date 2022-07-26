@@ -8,10 +8,6 @@ public class EnemyAttackRange : MonoBehaviour
     private EnemyInfo enemyInfo;
     private IEnemyStopHandler stopHandler;
     public EnemyProjectile enemyProjectile;
-    public float projectileDamage;
-    public float projectileSpeed;
-    public float fireDelay;
-    public float attackRange;
     private bool isAttacking;
     private bool isInRange = false;
     public bool IsInRange
@@ -67,7 +63,7 @@ public class EnemyAttackRange : MonoBehaviour
         while(!enemyInfo.IsDead)
         {
             yield return waitTime;
-            if(Vector2.Distance(transform.position, playerTransform.position) <= attackRange)
+            if(Vector2.Distance(transform.position, playerTransform.position) <= enemyInfo.attackRange)
             {
                 IsInRange = true;
             }
@@ -81,11 +77,10 @@ public class EnemyAttackRange : MonoBehaviour
     void Fire()
     {
         EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, transform.rotation);
-        newProjectile.transform.LookAt(playerTransform.position);
-        //newProjectile.damage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].projectileDamage;
-        newProjectile.damage = projectileDamage;
-        newProjectile.GetComponent<Rigidbody2D>().AddForce(newProjectile.transform.forward * projectileSpeed, ForceMode2D.Impulse);
-        //newProjectile.GetComponent<Rigidbody2D>().AddForce(enemyInfo.targetTransform.position.normalized * projectileSpeed, ForceMode2D.Impulse);
+        newProjectile.damage = enemyInfo.projectileDamage;
+        Vector2 direction = (playerTransform.position - transform.position).normalized;
+        newProjectile.transform.right = direction;
+        newProjectile.GetComponent<Rigidbody2D>().AddForce(newProjectile.transform.right * enemyInfo.projectileSpeed, ForceMode2D.Impulse);
     }
 
     // IEnumerator FireCycle()
@@ -104,7 +99,7 @@ public class EnemyAttackRange : MonoBehaviour
 
     IEnumerator FireDelay()
     {
-        yield return new WaitForSeconds(fireDelay);
+        yield return new WaitForSeconds(enemyInfo.projectileFireDelay);
         isAttacking = false;
     }
 }

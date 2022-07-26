@@ -50,7 +50,7 @@ public class EnemyIrregularMovement : MonoBehaviour
     {
         Tracking();
         isMoving = true;
-        rigid.AddForce(moveDirection * enemyInfo.enemyMoveSpeed, ForceMode2D.Impulse);
+        rigid.AddForce(moveDirection * enemyInfo.moveSpeed, ForceMode2D.Impulse);
         Invoke("ResetMoving", moveCoolTime + Random.Range(-0.5f, 0.5f));
         Invoke("StopShort", moveTime);
     }

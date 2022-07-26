@@ -8,8 +8,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
     //EnemyAttackMelee와는 별개로 OverlapSphere 이용해서 돌진의 데미지를 따로 입혀주면 좋을 것 같습니다.
     //돌진은 점프와 마찬가지로 피아식별을 하지 않습니다.
     //피아식별무시는 PlayerTakeDamage와 EnemyTakeDamage가 상속받는 ITakeBossAttack 이라는 인터페이스로 모두 데미지를 줄 수 있습니다
-    public float damage = 10f;
-    public float knockbackSize = 10f;
+    Boss_Skill_Manager skillManager;
     public float dotDamageTime = 0.1f;
     public Transform damageZone = null;
 
@@ -28,6 +27,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
     {
         rb2D = GetComponent<Rigidbody2D>();
         dotDamageSec = new WaitForSeconds(dotDamageTime);
+        skillManager = GetComponent<Boss_Skill_Manager>();
     }
 
     public void ActivateSkill()
@@ -76,7 +76,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
                 if(hitColl.CompareTag(PLAYER) || hitColl.CompareTag(ENEMY))
                 {
                     ITakeBossAttack temp = hitColl.GetComponent<ITakeBossAttack>();
-                    temp.TakeBossAttack(this.transform, damage, knockbackSize);
+                    temp.TakeBossAttack(this.transform, skillManager.skillDamage, skillManager.skillKnockBackSize);
                 }
             }
         }

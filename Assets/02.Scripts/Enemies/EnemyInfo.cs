@@ -7,11 +7,16 @@ public class EnemyInfo : MonoBehaviour
     private Transform playerTransform;
     [SerializeField]
     private int monsterID;
-    public int MonsterID { get { return monsterID; } set { } }
+    public int MonsterID { get { return monsterID; } set { monsterID = value; } }
     private float maxHealthPoint;
     public float healthPoint;
-    public float enemyDamage;
-    public float enemyMoveSpeed;
+    public float moveSpeed;
+    public float meleeDamage;
+    public float projectileDamage;
+    public float projectileSpeed;
+    public float projectileFireDelay;
+    public float attackRange;
+
     private bool isDead;
     public bool IsDead
     {
@@ -32,27 +37,36 @@ public class EnemyInfo : MonoBehaviour
 
     void Start()
     {
-        Initialize();
-    }
-
-    void Initialize()
-    {
         playerTransform = GameObject.FindWithTag("PLAYER").GetComponent<Transform>();
-        //monsterID = int.Parse(gameObject.name);
         IsDead = false;
-        //healthPoint = GameManager.Data.MonsterDict[monsterID].monsterHp;
         maxHealthPoint = healthPoint;
-        //enemyDamage = GameManager.Data.MonsterDict[monsterID].collisionDamage;
     }
 
     private void FixedUpdate() {
         LookAtPlayer2D();
     }
 
+    public void SetID(int id)
+    {
+        MonsterID = id;
+    }
+
+    public void DataInit()
+    {
+        this.name = GameManager.Data.MonsterDict[MonsterID].monsterName;
+        maxHealthPoint = GameManager.Data.MonsterDict[MonsterID].monsterHp;
+        moveSpeed = GameManager.Data.MonsterDict[MonsterID].moveSpeed;
+        meleeDamage = GameManager.Data.MonsterDict[MonsterID].meleeDamage;
+        projectileDamage = GameManager.Data.MonsterDict[MonsterID].projectileDamage;
+        projectileSpeed = GameManager.Data.MonsterDict[MonsterID].projectileSpeed;
+        projectileFireDelay = GameManager.Data.MonsterDict[MonsterID].projectileFireDelay;
+        attackRange = GameManager.Data.MonsterDict[MonsterID].attackRange;
+    }
+
     private void EnemyDie()
     {
         GameManager.Instance.KillCount++;
-        enemyDamage = 0;
+        meleeDamage = 0;
         GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
         GetComponent<EnemyDropItem>().DropItem();
         Destroy(gameObject, 0.1f);
@@ -60,7 +74,7 @@ public class EnemyInfo : MonoBehaviour
 
     public void ChainDie()
     {
-        enemyDamage = 0;
+        meleeDamage = 0;
         GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
         Destroy(gameObject, 0.1f);
     }

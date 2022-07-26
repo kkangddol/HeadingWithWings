@@ -17,9 +17,9 @@ public class DataManager
 
     public void Init()
     {
-        StageDict = LoadJson<StageData, int, Stage>("StageData").MakeDict();
-        StageMonsterGenerateDict = LoadJson<StageMonsterGenerateData, int, StageMonsterGenerate>("StageMonsterGenerateData").MakeDict();
-        WingDict = LoadJson<WingData, int, Wing>("WingData").MakeDict();
+        // StageDict = LoadJson<StageData, int, Stage>("StageData").MakeDict();
+        // StageMonsterGenerateDict = LoadJson<StageMonsterGenerateData, int, StageMonsterGenerate>("StageMonsterGenerateData").MakeDict();
+        // WingDict = LoadJson<WingData, int, Wing>("WingData").MakeDict();
         MonsterDict = LoadJson<MonsterData, int, Monster>("MonsterData").MakeDict();
     }
 
@@ -28,4 +28,5 @@ public class DataManager
         TextAsset textAsset = Resources.Load<TextAsset>($"Data/{path}");
         return JsonUtility.FromJson<Loader>(textAsset.text);
     }
+
 }

@@ -25,7 +25,7 @@ public class EnemyAttackMelee : MonoBehaviour
         if(other.tag == PLAYER)
         {
             isAttacked = true;
-            other.GetComponent<PlayerTakeDamage>().TakeDamage(enemyInfo.enemyDamage);
+            other.GetComponent<PlayerTakeDamage>().TakeDamage(enemyInfo.meleeDamage);
             StartCoroutine(CoolDown());
         }
     }

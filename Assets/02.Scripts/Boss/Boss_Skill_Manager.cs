@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class Boss_Skill_Manager : MonoBehaviour
 {
+    private EnemyInfo enemyInfo;
     public static Animator animator;
     float trembleTime = 2f;
 
     IBoss_Skill[] skills;
     IEnemyStopHandler stopHandler;
 
-    float skillCoolTime;
+    public float skillCoolTime;
+    public float skillDamage;
+    public float skillKnockBackSize;
+    public float skillProjectileDamage;
+    public float skillProjectileSpeed;
     bool isCoolTime = true;
     
 
     private void Start() {
+        enemyInfo = GetComponent<EnemyInfo>();
         animator = GetComponentInChildren<Animator>();
         skills = GetComponents<IBoss_Skill>();
         stopHandler = GetComponent<IEnemyStopHandler>();
@@ -30,6 +36,16 @@ public class Boss_Skill_Manager : MonoBehaviour
         skillCoolTime -= Time.deltaTime;
 
         isCoolTime = skillCoolTime <= 0 ? false : true;
+    }
+
+    public void DataInit()
+    {
+        this.name = GameManager.Data.MonsterDict[enemyInfo.MonsterID].monsterName;
+        skillCoolTime = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillCoolTime;
+        skillDamage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillDamage;
+        skillKnockBackSize = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillKnockBackSize;
+        skillProjectileDamage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillProjectileDamage;
+        skillProjectileSpeed = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillProjectileSpeed;
     }
 
     public void SkillSequence()

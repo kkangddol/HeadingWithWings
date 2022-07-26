@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss_Skill_SprayWater : MonoBehaviour, IBoss_Skill
 {
+    Boss_Skill_Manager skillManager;
     EnemyInfo enemyInfo;
     public Transform sprayTransform;
     public EnemyProjectile projectile;
@@ -20,6 +21,7 @@ public class Boss_Skill_SprayWater : MonoBehaviour, IBoss_Skill
         enemyInfo = GetComponent<EnemyInfo>();
         stopHandler = GetComponent<IEnemyStopHandler>();
         waitForInterval = new WaitForSeconds(shotInterval);
+        skillManager = GetComponent<Boss_Skill_Manager>();
     }
 
     public void ActivateSkill()
@@ -36,7 +38,7 @@ public class Boss_Skill_SprayWater : MonoBehaviour, IBoss_Skill
         {
             direction = Vector2.up + new Vector2(Random.Range(-maxSpread,maxSpread), Random.Range(-maxSpread,maxSpread));
             EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(projectile, sprayTransform.position, sprayTransform.rotation);
-            newProjectile.damage = damage;
+            newProjectile.damage = skillManager.skillProjectileDamage;
             newProjectile.GetComponent<Rigidbody2D>().AddForce(direction * projectileSpeed, ForceMode2D.Impulse);
             yield return waitForInterval;
         }

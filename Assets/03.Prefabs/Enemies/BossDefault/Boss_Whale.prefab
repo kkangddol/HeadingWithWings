@@ -233,8 +233,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterID: 0
   healthPoint: 500
-  enemyDamage: 10
-  enemyMoveSpeed: 2
+  moveSpeed: 0
+  meleeDamage: 0
+  projectileDamage: 0
+  projectileSpeed: 0
+  projectileFireDelay: 0
+  attackRange: 0
 --- !u!114 &3569655937651196636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +302,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73ccbf11b622e14cbf1b410489d954e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillCoolTime: 0
+  skillDamage: 0
+  skillKnockBackSize: 0
+  skillProjectileDamage: 0
+  skillProjectileSpeed: 0
 --- !u!114 &917981209102636227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,8 +416,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  impactDamage: 20
-  knockbackSize: 10
   effect: {fileID: 1500378020736912, guid: fc5283756b647da4b91eedd274dd2495, type: 3}
 --- !u!114 &917981209102636287
 MonoBehaviour:
@@ -444,7 +451,7 @@ MonoBehaviour:
   maxSpread: 1
   projectileSpeed: 10
   projectileCount: 20
-  effect: {fileID: 0}
+  effect: {fileID: 1876081050882714, guid: 0a596bbe2b6747844a78a619e9fd12b2, type: 3}
 --- !u!114 &8810300359868366566
 MonoBehaviour:
   m_ObjectHideFlags: 0
