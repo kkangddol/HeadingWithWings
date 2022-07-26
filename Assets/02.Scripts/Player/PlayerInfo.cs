@@ -51,7 +51,7 @@ public class PlayerInfo : MonoBehaviour
     public float moveSpeed;
     public float damage;
     public float attackDelay;
-    public float attackSize;
+    //public float attackSize;
     public float itemTakeRange;
     public float healAmount;
     public float skillDelay;
