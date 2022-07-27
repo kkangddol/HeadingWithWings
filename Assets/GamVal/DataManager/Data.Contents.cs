@@ -92,36 +92,106 @@ public class MonsterData: ILoader<int, Monster>
 }
 #endregion
 
-#region FeatherData
+#region AttackEquipData
 [Serializable]
-public class Feather
+public class AttackEquipRaw
 {
     public int equipID = 0;
-    public int attackLevel = 0;
+    public string attackName = "";
+    public int level = 0;
     public float damageMultiplier = 0.0f;
     public float delayMultiplier = 0.0f;
     public float attackRange = 0.0f;
     public float knockBackSize = 0.0f;
     public float bulletSpeed = 0.0f;
+    public int pelletCount = 0;
+    public float headShotChance = 0.0f;
+    public float headShotDamageMultiplier = 0.0f;
+    public float speedMultiplier = 0.0f;
+    public float slowDuration = 0.0f;
+    public float splashRange = 0.0f;
+    public int collisionCount = 0;
+    public string isPair = "";
+    public float attackDuration = 0.0f;
+    public int satelliteCount = 0;
+    public int meteorCount = 0;
+    public string isGTAEMeteor = "";
 }
 
 [Serializable]
-public class FeatherData: ILoader<int, Feather>
+public class AttackEquip
 {
-    public List<Feather> featherData = new List<Feather>();
+    public int equipID = 0;
+    public string attackName = "";
+    public int level = 0;
+    public float damageMultiplier = 0.0f;
+    public float delayMultiplier = 0.0f;
+    public float attackRange = 0.0f;
+    public float knockBackSize = 0.0f;
+    public float bulletSpeed = 0.0f;
+    public int pelletCount = 0;
+    public float headShotChance = 0.0f;
+    public float headShotDamageMultiplier = 0.0f;
+    public float speedMultiplier = 0.0f;
+    public float slowDuration = 0.0f;
+    public float splashRange = 0.0f;
+    public int collisionCount = 0;
+    public bool isPair = false;
+    public float attackDuration = 0.0f;
+    public int satelliteCount = 0;
+    public int meteorCount = 0;
+    public bool isGTAEMeteor = false;
+}
 
-    public Dictionary<int, Feather> MakeDict()
+[Serializable]
+public class AttackEquipData: ILoader<int, AttackEquip>
+{
+    public List<AttackEquipRaw> attackEquipData = new List<AttackEquipRaw>();
+
+    #region SetData
+    private AttackEquip SetData(AttackEquipRaw rawData)
     {
-        Dictionary<int, Feather> dict = new Dictionary<int, Feather>();
+        AttackEquip temp = new AttackEquip();
 
-        foreach (Feather feather in featherData)
+        temp.equipID = rawData.equipID;
+        temp.attackName = rawData.attackName;
+        temp.level = rawData.level;
+        temp.damageMultiplier = rawData.damageMultiplier;
+        temp.delayMultiplier = rawData.delayMultiplier;
+        temp.attackRange = rawData.attackRange;
+        temp.knockBackSize = rawData.knockBackSize;
+        temp.bulletSpeed = rawData.bulletSpeed;
+        temp.pelletCount = rawData.pelletCount;
+        temp.headShotChance = rawData.headShotChance;
+        temp.headShotDamageMultiplier = rawData.headShotDamageMultiplier;
+        temp.speedMultiplier = rawData.speedMultiplier;
+        temp.slowDuration = rawData.slowDuration;
+        temp.splashRange = rawData.splashRange;
+        temp.collisionCount = rawData.collisionCount;
+        temp.isPair = rawData.isPair == "TRUE" ? true : false;
+        temp.attackDuration = rawData.attackDuration;
+        temp.satelliteCount = rawData.satelliteCount;
+        temp.meteorCount = rawData.meteorCount;
+        temp.isGTAEMeteor = rawData.isGTAEMeteor == "TRUE" ? true : false;
+
+        return temp;
+    }
+    #endregion
+
+    public Dictionary<int, AttackEquip> MakeDict()
+    {
+        Dictionary<int, AttackEquip> dict = new Dictionary<int, AttackEquip>();
+
+        foreach (AttackEquipRaw attackEquip in attackEquipData)
         {
-            if (feather == null)
+            AttackEquip temp = SetData(attackEquip);
+
+            if (temp == null)
             {
                 return null;
             }
 
-            dict.Add(feather.attackLevel, feather);
+            dict.Add(temp.equipID, temp);
         }
 
         return dict;
@@ -129,10 +199,6 @@ public class FeatherData: ILoader<int, Feather>
 }
 
 #endregion
-
-
-
-
 
 #region Stage
 [Serializable]
