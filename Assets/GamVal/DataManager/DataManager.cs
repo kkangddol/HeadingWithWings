@@ -14,13 +14,15 @@ public class DataManager
     public Dictionary<int, StageMonsterGenerate> StageMonsterGenerateDict { get; private set; } = new Dictionary<int, StageMonsterGenerate>();
     public Dictionary<int, Wing> WingDict { get; private set; } = new Dictionary<int, Wing>();
     public Dictionary<int, Monster> MonsterDict { get; private set; } = new Dictionary<int, Monster>();
+    public Dictionary<int, AttackEquip> AttackEquipDict { get; private set; } = new Dictionary<int, AttackEquip>();
 
     public void Init()
     {
         // StageDict = LoadJson<StageData, int, Stage>("StageData").MakeDict();
         // StageMonsterGenerateDict = LoadJson<StageMonsterGenerateData, int, StageMonsterGenerate>("StageMonsterGenerateData").MakeDict();
         // WingDict = LoadJson<WingData, int, Wing>("WingData").MakeDict();
-        MonsterDict = LoadJson<MonsterData, int, Monster>("MonsterData").MakeDict();
+        MonsterDict = LoadJson<MonsterData, int, Monster>("MonsterData/MonsterData").MakeDict();
+        AttackEquipDict = LoadJson<AttackEquipData, int, AttackEquip>("AttackEquipData/attackEquipData").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader: ILoader<Key, Value>
