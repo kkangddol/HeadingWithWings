@@ -6,7 +6,7 @@ public class FeatherAttack : Equipment
 {
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
-    const int equipID = 100;
+    const int equipID = 10100;
     const string ENEMY = "ENEMY";
     public Bullet bullet;
     public Bullet FeatherBullet;

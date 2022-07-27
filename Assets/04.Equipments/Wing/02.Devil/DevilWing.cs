@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DevilWing : Equipment, ActiveWing
 {
+    const int EQUIPID = 20200;
     PlayerInfo playerInfo;
     public GameObject[] skillObjects;
     public float damageMultiplier;
@@ -12,6 +13,9 @@ public class DevilWing : Equipment, ActiveWing
     private bool isCoolDown = false;
     private float coolTime;
     private GameObject skillButton;
+    AudioSource audioSource;
+    public AudioClip[] audioClips;
+    int audioIndex = 0;
 
     private void Start()
     {
@@ -26,6 +30,7 @@ public class DevilWing : Equipment, ActiveWing
     void Initialize()
     {
         playerInfo = GameManager.playerInfo;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void SetButton(GameObject button)
@@ -35,7 +40,6 @@ public class DevilWing : Equipment, ActiveWing
 
     public void ActivateSkill()
     {
-        //집중 포화
         if (isCoolDown) return;
 
         StartCoroutine(ClawAttack());
@@ -47,6 +51,7 @@ public class DevilWing : Equipment, ActiveWing
 
         foreach(GameObject skillObject in skillObjects)
         {
+            audioSource.PlayOneShot(audioClips[audioIndex++]);
             skillObject.SetActive(true);
             SetSkillInfo(skillObject);
 
@@ -58,6 +63,7 @@ public class DevilWing : Equipment, ActiveWing
         yield return new WaitForSeconds(0.3f);
         SetActiveFalseAll();
         StartCoroutine(CoolDown());
+        audioIndex = 0;
     }
     private void SetSkillInfo(GameObject go)
     {
@@ -98,33 +104,9 @@ public class DevilWing : Equipment, ActiveWing
     public override void SetLevel(int newLevel)
     {
         this.level = newLevel;
-
-        //220527 하드코딩이므로 DataManager 이용할 것.
-        switch (level)
-        {
-            case 1:
-                {
-                    break;
-                }
-            case 2:
-                {
-                    break;
-                }
-            case 3:
-                {
-                    break;
-                }
-            case 4:
-                {
-                    break;
-                }
-            case 5:
-                {
-                    break;
-                }
-            default:
-                break;
-        }
+        damageMultiplier = GameManager.Data.WingEquipDict[EQUIPID + this.level].damageMultiplier;
+        skillDelayMultiplier = GameManager.Data.WingEquipDict[EQUIPID + this.level].delayMultiplier;
+        knockbackSize = GameManager.Data.WingEquipDict[EQUIPID + this.level].knockBackSize;
     }
 
 

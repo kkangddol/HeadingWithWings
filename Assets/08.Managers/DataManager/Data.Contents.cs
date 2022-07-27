@@ -97,7 +97,7 @@ public class MonsterData: ILoader<int, Monster>
 public class AttackEquipRaw
 {
     public int equipID = 0;
-    public string attackName = "";
+    public string equipName = "";
     public int level = 0;
     public float damageMultiplier = 0.0f;
     public float delayMultiplier = 0.0f;
@@ -122,7 +122,7 @@ public class AttackEquipRaw
 public class AttackEquip
 {
     public int equipID = 0;
-    public string attackName = "";
+    public string equipName = "";
     public int level = 0;
     public float damageMultiplier = 0.0f;
     public float delayMultiplier = 0.0f;
@@ -154,7 +154,7 @@ public class AttackEquipData: ILoader<int, AttackEquip>
         AttackEquip temp = new AttackEquip();
 
         temp.equipID = rawData.equipID;
-        temp.attackName = rawData.attackName;
+        temp.equipName = rawData.equipName;
         temp.level = rawData.level;
         temp.damageMultiplier = rawData.damageMultiplier;
         temp.delayMultiplier = rawData.delayMultiplier;
@@ -194,6 +194,152 @@ public class AttackEquipData: ILoader<int, AttackEquip>
             dict.Add(temp.equipID, temp);
         }
 
+        return dict;
+    }
+}
+
+#endregion
+
+#region WingEquipData
+[Serializable]
+public class WingEquip
+{
+    public int equipID = 0;
+    public string equipName = "";
+    public int level = 0;
+    public float damageMultiplier = 0.0f;
+    public float delayMultiplier = 0.0f;
+    public float knockBackSize = 0.0f;
+    public float skillTime = 0.0f;
+    public int maxDashCount = 0;
+}
+
+[Serializable]
+public class WingEquipData: ILoader<int, WingEquip>
+{
+    public List<WingEquip> wingEquipData = new List<WingEquip>();
+
+    public Dictionary<int, WingEquip> MakeDict()
+    {
+        Dictionary<int, WingEquip> dict = new Dictionary<int, WingEquip>();
+
+        foreach (WingEquip wingEquip in wingEquipData)
+        {
+            if (wingEquip == null)
+            {
+                return null;
+            }
+
+            dict.Add(wingEquip.equipID, wingEquip);
+        }
+        return dict;
+    }
+}
+#endregion
+
+#region EquipDescriptionData
+[Serializable]
+public class EquipDescriptionRaw
+{
+    public int equipID = 0;
+    public string equipName = "";
+    public int level = 0;
+    public string damage = "";
+    public string delay = "";
+    public float range = 0.0f;
+    public string speed = "";
+    public string pelletCount = "";
+    public string headshotDamage = "";
+    public string headshotChance = "";
+    public string slow = "";
+    public string slowTime = "";
+    public string healAmount = "";
+    public string skillTime = "";
+     public string description = "";
+    public string extraDescription = "";
+}
+
+[Serializable]
+public class EquipDescription
+{
+    public int equipID = 0;
+    public string equipName = "";
+    public int level = 0;
+    public string damage = "";
+    public string delay = "";
+    public float range = 0.0f;
+    public string speed = "";
+    public string pelletCount = "";
+    public string headshotDamage = "";
+    public string headshotChance = "";
+    public string slow = "";
+    public string slowTime = "";
+    public string healAmount = "";
+    public string skillTime = "";
+     public string description = "";
+    public string extraDescription = "";
+    public List<string> infoList = new List<string>();
+    public List<string> infoTitle = new List<string>();
+}
+
+[Serializable]
+public class EquipDescriptionpData: ILoader<int, EquipDescription>
+{
+    public List<EquipDescriptionRaw> equipDescription = new List<EquipDescriptionRaw>();
+
+    #region SetData
+    private EquipDescription SetData(EquipDescriptionRaw rawData)
+    {
+        EquipDescription temp = new EquipDescription();
+
+        temp.equipID = rawData.equipID;
+        temp.equipName = rawData.equipName;
+        temp.level = rawData.level;
+        temp.damage = rawData.damage == "null" ? null : rawData.damage;
+        temp.delay = rawData.delay == "null" ? null : rawData.delay;
+        temp.range = rawData.range;
+        temp.speed = rawData.speed == "null" ? null : rawData.speed;
+        temp.pelletCount = rawData.pelletCount == "null" ? null : rawData.pelletCount;
+        temp.headshotDamage = rawData.headshotDamage == "null" ? null : rawData.headshotDamage;
+        temp.headshotChance = rawData.headshotChance == "null" ? null : rawData.headshotChance;
+        temp.slow = rawData.slow == "null" ? null : rawData.slow;
+        temp.slowTime = rawData.slowTime == "null" ? null : rawData.slowTime;
+        temp.healAmount = rawData.healAmount == "null" ? null : rawData.healAmount;
+        temp.skillTime = rawData.skillTime == "null" ? null : rawData.skillTime;
+        temp.description = rawData.description == "null" ? null : rawData.description;
+        temp.extraDescription = rawData.extraDescription == "null" ? null : rawData.extraDescription;
+
+
+        if(temp.damage != null) {temp.infoList.Add(temp.damage); temp.infoTitle.Add("damage");} 
+        if(temp.delay != null) {temp.infoList.Add(temp.delay); temp.infoTitle.Add("delay");}
+        if(temp.speed != null) {temp.infoList.Add(temp.speed); temp.infoTitle.Add("speed");}
+        if(temp.pelletCount != null) {temp.infoList.Add(temp.pelletCount); temp.infoTitle.Add("pelletCount");}
+        if(temp.headshotDamage != null) {temp.infoList.Add(temp.headshotDamage); temp.infoTitle.Add("headshotDamage");}
+        if(temp.headshotChance != null) {temp.infoList.Add(temp.headshotChance); temp.infoTitle.Add("headshotChance");}
+        if(temp.slow != null) {temp.infoList.Add(temp.slow); temp.infoTitle.Add("slow");}
+        if(temp.slowTime != null) {temp.infoList.Add(temp.slowTime); temp.infoTitle.Add("slowTime");}
+        if(temp.healAmount != null) {temp.infoList.Add(temp.healAmount); temp.infoTitle.Add("healAmount");}
+        if(temp.skillTime != null) {temp.infoList.Add(temp.skillTime); temp.infoTitle.Add("skillTime");}
+
+        return temp;
+    }
+    #endregion
+
+    public Dictionary<int, EquipDescription> MakeDict()
+    {
+        Dictionary<int, EquipDescription> dict = new Dictionary<int, EquipDescription>();
+
+        foreach (EquipDescriptionRaw equipDesc in equipDescription)
+        {
+            EquipDescription temp = SetData(equipDesc);
+
+            if (temp == null)
+            {
+                return null;
+            }
+
+            dict.Add(temp.equipID, temp);
+        }
         return dict;
     }
 }

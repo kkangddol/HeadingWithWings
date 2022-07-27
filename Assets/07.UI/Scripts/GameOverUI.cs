@@ -13,6 +13,7 @@ public class GameOverUI : MonoBehaviour
 
     private IEnumerator Fade()
     {
+        GetComponent<AudioSource>().Play();
         float timer = 0f;
         while(timer <= 1f)
         {

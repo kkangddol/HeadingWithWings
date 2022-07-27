@@ -31,6 +31,8 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 
     Collider2D col;
 
+    public AudioClip[] audioClips;
+
     public void ActivateSkill()
     {
         jump = true;
@@ -66,6 +68,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
             trailRenderer.emitting = true;
 
             col.enabled = false;
+            skillManager.audioSource.PlayOneShot(audioClips[0]);
         }
         else
         {

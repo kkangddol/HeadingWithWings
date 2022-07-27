@@ -18,7 +18,7 @@ public class SatelliteAttack : Equipment
 {
     PlayerInfo playerInfo;
     public Bullet bullet;
-    const int equipID = 700;
+    const int equipID = 10700;
     private List<Satellites> satellites = new List<Satellites>();
     private float angle = 0.0f;
     private bool isSpread = true;

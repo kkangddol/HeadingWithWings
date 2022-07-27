@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeteorAttack : Equipment
 {
     PlayerInfo playerInfo;
-    const int equipID = 800;
+    const int equipID = 10800;
     const string ENEMY = "ENEMY";
     public GameObject bullet;
     public float damageMultiplier;

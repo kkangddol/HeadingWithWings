@@ -17,6 +17,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
     private WaitForSeconds dotDamageSec = null;
     private const string PLAYER = "PLAYER";
     private const string ENEMY = "ENEMY";
+    public AudioClip[] audioClips;
 
     private void Start()
     {
@@ -42,6 +43,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
         StartCoroutine(ShowDamageZone());
         yield return new WaitForSeconds(1f);
 
+        skillManager.audioSource.PlayOneShot(audioClips[0]);
         isDash = true;
         StartCoroutine(DashDotDamage());
         rb2D.AddForce((GameManager.playerTransform.position - this.transform.position) * 1.25f, ForceMode2D.Impulse);
@@ -75,6 +77,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
             {
                 if(hitColl.CompareTag(PLAYER) || hitColl.CompareTag(ENEMY))
                 {
+                    skillManager.audioSource.PlayOneShot(audioClips[1]);
                     ITakeBossAttack temp = hitColl.GetComponent<ITakeBossAttack>();
                     temp.TakeBossAttack(this.transform, skillManager.skillDamage, skillManager.skillKnockBackSize);
                 }

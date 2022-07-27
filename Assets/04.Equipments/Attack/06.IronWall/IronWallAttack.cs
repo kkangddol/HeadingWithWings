@@ -6,7 +6,7 @@ public class IronWallAttack : Equipment
 {
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
-    const int equipID = 600;
+    const int equipID = 10600;
     const string ENEMY = "ENEMY";
     public Bullet bulletFront;
     public Bullet bulletBack;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StarryNightWing : Equipment, ActiveWing
 {
+    const int EQUIPID = 20300;
     PlayerInfo playerInfo;
     public GameObject skillObject;
     public float skillDelayMultiplier;
@@ -76,32 +77,7 @@ public class StarryNightWing : Equipment, ActiveWing
     public override void SetLevel(int newLevel)
     {
         this.level = newLevel;
-
-        //220527 하드코딩이므로 DataManager 이용할 것.
-        switch (level)
-        {
-            case 1:
-                {
-                    break;
-                }
-            case 2:
-                {
-                    break;
-                }
-            case 3:
-                {
-                    break;
-                }
-            case 4:
-                {
-                    break;
-                }
-            case 5:
-                {
-                    break;
-                }
-            default:
-                break;
-        }
+        skillDelayMultiplier = GameManager.Data.WingEquipDict[EQUIPID + this.level].delayMultiplier;
+        skillTime = GameManager.Data.WingEquipDict[EQUIPID + this.level].skillTime;
     }
 }

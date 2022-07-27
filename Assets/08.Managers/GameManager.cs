@@ -123,8 +123,10 @@ public class GameManager : MonoBehaviour
         data = new DataManager();
         // Data 불러오기
         data.Init();
-        //Debug.Log(data.MonsterDict[100].monsterName);
-        //Debug.Log(data.AttackEquipDict[101].attackName);
+        // Debug.Log(data.MonsterDict[100].monsterName);
+        // Debug.Log(data.AttackEquipDict[10101].equipName);
+        // Debug.Log(data.WingEquipDict[20101].equipName);
+        // Debug.Log(data.EquipDescriptionDict[10101].description);
     }
 
     private void OnEnable() {

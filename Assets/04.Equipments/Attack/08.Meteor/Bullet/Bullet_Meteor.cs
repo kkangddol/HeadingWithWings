@@ -16,6 +16,14 @@ public class Bullet_Meteor : Bullet
     private bool isDotDamage = false;
     public float dotDamage;
 
+    AudioSource audioSource;
+    public AudioClip[] audioClips;
+
+    private void Start() {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(audioClips[0]);
+    }
+
     private void IsGroundEvent()
     {
         sr.enabled = false;
@@ -46,6 +54,7 @@ public class Bullet_Meteor : Bullet
 
     private void Explosion()
     {
+        audioSource.PlayOneShot(audioClips[1]);
         GiveDamage(this.damage);
         Destroy(this.transform.parent.gameObject, DotDamageSec);
     }
