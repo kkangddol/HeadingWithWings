@@ -195,10 +195,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99938abae337d214188f61b69e2cd87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  dieSprite: {fileID: 21300000, guid: af715c11bedb58649acbeb1c2483abd6, type: 3}
   monsterID: 0
   healthPoint: 80
-  enemyDamage: 1
-  enemyMoveSpeed: 1
+  moveSpeed: 0
+  meleeDamage: 0
+  projectileDamage: 0
+  projectileSpeed: 0
+  projectileFireDelay: 0
+  attackRange: 0
 --- !u!114 &1162447404438823692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,10 +244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyProjectile: {fileID: 8040205903655349996, guid: ac684a874d75a1d49a190dd77396b946,
     type: 3}
-  projectileDamage: 10
-  projectileSpeed: 5
-  fireDelay: 2
-  attackRange: 5
 --- !u!114 &1162447404438823694
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -89,6 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99938abae337d214188f61b69e2cd87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  dieSprite: {fileID: 21300000, guid: 9fc5b6b1ddd92d04384bb0bc9069de71, type: 3}
   monsterID: 0
   healthPoint: 80
   moveSpeed: 0

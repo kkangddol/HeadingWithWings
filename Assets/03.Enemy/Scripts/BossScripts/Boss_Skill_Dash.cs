@@ -12,6 +12,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
     public float dotDamageTime = 0.1f;
     public Transform damageZone = null;
 
+    private EnemyInfo enemyInfo = null;
     private Rigidbody2D rb2D = null;
     private bool isDash = false;
     private WaitForSeconds dotDamageSec = null;
@@ -28,12 +29,11 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
         rb2D = GetComponent<Rigidbody2D>();
         dotDamageSec = new WaitForSeconds(dotDamageTime);
         skillManager = GetComponent<Boss_Skill_Manager>();
+        enemyInfo = GetComponent<EnemyInfo>();
     }
 
     public void ActivateSkill()
     {
-        Boss_Skill_Manager.animator.SetTrigger("reset");
-
         StartCoroutine(Dash());
     }
 
@@ -44,18 +44,20 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
 
         isDash = true;
         StartCoroutine(DashDotDamage());
-        rb2D.AddForce((GameManager.playerTransform.position - this.transform.position) * 1.25f, ForceMode2D.Impulse);
+        rb2D.AddForce((enemyInfo.playerTransform.position - this.transform.position) * 2f, ForceMode2D.Impulse);
         yield return new WaitForSeconds(1f);
 
         rb2D.velocity = Vector2.zero;
         isDash = false;
+
+        Boss_Skill_Manager.animator.SetTrigger("reset");
     }
 
     IEnumerator ShowDamageZone()
     {
-        damageZone.rotation = Utilities.LookAt2(this.transform, GameManager.playerTransform);
+        damageZone.rotation = Utilities.LookAt2(this.transform, enemyInfo.playerTransform.position);
         Vector2 Scaling = Vector2.one;
-        Scaling.x = Vector2.Distance(GameManager.playerTransform.position, this.transform.position) * 1.25f;
+        Scaling.x = Vector2.Distance(enemyInfo.playerTransform.position, this.transform.position) * 1.25f * 0.35f;
         damageZone.localScale = Scaling;
 
         yield return new WaitForSeconds(1f);
@@ -73,7 +75,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
 
             foreach(Collider2D hitColl in hitColls)
             {
-                if(hitColl.CompareTag(PLAYER) || hitColl.CompareTag(ENEMY))
+                if((hitColl.CompareTag(PLAYER) || hitColl.CompareTag(ENEMY)) && hitColl.gameObject != this.gameObject)
                 {
                     ITakeBossAttack temp = hitColl.GetComponent<ITakeBossAttack>();
                     temp.TakeBossAttack(this.transform, skillManager.skillDamage, skillManager.skillKnockBackSize);
