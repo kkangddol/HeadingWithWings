@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 6637686223175236131}
   - component: {fileID: 6637686223175236132}
   - component: {fileID: 6637686223175236133}
-  - component: {fileID: 1946746804029409645}
+  - component: {fileID: 7972258207570886003}
   - component: {fileID: 6637686223175236135}
   - component: {fileID: 7251959589443167583}
   - component: {fileID: 950886053993070035}
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDelay: 0.1
---- !u!114 &1946746804029409645
+--- !u!114 &7972258207570886003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,13 +239,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6637686223175236136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bb25f7f64632cb4686d778917884e1b, type: 3}
+  m_Script: {fileID: 11500000, guid: e5edb6092534fbc4486b42d496a6569a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 8040205903655349996, guid: ac684a874d75a1d49a190dd77396b946,
-    type: 3}
-  projectileCount: 3
-  projectileSpread: 30
+  bullet: {fileID: 2440572445521673292, guid: 6f9f724f36684544d8f06856f20c8a16, type: 3}
 --- !u!114 &6637686223175236135
 MonoBehaviour:
   m_ObjectHideFlags: 0
