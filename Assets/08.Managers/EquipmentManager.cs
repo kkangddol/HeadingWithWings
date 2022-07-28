@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class EquipmentManager : MonoBehaviour
 {
-
     private static EquipmentManager instance;
     public static EquipmentManager Instance
     {
@@ -30,17 +29,14 @@ public class EquipmentManager : MonoBehaviour
     public int[] attackEquipmentsLevel;
     public GameObject[] attackEquipmentObjects;
     public Sprite[] attackEquipmentSprites;
-    public string[] attackEquipmentDescriptions;
 
     public int[] abilityEquipmentsLevel;
     public GameObject[] abilityEquipmentObjects;
     public Sprite[] abilityEquipmentSprites;
-    public string[] abilityEquipmentDescriptions;
 
     public int[] wingEquipmentsLevel;
     public GameObject[] wingEquipmentObjects;
     public Sprite[] wingEquipmentSprites;
-    public string[] wingEquipmentDescriptions;
 
     public GameObject skillButton;
 
@@ -62,24 +58,6 @@ public class EquipmentManager : MonoBehaviour
 
         skillButton = GameObject.FindWithTag("SKILLBUTTON");
         skillButton.SetActive(false);
-
-        // attackEquipmentObjects = new GameObject[attackEquipmentsCount];
-        // abilityEquipmentObjects = new GameObject[abilityEquipmentsCount];
-        // wingEquipmentObjects = new GameObject[wingEquipmentsCount];
-        // wingModels = new GameObject[wingEquipmentsCount];
-
-        // attackEquipmentSprites = new Sprite[attackEquipmentsCount];     
-        // abilityEquipmentSprites = new Sprite[abilityEquipmentsCount];        
-        // wingEquipmentSprites = new Sprite[wingEquipmentsCount];
-
-        // attackEquipmentDescriptions = new string[attackEquipmentsCount];
-        // abilityEquipmentDescriptions = new string[abilityEquipmentsCount];
-        // wingEquipmentDescriptions = new string[wingEquipmentsCount];
-
-        //임시
-        //TakeAttackEquipment((int)AttackEquipmentsNumber.Feather);
-        //attackEquipmentDescriptions[(int)AttackEquipmentsNumber.Feather] = $"공격력의 100% 의 피해 \n 공격주기의 100% 의 주기";
-        //임시끝
     }
 
     private static EquipmentManager Create()
@@ -126,7 +104,6 @@ public class EquipmentManager : MonoBehaviour
     {
         if(GameManager.playerInfo.wingNumber != EquipmentNumber)
         {
-            Debug.Log("날개장착~");
             //신규 장착
             if(GameManager.playerInfo.wingEquipmentParent.childCount != 0)
             {

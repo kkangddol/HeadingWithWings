@@ -6,7 +6,7 @@ public class ShotgunAttack : Equipment
 {
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
-    const int equipID = 200;
+    const int equipID = 10200;
     const string ENEMY = "ENEMY";
     public Bullet bullet;
     public float damageMultiplier;
@@ -19,6 +19,8 @@ public class ShotgunAttack : Equipment
 
     private Transform targetTransform;
     private bool isCoolDown = false;
+    AudioSource audioSource;
+    public AudioClip[] audioClips;
 
 
     private void Start()
@@ -31,6 +33,7 @@ public class ShotgunAttack : Equipment
     {
         playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Fire()
@@ -45,6 +48,7 @@ public class ShotgunAttack : Equipment
             newPellet.transform.Rotate(0, 0, i * (pelletSpread / pelletCount) - (pelletSpread / 2));
             newPellet.GetComponent<Rigidbody2D>().AddForce(newPellet.transform.right * bulletSpeed, ForceMode2D.Impulse);
         }
+        audioSource.PlayOneShot(audioClips[0]);
         isCoolDown = true;
         StartCoroutine(CoolDown());
     }

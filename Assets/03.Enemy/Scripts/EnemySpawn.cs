@@ -1,188 +1,188 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
 
-public class EnemySpawn : MonoBehaviour
-{
-    private Transform playerPos;
-    private Transform enemyParent;
-    private bool spawnDegree = false;
-    // Coroutine °ü¸®¿ë ¹è¿­
-    private List<Coroutine> coSpawn = new List<Coroutine>();
+// public class EnemySpawn : MonoBehaviour
+// {
+//     private Transform playerPos;
+//     private Transform enemyParent;
+//     private bool spawnDegree = false;
+//     // Coroutine ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­
+//     private List<Coroutine> coSpawn = new List<Coroutine>();
 
-    private void Start()
-    {
-        playerPos = GameObject.Find("PlayerController").GetComponent<Transform>();
-        // enemyParent = GameObject.Find("Enemies").GetComponent<Transform>();
-        // for Test
-        StartCoroutine(Spawn());
-    }
+//     private void Start()
+//     {
+//         playerPos = GameObject.Find("PlayerController").GetComponent<Transform>();
+//         // enemyParent = GameObject.Find("Enemies").GetComponent<Transform>();
+//         // for Test
+//         StartCoroutine(Spawn());
+//     }
 
-    IEnumerator Spawn()
-    {
-        while(true)
-        {
-            StageMonsterGenerate stageMonsterinfo = GameManager.Data.StageMonsterGenerateDict[1];
-            Vector3 spawnPos = RandomCirclePosition(20);
-            for (int i = 0; i < stageMonsterinfo.monsterGroupGenerateInfo.amount.Length; i++)
-            {
-                GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{stageMonsterinfo.monsterGroupGenerateInfo.id[i]}"));
-                go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
-                Vector2 offset = 3 * Random.insideUnitCircle;
-                go.transform.position = playerPos.position + spawnPos + new Vector3(offset.x, 0, offset.y);
-            }
-            yield return new WaitForSeconds(5.0f);
-        }
-    }
+//     IEnumerator Spawn()
+//     {
+//         while(true)
+//         {
+//             StageMonsterGenerate stageMonsterinfo = GameManager.Data.StageMonsterGenerateDict[1];
+//             Vector3 spawnPos = RandomCirclePosition(20);
+//             for (int i = 0; i < stageMonsterinfo.monsterGroupGenerateInfo.amount.Length; i++)
+//             {
+//                 GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{stageMonsterinfo.monsterGroupGenerateInfo.id[i]}"));
+//                 go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
+//                 Vector2 offset = 3 * Random.insideUnitCircle;
+//                 go.transform.position = playerPos.position + spawnPos + new Vector3(offset.x, 0, offset.y);
+//             }
+//             yield return new WaitForSeconds(5.0f);
+//         }
+//     }
 
-    // ÇÃ·¹ÀÌ¾î¸¦ ±âÁØÀ¸·Î À§¾Æ·¡·Î ¹ø°¥¾Æ°¡¸é¼­ ¸ó½ºÅÍ°¡ ½ºÆùµÉ ¼ö ÀÖµµ·Ï ¼³Á¤
-    private Vector3 RandomCirclePosition(int range)
-    {
-        Vector3 spawnPos = Vector3.zero;
-        float degree = 0.0f;
+//     // ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Æ°ï¿½ï¿½é¼­ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//     private Vector3 RandomCirclePosition(int range)
+//     {
+//         Vector3 spawnPos = Vector3.zero;
+//         float degree = 0.0f;
 
-        if(spawnDegree)
-        {
-            degree = Random.Range(0, Mathf.PI);
-        }
-        else
-        {
-            degree = Random.Range(Mathf.PI, 2 * Mathf.PI);
-        }
-        spawnPos.x = range * Mathf.Cos(degree);
-        spawnPos.z = range * Mathf.Sin(degree);
+//         if(spawnDegree)
+//         {
+//             degree = Random.Range(0, Mathf.PI);
+//         }
+//         else
+//         {
+//             degree = Random.Range(Mathf.PI, 2 * Mathf.PI);
+//         }
+//         spawnPos.x = range * Mathf.Cos(degree);
+//         spawnPos.z = range * Mathf.Sin(degree);
 
-        spawnDegree = !spawnDegree;
-        return spawnPos;
-    }
+//         spawnDegree = !spawnDegree;
+//         return spawnPos;
+//     }
     
-    // ¿øÇü Àû »ý¼º
-    private void CircleFormulaPosition(int stage, int range, int points = 50)
-    {
-        float radian = 360 / points * Mathf.PI / 180;
-        for(float i = 0; i <= 2 * Mathf.PI; i += radian)
-        {
-            GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{0}"));
-            go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
-            go.transform.position = playerPos.position + range * (new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)));
-            go.transform.SetParent(enemyParent);
-        }
-    }
+//     // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//     private void CircleFormulaPosition(int stage, int range, int points = 50)
+//     {
+//         float radian = 360 / points * Mathf.PI / 180;
+//         for(float i = 0; i <= 2 * Mathf.PI; i += radian)
+//         {
+//             GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{0}"));
+//             go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
+//             go.transform.position = playerPos.position + range * (new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)));
+//             go.transform.SetParent(enemyParent);
+//         }
+//     }
 
-    // stage¿¡ ¸Â´Â Á¤º¸¸¦ °¢ Àû »ý¼º¸Å´ÏÀú¿¡°Ô ³Ñ±è, test´Â Å×½ºÆ®¿ë stage = 2ÀÇ °ªÀ» »ç¿ë
-    public void SpawnCluster(int stage)
-    {
-        StageMonsterGenerate stageMonsterinfo = GameManager.Data.StageMonsterGenerateDict[stage];
-        StageMonsterGenerate testInfo = GameManager.Data.StageMonsterGenerateDict[2];
-        coSpawn.Add(StartCoroutine(CoSpawnBasicManager(stageMonsterinfo)));
+//     // stageï¿½ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½, testï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ stage = 2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//     public void SpawnCluster(int stage)
+//     {
+//         StageMonsterGenerate stageMonsterinfo = GameManager.Data.StageMonsterGenerateDict[stage];
+//         StageMonsterGenerate testInfo = GameManager.Data.StageMonsterGenerateDict[2];
+//         coSpawn.Add(StartCoroutine(CoSpawnBasicManager(stageMonsterinfo)));
 
-        if (stageMonsterinfo.specialGenerateInfo.id[0] != -1)
-        {
-            coSpawn.Add(StartCoroutine(CoSpawnSpecialManager(stageMonsterinfo)));
-        }
+//         if (stageMonsterinfo.specialGenerateInfo.id[0] != -1)
+//         {
+//             coSpawn.Add(StartCoroutine(CoSpawnSpecialManager(stageMonsterinfo)));
+//         }
 
-        // Test
-        if(testInfo.bigwaveGenerateInfo.monsterGenerateInfo.id[0] != -1)
-        {
-            coSpawn.Add(StartCoroutine(CoSpawnBigwaveManager(testInfo)));
-            //if (Random.Range(0, 2) == 1)
-            //{
-            //    CircleFormulaPosition(1, 20);
-            //}
-        }
-    }
-    // º¸½º ¸ó½ºÅÍ »ý¼º½Ã ¸ðµç ½ºÆùÀÌ ÁßÁöµÇ¾î¾ß ÇÔÀ¸·Î ¸ðµç ÄÚ·çÆ¾À» ÁßÁöÇØÁØ´Ù.
-    // È¤½Ã³ª Áö¼ÓÀûÀ¸·Î »ý¼ºµÉ CoroutineÀÌ ÀÖÀ»Áöµµ ¸ô¶ó, StopAllCoroutines¸¦ »ç¿ëÇÏÁö ¾Ê¾Ò½À´Ï´Ù.
-    public void StopSpawnCluster()
-    {
-        foreach(Coroutine co in coSpawn)
-        {
-            StopCoroutine(co);
-        }
-    }
+//         // Test
+//         if(testInfo.bigwaveGenerateInfo.monsterGenerateInfo.id[0] != -1)
+//         {
+//             coSpawn.Add(StartCoroutine(CoSpawnBigwaveManager(testInfo)));
+//             //if (Random.Range(0, 2) == 1)
+//             //{
+//             //    CircleFormulaPosition(1, 20);
+//             //}
+//         }
+//     }
+//     // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
+//     // È¤ï¿½Ã³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Coroutineï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, StopAllCoroutinesï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.
+//     public void StopSpawnCluster()
+//     {
+//         foreach(Coroutine co in coSpawn)
+//         {
+//             StopCoroutine(co);
+//         }
+//     }
 
-    // ±âº» ¸ó½ºÅÍ Á¤º¸¸¸ ¹Þ¾Æ¼­ »ç¿ë
-    private void SpawnBasic(MonsterGroupGenerateInfo monsterInfo)
-    {
-        // need range
-        Vector3 spawnPos = RandomCirclePosition(20);
-        for (int i = 0; i < monsterInfo.amount.Length; i++)
-        {
-            for(int j = 0; j < monsterInfo.amount[i]; j++)
-            {
-                GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{monsterInfo.id[i]}"));
-                go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
-                Vector2 offset = 3 * Random.insideUnitCircle;
-                go.transform.position = playerPos.position + spawnPos + new Vector3(offset.x, 0, offset.y);
-                go.transform.SetParent(enemyParent);
-            }
-        }
-    }
-    // Æ¯¼ö ¸ó½ºÅÍ Á¤º¸¸¸ ¹Þ¾Æ¼­ »ç¿ë
-    private void SpawnSpecial(StageMonsterGenerate stageMonsterInfo)
-    {
-        Vector3 spawnPos = RandomCirclePosition(20);
-        for (int i = 0; i < stageMonsterInfo.monsterGroupGenerateInfo.amount.Length; i++)
-        {
-            for (int j = 0; j < stageMonsterInfo.monsterGroupGenerateInfo.amount[i]; j++)
-            {
-                GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{stageMonsterInfo.monsterGroupGenerateInfo.id[i]}"));
-                go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
-                Vector2 offset = 3 * Random.insideUnitCircle;
-                go.transform.position = playerPos.position + spawnPos + new Vector3(offset.x, 0, offset.y);
-                go.transform.SetParent(enemyParent);
-            }
-        }
-    }
-    private void SpawnBigWave(BigwaveGenerateInfo bigwaveInfo)
-    {
-        int clusterIndex = bigwaveInfo.monsterGenerateInfo.amount.Length - 1;
-        int clusterAmount = bigwaveInfo.monsterGenerateInfo.amount[clusterIndex];
-        Vector3 spawnPos = RandomCirclePosition(20);
+//     // ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½ï¿½ï¿½
+//     private void SpawnBasic(MonsterGroupGenerateInfo monsterInfo)
+//     {
+//         // need range
+//         Vector3 spawnPos = RandomCirclePosition(20);
+//         for (int i = 0; i < monsterInfo.amount.Length; i++)
+//         {
+//             for(int j = 0; j < monsterInfo.amount[i]; j++)
+//             {
+//                 GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{monsterInfo.id[i]}"));
+//                 go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
+//                 Vector2 offset = 3 * Random.insideUnitCircle;
+//                 go.transform.position = playerPos.position + spawnPos + new Vector3(offset.x, 0, offset.y);
+//                 go.transform.SetParent(enemyParent);
+//             }
+//         }
+//     }
+//     // Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½ï¿½ï¿½
+//     private void SpawnSpecial(StageMonsterGenerate stageMonsterInfo)
+//     {
+//         Vector3 spawnPos = RandomCirclePosition(20);
+//         for (int i = 0; i < stageMonsterInfo.monsterGroupGenerateInfo.amount.Length; i++)
+//         {
+//             for (int j = 0; j < stageMonsterInfo.monsterGroupGenerateInfo.amount[i]; j++)
+//             {
+//                 GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{stageMonsterInfo.monsterGroupGenerateInfo.id[i]}"));
+//                 go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
+//                 Vector2 offset = 3 * Random.insideUnitCircle;
+//                 go.transform.position = playerPos.position + spawnPos + new Vector3(offset.x, 0, offset.y);
+//                 go.transform.SetParent(enemyParent);
+//             }
+//         }
+//     }
+//     private void SpawnBigWave(BigwaveGenerateInfo bigwaveInfo)
+//     {
+//         int clusterIndex = bigwaveInfo.monsterGenerateInfo.amount.Length - 1;
+//         int clusterAmount = bigwaveInfo.monsterGenerateInfo.amount[clusterIndex];
+//         Vector3 spawnPos = RandomCirclePosition(20);
 
-        // 3ÁßÃ¸ for¹®Àº Áö¾çÇØ¾ßÇØ¼­ ÀÌ ºÎºÐÀº ´Ù¸¥ ¾Ë°í¸®ÁòÀ¸·Î °³¼±ÀÌ ÇÊ¿äÇÏ´Ù°í »ý°¢ÇÕ´Ï´Ù.
-        for (int i = 0; i < clusterAmount; i++)
-        {
-            // for(int j = 0; j < bigwaveInfo.monsterGenerateInfo.id.Length; j++)
-            for(int j = 0; j < bigwaveInfo.monsterGenerateInfo.id.Length - 1; j++)
-            {
-                for(int k = 0; k < bigwaveInfo.monsterGenerateInfo.amount[j]; k++)
-                {
-                    GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{bigwaveInfo.monsterGenerateInfo.id[j]}"));
-                    go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
-                    Vector2 offset = 3 * Random.insideUnitCircle;
-                    go.transform.position = playerPos.position + spawnPos + new Vector3(offset.x, 0, offset.y);
-                    go.transform.SetParent(enemyParent);
-                }
-            }
-            spawnPos = RandomCirclePosition(20);
-        }
-    }
+//         // 3ï¿½ï¿½Ã¸ forï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+//         for (int i = 0; i < clusterAmount; i++)
+//         {
+//             // for(int j = 0; j < bigwaveInfo.monsterGenerateInfo.id.Length; j++)
+//             for(int j = 0; j < bigwaveInfo.monsterGenerateInfo.id.Length - 1; j++)
+//             {
+//                 for(int k = 0; k < bigwaveInfo.monsterGenerateInfo.amount[j]; k++)
+//                 {
+//                     GameObject go = Instantiate(Resources.Load<GameObject>($"Enemy/{bigwaveInfo.monsterGenerateInfo.id[j]}"));
+//                     go.name = go.name.Substring(0, go.name.IndexOf("(Clone)"));
+//                     Vector2 offset = 3 * Random.insideUnitCircle;
+//                     go.transform.position = playerPos.position + spawnPos + new Vector3(offset.x, 0, offset.y);
+//                     go.transform.SetParent(enemyParent);
+//                 }
+//             }
+//             spawnPos = RandomCirclePosition(20);
+//         }
+//     }
 
-    // Coroutine ÇÔ¼ö´Â ¾Õ¿¡ Co¸¦ ºÙ¿©Áà ½Äº°ÇÒ ¼ö ÀÖ°Ô ÇØÁÖ¾ú½À´Ï´Ù. (Rookiss °­»ç´ÔÀÌ ÃßÃµÇØÁÖ½Å ¹æ¹ýÀÔ´Ï´Ù)
-    IEnumerator CoSpawnBasicManager(StageMonsterGenerate stageMonsterInfo)
-    {
-        for(int i  = 0; i < stageMonsterInfo.monsterGroupGenerateInfo.groupAmount; i++)
-        {
-            SpawnBasic(stageMonsterInfo.monsterGroupGenerateInfo);
-            yield return new WaitForSeconds(stageMonsterInfo.monsterGenerateSec);
-        }
-    }
-    IEnumerator CoSpawnSpecialManager(StageMonsterGenerate stageMonsterInfo)
-    {
-        for(int i = 0; i < stageMonsterInfo.specialGenerateInfo.amount.Length; i++)
-        {
-            SpawnSpecial(stageMonsterInfo);
-            yield return null;
-        }
-    }
-    IEnumerator CoSpawnBigwaveManager(StageMonsterGenerate stageMonsterInfo)
-    {
-        for(int i = 0; i < stageMonsterInfo.bigwaveGenerateInfo.total; i++)
-        {
-            // yield return new WaitForSeconds(stageMonsterInfo.bigwaveGenerateInfo.generateSec);
-            yield return new WaitForSeconds(10);
-            SpawnBigWave(stageMonsterInfo.bigwaveGenerateInfo);
-        }
-    }
-}
+//     // Coroutine ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Õ¿ï¿½ Coï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½Äºï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. (Rookiss ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ãµï¿½ï¿½ï¿½Ö½ï¿½ ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½)
+//     IEnumerator CoSpawnBasicManager(StageMonsterGenerate stageMonsterInfo)
+//     {
+//         for(int i  = 0; i < stageMonsterInfo.monsterGroupGenerateInfo.groupAmount; i++)
+//         {
+//             SpawnBasic(stageMonsterInfo.monsterGroupGenerateInfo);
+//             yield return new WaitForSeconds(stageMonsterInfo.monsterGenerateSec);
+//         }
+//     }
+//     IEnumerator CoSpawnSpecialManager(StageMonsterGenerate stageMonsterInfo)
+//     {
+//         for(int i = 0; i < stageMonsterInfo.specialGenerateInfo.amount.Length; i++)
+//         {
+//             SpawnSpecial(stageMonsterInfo);
+//             yield return null;
+//         }
+//     }
+//     IEnumerator CoSpawnBigwaveManager(StageMonsterGenerate stageMonsterInfo)
+//     {
+//         for(int i = 0; i < stageMonsterInfo.bigwaveGenerateInfo.total; i++)
+//         {
+//             // yield return new WaitForSeconds(stageMonsterInfo.bigwaveGenerateInfo.generateSec);
+//             yield return new WaitForSeconds(10);
+//             SpawnBigWave(stageMonsterInfo.bigwaveGenerateInfo);
+//         }
+//     }
+// }

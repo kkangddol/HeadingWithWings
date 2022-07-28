@@ -16,6 +16,7 @@ public class Boss_Skill_SprayWater : MonoBehaviour, IBoss_Skill
     public int projectileCount;
     public GameObject effect;
     IEnemyStopHandler stopHandler;
+    public AudioClip[] audioClips;
 
     private void Start() {
         enemyInfo = GetComponent<EnemyInfo>();
@@ -31,6 +32,7 @@ public class Boss_Skill_SprayWater : MonoBehaviour, IBoss_Skill
 
     IEnumerator SprayWater()
     {
+        skillManager.audioSource.PlayOneShot(audioClips[0]);
         stopHandler.StopMove();
         Vector2 direction;
 
@@ -45,5 +47,6 @@ public class Boss_Skill_SprayWater : MonoBehaviour, IBoss_Skill
         yield return new WaitForSeconds(1);
         Boss_Skill_Manager.animator.SetTrigger("reset");
         stopHandler.ResumeMove();
+        skillManager.audioSource.Stop();
     }
 }

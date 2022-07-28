@@ -17,6 +17,9 @@ public class Boss_Skill_Manager : MonoBehaviour
     public float skillProjectileDamage;
     public float skillProjectileSpeed;
     bool isCoolTime = true;
+
+    public AudioSource audioSource;
+    public AudioClip[] audioClips;
     
 
     private void Start() {
@@ -25,6 +28,7 @@ public class Boss_Skill_Manager : MonoBehaviour
         skills = GetComponents<IBoss_Skill>();
         stopHandler = GetComponent<IEnemyStopHandler>();
         skillCoolTime = Random.Range(0, 5f);
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -60,8 +64,9 @@ public class Boss_Skill_Manager : MonoBehaviour
 
     IEnumerator TrembleHandler()
     {
+        audioSource.PlayOneShot(audioClips[0]);
         yield return new WaitForSeconds(trembleTime);
-        
+        audioSource.Stop();
         ActivateRandomSkill();
     }
 

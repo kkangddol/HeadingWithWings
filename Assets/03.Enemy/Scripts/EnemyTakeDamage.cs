@@ -11,6 +11,8 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
     public GameObject damageText;
     private float reactTime;
     bool isHit;
+    AudioSource audioSource;
+    public AudioClip[] audioClips;
 
     private void Start()
     {
@@ -25,6 +27,7 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
         originalColor = skinnedMeshRenderer.material.color;
         reactTime = 0.1f;
         isHit = false;
+        audioSource = GetComponent<AudioSource>();
     }
     public void TakeDamage(Transform hitTr, float damage, float knockbackSize)
     {
@@ -42,7 +45,7 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
 
     void ReactForDamage(Vector2 reactVec, float knockbackSize)
     {
-        
+        audioSource.PlayOneShot(audioClips[0]);
         reactVec = reactVec.normalized;
         rigid.AddForce(reactVec * knockbackSize, ForceMode2D.Impulse);
         skinnedMeshRenderer.material.color = Color.red;

@@ -6,7 +6,7 @@ public class SniperAttack : Equipment
 {
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
-    const int equipID = 300;
+    const int equipID = 10300;
     const string ENEMY = "ENEMY";
     public Bullet bullet;
     public float damageMultiplier;
@@ -16,6 +16,8 @@ public class SniperAttack : Equipment
     public float bulletSpeed;
     public float headShotChance = 0;
     public float headShotDamageMultiplier;
+    AudioSource audioSource;
+    public AudioClip[] audioClips;
 
 
     private Transform targetTransform;
@@ -32,6 +34,7 @@ public class SniperAttack : Equipment
     {
         playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Fire()
@@ -44,6 +47,7 @@ public class SniperAttack : Equipment
         ((Bullet_Sniper)newBullet).headShotChance = headShotDamageMultiplier;
         newBullet.GetComponent<Rigidbody2D>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode2D.Impulse);
         isCoolDown = true;
+        audioSource.PlayOneShot(audioClips[0]);
         StartCoroutine(CoolDown());
     }
 
@@ -67,7 +71,9 @@ public class SniperAttack : Equipment
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(playerInfo.attackDelay * attackDelayMultiplier);
+        yield return new WaitForSeconds(playerInfo.attackDelay * attackDelayMultiplier - 2);
+        audioSource.PlayOneShot(audioClips[1]);
+        yield return new WaitForSeconds(2);
         isCoolDown = false;
     }
 

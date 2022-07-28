@@ -9,9 +9,12 @@ public class Bullet_Icicle : Bullet
     public float speedMultiplier = 0.0f;
     [HideInInspector]
     public float slowDuration = 0.0f;
+    AudioSource audioSource;
+    public AudioClip[] audioClips;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         Destroy(gameObject, 5f);
     }
 
@@ -19,6 +22,8 @@ public class Bullet_Icicle : Bullet
     {
         if (other.CompareTag(ENEMY))
         {
+            audioSource.PlayOneShot(audioClips[0]);
+            audioSource.PlayOneShot(audioClips[1]);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
             other.GetComponent<EnemyFreezingHandler>().SlowMove(speedMultiplier, slowDuration);
             Destroy(gameObject);

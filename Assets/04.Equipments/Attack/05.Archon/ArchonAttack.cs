@@ -6,7 +6,7 @@ public class ArchonAttack : Equipment
 {
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
-    const int equipID = 500;
+    const int equipID = 10500;
     const string ENEMY = "ENEMY";
     public Bullet bullet;
     public float damageMultiplier;
@@ -21,6 +21,8 @@ public class ArchonAttack : Equipment
     private Vector3 Scaling = Vector3.one;
     private Transform targetTransform;
     private bool isCoolDown = false;
+    AudioSource audioSource;
+    public AudioClip[] audioClips;
 
 
     private void Start()
@@ -33,6 +35,7 @@ public class ArchonAttack : Equipment
     {
         playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Fire()
@@ -43,6 +46,7 @@ public class ArchonAttack : Equipment
         StartCoroutine(BulletScaling());
         ((Bullet_Archon)bullet).SplashDamage(targetTransform);
         isCoolDown = true;
+        audioSource.PlayOneShot(audioClips[0]);
         StartCoroutine(CoolDown());
     }
 

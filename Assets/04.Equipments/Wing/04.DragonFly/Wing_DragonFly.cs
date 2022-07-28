@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Wing_DragonFly : Equipment, ActiveWing
 {
+    const int EQUIPID = 20400;
     PlayerInfo playerInfo;
     PlayerMoveController playerMoveController;
     private bool isCoolDown = false;
@@ -151,37 +152,10 @@ public class Wing_DragonFly : Equipment, ActiveWing
     public override void SetLevel(int newLevel)
     {
         this.level = newLevel;
-
-        //220527 하드코딩이므로 DataManager 이용할 것.
-        //잠자리 날개의 대쉬 횟수를 증가시켜 줌
-        //잠자리 날개의 쿨타임을 감소시켜 줌
-        //잠자리 날개의 공격력을 증가시켜 줌
-        //만렙시 뭘 줘야할까
-        switch(level)
-        {
-            case 1:
-            {
-                break;
-            }
-            case 2:
-            {
-                break;
-            }
-            case 3:
-            {
-                break;
-            }
-            case 4:
-            {
-                break;
-            }
-            case 5:
-            {
-                break;
-            }
-            default:
-                break;
-        }
+        damageMultiplier = GameManager.Data.WingEquipDict[EQUIPID + this.level].damageMultiplier;
+        skillDelayMultiplier = GameManager.Data.WingEquipDict[EQUIPID + this.level].delayMultiplier;
+        knockbackSize = GameManager.Data.WingEquipDict[EQUIPID + this.level].knockBackSize;
+        maxDashCount = GameManager.Data.WingEquipDict[EQUIPID + this.level].maxDashCount;
     }
 
 

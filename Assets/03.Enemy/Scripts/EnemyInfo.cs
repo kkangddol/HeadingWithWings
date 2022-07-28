@@ -39,7 +39,6 @@ public class EnemyInfo : MonoBehaviour
     {
         playerTransform = GameObject.FindWithTag("PLAYER").GetComponent<Transform>();
         IsDead = false;
-        maxHealthPoint = healthPoint;
     }
 
     private void FixedUpdate() {
@@ -55,6 +54,7 @@ public class EnemyInfo : MonoBehaviour
     {
         this.name = GameManager.Data.MonsterDict[MonsterID].monsterName;
         maxHealthPoint = GameManager.Data.MonsterDict[MonsterID].monsterHp;
+        healthPoint = maxHealthPoint;
         moveSpeed = GameManager.Data.MonsterDict[MonsterID].moveSpeed;
         meleeDamage = GameManager.Data.MonsterDict[MonsterID].meleeDamage;
         projectileDamage = GameManager.Data.MonsterDict[MonsterID].projectileDamage;
