@@ -52,6 +52,7 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
     {
         isAnim = false;
         bossSprite.localRotation = Quaternion.identity;
+        Boss_Skill_Manager.isSkillEnd = true;
         Boss_Skill_Manager.animator.SetTrigger("reset");
     }
 

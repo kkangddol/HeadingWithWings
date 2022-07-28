@@ -22,7 +22,6 @@ public class EnemyParabolaProjectile : EnemyProjectile
     {
         float timePassed = 0f;
 
-        Vector3 prePos = Vector3.zero;
         Vector2 end = target;
         while(timePassed < duration)
         {
@@ -36,9 +35,6 @@ public class EnemyParabolaProjectile : EnemyProjectile
             Vector3 movePos = Vector2.Lerp(start, end, linearT) + new Vector2(0f, height);
             transform.rotation = Utilities.LookAt2(this.transform, movePos);
             transform.position = movePos;
-
-            if(timePassed <= 0.7f)
-                prePos = this.GetComponent<Rigidbody2D>().velocity;
 
             yield return null;
         }

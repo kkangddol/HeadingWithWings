@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUI: {fileID: 0}
+  levelUpEffect: {fileID: 0}
   attackDropRate: 35
   abilityDropRate: 35
   wingDropRate: 30

@@ -34,6 +34,7 @@ public class PickManager : MonoBehaviour
     }
 
     public GameObject pickUI;
+    public GameObject levelUpEffect;
 
     public float attackDropRate;
     public float abilityDropRate;
@@ -81,12 +82,14 @@ public class PickManager : MonoBehaviour
         GameManager.Instance.PlayerHeight = 0;
         Time.timeScale = 0;
         pickUI.transform.parent.gameObject.SetActive(true);
+        levelUpEffect.SetActive(true);
         SetSlot();
     }
 
     public void EndPickSequence()
     {
         pickUI.transform.parent.gameObject.SetActive(false);
+        levelUpEffect.SetActive(false);
         Time.timeScale = 1;
     }
 

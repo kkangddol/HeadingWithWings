@@ -19,6 +19,8 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
     private const string PLAYER = "PLAYER";
     private const string ENEMY = "ENEMY";
 
+    private Vector3 dashPos = Vector3.zero;
+
     private void Start()
     {
         Initialize();
@@ -40,27 +42,29 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
     IEnumerator Dash()
     {
         StartCoroutine(ShowDamageZone());
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         isDash = true;
         StartCoroutine(DashDotDamage());
-        rb2D.AddForce((enemyInfo.playerTransform.position - this.transform.position) * 2f, ForceMode2D.Impulse);
+        rb2D.AddForce((dashPos - this.transform.position) * 2f, ForceMode2D.Impulse);
         yield return new WaitForSeconds(1f);
 
         rb2D.velocity = Vector2.zero;
         isDash = false;
 
+        Boss_Skill_Manager.isSkillEnd = true;
         Boss_Skill_Manager.animator.SetTrigger("reset");
     }
 
     IEnumerator ShowDamageZone()
     {
-        damageZone.rotation = Utilities.LookAt2(this.transform, enemyInfo.playerTransform.position);
+        dashPos = enemyInfo.playerTransform.position;
+        damageZone.rotation = Utilities.LookAt2(this.transform, dashPos);
         Vector2 Scaling = Vector2.one;
-        Scaling.x = Vector2.Distance(enemyInfo.playerTransform.position, this.transform.position) * 1.25f * 0.35f;
+        Scaling.x = Vector2.Distance(dashPos, this.transform.position) * 1.25f * 0.5f;
         damageZone.localScale = Scaling;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         damageZone.localScale = Vector3.zero;
     }

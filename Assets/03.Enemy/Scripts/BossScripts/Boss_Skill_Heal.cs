@@ -11,8 +11,7 @@ public class Boss_Skill_Heal : MonoBehaviour, IBoss_Skill
     private void Start()
     {
         enemyInfo = GetComponent<EnemyInfo>();
-        offset = new Vector3(0.1f, -0.4f, 0f) * this.transform.localScale.x;
-        ActivateSkill();
+        offset = new Vector3(0f, -0.4f, 0f) * this.transform.localScale.x;
     }
 
     public void ActivateSkill()
@@ -28,6 +27,8 @@ public class Boss_Skill_Heal : MonoBehaviour, IBoss_Skill
             yield return new WaitForSeconds(1.25f);
             enemyInfo.SumHealthPoint(125);
         }
+
+        Boss_Skill_Manager.isSkillEnd = true;
         Boss_Skill_Manager.animator.SetTrigger("reset");
     }
 }
