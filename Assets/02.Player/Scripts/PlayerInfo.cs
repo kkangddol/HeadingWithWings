@@ -92,7 +92,7 @@ public class PlayerInfo : MonoBehaviour
         healthBar.SetMaxHealth(maxHealthPoint);
         if(maxHealthPoint <= healthPoint)
         {
-            healthPoint = maxHealthPoint;
+            HealthPoint = maxHealthPoint;
         }
     }
     private void OnHealthPointChange(float healthPoint)
