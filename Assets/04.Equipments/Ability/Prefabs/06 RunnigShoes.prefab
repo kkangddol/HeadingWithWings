@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -882551804292719777}
   - component: {fileID: 6391647984440055073}
   m_Layer: 0
-  m_Name: 06 PullUp
+  m_Name: 06 RunnigShoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
