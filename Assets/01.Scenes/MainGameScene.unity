@@ -2950,6 +2950,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipmentManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7451788280324424566, guid: e7b1881621a19ff48bd1795a6babb3cd,
+        type: 3}
+      propertyPath: attackEquipmentObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 4175149256938263869, guid: e7ec2d496c22a624ebd29ba76112630b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7b1881621a19ff48bd1795a6babb3cd, type: 3}
 --- !u!1 &730185211
@@ -4319,6 +4325,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1838956384190691183, guid: 67ed40b56e8c848478f06ea22aa21177,
+        type: 3}
+      propertyPath: useUnscaledTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3821164695931190595, guid: 67ed40b56e8c848478f06ea22aa21177,
         type: 3}
       propertyPath: m_RootOrder
@@ -5521,9 +5532,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 602015585491988434, guid: 2c3ed18115981c04d91cf67087da4511,
         type: 3}
+      propertyPath: wingDropRate
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 602015585491988434, guid: 2c3ed18115981c04d91cf67087da4511,
+        type: 3}
       propertyPath: levelUpEffect
       value: 
       objectReference: {fileID: 2018112343}
+    - target: {fileID: 602015585491988434, guid: 2c3ed18115981c04d91cf67087da4511,
+        type: 3}
+      propertyPath: attackDropRate
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 602015585491988434, guid: 2c3ed18115981c04d91cf67087da4511,
+        type: 3}
+      propertyPath: abilityDropRate
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 741081809041387709, guid: 2c3ed18115981c04d91cf67087da4511,
         type: 3}
       propertyPath: m_Name
