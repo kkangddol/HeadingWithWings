@@ -7,7 +7,7 @@ public class GameOverQuitButton : MonoBehaviour
 {
     public void OnClickQuitButton()
     {
-        SceneManager.LoadScene("LobbyScene");
         Time.timeScale = 1;
+        SceneManager.LoadScene("LobbyScene");
     }
 }
