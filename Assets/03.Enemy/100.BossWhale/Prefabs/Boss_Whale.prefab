@@ -513,6 +513,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   effect: {fileID: 1500378020736912, guid: fc5283756b647da4b91eedd274dd2495, type: 3}
+  damageZone: {fileID: 2474308716680004112}
   audioClips:
   - {fileID: 8300000, guid: 88003769d6ec175438fa6ce10fba5988, type: 3}
 --- !u!114 &917981209102636287

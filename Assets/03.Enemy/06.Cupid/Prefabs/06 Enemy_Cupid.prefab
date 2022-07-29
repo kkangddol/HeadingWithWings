@@ -259,6 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageText: {fileID: 3997464698092151095, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
     type: 3}
+  audioClips: []
 --- !u!114 &7251959589443167583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a450ae07ebdd644aecaf8b36ba4fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iceBreak: {fileID: 8300000, guid: f423568911015f3458d572e57de06a7f, type: 3}
+  ice: {fileID: 8300000, guid: ab236646a59491549aecb83a4e4a8f55, type: 3}
 --- !u!114 &950886053993070035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +281,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6637686223175236136}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d89a8d290ab87164a904709fc99d3fdb, type: 3}
   m_Name: 
