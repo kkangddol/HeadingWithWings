@@ -17,6 +17,7 @@ public class Bullet_Sniper : Bullet
             {
                 damage *= headShotDamageMultiplier;
             }
+            HitEffect(other.transform.position);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
             Destroy(gameObject);
         }

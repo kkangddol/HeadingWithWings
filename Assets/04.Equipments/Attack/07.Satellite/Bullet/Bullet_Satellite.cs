@@ -15,6 +15,7 @@ public class Bullet_Satellite : Bullet
     {
         if (other.CompareTag(ENEMY))
         {
+            HitEffect(other.transform.position);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
         }
     }

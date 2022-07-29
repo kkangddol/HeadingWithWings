@@ -23,6 +23,8 @@ public class Bullet_IronWall : Bullet
         {
             anim.CrossFade(ATTACK, 1.0f);
         }
+
+        HitEffect(other.transform.position);
         other.GetComponent<EnemyTakeDamage>().TakeDamage(this.transform, damage, knockbackSize);
 
         if(--collisionCount <= 0)

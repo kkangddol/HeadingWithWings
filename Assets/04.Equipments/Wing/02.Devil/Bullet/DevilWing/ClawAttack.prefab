@@ -137,4 +137,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 0
-  attackInterval: 0.3
+  hitEffectPrefab: {fileID: 7688166531867360876, guid: 7f72df2d493399f4392d83e094d96ca3,
+    type: 3}

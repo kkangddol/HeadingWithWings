@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyIrregularMovement : MonoBehaviour
+public class EnemyIrregularMovement : MonoBehaviour, IEnemyStopHandler
 {
     private Rigidbody2D playerRigid;
     private EnemyInfo enemyInfo;

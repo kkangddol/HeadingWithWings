@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 0
+  hitEffectPrefab: {fileID: 6541107537357274536, guid: 3ba3253b7ec5c0445b105dbac6dd9f62,
+    type: 3}
   splashRange: 3
   effect: {fileID: 7083259221500664848, guid: 697b579fcdf56a64fb01b6bf40ddf7ff, type: 3}
 --- !u!1 &4175149256938263869

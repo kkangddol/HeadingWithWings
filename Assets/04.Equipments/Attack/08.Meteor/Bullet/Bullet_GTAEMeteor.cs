@@ -34,6 +34,7 @@ public class Bullet_GTAEMeteor : Bullet
                     continue;
                 }
 
+                HitEffect(enemy.transform.position);
                 enemy.TakeDamage(enemy.transform, damage, knockbackSize);
             }
             

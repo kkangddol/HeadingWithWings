@@ -87,6 +87,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 0
+  hitEffectPrefab: {fileID: 3685927583243693233, guid: ba50240702dbf434ba487af529137555,
+    type: 3}
 --- !u!212 &-7109409410567311206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -180,7 +182,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 32
+  m_SortingOrder: 31
   m_Time: 0.1
   m_Parameters:
     serializedVersion: 3

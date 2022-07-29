@@ -6,7 +6,7 @@ public class DevilWing : Equipment, ActiveWing
 {
     const int EQUIPID = 20200;
     PlayerInfo playerInfo;
-    public GameObject[] skillObjects;
+    public Bullet[] skillObjects;
     public float damageMultiplier;
     public float skillDelayMultiplier;
     public float knockbackSize;
@@ -29,7 +29,7 @@ public class DevilWing : Equipment, ActiveWing
 
     void Initialize()
     {
-        playerInfo = GameManager.playerInfo;
+        playerInfo = GameObject.FindGameObjectWithTag("PLAYER").GetComponent<PlayerInfo>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -49,10 +49,10 @@ public class DevilWing : Equipment, ActiveWing
     {
         isCoolDown = true;
 
-        foreach(GameObject skillObject in skillObjects)
+        foreach(Bullet skillObject in skillObjects)
         {
             audioSource.PlayOneShot(audioClips[audioIndex++]);
-            skillObject.SetActive(true);
+            skillObject.gameObject.SetActive(true);
             SetSkillInfo(skillObject);
 
             yield return new WaitForSeconds(0.25f);
@@ -65,19 +65,17 @@ public class DevilWing : Equipment, ActiveWing
         StartCoroutine(CoolDown());
         audioIndex = 0;
     }
-    private void SetSkillInfo(GameObject go)
+    private void SetSkillInfo(Bullet bullet)
     {
-        DevilWingSkill temp = go.GetComponent<DevilWingSkill>();
-        temp.damage = playerInfo.damage * damageMultiplier;
-        temp.knockbackSize = knockbackSize;
-        temp.Init();
+        bullet.damage = playerInfo.damage * damageMultiplier;
+        bullet.knockbackSize = knockbackSize;
     }
 
     private void SetActiveFalseAll()
     {
-        foreach(GameObject skillObject in skillObjects)
+        foreach(Bullet skillObject in skillObjects)
         {
-            skillObject.SetActive(false);
+            skillObject.gameObject.SetActive(false);
         }
     }
 

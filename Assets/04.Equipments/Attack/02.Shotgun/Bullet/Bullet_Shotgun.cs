@@ -13,6 +13,7 @@ public class Bullet_Shotgun : Bullet
     {
         if(other.CompareTag(ENEMY))
         {
+            HitEffect(this.transform.position);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
         }
     }

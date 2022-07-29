@@ -9893,6 +9893,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 0
+  hitEffectPrefab: {fileID: 6640443554609937892, guid: df2aaabd38e9fcd459ca5b97fb5af04b,
+    type: 3}
   isGTAEMeteor: 0
   sr: {fileID: 705228080250330780}
   GTAE: {fileID: 4089568342703608955}
