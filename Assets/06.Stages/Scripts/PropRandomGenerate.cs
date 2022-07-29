@@ -5,10 +5,10 @@ using UnityEngine;
 public class PropRandomGenerate : MonoBehaviour
 {
     public GameObject[] naturePrefabs;
-    public int offsetX = 10;
-    public float tempGenSize = 50;
-    public float tempGenRatio = 50;
-    public int propCount = 200;
+    public int offsetX;
+    public float tempGenSize;
+    public float tempGenRatio;
+    int propCount;
 
     private void Awake()
     {

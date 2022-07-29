@@ -9,6 +9,10 @@ public class EnemyFreezingHandler : MonoBehaviour
     private SpriteRenderer enemySprite;
     private float enemySpeed = 0.0f;
     private Color freezeColor = new Color(0f, 1f, 1f, 0.95f);
+    public AudioClip iceBreak;
+    public AudioClip ice;
+    AudioSource audioSource;
+
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +20,13 @@ public class EnemyFreezingHandler : MonoBehaviour
         enemyInfo = GetComponent<EnemyInfo>();
         enemySprite = GetComponentInChildren<SpriteRenderer>();
         enemySpeed = enemyInfo.moveSpeed;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void SlowMove(float speedMultiplier, float duration = 1.5f)
     {
+        audioSource.PlayOneShot(iceBreak);
+        audioSource.PlayOneShot(ice);
         StartCoroutine(EnemySetSlow(speedMultiplier, duration));
     }
 

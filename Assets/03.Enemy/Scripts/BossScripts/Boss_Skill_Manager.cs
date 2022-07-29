@@ -23,7 +23,7 @@ public class Boss_Skill_Manager : MonoBehaviour
     
     public static bool isSkillEnd = true;
 
-    private void Start() {
+    private void Awake() {
         enemyInfo = GetComponent<EnemyInfo>();
         animator = GetComponentInChildren<Animator>();
         skills = GetComponents<IBoss_Skill>();
@@ -48,7 +48,6 @@ public class Boss_Skill_Manager : MonoBehaviour
 
     public void DataInit()
     {
-        this.name = GameManager.Data.MonsterDict[enemyInfo.MonsterID].monsterName;
         skillCoolTime = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillCoolTime;
         skillDamage = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillDamage;
         skillKnockBackSize = GameManager.Data.MonsterDict[enemyInfo.MonsterID].skillKnockBackSize;

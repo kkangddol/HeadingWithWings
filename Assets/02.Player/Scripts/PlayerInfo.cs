@@ -105,5 +105,5 @@ public class PlayerInfo : MonoBehaviour
     {
         // GameObject.FindWithTag("GAMEMANAGER").GetComponent<GameManager>().OnGameOver();
         GameManager.Instance.OnGameOver();
-    }    
+    }
 }

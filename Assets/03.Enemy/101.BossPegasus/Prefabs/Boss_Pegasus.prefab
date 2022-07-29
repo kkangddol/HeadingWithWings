@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 6205913365365037540}
   - component: {fileID: 6205913365365037539}
   - component: {fileID: 6205913365365037538}
-  - component: {fileID: 6205913365365037537}
+  - component: {fileID: -6898317785366120857}
   - component: {fileID: 6205913365365037536}
   - component: {fileID: 6205913365365037567}
   - component: {fileID: 6205913365365037566}
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa91984b4de2574a9a92ba5bebb756c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6205913365365037537
+--- !u!114 &-6898317785366120857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -350,6 +350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a450ae07ebdd644aecaf8b36ba4fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iceBreak: {fileID: 8300000, guid: f423568911015f3458d572e57de06a7f, type: 3}
+  ice: {fileID: 8300000, guid: ab236646a59491549aecb83a4e4a8f55, type: 3}
 --- !u!114 &6205913365365037536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,7 +462,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 0

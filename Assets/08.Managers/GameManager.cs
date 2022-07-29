@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
     public float heightSilverDropRate;
     public float heightGoldDropRate;
     public float healItemDropRate;
+    public float nothingDropRate;
 
     private void Awake()
     {
@@ -155,6 +156,7 @@ public class GameManager : MonoBehaviour
         heightSilverDropRate = 70;
         heightGoldDropRate = 20;
         healItemDropRate = 10;
+        nothingDropRate = 50;
         playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
         playerTransform = GameObject.FindWithTag(PLAYER).GetComponent<Transform>();
         playerRigidbody = GameObject.FindWithTag(PLAYER).GetComponent<Rigidbody2D>();

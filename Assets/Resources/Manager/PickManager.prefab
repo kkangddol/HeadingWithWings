@@ -49,9 +49,17 @@ MonoBehaviour:
   attackDropRate: 35
   abilityDropRate: 35
   wingDropRate: 30
-  slots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   noImage: {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
   noDescription: No Description.
+  icons:
+  - {fileID: 21300000, guid: d14b8cd28aabb5543b4a8d29812139c1, type: 3}
+  - {fileID: 21300000, guid: 4cdd9c33e3039c04d8f1e7fb52dd9cd4, type: 3}
+  - {fileID: 21300000, guid: 952130adab73f82489c6824df8bd035e, type: 3}
+  - {fileID: 21300000, guid: 53cad78c797770840b9684aad57178d2, type: 3}
+  - {fileID: 21300000, guid: 8b387d385909ad744bcfe2b62f838458, type: 3}
+  - {fileID: 21300000, guid: 7fae54961034e7c4283d89fb92504965, type: 3}
+  - {fileID: 21300000, guid: 1676598ec60fe194886d7aad0f41db7d, type: 3}
+  - {fileID: 21300000, guid: 7a4283980c88e5249bfa32b8a47885f7, type: 3}
+  - {fileID: 21300000, guid: a194b5429cc091047bf8debe67f13f71, type: 3}
+  - {fileID: 21300000, guid: b90f213d020e1fa49a65adb68a42b4ab, type: 3}
+  - {fileID: 21300000, guid: 93ccab26b99c3c24090e8cad133ae9f6, type: 3}
