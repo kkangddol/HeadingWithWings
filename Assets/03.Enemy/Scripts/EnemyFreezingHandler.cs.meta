@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 91a450ae07ebdd644aecaf8b36ba4fc4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - iceBreak: {fileID: 8300000, guid: f423568911015f3458d572e57de06a7f, type: 3}
+  - ice: {fileID: 8300000, guid: ab236646a59491549aecb83a4e4a8f55, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
