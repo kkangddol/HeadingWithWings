@@ -6,8 +6,11 @@ public class SniperAttack : Equipment
 {
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
-    const int equipID = 10300;
+    const int equipID = 300;
     const string ENEMY = "ENEMY";
+    const float TOTALTIME = 1.6f; // for sniping
+    public LineRenderer laser = null;
+    public GameObject scope = null;
     public Bullet bullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
@@ -16,13 +19,10 @@ public class SniperAttack : Equipment
     public float bulletSpeed;
     public float headShotChance = 0;
     public float headShotDamageMultiplier;
-    AudioSource audioSource;
-    public AudioClip[] audioClips;
 
 
     private Transform targetTransform;
     private bool isCoolDown = false;
-
 
     private void Start()
     {
@@ -34,46 +34,80 @@ public class SniperAttack : Equipment
     {
         playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
-        audioSource = GetComponent<AudioSource>();
+    }
+
+    IEnumerator Sniping()
+    {
+        isCoolDown = true;
+        float snipingTime = TOTALTIME;
+        float scaling = 0f;
+        Coroutine co = null;
+        laser.gameObject.SetActive(true);
+        scope.SetActive(true);
+
+        while (snipingTime > 0)
+        {
+            if (snipingTime <= 1f && co == null)
+            {
+                co = StartCoroutine(LaserBlink());
+            }
+
+            Vector3 dir = targetTransform.position - this.transform.position;
+            laser.SetPosition(1, dir * 1.25f);
+            scope.transform.position = targetTransform.position;
+
+            scaling += 0.1f;
+            snipingTime -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    IEnumerator LaserBlink()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            laser.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            laser.gameObject.SetActive(false);
+        }
+        scope.SetActive(false);
+        Fire();
     }
 
     void Fire()
     {
-        Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
-        newBullet.transform.LookAt(targetTransform);
+        Bullet newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+        newBullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
         newBullet.damage = playerInfo.damage * damageMultiplier;
         newBullet.knockbackSize = knockbackSize;
         ((Bullet_Sniper)newBullet).headShotChance = headShotChance;
         ((Bullet_Sniper)newBullet).headShotChance = headShotDamageMultiplier;
-        newBullet.GetComponent<Rigidbody2D>().AddForce(newBullet.transform.forward * bulletSpeed, ForceMode2D.Impulse);
-        isCoolDown = true;
-        audioSource.PlayOneShot(audioClips[0]);
+        newBullet.GetComponent<Rigidbody2D>().AddForce(newBullet.transform.right * bulletSpeed, ForceMode2D.Impulse);
         StartCoroutine(CoolDown());
     }
 
     IEnumerator FireCycle()
     {
-        while(true)
+        while (true)
         {
             yield return null;
             targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
 
-            if(targetTransform == transform) continue;
+            if (targetTransform == transform) continue;
 
-            if(Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
+            if (Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
 
-            if(!isCoolDown)
+            if (!isCoolDown)
             {
-                Fire();
+                StartCoroutine(Sniping());
             }
         }
     }
 
     IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(playerInfo.attackDelay * attackDelayMultiplier - 2);
-        audioSource.PlayOneShot(audioClips[1]);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(playerInfo.attackDelay * attackDelayMultiplier);
         isCoolDown = false;
     }
 

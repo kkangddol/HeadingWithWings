@@ -14,6 +14,7 @@ public class Bullet_Military : Bullet
     {
         if(other.CompareTag(ENEMY))
         {
+            HitEffect(other.transform.position);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
         }
     }

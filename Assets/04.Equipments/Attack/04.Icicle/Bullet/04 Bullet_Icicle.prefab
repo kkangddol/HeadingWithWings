@@ -87,11 +87,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 0
+  hitEffectPrefab: {fileID: 1059755887592162352, guid: d3b23e5e365c61d4f8b65e5ca15d2081,
+    type: 3}
   speedMultiplier: 0
   slowDuration: 0
-  audioClips:
-  - {fileID: 8300000, guid: f423568911015f3458d572e57de06a7f, type: 3}
-  - {fileID: 8300000, guid: ab236646a59491549aecb83a4e4a8f55, type: 3}
 --- !u!212 &4609101103577228977
 SpriteRenderer:
   m_ObjectHideFlags: 0

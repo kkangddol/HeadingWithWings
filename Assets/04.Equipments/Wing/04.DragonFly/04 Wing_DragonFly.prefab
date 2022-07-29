@@ -162,7 +162,8 @@ MonoBehaviour:
   dashTime: 0.3
   effect: {fileID: 7361542833157620520}
   skillButton: {fileID: 0}
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 7419858334103200269, guid: e4c4732766b65dd4698be0bd9fbcf572,
+    type: 3}
 --- !u!58 &7361542833992323453
 CircleCollider2D:
   m_ObjectHideFlags: 0

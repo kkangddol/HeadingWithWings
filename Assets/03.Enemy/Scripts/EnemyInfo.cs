@@ -75,7 +75,11 @@ public class EnemyInfo : MonoBehaviour
 
     IEnumerator DieAnimation()
     {
+        this.tag = "Untagged";
+        GetComponent<IEnemyStopHandler>().StopMove();
+        GetComponent<Collider2D>().enabled = false;
         GetComponentInChildren<Animator>().enabled = false;
+        
         SpriteRenderer temp = GetComponentInChildren<SpriteRenderer>();
         temp.sprite = dieSprite;
         for (float i = 1; i > 0f; i -= 0.1f)

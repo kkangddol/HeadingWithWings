@@ -48,6 +48,7 @@ public class Bullet_Meteor : Bullet
             EnemyTakeDamage temp = hitCollider.gameObject.GetComponent<EnemyTakeDamage>();
             if (temp == null) continue;
 
+            HitEffect(temp.transform.position);
             temp.TakeDamage(this.transform, damage, knockbackSize);
         }
     }

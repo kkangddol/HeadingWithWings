@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4274656806881653096}
   - component: {fileID: 5456949085471648091}
-  - component: {fileID: 1918609267212530295}
   - component: {fileID: 7899013379030827032}
   - component: {fileID: 354152304}
+  - component: {fileID: 4404061354557132814}
   m_Layer: 0
   m_Name: 03 Bullet_Sniper
   m_TagString: ATTACK
@@ -57,22 +57,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1918609267212530295
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4274656806881653110}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
 --- !u!114 &7899013379030827032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +71,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 5
+  hitEffectPrefab: {fileID: 3150084289082012419, guid: ea060fc948e4dc040a80fe2b6e7d3baf,
+    type: 3}
   headShotChance: 0
   headShotDamageMultiplier: 0
 --- !u!96 &354152304
@@ -110,7 +96,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f5d5d84ef760ca94dbc9c688a4de532a, type: 2}
+  - {fileID: 2100000, guid: d39bc8bad3b20fd46a0abf01d2ae2ddb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,7 +116,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 32
+  m_SortingOrder: 31
   m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
@@ -140,7 +126,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.19398308
+        value: 0.10134888
         inSlope: 6.011983
         outSlope: 6.011983
         tangentMode: 0
@@ -148,26 +134,26 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.37577957
       - serializedVersion: 3
-        time: 0.07055387
-        value: 0.6834812
-        inSlope: 0.0000003036463
-        outSlope: 0.0000003036463
+        time: 0.10924253
+        value: 0.24429512
+        inSlope: -0.7594602
+        outSlope: -0.7594602
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.65803874
       - serializedVersion: 3
-        time: 0.30386397
-        value: 0.29717833
-        inSlope: -0.9198971
-        outSlope: -0.9198971
+        time: 0.32766986
+        value: 0.08783784
+        inSlope: -0.40447614
+        outSlope: -0.40447614
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.1987709
       - serializedVersion: 3
         time: 1
-        value: 0.08731681
+        value: 0
         inSlope: 0.05511997
         outSlope: 0.05511997
         tangentMode: 0
@@ -215,6 +201,22 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!70 &4404061354557132814
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4274656806881653110}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.4, y: 0.15}
+  m_Direction: 1
 --- !u!1 &7195508365428956232
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +228,7 @@ GameObject:
   - component: {fileID: 7071402343072661892}
   - component: {fileID: 3276097263272500256}
   m_Layer: 0
-  m_Name: Square
+  m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,9 +289,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
-    type: 3}
+  m_SortingOrder: 32
+  m_Sprite: {fileID: 21300000, guid: 82418993f2f36464cb04502d6959b9b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
