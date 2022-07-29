@@ -79,6 +79,7 @@ public class PickManager : MonoBehaviour
     public void StartPickSequence()
     {
         pickUI.gameObject.SetActive(true);
+        levelUpEffect.SetActive(true);
         pickUI.Init();
         GameManager.Instance.PlayerHeight = 0;
         Time.timeScale = 0;

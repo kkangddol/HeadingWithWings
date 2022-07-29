@@ -13,7 +13,7 @@ public class TextPopup : MonoBehaviour
     public void  SetDamage(int damage)
     {
         textValue = damage;
-        color = Color.red;
+        color = Color.white;
     }
     public void  SetHealAmount(int healAmount)
     {
@@ -30,7 +30,7 @@ public class TextPopup : MonoBehaviour
     {
         mainCamera = Camera.main;
         transform.LookAt(transform.position + mainCamera.transform.forward);
-        textMeshPro = GetComponent<TextMeshPro>();
+        textMeshPro = GetComponentInChildren<TextMeshPro>();
         textMeshPro.text = textValue.ToString();
         textMeshPro.color = color;
         Destroy(gameObject, 1.15f);
