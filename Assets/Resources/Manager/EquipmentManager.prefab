@@ -48,7 +48,7 @@ MonoBehaviour:
   attackEquipmentObjects:
   - {fileID: 7003791252261313227, guid: 5a2db1f2eae618843b9bb46dcae5efa4, type: 3}
   - {fileID: 6997895802431485307, guid: 2dd46f541eafad94897cf03dc4516a3e, type: 3}
-  - {fileID: 4175149256938263869, guid: b8ebaf3683492084191c5a5686879ea8, type: 3}
+  - {fileID: 4175149256938263869, guid: e7ec2d496c22a624ebd29ba76112630b, type: 3}
   - {fileID: 4175149256938263869, guid: 1cd33f52118f48b488aa39e21e35951a, type: 3}
   - {fileID: 4175149256938263869, guid: 23e3571e240b20d4d85ae16b7a903be7, type: 3}
   - {fileID: 7376223446136594118, guid: f32a66959affa1d48aaeafcea167782a, type: 3}
@@ -79,18 +79,18 @@ MonoBehaviour:
   - {fileID: 5565552570625225846, guid: 80d253adbf63ff74f9697cbf2faa0bbd, type: 3}
   - {fileID: 3286775588667186500, guid: 303fe77d3b087144fa7a4e6d9c18c0d7, type: 3}
   abilityEquipmentSprites:
-  - {fileID: 21300000, guid: 1ca34fd053180e745b8b6ce30c1c22e3, type: 3}
-  - {fileID: 21300000, guid: 5811c9eaf6a501745ad54aeb18504da3, type: 3}
-  - {fileID: 21300000, guid: be128cd792ff32d40ab81430d646925b, type: 3}
-  - {fileID: 21300000, guid: 66d1062d4bd3ded48975be98e61f5f11, type: 3}
-  - {fileID: 21300000, guid: 8e746bd2b3f267e4bb19df86be0c7924, type: 3}
-  - {fileID: 21300000, guid: 5f1672e973326d5418c62cc6ca67789b, type: 3}
-  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
-  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
-  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
-  - {fileID: -1140524082, guid: b66dd83ef4a94c342a98b19acdf0b10a, type: 3}
-  - {fileID: 21300000, guid: 4bca1cc4e7b359244916a61c7144e649, type: 3}
-  - {fileID: -502896366, guid: b66dd83ef4a94c342a98b19acdf0b10a, type: 3}
+  - {fileID: -1375819794, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: 808564960, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: 1840594051, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: -1814215106, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: -1400434872, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: 1268077247, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: -237775477, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: -427960312, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: -1990447711, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: -1652468994, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: -718067822, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: -1298133882, guid: 919173ad2d36f424db856165a075dae9, type: 3}
   - {fileID: -655936724, guid: b66dd83ef4a94c342a98b19acdf0b10a, type: 3}
   wingEquipmentsLevel: 
   wingEquipmentObjects:

@@ -17,6 +17,7 @@ public class GameOnClickManager : MonoBehaviour
 
     public void OnClickMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("LobbyScene");
     }
 }

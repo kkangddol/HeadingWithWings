@@ -1173,7 +1173,7 @@
       },
       {
          "equipID":30601,
-         "equipName":"턱걸이",
+         "equipName":"운동화",
          "level":1,
          "damage":"<color=green>+5%</color>",
          "delay":"<color=green>-5%</color>, ",
