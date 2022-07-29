@@ -24,6 +24,7 @@ public class PickUIController : MonoBehaviour
         slotInfos.Add(firstSlotInfos);
         slotInfos.Add(secondSlotInfos);
         slotInfos.Add(thirdSlotInfos);
+        GetComponent<AudioSource>().Play();
     }
 
     public void InfoUIOpen()

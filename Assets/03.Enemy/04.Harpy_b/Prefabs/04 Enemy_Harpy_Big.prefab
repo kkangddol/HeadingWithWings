@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 6102667122217650956}
   - component: {fileID: 1416647059962656836}
   - component: {fileID: 6102667122217650958}
-  - component: {fileID: 7784729015387903094}
+  - component: {fileID: -7574558083319685184}
   - component: {fileID: -8818344069424935686}
   - component: {fileID: -7796767597501673261}
   m_Layer: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
     type: 3}
   audioClips:
   - {fileID: 8300000, guid: 4bf4ef1d33d06894a9bec8a2fa16e35d, type: 3}
---- !u!114 &7784729015387903094
+--- !u!114 &-7574558083319685184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,6 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a450ae07ebdd644aecaf8b36ba4fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iceBreak: {fileID: 8300000, guid: f423568911015f3458d572e57de06a7f, type: 3}
+  ice: {fileID: 8300000, guid: ab236646a59491549aecb83a4e4a8f55, type: 3}
 --- !u!114 &-8818344069424935686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,14 +304,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

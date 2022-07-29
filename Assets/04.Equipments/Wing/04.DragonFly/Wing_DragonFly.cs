@@ -129,6 +129,12 @@ public class Wing_DragonFly : Equipment, ActiveWing
         StartCoroutine(CoolDown());
     }
 
+    private void OnDestroy() {
+        playerMoveController.ResumeMove();
+        col.enabled = false;
+        effect.SetActive(false);
+    }
+
     IEnumerator CoolDown()
     {
         isCoolDown = true;

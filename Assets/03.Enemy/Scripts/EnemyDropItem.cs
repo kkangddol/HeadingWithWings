@@ -17,10 +17,11 @@ public class EnemyDropItem : MonoBehaviour
         float silverDropRate = GameManager.Instance.heightSilverDropRate;
         float goldDropRate = GameManager.Instance.heightGoldDropRate;
         float healItemDropRate = GameManager.Instance.healItemDropRate;
+        float nothingDropRate = GameManager.Instance.nothingDropRate;
 
         float randomX = Random.Range(-1f, 1f);
 
-        float[] probs = {silverDropRate, goldDropRate, healItemDropRate};
+        float[] probs = {silverDropRate, goldDropRate, healItemDropRate, nothingDropRate};
 
         switch(Choose(probs))
         {
@@ -39,6 +40,8 @@ public class EnemyDropItem : MonoBehaviour
                 GameObject item = Instantiate(healItemPrefab, transform.position + (Vector3.right * randomX), Quaternion.identity, itemParent);
                 break;
             }
+            case 3:
+                break;
         }
     }
 

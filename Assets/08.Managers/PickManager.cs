@@ -77,10 +77,10 @@ public class PickManager : MonoBehaviour
 
     public void StartPickSequence()
     {
+        pickUI.gameObject.SetActive(true);
         pickUI.Init();
         GameManager.Instance.PlayerHeight = 0;
         Time.timeScale = 0;
-        pickUI.gameObject.SetActive(true);
         SetSlot();
         if(GameManager.playerInfo.HealthPoint <= GameManager.playerInfo.MaxHealthPoint * 0.2f)
         {
@@ -211,7 +211,7 @@ public class PickManager : MonoBehaviour
                     int equipID = WINGID + ((randomEquip + 1) * 100) + EquipmentManager.Instance.wingEquipmentsLevel[randomEquip] + 1;
                     var equipData = GameManager.Data.EquipDescriptionDict[equipID];
 
-                    pickUI.slotImages[i].sprite = EquipmentManager.Instance.abilityEquipmentSprites[randomEquip];
+                    pickUI.slotImages[i].sprite = EquipmentManager.Instance.wingEquipmentSprites[randomEquip];
                     pickUI.slotLevel[i].text = "Lv." + equipData.level.ToString();
                     pickUI.slotName[i].text = equipData.equipName;
 
