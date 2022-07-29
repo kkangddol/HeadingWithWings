@@ -111,7 +111,9 @@ public class GameManager : MonoBehaviour
     {
         Application.targetFrameRate = 60;
 
-        //GameStartInit();
+        //임시
+        GameStartInit();
+        //임시끝
 
         if(Instance != this)
         {
