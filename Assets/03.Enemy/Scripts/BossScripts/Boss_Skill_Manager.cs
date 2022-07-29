@@ -21,6 +21,7 @@ public class Boss_Skill_Manager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] audioClips;
     
+    public static bool isSkillEnd = true;
 
     private void Start() {
         enemyInfo = GetComponent<EnemyInfo>();
@@ -37,9 +38,12 @@ public class Boss_Skill_Manager : MonoBehaviour
             SkillSequence();
         }
 
-        skillCoolTime -= Time.deltaTime;
+        if(isSkillEnd)
+        {
+            skillCoolTime -= Time.deltaTime;
 
-        isCoolTime = skillCoolTime <= 0 ? false : true;
+            isCoolTime = skillCoolTime <= 0 ? false : true;
+        }
     }
 
     public void DataInit()
@@ -55,6 +59,7 @@ public class Boss_Skill_Manager : MonoBehaviour
     public void SkillSequence()
     {
         GenerateRandomCoolTime();
+        isSkillEnd = false;
 
         stopHandler.StopMove();
         animator.SetBool("isReady", true);
@@ -83,6 +88,7 @@ public class Boss_Skill_Manager : MonoBehaviour
 
     void GenerateRandomCoolTime()
     {
+        isCoolTime = true;
         skillCoolTime = Random.Range(3f , 8f);
     }
 }

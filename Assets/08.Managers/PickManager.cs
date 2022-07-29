@@ -38,6 +38,7 @@ public class PickManager : MonoBehaviour
     }
 
     public PickUIController pickUI;
+    public GameObject levelUpEffect;
 
     public float attackDropRate;
     public float abilityDropRate;
@@ -91,6 +92,7 @@ public class PickManager : MonoBehaviour
     public void EndPickSequence()
     {
         pickUI.PickUIExit();
+        levelUpEffect.SetActive(false);
         Time.timeScale = 1;
     }
 

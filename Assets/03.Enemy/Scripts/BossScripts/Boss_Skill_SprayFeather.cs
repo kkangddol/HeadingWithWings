@@ -8,9 +8,12 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
     //깃털을 흩뿌리는것은 ShotgunAttack.cs 스크립트와 MilitaryGirlWing.cs 의 공격 코드를 참고하시면 좋을 것 같습니다!
     public int featherCount = 50;
     public Transform featherPrefab = null;
+    public Transform bossSprite = null;
     public float bulletSpeed = 7f;
 
+    private EnemyInfo enemyInfo = null;
     private float angle = 0f;
+    private bool isAnim = false;
 
     private void Start()
     {
@@ -20,17 +23,42 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
     private void Initialize()
     {
         angle = 180f / featherCount;
+        enemyInfo = GetComponent<EnemyInfo>();
     }
 
     public void ActivateSkill()
     {
-        Boss_Skill_Manager.animator.SetTrigger("reset");
-
         SprayFeather();
+    }
+
+    private void Update()
+    {
+        if(isAnim)
+        {
+            RotateAtPlayer2D();
+        }
+    }
+    private void RotateAtPlayer2D()
+    {
+        float relativeX = transform.position.x - enemyInfo.playerTransform.position.x;
+
+        if (relativeX > 0)
+            bossSprite.localRotation = Quaternion.AngleAxis(-45f, Vector3.forward);
+        else if (relativeX < 0)
+            bossSprite.localRotation = Quaternion.AngleAxis(45f, Vector3.forward);
+    }
+
+    private void EndSequence()
+    {
+        isAnim = false;
+        bossSprite.localRotation = Quaternion.identity;
+        Boss_Skill_Manager.isSkillEnd = true;
+        Boss_Skill_Manager.animator.SetTrigger("reset");
     }
 
     public void SprayFeather()
     {
+        isAnim = true;
         int random = Random.Range(0, 3);
         switch(random)
         {
@@ -55,13 +83,15 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
 
     private void SpreadAttack()
     {
-        float toPlayerAngle = Utilities.GetAngle(this.transform, GameManager.playerTransform);
+        float toPlayerAngle = Utilities.GetAngle(this.transform, enemyInfo.playerTransform);
         toPlayerAngle -= 90f;
 
         for (float i = 0f; i <= 180f; i += angle)
         {
             Fire(toPlayerAngle + i);
         }
+
+        EndSequence();
     }
 
     IEnumerator PingPongAttack()
@@ -71,7 +101,7 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
         int flip = 1;
         for (float i = 0f; i >= 0; i += angle * flip)
         {
-            float toPlayerAngle = Utilities.GetAngle(this.transform, GameManager.playerTransform);
+            float toPlayerAngle = Utilities.GetAngle(this.transform, enemyInfo.playerTransform);
             toPlayerAngle -= 90f;
 
             Fire(toPlayerAngle + i);
@@ -82,6 +112,8 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
             }  
             yield return new WaitForSeconds(0.1f);
         }
+
+        EndSequence();
     }
 
     IEnumerator ConcentrateAttack()
@@ -90,9 +122,11 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
 
         while(firedFeather < featherCount)
         {
-            Fire(Utilities.GetAngle(this.transform, GameManager.playerTransform));
+            Fire(Utilities.GetAngle(this.transform, enemyInfo.playerTransform));
             firedFeather++;
             yield return new WaitForSeconds(0.15f);
         }
+
+        EndSequence();
     }
 }

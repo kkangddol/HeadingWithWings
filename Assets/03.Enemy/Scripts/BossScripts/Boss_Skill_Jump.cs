@@ -31,11 +31,22 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 
     Collider2D col;
 
+    public GameObject damageZone = null;
     public AudioClip[] audioClips;
 
     public void ActivateSkill()
     {
         jump = true;
+    }
+
+    IEnumerator ShowDamageZone(Vector3 damagePos)
+    {
+        damageZone.transform.position = damagePos;
+        damageZone.transform.parent = null;
+        damageZone.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        damageZone.transform.parent = this.transform;
+        damageZone.SetActive(false);
     }
 
     private void Start() {
@@ -62,6 +73,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
             stopHandler.StopMove();
             currentPos = rb.position;
             landingPos = playerRigid.position;
+            StartCoroutine(ShowDamageZone(landingPos));
             landingDis = Vector2.Distance(landingPos,currentPos);
             timeElapsed = 0f;
             onGround = false;
@@ -106,6 +118,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 
                 col.enabled = true;
 
+                Boss_Skill_Manager.isSkillEnd = true;
                 Boss_Skill_Manager.animator.SetTrigger("reset");
 
                 stopHandler.ResumeMove();

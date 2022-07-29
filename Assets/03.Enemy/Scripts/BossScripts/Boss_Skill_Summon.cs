@@ -26,7 +26,8 @@ public class Boss_Skill_Summon : MonoBehaviour, IBoss_Skill
         Instantiate(summon, transform.position + transform.right, Quaternion.identity);
         Instantiate(summon, transform.position - transform.right, Quaternion.identity);
         Destroy(newEffect, 1f);
-        
+
+        Boss_Skill_Manager.isSkillEnd = true;
         skillManager.audioSource.PlayOneShot(audioClips[0]);
         Boss_Skill_Manager.animator.SetTrigger("reset");
         Invoke("ResumeMove", 1f);

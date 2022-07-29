@@ -12,12 +12,15 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
     public float dotDamageTime = 0.1f;
     public Transform damageZone = null;
 
+    private EnemyInfo enemyInfo = null;
     private Rigidbody2D rb2D = null;
     private bool isDash = false;
     private WaitForSeconds dotDamageSec = null;
     private const string PLAYER = "PLAYER";
     private const string ENEMY = "ENEMY";
     public AudioClip[] audioClips;
+
+    private Vector3 dashPos = Vector3.zero;
 
     private void Start()
     {
@@ -29,38 +32,41 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
         rb2D = GetComponent<Rigidbody2D>();
         dotDamageSec = new WaitForSeconds(dotDamageTime);
         skillManager = GetComponent<Boss_Skill_Manager>();
+        enemyInfo = GetComponent<EnemyInfo>();
     }
 
     public void ActivateSkill()
     {
-        Boss_Skill_Manager.animator.SetTrigger("reset");
-
         StartCoroutine(Dash());
     }
 
     IEnumerator Dash()
     {
         StartCoroutine(ShowDamageZone());
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         skillManager.audioSource.PlayOneShot(audioClips[0]);
         isDash = true;
         StartCoroutine(DashDotDamage());
-        rb2D.AddForce((GameManager.playerTransform.position - this.transform.position) * 1.25f, ForceMode2D.Impulse);
+        rb2D.AddForce((dashPos - this.transform.position) * 2f, ForceMode2D.Impulse);
         yield return new WaitForSeconds(1f);
 
         rb2D.velocity = Vector2.zero;
         isDash = false;
+
+        Boss_Skill_Manager.isSkillEnd = true;
+        Boss_Skill_Manager.animator.SetTrigger("reset");
     }
 
     IEnumerator ShowDamageZone()
     {
-        damageZone.rotation = Utilities.LookAt2(this.transform, GameManager.playerTransform);
+        dashPos = enemyInfo.playerTransform.position;
+        damageZone.rotation = Utilities.LookAt2(this.transform, dashPos);
         Vector2 Scaling = Vector2.one;
-        Scaling.x = Vector2.Distance(GameManager.playerTransform.position, this.transform.position) * 1.25f;
+        Scaling.x = Vector2.Distance(dashPos, this.transform.position) * 1.25f * 0.5f;
         damageZone.localScale = Scaling;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         damageZone.localScale = Vector3.zero;
     }
@@ -75,7 +81,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
 
             foreach(Collider2D hitColl in hitColls)
             {
-                if(hitColl.CompareTag(PLAYER) || hitColl.CompareTag(ENEMY))
+                if((hitColl.CompareTag(PLAYER) || hitColl.CompareTag(ENEMY)) && hitColl.gameObject != this.gameObject)
                 {
                     skillManager.audioSource.PlayOneShot(audioClips[1]);
                     ITakeBossAttack temp = hitColl.GetComponent<ITakeBossAttack>();

@@ -45,6 +45,7 @@ public class Boss_Skill_SprayWater : MonoBehaviour, IBoss_Skill
             yield return waitForInterval;
         }
         yield return new WaitForSeconds(1);
+        Boss_Skill_Manager.isSkillEnd = true;
         Boss_Skill_Manager.animator.SetTrigger("reset");
         stopHandler.ResumeMove();
         skillManager.audioSource.Stop();
