@@ -14,7 +14,9 @@ public class HealItem : MonoBehaviour, Item
     {
         playerInfo.HealthPoint += playerInfo.healAmount;
 
-        TextPopup newTextPopup = Instantiate<TextPopup>(textPopup, transform.position + Vector3.up, transform.rotation);
+        //TextPopup newTextPopup = Instantiate<TextPopup>(textPopup, transform.position + Vector3.up, transform.rotation);
+        GameObject newTextPopup = ObjectPool.Instance.GetTextObject();
+        newTextPopup.transform.position = transform.position + (Vector3.up / 2);
         newTextPopup.GetComponent<TextPopup>().SetHealAmount((int)playerInfo.healAmount);
 
         Destroy(gameObject);

@@ -29,14 +29,18 @@ public class TextPopup : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-        transform.LookAt(transform.position + mainCamera.transform.forward);
         textMeshPro = GetComponentInChildren<TextMeshPro>();
         textMeshPro.text = textValue.ToString();
         textMeshPro.color = color;
-        Destroy(gameObject, 1.15f);
     }
-    void LateUpdate()
+
+    public void Init()
     {
-        transform.LookAt(transform.position + mainCamera.transform.forward);
+        Invoke("ReturnObject", 1.15f);
+    }
+
+    void ReturnObject()
+    {
+        ObjectPool.Instance.ReturnTextObject(gameObject);
     }
 }
