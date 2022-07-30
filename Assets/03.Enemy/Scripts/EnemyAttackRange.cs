@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackRange : MonoBehaviour
+public class EnemyAttackRange : EnemyRangeAttackBase
 {
     private Transform playerTransform;
     private EnemyInfo enemyInfo;

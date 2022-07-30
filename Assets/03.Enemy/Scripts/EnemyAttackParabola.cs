@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackParabola : MonoBehaviour
+public class EnemyAttackParabola : EnemyRangeAttackBase
 {
     private Transform playerTransform;
     private EnemyInfo enemyInfo;
