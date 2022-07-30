@@ -54,10 +54,10 @@ public class ObjectPool : MonoBehaviour
 
     public void ReturnTextObject(GameObject obj)
     {
-        obj.SetActive(false);
         obj.transform.SetParent(textParent);
         Instance.textQueue.Enqueue(obj);
         obj.transform.position.Set(0, 0, 0);
+        obj.SetActive(false);
     }
 
 }

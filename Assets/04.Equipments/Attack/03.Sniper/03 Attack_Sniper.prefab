@@ -205,7 +205,7 @@ MonoBehaviour:
   attackDelayMultiplier: 1
   attackRange: 20
   knockbackSize: 0
-  bulletSpeed: 25
+  bulletSpeed: 30
   headShotChance: 0
   headShotDamageMultiplier: 0
   audioClips:

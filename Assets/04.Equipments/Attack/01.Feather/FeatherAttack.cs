@@ -16,6 +16,9 @@ public class FeatherAttack : Equipment
     public float attackRange;
     public float knockbackSize;
     public float bulletSpeed;
+    public int fireCount = 1;
+    public float fireInterval = 0.05f;
+    WaitForSeconds waitForInterval;
 
     private Transform targetTransform;
     private bool isCoolDown = false;
@@ -31,6 +34,7 @@ public class FeatherAttack : Equipment
     {
         playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
+        waitForInterval = new WaitForSeconds(fireInterval);
     }
 
     void Fire()
@@ -57,7 +61,12 @@ public class FeatherAttack : Equipment
 
             if(!isCoolDown)
             {
-                Fire();
+                for(int i = 0; i < fireCount; i++)
+                {
+                    Fire();
+                    yield return waitForInterval;
+                }
+
             }
         }
     }
@@ -74,6 +83,7 @@ public class FeatherAttack : Equipment
         damageMultiplier = GameManager.Data.AttackEquipDict[equipID + this.level].damageMultiplier;
         attackDelayMultiplier = GameManager.Data.AttackEquipDict[equipID + this.level].delayMultiplier;
         knockbackSize = GameManager.Data.AttackEquipDict[equipID + this.level].knockBackSize;
+        fireCount = GameManager.Data.AttackEquipDict[equipID + this.level].pelletCount;
         // attackRange = GameManager.Data.AttackEquipDict[equipID + this.level].attackRange;
         // bulletSpeed = GameManager.Data.AttackEquipDict[equipID + this.level].bulletSpeed;
     }

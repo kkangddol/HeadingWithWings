@@ -67,7 +67,7 @@ public class MilitaryGirlWing : Equipment, ActiveWing
     IEnumerator ConcentrateFire()
     {
         isCoolDown = true;
-        playerMoveController.StopMove();
+        //playerMoveController.StopMove();
 
         for(int i = 0; i < fireCount; i++)
         {
@@ -84,7 +84,7 @@ public class MilitaryGirlWing : Equipment, ActiveWing
             yield return waitInterval;
         }
 
-        playerMoveController.ResumeMove();
+        //playerMoveController.ResumeMove();
         StartCoroutine(CoolDown());
     }
 

@@ -97,14 +97,11 @@ public class SniperAttack : Equipment
         while (true)
         {
             yield return null;
-            targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
-
-            if (targetTransform == transform) continue;
-
-            if (Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
-
             if (!isCoolDown)
             {
+                targetTransform = detectEnemy.FindStrongestEnemy(ENEMY);
+                if (targetTransform == transform) continue;
+                if (Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
                 StartCoroutine(Sniping());
             }
         }

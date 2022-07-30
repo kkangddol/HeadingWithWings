@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
     public float PlayingTime{
         get {return playingTime;}
     }
+    [SerializeField]
     private int playingTimeMinute;
     public int PlayingTimeMinute
     {

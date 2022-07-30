@@ -8,6 +8,10 @@ public class Bullet_Sniper : Bullet
     [HideInInspector]
     public float headShotChance = 0;
     public float headShotDamageMultiplier = 0;
+
+    private void Start() {
+        Destroy(gameObject, 2);
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag(ENEMY))
@@ -19,7 +23,6 @@ public class Bullet_Sniper : Bullet
             }
             HitEffect(other.transform.position);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
-            Destroy(gameObject);
         }
     }
 }

@@ -51,6 +51,13 @@ public class PickUIController : MonoBehaviour
     {
         slotBan[index].SetActive(true);
     }
+    public void ClearSlotBan()
+    {
+        foreach(var ban in slotBan)
+        {
+            ban.SetActive(false);
+        }
+    }
     
     public void PickUIExit()
     {
