@@ -139,9 +139,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.9.0
-  preloadedAssets:
-  - {fileID: -2282953644295775513, guid: 6ce86aeb5d6e03c408e22467ea2fdbc1, type: 2}
-  - {fileID: 11400000, guid: 55d7e795050f9204e9f96e86e4196210, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -277,7 +275,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: e9bac24ebaf50e7468527f729141d1d2, type: 3}
+      m_Icon: {fileID: 2800000, guid: 371e606454f6c5d4ebf90303ce151036, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
