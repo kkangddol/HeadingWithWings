@@ -41,7 +41,7 @@ public class StarryNightWing : Equipment, ActiveWing
 
     private void Fire()
     {
-        GameObject go = Instantiate(skillObject, this.transform.position, Quaternion.identity);
+        GameObject go = Instantiate(skillObject, this.transform.right * 1.1f, Quaternion.identity);
         //go.transform.rotation = Quaternion.AngleAxis(playerInfo.headAngle, Vector3.forward);
         go.transform.eulerAngles = new Vector3(0, 0, playerInfo.headAngle);
         go.GetComponent<Rigidbody2D>().AddForce(go.transform.right, ForceMode2D.Impulse);
