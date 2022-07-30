@@ -37,8 +37,8 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
         float randomX = Random.Range(-0.5f,0.5f);
         //GameObject dText = Instantiate(damageText, transform.position + (Vector3.up / 2) + (Vector3.right * randomX), Quaternion.identity);
         GameObject dText = ObjectPool.Instance.GetTextObject();
-        dText.transform.position = transform.position + (Vector3.up / 2) + (Vector3.right * randomX);
         dText.GetComponent<TextPopup>().SetDamage((int)damage);
+        dText.transform.position = transform.position + (Vector3.up / 2) + (Vector3.right * randomX);
 
         Vector2 reactVec = transform.position - hitTr.position;
 

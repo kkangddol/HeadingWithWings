@@ -114,6 +114,7 @@ public class EquipmentManager : MonoBehaviour
             {
                 wingEquipmentsLevel[GameManager.playerInfo.wingNumber] = 0;
             }
+            GameManager.playerInfo.gameObject.GetComponent<PlayerMoveController>().ResumeMove();
 
             //모델링 오면 추가로 달아줘야 함
 

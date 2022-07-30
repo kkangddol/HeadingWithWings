@@ -33,11 +33,14 @@ public class StageManager : MonoBehaviour
     public GameObject cupid;
     public GameObject B_Whale;
     public GameObject B_Pegasus;
+    public GameObject TEMPENDING;
 
     public Transform enemyParentObject;
     bool isStopSpwaning = false;
 
     int _wave;
+
+    public List<EnemyInfo> enemies = new List<EnemyInfo>();
 
 
     void Start()
@@ -65,7 +68,7 @@ public class StageManager : MonoBehaviour
             }
             case 3:
             {
-                StartCoroutine(SpawnEnemy((int)referenceID.s_Harpy, s_Harpy, 1));
+                StartCoroutine(SpawnEnemy((int)referenceID.s_Harpy, s_Harpy, 1.5f));
                 SpawnSwarm(20, (int)swarmID.crow_Swarm, crow_Swarm);
                 break;
             }
@@ -76,7 +79,7 @@ public class StageManager : MonoBehaviour
             }
             case 6:
             {
-                StartCoroutine(SpawnEnemy((int)referenceID.b_Harpy, b_Harpy, 1.5f));
+                StartCoroutine(SpawnEnemy((int)referenceID.b_Harpy, b_Harpy, 2.5f));
                 break;
             }
             case 8:
@@ -92,14 +95,24 @@ public class StageManager : MonoBehaviour
             case 11:
             {
                 SpawnSwarm(20, (int)swarmID.snitch_Swarm, snitch);
-                StartCoroutine(SpawnEnemy((int)referenceID.snitch, snitch, 1));
-                StartCoroutine(SpawnEnemy((int)referenceID.cupid, cupid, 1.5f));
+                StartCoroutine(SpawnEnemy((int)referenceID.snitch, snitch, 2.5f));
+                StartCoroutine(SpawnEnemy((int)referenceID.cupid, cupid, 3f));
                 break;
             }
             case 15:
             {
                 SpawnBoss((int)referenceID.B_Whale, _wave, B_Whale);
                 SpawnBoss((int)referenceID.B_Pegasus, _wave, B_Pegasus);
+                break;
+            }
+            case 20:
+            {
+                foreach(EnemyInfo enemy in enemies)
+                {
+                    enemy.ChainDie();
+                }
+                Instantiate(TEMPENDING, GetRandomPosition(), Quaternion.identity);
+                StopAllCoroutines();
                 break;
             }
             default:
@@ -112,9 +125,10 @@ public class StageManager : MonoBehaviour
         WaitForSeconds waitCoolTime = new WaitForSeconds(coolTime);
         while(!isStopSpwaning)
         {
-            var spawnedEnemy = Instantiate(prefab, GetRandomPosition(), Quaternion.identity, enemyParentObject);
-            spawnedEnemy.GetComponent<EnemyInfo>().SetID(referenceID + _wave);
-            spawnedEnemy.GetComponent<EnemyInfo>().DataInit();
+            EnemyInfo spawnedEnemy = Instantiate(prefab, GetRandomPosition(), Quaternion.identity, enemyParentObject).GetComponent<EnemyInfo>();
+            enemies.Add(spawnedEnemy);
+            spawnedEnemy.SetID(referenceID + _wave);
+            spawnedEnemy.DataInit();
             yield return waitCoolTime;
         }
     }
@@ -124,15 +138,18 @@ public class StageManager : MonoBehaviour
         Vector2 swarmPosition = GetRandomPosition();
         for(int i = 0; i < swarmSize; i++)
         {
-            var spawnedEnemy = Instantiate(swarmPrefab, swarmPosition + new Vector2(Random.Range(-1f,1f), Random.Range(-1f,1f)), Quaternion.identity, enemyParentObject);
-            spawnedEnemy.GetComponent<EnemyInfo>().SetID(swarmID);
-            spawnedEnemy.GetComponent<EnemyInfo>().DataInit();
+            EnemyInfo spawnedEnemy = Instantiate(swarmPrefab, swarmPosition + new Vector2(Random.Range(-1f,1f), Random.Range(-1f,1f)),
+                                                    Quaternion.identity, enemyParentObject).GetComponent<EnemyInfo>();
+            enemies.Add(spawnedEnemy);                                        
+            spawnedEnemy.SetID(swarmID);
+            spawnedEnemy.DataInit();
         }
     }
 
     void SpawnBoss(int referenceID, int wave, GameObject bossPrefab)
     {
         var spawnedEnemy = Instantiate(bossPrefab, GetRandomPosition(), Quaternion.identity, enemyParentObject);
+        enemies.Add(spawnedEnemy.GetComponent<EnemyInfo>());
         spawnedEnemy.GetComponent<EnemyInfo>().SetID(referenceID + wave);
         spawnedEnemy.GetComponent<EnemyInfo>().DataInit();
         spawnedEnemy.GetComponent<Boss_Skill_Manager>().DataInit();

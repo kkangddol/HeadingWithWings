@@ -132,6 +132,7 @@ public class PickManager : MonoBehaviour
             Button button = pickUI.slotButtons[i];
 
             button.onClick.RemoveAllListeners();
+            pickUI.ClearSlotBan();
 
             float[] probs = {attackDropRate, abilityDropRate, wingDropRate};
             int chosenEquip = Choose(probs);

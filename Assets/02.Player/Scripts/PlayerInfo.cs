@@ -12,8 +12,10 @@ public class PlayerInfo : MonoBehaviour
     {
         set
         {
+            float temp = (value - maxHealthPoint);
             maxHealthPoint = value;
             OnMaxHealthPointChange(maxHealthPoint);
+            HealthPoint += temp;
         }
         get
         {

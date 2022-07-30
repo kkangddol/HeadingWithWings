@@ -10,12 +10,12 @@ public class TextPopup : MonoBehaviour
     private int textValue;
     private Color color;
 
-    public void  SetDamage(int damage)
+    public void SetDamage(int damage)
     {
         textValue = damage;
         color = Color.white;
     }
-    public void  SetHealAmount(int healAmount)
+    public void SetHealAmount(int healAmount)
     {
         textValue = healAmount;
         color = Color.green;
@@ -37,6 +37,7 @@ public class TextPopup : MonoBehaviour
     public void Init()
     {
         Invoke("ReturnObject", 1.15f);
+        textValue = 0;
     }
 
     void ReturnObject()

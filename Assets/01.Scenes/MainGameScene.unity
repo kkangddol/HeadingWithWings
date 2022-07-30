@@ -11966,7 +11966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashButton: {fileID: 147630032312132491}
-  maxDashCount: 3
+  maxDashCount: 2
   dashCoolTime: 2
   dashSpeed: 12.5
 --- !u!114 &1107754388255959799
@@ -12021,7 +12021,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12135,6 +12135,7 @@ MonoBehaviour:
   - {fileID: -1421167403, guid: 5ef50d8bf37a9fe43a3385d81974e36c, type: 3}
   movement: {fileID: 143763513935336253}
   trail: {fileID: 1107754389067658582}
+  ghost: {fileID: 1107754388574598941}
 --- !u!224 &1107754388291010720
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17180,6 +17181,7 @@ GameObject:
   - component: {fileID: 1107754388574598938}
   - component: {fileID: 1107754388574598940}
   - component: {fileID: 1107754388574598939}
+  - component: {fileID: 1107754388574598941}
   m_Layer: 0
   m_Name: bigwing-Sheet_0
   m_TagString: Untagged
@@ -17274,6 +17276,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1107754388574598941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107754388574598937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa286d6c1850f044a65c7a876915f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostDelay: 0.05
+  ghost: {fileID: 3262140250937314976, guid: 735c054443b9a734194c15e25f333282, type: 3}
+  makeGhost: 0
 --- !u!1 &1107754388874019844
 GameObject:
   m_ObjectHideFlags: 0

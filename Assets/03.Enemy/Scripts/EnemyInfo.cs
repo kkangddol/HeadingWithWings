@@ -37,6 +37,8 @@ public class EnemyInfo : MonoBehaviour
         }
     }
 
+    bool isChainDie = false;
+
 
     void Start()
     {
@@ -98,15 +100,23 @@ public class EnemyInfo : MonoBehaviour
         }
 
         temp.color = Color.clear;
-        GetComponent<EnemyDropItem>().DropItem();
+        if(!isChainDie)
+        {
+            GetComponent<EnemyDropItem>().DropItem();
+        }
+        else
+        {
+            isChainDie = false;
+        }
+        GameManager.Instance.stageManager.enemies.Remove(this);
         Destroy(this.gameObject, 0.1f);
     }
 
     public void ChainDie()
     {
         meleeDamage = 0;
-        GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
-        Destroy(gameObject, 0.1f);
+        isChainDie = true;
+        StartCoroutine(DieAnimation());
     }
 
     private void LookAtPlayer2D()

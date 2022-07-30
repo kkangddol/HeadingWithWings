@@ -68,3 +68,5 @@ MonoBehaviour:
   attackRange: 8
   knockbackSize: 0.1
   bulletSpeed: 15
+  fireCount: 1
+  fireInterval: 0.1
