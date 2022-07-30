@@ -77,12 +77,19 @@ public class EnemyInfo : MonoBehaviour
     {
         this.tag = "Untagged";
         GetComponent<IEnemyStopHandler>().StopMove();
+
+        var stopAttack = GetComponent<EnemyRangeAttackBase>();
+        if(stopAttack != null)  stopAttack.StopFire();
+        var stopSkill = GetComponent<Boss_Skill_Manager>();
+        if(stopSkill != null)  stopSkill.enabled = false;
+
         GetComponent<Collider2D>().enabled = false;
         GetComponentInChildren<Animator>().enabled = false;
         
         SpriteRenderer temp = GetComponentInChildren<SpriteRenderer>();
         temp.sprite = dieSprite;
-        for (float i = 1; i > 0f; i -= 0.1f)
+        // 이전은 10번 반복이였음
+        for (int i = 0; i < 3; i++)
         {
             temp.color = Color.white;
             yield return new WaitForSeconds(0.1f);

@@ -12,7 +12,7 @@ public class DevilWing : Equipment, ActiveWing
     public float knockbackSize;
     private bool isCoolDown = false;
     private float coolTime;
-    private GameObject skillButton;
+    public GameObject skillButton;
     AudioSource audioSource;
     public AudioClip[] audioClips;
     int audioIndex = 0;

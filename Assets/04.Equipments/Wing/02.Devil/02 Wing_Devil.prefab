@@ -53,6 +53,7 @@ MonoBehaviour:
   damageMultiplier: 0.5
   skillDelayMultiplier: 1
   knockbackSize: 1
+  skillButton: {fileID: 0}
   audioClips:
   - {fileID: 8300000, guid: f9a6baba0a5a311419f29a3fb4cbcad8, type: 3}
   - {fileID: 8300000, guid: d63e4d0f76474ba438d0f27d458d6d2f, type: 3}
@@ -177,7 +178,7 @@ Transform:
   m_GameObject: {fileID: 2548575239501367075}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2548575239694682323}
