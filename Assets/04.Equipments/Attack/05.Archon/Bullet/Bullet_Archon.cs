@@ -17,7 +17,7 @@ public class Bullet_Archon : Bullet
             EnemyTakeDamage temp = hitCollider.GetComponent<EnemyTakeDamage>();
             if (temp != null)
             {
-                HitEffect(temp.transform.position);
+                ReturnHitEffect(temp.transform.position).transform.parent = temp.transform;
                 temp.TakeDamage(temp.transform, damage, knockbackSize);
             }
         }
