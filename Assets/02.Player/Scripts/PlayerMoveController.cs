@@ -21,24 +21,27 @@ public class PlayerMoveController : MonoBehaviour
     public FloatingJoystick movement;
 	Rigidbody2D rb;
 	public TrailRenderer trail;
+    public Ghost ghost = null;
 
 
-	void Start()
+    void Start()
 	{
         //animator = GetComponentInChildren<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
 		rb = GetComponent<Rigidbody2D>();
-	}
+    }
 
 	private void Update() {
 		if(rb.velocity.magnitude >= 5)
 		{
 			trail.emitting = true;
-		}
+            ghost.makeGhost = true;
+        }
 		else
 		{
 			trail.emitting = false;
-		}
+            ghost.makeGhost = false;
+        }
 	}
 
 	void FixedUpdate()
