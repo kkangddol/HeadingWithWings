@@ -5,17 +5,32 @@ using UnityEngine;
 public class EnemyParabolaProjectile : EnemyProjectile
 {
     public AnimationCurve curve = null;
+    [HideInInspector]
     public Vector3 startPos = Vector3.zero;
+    [HideInInspector]
     public Vector3 targetPos = Vector3.zero;
     public GameObject particle = null;
 
     public float duration = 1.1f;
     public float heightY = 3.0f;
 
+    private Coroutine co = null;
+
     private void Start()
     {
-        Destroy(this.gameObject, 10f);
-        StartCoroutine(Curve(startPos, targetPos));
+        pool = CupidProjectilePool.Instance;
+    }
+
+    private void OnEnable() {
+        Invoke("ReturnProjectile", 10.0f);
+        co = StartCoroutine(Curve(startPos, targetPos));
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
+        StopCoroutine(co);
+        particle.SetActive(false);
     }
 
     IEnumerator Curve(Vector3 start, Vector2 target)

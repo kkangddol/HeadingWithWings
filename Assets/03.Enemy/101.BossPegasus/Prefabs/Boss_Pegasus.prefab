@@ -323,7 +323,7 @@ MonoBehaviour:
   moveSpeed: 0
   meleeDamage: 0
   projectileDamage: 0
-  projectileSpeed: 0
+  projectileSpeed: 7
   projectileFireDelay: 0
   attackRange: 0
 --- !u!114 &6205913365365037538
@@ -447,10 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   featherCount: 50
-  featherPrefab: {fileID: 3476705438566311873, guid: ac684a874d75a1d49a190dd77396b946,
-    type: 3}
   bossSprite: {fileID: 6205913364338777314}
-  bulletSpeed: 7
 --- !u!82 &-8376405544918451593
 AudioSource:
   m_ObjectHideFlags: 0

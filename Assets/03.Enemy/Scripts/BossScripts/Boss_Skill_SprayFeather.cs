@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
+public class Boss_Skill_SprayFeather : EnemyRangeAttackBase, IBoss_Skill
 {
     //플레이어 방향 또는 전 방향으로 페가수스의 깃털을 흩뿌립니다. (탄막패턴)
     //깃털을 흩뿌리는것은 ShotgunAttack.cs 스크립트와 MilitaryGirlWing.cs 의 공격 코드를 참고하시면 좋을 것 같습니다!
     public int featherCount = 50;
-    public Transform featherPrefab = null;
     public Transform bossSprite = null;
-    public float bulletSpeed = 7f;
-
     private EnemyInfo enemyInfo = null;
+    private Boss_Skill_Manager skillManager = null;
     private float angle = 0f;
     private bool isAnim = false;
 
@@ -24,6 +22,7 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
     {
         angle = 180f / featherCount;
         enemyInfo = GetComponent<EnemyInfo>();
+        skillManager = GetComponent<Boss_Skill_Manager>();
     }
 
     public void ActivateSkill()
@@ -76,9 +75,11 @@ public class Boss_Skill_SprayFeather : MonoBehaviour, IBoss_Skill
 
     private void Fire(float angle)
     {
-        Transform temp = Instantiate(featherPrefab, this.transform.position, Quaternion.identity);
-        temp.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        temp.GetComponent<Rigidbody2D>().AddForce(temp.right * bulletSpeed, ForceMode2D.Impulse);
+        EnemyProjectile projectile = GetProjectile(BasicProjectilePool.Instance);
+        projectile.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
+        projectile.damage = skillManager.skillProjectileDamage;
+        projectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.right * skillManager.skillProjectileSpeed, ForceMode2D.Impulse);
     }
 
     private void SpreadAttack()

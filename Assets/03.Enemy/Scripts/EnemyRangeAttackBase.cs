@@ -8,4 +8,9 @@ public class EnemyRangeAttackBase : MonoBehaviour
     {
         this.enabled = false;
     }
+
+    public EnemyProjectile GetProjectile(ObjectPoolBase pool)
+    {
+        return pool.GetObject().GetComponent<EnemyProjectile>();
+    }
 }
