@@ -9,6 +9,5 @@ public class MeteorEffectPool : ObjectPoolBase
     private void Awake()
     {
         Instance = this;
-        instance = Instance;
     }
 }

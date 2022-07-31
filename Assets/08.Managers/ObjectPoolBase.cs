@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObjectPoolBase : MonoBehaviour
 {
-    public ObjectPoolBase instance = null;
     public int initCount = 50;
 
     [SerializeField] private GameObject poolingObject;

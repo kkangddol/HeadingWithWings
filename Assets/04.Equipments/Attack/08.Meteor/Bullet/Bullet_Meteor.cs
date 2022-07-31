@@ -8,7 +8,6 @@ public class Bullet_Meteor : EffectBullet
 
     [HideInInspector]
     public bool isGTAEMeteor = false;
-    public SpriteRenderer sr = null;
     public GameObject GTAE = null;
     public float GTAERemainSec = 2.0f;
     public float DotDamageSec = 1.0f;
@@ -19,15 +18,22 @@ public class Bullet_Meteor : EffectBullet
     AudioSource audioSource;
     public AudioClip[] audioClips;
 
-    private void Start() {
+    private void Awake()
+    {
         audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(audioClips[0]);
+    }
+
+    private void Start() {
+        pool = MeteorBulletPool.Instance;
+    }
+
+    private void OnEnable()
+    {
+        if(audioClips.Length != 0)  audioSource.PlayOneShot(audioClips[0]);
     }
 
     private void IsGroundEvent()
     {
-        sr.enabled = false;
-
         if(isGTAEMeteor)
         {
             GTAE.SetActive(true);
@@ -39,9 +45,10 @@ public class Bullet_Meteor : EffectBullet
         }
     }
 
+
     private void GiveDamage(float damage)
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(this.transform.position, EXPLODE_RADIUS);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(this.transform.parent.position, EXPLODE_RADIUS);
 
         foreach (Collider2D hitCollider in hitColliders)
         {
@@ -53,12 +60,14 @@ public class Bullet_Meteor : EffectBullet
         }
     }
 
+
     private void Explosion()
     {
         audioSource.PlayOneShot(audioClips[1]);
         GiveDamage(this.damage);
-        Destroy(this.transform.parent.gameObject, DotDamageSec);
+        ReturnMeteor(this.transform.parent.gameObject, DotDamageSec);
     }
+
 
     IEnumerator GTAEExplosion()
     {
@@ -75,6 +84,16 @@ public class Bullet_Meteor : EffectBullet
             GiveDamage(dotDamage);
             yield return new WaitForSeconds(DotDamageSec);
         }
-        Destroy(this.transform.parent.gameObject);
+        ReturnMeteor(this.transform.parent.gameObject);
+    }
+
+
+    public void ReturnMeteor(GameObject obj)
+    {
+        pool.ReturnObject(obj);
+    }
+    public void ReturnMeteor(GameObject obj, float sec)
+    {
+        pool.ReturnObject(obj, sec);
     }
 }

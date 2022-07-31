@@ -9,6 +9,5 @@ public class SatelliteEffectPool : ObjectPoolBase
     private void Awake()
     {
         Instance = this;
-        instance = Instance;
     }
 }

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefinePoolsFunc : MonoBehaviour { }
+public class DefinePoolsMethod : MonoBehaviour { }
 
-// Define EffectPools Function
-
+#region EffectPoolMethods
+// Define EffectPool Methods
 public class EffectBullet : Bullet
 {
     public Color effectColor = Color.white;
@@ -59,3 +59,4 @@ public class ArchonEffectBullet : EffectBullet
         tr.localPosition = Vector3.zero;
     }
 }
+#endregion

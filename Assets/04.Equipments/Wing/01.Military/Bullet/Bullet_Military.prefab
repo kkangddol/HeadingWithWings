@@ -75,10 +75,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 32
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
-    type: 3}
-  m_Color: {r: 0.754717, g: 0.58279514, b: 0, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 21300000, guid: 3d0c82c9d0220a146a70b27762694e56, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -157,8 +156,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0064935056
-        value: 0.5447761
+        time: 0
+        value: 0.2001786
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -226,7 +225,7 @@ GameObject:
   - component: {fileID: 5963735462220231195}
   - component: {fileID: 5963735462220231194}
   - component: {fileID: -116146702158172138}
-  - component: {fileID: 8789740920646035208}
+  - component: {fileID: 8696385175486379860}
   m_Layer: 0
   m_Name: Bullet_Military
   m_TagString: Untagged
@@ -286,8 +285,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &8789740920646035208
-CircleCollider2D:
+--- !u!70 &8696385175486379860
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -299,6 +298,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0011412054, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.12454261
+  m_Offset: {x: -0.01, y: -0.0125}
+  m_Size: {x: 0.44, y: 0.2}
+  m_Direction: 1

@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Bullet_PenetrateFeather : EffectBullet
 {
-    const string ENEMY = "ENEMY";
-
-    private void Start() {
-        Destroy(gameObject, 5f);
-    }
+    [HideInInspector]
+    public bool isPenetrate = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,6 +13,7 @@ public class Bullet_PenetrateFeather : EffectBullet
         {
             HitEffect(BasicEffectPool.Instance, other.transform.position, effectColor);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
+            if(!isPenetrate)  ReturnBullet();
         }
     }
 }

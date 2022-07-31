@@ -9,6 +9,5 @@ public class ShotGunEffectPool : ObjectPoolBase
     private void Awake()
     {
         Instance = this;
-        instance = Instance;
     }
 }

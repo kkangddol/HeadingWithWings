@@ -7,7 +7,6 @@ public class ArchonAttack : Equipment
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
     const int equipID = 10500;
-    const string ENEMY = "ENEMY";
     public Bullet bullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
@@ -33,7 +32,7 @@ public class ArchonAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
         audioSource = GetComponent<AudioSource>();
     }

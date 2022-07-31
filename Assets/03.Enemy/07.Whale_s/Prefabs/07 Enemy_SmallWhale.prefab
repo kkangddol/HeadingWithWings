@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
-  dieSprite: {fileID: 21300000, guid: 79507f63fa68c194e835daca6fa4f28b, type: 3}
+  dieSprite: {fileID: 21300000, guid: 217bd38f68754d6408010c8965cbadc5, type: 3}
   monsterID: 0
   healthPoint: 20
   moveSpeed: 0

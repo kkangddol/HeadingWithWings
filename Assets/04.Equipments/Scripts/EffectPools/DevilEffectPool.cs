@@ -9,6 +9,5 @@ public class DevilEffectPool : ObjectPoolBase
     private void Awake()
     {
         Instance = this;
-        instance = Instance;
     }
 }

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Bullet_Military : EffectBullet
 {
-    const string ENEMY = "ENEMY";
     private void Start()
     {
-        Destroy(gameObject, 0.5f);
+        pool = MissileBulletPool.Instance;
+    }
+
+    private void OnEnable() 
+    {
+        Invoke("ReturnBullet", 0.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet_Icicle : EffectBullet
 {
-    const string ENEMY = "ENEMY";
     [HideInInspector]
     public float speedMultiplier = 0.0f;
     [HideInInspector]
@@ -12,7 +11,7 @@ public class Bullet_Icicle : EffectBullet
 
     private void Start()
     {
-        Destroy(gameObject, 5f);
+        pool = IcicleBulletPool.Instance;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -22,7 +21,7 @@ public class Bullet_Icicle : EffectBullet
             HitEffect(BasicEffectPool.Instance, other.transform.position, effectColor);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
             other.GetComponent<EnemyFreezingHandler>().SlowMove(speedMultiplier, slowDuration);
-            Destroy(gameObject);
+            ReturnBullet();
         }
     }
 }
