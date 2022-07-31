@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DevilWingSkill : Bullet
+public class DevilWingSkill : EffectBullet
 {
     const string ENEMY = "ENEMY";
     private PlayerInfo playerInfo = null;
@@ -15,7 +15,7 @@ public class DevilWingSkill : Bullet
     {
         if (other.CompareTag(ENEMY))
         {
-            HitEffect(other.transform.position);
+            HitEffect(BasicEffectPool.Instance, other.transform.position);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
             playerInfo.HealthPoint += damage * 0.01f * playerInfo.healAmount;
         }

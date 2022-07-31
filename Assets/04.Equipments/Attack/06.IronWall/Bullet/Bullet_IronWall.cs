@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_IronWall : Bullet
+public class Bullet_IronWall : EffectBullet
 {
     private Animator anim = null;
     private const string ENEMY = "ENEMY";
@@ -24,7 +24,7 @@ public class Bullet_IronWall : Bullet
             anim.CrossFade(ATTACK, 1.0f);
         }
 
-        HitEffect(other.transform.position);
+        HitEffect(BasicEffectPool.Instance, other.transform.position, effectColor);
         other.GetComponent<EnemyTakeDamage>().TakeDamage(this.transform, damage, knockbackSize);
 
         if(--collisionCount <= 0)

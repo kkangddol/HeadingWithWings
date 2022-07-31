@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Shotgun : Bullet
+public class Bullet_Shotgun : EffectBullet
 {
     const string ENEMY = "ENEMY";
 
@@ -13,7 +13,7 @@ public class Bullet_Shotgun : Bullet
     {
         if(other.CompareTag(ENEMY))
         {
-            HitEffect(this.transform.position);
+            HitEffect(ShotGunEffectPool.Instance, other.transform.position);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
         }
     }

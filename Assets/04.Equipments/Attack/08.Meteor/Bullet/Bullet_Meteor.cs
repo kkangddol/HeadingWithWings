@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Meteor : Bullet
+public class Bullet_Meteor : EffectBullet
 {
     const float EXPLODE_RADIUS = 3.0f;
 
@@ -48,7 +48,7 @@ public class Bullet_Meteor : Bullet
             EnemyTakeDamage temp = hitCollider.gameObject.GetComponent<EnemyTakeDamage>();
             if (temp == null) continue;
 
-            HitEffect(temp.transform.position);
+            HitEffect(MeteorEffectPool.Instance, temp.transform.position);
             temp.TakeDamage(this.transform, damage, knockbackSize);
         }
     }

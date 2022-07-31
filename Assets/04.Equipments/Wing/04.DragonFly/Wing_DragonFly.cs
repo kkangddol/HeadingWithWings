@@ -41,11 +41,12 @@ public class Wing_DragonFly : Equipment, ActiveWing
 
     public GameObject effect;
 
+    [Tooltip("HitEffect Color")]
+    public Color effectColor;
+
     private bool isAttacking = false;
 
     public GameObject skillButton;
-
-    public GameObject hitEffect;
 
     private void Start()
     {
@@ -104,11 +105,19 @@ public class Wing_DragonFly : Equipment, ActiveWing
         }
     }
 
+    private void HitEffect(Vector3 hitPos)
+    {
+        GameObject obj = BasicEffectPool.Instance.GetObject();
+        obj.transform.position = hitPos;
+        obj.GetComponent<SpriteRenderer>().color = effectColor;
+        BasicEffectPool.Instance.ReturnObject(obj, obj.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0).Length);
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("ENEMY"))
         {
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, playerInfo.damage * damageMultiplier, knockbackSize);
-            Instantiate(hitEffect, other.transform.position, Quaternion.identity);
+            HitEffect(other.transform.position);
         }
     }
 

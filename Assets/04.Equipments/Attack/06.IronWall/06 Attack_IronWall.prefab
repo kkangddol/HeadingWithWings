@@ -147,8 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 0
-  hitEffectPrefab: {fileID: 8398580819793896718, guid: 152b21667d3017c478546646fa62a1e1,
-    type: 3}
+  effectColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   collisionCount: 0
   ironWallAttack: {fileID: 0}
 --- !u!1 &888732306187070527
@@ -298,8 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 0
-  hitEffectPrefab: {fileID: 8398580819793896718, guid: 152b21667d3017c478546646fa62a1e1,
-    type: 3}
+  effectColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   collisionCount: 0
   ironWallAttack: {fileID: 0}
 --- !u!1 &3883597399069933977

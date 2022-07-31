@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Sniper : Bullet
+public class Bullet_Sniper : EffectBullet
 {
     const string ENEMY = "ENEMY";
     [HideInInspector]
@@ -21,7 +21,7 @@ public class Bullet_Sniper : Bullet
             {
                 damage *= headShotDamageMultiplier;
             }
-            HitEffect(other.transform.position);
+            HitEffect(BasicEffectPool.Instance, other.transform.position, effectColor);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
         }
     }
