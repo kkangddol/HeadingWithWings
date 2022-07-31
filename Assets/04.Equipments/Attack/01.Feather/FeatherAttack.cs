@@ -86,5 +86,7 @@ public class FeatherAttack : Equipment
         fireCount = GameManager.Data.AttackEquipDict[equipID + this.level].pelletCount;
         // attackRange = GameManager.Data.AttackEquipDict[equipID + this.level].attackRange;
         // bulletSpeed = GameManager.Data.AttackEquipDict[equipID + this.level].bulletSpeed;
+
+        if(newLevel == 5)  bullet = PenetrateFeatherBullet;
     }
 }
