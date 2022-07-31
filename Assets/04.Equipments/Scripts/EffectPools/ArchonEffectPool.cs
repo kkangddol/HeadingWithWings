@@ -8,6 +8,5 @@ public class ArchonEffectPool : ObjectPoolBase
 
     private void Awake() {
         Instance = this;
-        instance = Instance;
     }
 }

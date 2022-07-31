@@ -9,6 +9,5 @@ public class BasicEffectPool : ObjectPoolBase
     private void Awake()
     {
         Instance = this;
-        instance = Instance;
     }
 }
