@@ -7,10 +7,6 @@ public class FeatherAttack : Equipment
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
     const int equipID = 10100;
-    const string ENEMY = "ENEMY";
-    public Bullet bullet;
-    public Bullet FeatherBullet;
-    public Bullet PenetrateFeatherBullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
     public float attackRange;
@@ -21,8 +17,10 @@ public class FeatherAttack : Equipment
     WaitForSeconds waitForInterval;
 
     private Transform targetTransform;
+    private bool isPenetrate = false;
     private bool isCoolDown = false;
 
+    private Color penetrateColor = new Color(0f, 1f, 1f, 1f);
 
     private void Start()
     {
@@ -32,20 +30,32 @@ public class FeatherAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
         waitForInterval = new WaitForSeconds(fireInterval);
     }
 
     void Fire()
     {
-        Bullet newBullet = Instantiate(bullet,transform.position,transform.rotation);
-        newBullet.damage = playerInfo.damage * damageMultiplier;
-        newBullet.knockbackSize = knockbackSize;
-        newBullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
-        newBullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
+        Bullet bullet = GetBullet(FeatherBulletPool.Instance);
+        bullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        bullet.damage = playerInfo.damage * damageMultiplier;
+        bullet.knockbackSize = knockbackSize;
+        if(isPenetrate)
+        {
+            SetupPenetrate(bullet);
+        }
+        bullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
+        bullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
         isCoolDown = true;
         StartCoroutine(CoolDown());
+    }
+    private void SetupPenetrate(Bullet bullet)
+    {
+        ((Bullet_PenetrateFeather)bullet).isPenetrate = isPenetrate;
+        ((EffectBullet)bullet).effectColor = penetrateColor;
+        bullet.GetComponent<SpriteRenderer>().color = penetrateColor;
+        bullet.GetComponent<TrailRenderer>().enabled = true;
     }
 
     IEnumerator FireCycle()
@@ -66,7 +76,6 @@ public class FeatherAttack : Equipment
                     Fire();
                     yield return waitForInterval;
                 }
-
             }
         }
     }
@@ -87,6 +96,6 @@ public class FeatherAttack : Equipment
         // attackRange = GameManager.Data.AttackEquipDict[equipID + this.level].attackRange;
         // bulletSpeed = GameManager.Data.AttackEquipDict[equipID + this.level].bulletSpeed;
 
-        if(newLevel == 5)  bullet = PenetrateFeatherBullet;
+        if(newLevel == 5)  isPenetrate = true;
     }
 }

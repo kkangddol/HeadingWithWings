@@ -7,8 +7,6 @@ public class ShotgunAttack : Equipment
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
     const int equipID = 10200;
-    const string ENEMY = "ENEMY";
-    public Bullet bullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
     public float attackRange;
@@ -31,7 +29,7 @@ public class ShotgunAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -41,12 +39,13 @@ public class ShotgunAttack : Equipment
         Vector2 enemyDirection = (targetTransform.position - transform.position).normalized;
         for(int i = 0; i < pelletCount; i++)
         {
-            Bullet newPellet = Instantiate(bullet,transform.position,transform.rotation);
-            newPellet.damage = playerInfo.damage * damageMultiplier;
-            newPellet.knockbackSize = this.knockbackSize;
-            newPellet.transform.right = enemyDirection;
-            newPellet.transform.Rotate(0, 0, i * (pelletSpread / pelletCount) - (pelletSpread / 2));
-            newPellet.GetComponent<Rigidbody2D>().AddForce(newPellet.transform.right * bulletSpeed, ForceMode2D.Impulse);
+            Bullet pellet = GetBullet(ShotGunBulletPool.Instance);
+            pellet.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            pellet.damage = playerInfo.damage * damageMultiplier;
+            pellet.knockbackSize = this.knockbackSize;
+            pellet.transform.right = enemyDirection;
+            pellet.transform.Rotate(0, 0, i * (pelletSpread / pelletCount) - (pelletSpread / 2));
+            pellet.GetComponent<Rigidbody2D>().AddForce(pellet.transform.right * bulletSpeed, ForceMode2D.Impulse);
         }
         audioSource.PlayOneShot(audioClips[0]);
         isCoolDown = true;

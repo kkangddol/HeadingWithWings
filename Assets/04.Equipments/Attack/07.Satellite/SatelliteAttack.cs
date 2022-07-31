@@ -160,7 +160,7 @@ public class SatelliteAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
         if(bullet == null) return;
         SetSatellites();
     }

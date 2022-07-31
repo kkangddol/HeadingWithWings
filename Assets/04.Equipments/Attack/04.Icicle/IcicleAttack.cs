@@ -7,8 +7,6 @@ public class IcicleAttack : Equipment
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
     const int equipID = 10400;
-    const string ENEMY = "ENEMY";
-    public Bullet bullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
     public float attackRange;
@@ -30,19 +28,20 @@ public class IcicleAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
     }
 
     public void Fire()
     {
-        Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation);
-        newBullet.damage = playerInfo.damage * damageMultiplier;
-        newBullet.knockbackSize = knockbackSize;
-        newBullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
-        ((Bullet_Icicle)newBullet).speedMultiplier = speedMultiplier;
-        ((Bullet_Icicle)newBullet).slowDuration = slowDuration;
-        newBullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
+        Bullet bullet = GetBullet(IcicleBulletPool.Instance);
+        bullet.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        bullet.damage = playerInfo.damage * damageMultiplier;
+        bullet.knockbackSize = knockbackSize;
+        bullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
+        ((Bullet_Icicle)bullet).speedMultiplier = speedMultiplier;
+        ((Bullet_Icicle)bullet).slowDuration = slowDuration;
+        bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * bulletSpeed, ForceMode2D.Impulse);
         isCoolDown = true;
         StartCoroutine(CoolDown());
     }

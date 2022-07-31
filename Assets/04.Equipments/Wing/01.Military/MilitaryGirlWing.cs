@@ -10,7 +10,6 @@ public class MilitaryGirlWing : Equipment, ActiveWing
     private bool isCoolDown = false;
     [HideInInspector] public float coolTime;
     
-    public Bullet militaryBullet;
     public float damageMultiplier;
     public float skillDelayMultiplier;
     public float knockbackSize = 0.1f;
@@ -41,8 +40,8 @@ public class MilitaryGirlWing : Equipment, ActiveWing
 
     void Initialize()
     {
-        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
-        playerMoveController = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMoveController>();
+        playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
+        playerMoveController = GameObject.FindWithTag(PLAYER).GetComponent<PlayerMoveController>();
         waitInterval = new WaitForSeconds(fireInterval);
         audioSource = GetComponent<AudioSource>();
     }
@@ -73,12 +72,13 @@ public class MilitaryGirlWing : Equipment, ActiveWing
         {
             for(int j = 0; j < bulletCount; j++)
             {
-                Bullet newBullet = Instantiate(militaryBullet, transform.position, transform.rotation);
-                newBullet.damage = playerInfo.damage * damageMultiplier;
-                newBullet.knockbackSize = this.knockbackSize;
+                Bullet bullet = GetBullet(MissileBulletPool.Instance);
+                bullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                bullet.damage = playerInfo.damage * damageMultiplier;
+                bullet.knockbackSize = this.knockbackSize;
                 //Vector2 bulletDirection = new Vector2()
-                newBullet.transform.Rotate(0, 0, j * (bulletSpread / bulletCount) - (bulletSpread / 2));
-                newBullet.GetComponent<Rigidbody2D>().AddForce(newBullet.transform.right * bulletSpeed, ForceMode2D.Impulse);
+                bullet.transform.Rotate(0, 0, j * (bulletSpread / bulletCount) - (bulletSpread / 2));
+                bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * bulletSpeed, ForceMode2D.Impulse);
             }
             audioSource.PlayOneShot(audioClips[0]);
             yield return waitInterval;

@@ -7,7 +7,6 @@ public class IronWallAttack : Equipment
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
     const int equipID = 10600;
-    const string ENEMY = "ENEMY";
     public Bullet bulletFront;
     public Bullet bulletBack;
     public float damageMultiplier;
@@ -32,7 +31,7 @@ public class IronWallAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
     }
     
