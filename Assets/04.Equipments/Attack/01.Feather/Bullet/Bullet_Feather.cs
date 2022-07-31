@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Feather : Bullet
+public class Bullet_Feather : EffectBullet
 {
     const string ENEMY = "ENEMY";
 
@@ -14,7 +14,7 @@ public class Bullet_Feather : Bullet
     {
         if(other.CompareTag(ENEMY))
         {
-            HitEffect(other.transform.position);
+            HitEffect(BasicEffectPool.Instance, other.transform.position, effectColor);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
             Destroy(gameObject);
         }

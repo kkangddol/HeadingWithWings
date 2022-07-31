@@ -87,8 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 5
-  hitEffectPrefab: {fileID: 3150084289082012419, guid: ea060fc948e4dc040a80fe2b6e7d3baf,
-    type: 3}
+  effectColor: {r: 1, g: 0.78431374, b: 0, a: 1}
   headShotChance: 0
   headShotDamageMultiplier: 0
 --- !u!96 &354152304

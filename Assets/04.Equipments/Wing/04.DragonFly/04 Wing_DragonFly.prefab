@@ -162,9 +162,8 @@ MonoBehaviour:
   dashSpeed: 30
   dashTime: 0.5
   effect: {fileID: 7724887540400428254}
+  effectColor: {r: 0, g: 1, b: 0.50980395, a: 1}
   skillButton: {fileID: 0}
-  hitEffect: {fileID: 7419858334103200269, guid: e4c4732766b65dd4698be0bd9fbcf572,
-    type: 3}
 --- !u!58 &7361542833992323453
 CircleCollider2D:
   m_ObjectHideFlags: 0

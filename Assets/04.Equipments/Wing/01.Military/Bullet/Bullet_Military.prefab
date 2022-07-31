@@ -264,8 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 0
-  hitEffectPrefab: {fileID: 9099243287812077527, guid: fa463550d786002429c692f630d6c9af,
-    type: 3}
+  effectColor: {r: 1, g: 0.8235294, b: 0.39215687, a: 1}
 --- !u!50 &-116146702158172138
 Rigidbody2D:
   serializedVersion: 4

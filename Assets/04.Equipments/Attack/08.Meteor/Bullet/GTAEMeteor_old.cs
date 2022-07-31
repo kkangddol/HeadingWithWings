@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Ground Target Area of Effect
-public class Bullet_GTAEMeteor : Bullet
+public class GTAEMeteor_old : Bullet
 {
     const string ENEMY = "ENEMY";
     const string TERRAIN = "TERRAIN";
@@ -34,7 +34,6 @@ public class Bullet_GTAEMeteor : Bullet
                     continue;
                 }
 
-                HitEffect(enemy.transform.position);
                 enemy.TakeDamage(enemy.transform, damage, knockbackSize);
             }
             
