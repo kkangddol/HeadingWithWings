@@ -22,6 +22,7 @@ public class PlayerMoveController : MonoBehaviour
 	Rigidbody2D rb;
 	public TrailRenderer trail;
     public Ghost ghost = null;
+	private Animator animator;
 
 
     void Start()
@@ -29,6 +30,7 @@ public class PlayerMoveController : MonoBehaviour
         //animator = GetComponentInChildren<Animator>();
         playerInfo = GetComponent<PlayerInfo>();
 		rb = GetComponent<Rigidbody2D>();
+		animator = GetComponentInChildren<Animator>();
     }
 
 	private void Update() {
@@ -74,16 +76,14 @@ public class PlayerMoveController : MonoBehaviour
 			//rb.velocity = stickDirection * speedOut * GameManager.playerInfo.moveSpeed;// + new Vector3(0, GetComponent<Rigidbody>().velocity.y, 0);
 			rb.AddForce(stickDirection * speedOut * playerInfo.moveSpeed);
 
-			// 임시
-            if (stickDirection.y > 0)
-                GetComponentInChildren<SpriteRenderer>().sprite = sprites[0];
-            else if (stickDirection.y < 0)
-                GetComponentInChildren<SpriteRenderer>().sprite = sprites[1];
-			// 임시 끝
+            if (stickDirection.y < 0)
+                animator.SetInteger("Direction", 0);
+            else if (stickDirection.y > 0)
+                animator.SetInteger("Direction", 1);
 
-			if(stickDirection.x > 0)
+			if(stickDirection.x < 0)
 				GetComponentInChildren<SpriteRenderer>().flipX = true;
-			else if (stickDirection.x < 0)
+			else if (stickDirection.x > 0)
 				GetComponentInChildren<SpriteRenderer>().flipX = false;
 			//animator.SetFloat("Speed", speedOut);
 

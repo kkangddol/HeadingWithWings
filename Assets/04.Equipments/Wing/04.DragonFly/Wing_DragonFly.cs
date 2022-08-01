@@ -48,6 +48,8 @@ public class Wing_DragonFly : Equipment, ActiveWing
 
     public GameObject skillButton;
 
+    PlayerTakeDamage playerTakeDamage;
+
     private void Start()
     {
         Initialize();
@@ -60,6 +62,7 @@ public class Wing_DragonFly : Equipment, ActiveWing
         playerRigid = GameObject.FindWithTag("PLAYER").GetComponent<Rigidbody2D>();
         col = GetComponent<CircleCollider2D>();
         DashCount = maxDashCount;
+        playerTakeDamage = playerInfo.gameObject.GetComponent<PlayerTakeDamage>();
     }
 
     public void SetButton(GameObject button)
@@ -75,6 +78,8 @@ public class Wing_DragonFly : Equipment, ActiveWing
 
         if(isAttacking) return;
 
+
+        playerTakeDamage.isGodMode = true;
         isAttacking = true;
         playerMoveController.StopMove();
         IsDashStarted = true;
@@ -123,6 +128,7 @@ public class Wing_DragonFly : Equipment, ActiveWing
 
     void StopShort()
     {
+        playerTakeDamage.isGodMode = false;
         playerRigid.velocity = Vector2.zero;
         playerMoveController.ResumeMove();
         col.enabled = false;

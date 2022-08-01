@@ -6,8 +6,14 @@ public class Bullet_Feather : EffectBullet
 {
     const string ENEMY = "ENEMY";
 
-    private void Start() {
-        Destroy(gameObject, 5f);
+    private void Awake() {
+        pool = FeatherBulletPool.Instance;
+        Invoke("ReturnBullet", 5);
+    }
+
+    private void OnEnable()
+    {
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -16,7 +22,7 @@ public class Bullet_Feather : EffectBullet
         {
             HitEffect(BasicEffectPool.Instance, other.transform.position, effectColor);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
-            Destroy(gameObject);
+            ReturnBullet();
         }
     }
 }

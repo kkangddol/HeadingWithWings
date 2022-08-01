@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7836897026683263999}
+  - component: {fileID: -7822041061667668606}
   - component: {fileID: 9083760900098248479}
   m_Layer: 0
   m_Name: 01 AddFeather
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7822041061667668606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8696415257508639808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ff3db88a1d49bf4db34ac7df45de455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeMultiplier: -5
 --- !u!114 &9083760900098248479
 MonoBehaviour:
   m_ObjectHideFlags: 0

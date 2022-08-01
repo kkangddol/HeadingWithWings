@@ -17,7 +17,7 @@ public class DevilWingSkill : EffectBullet
         {
             HitEffect(BasicEffectPool.Instance, other.transform.position);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
-            playerInfo.HealthPoint += damage * 0.01f * playerInfo.healAmount;
+            playerInfo.HealthPoint += damage * 0.01f;
         }
     }
 }
