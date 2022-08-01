@@ -8,6 +8,8 @@ public class Bullet_Archon : ArchonEffectBullet
     public float splashRange = 3.0f;
     public ParticleSystem effect = null;
 
+    void OnEnable() {}
+
     public void SplashDamage(Transform target)
     {
         Instantiate(effect, target.position, Quaternion.identity);
@@ -17,7 +19,7 @@ public class Bullet_Archon : ArchonEffectBullet
             EnemyTakeDamage temp = hitCollider.GetComponent<EnemyTakeDamage>();
             if (temp != null)
             {
-                HitEffect(ArchonEffectPool.Instance, temp.transform);
+                HitEffect(ArchonEffectPool.Instance, temp.transform.position);
                 temp.TakeDamage(temp.transform, damage, knockbackSize);
             }
         }

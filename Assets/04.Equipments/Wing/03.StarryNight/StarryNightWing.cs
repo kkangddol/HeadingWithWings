@@ -46,6 +46,7 @@ public class StarryNightWing : Equipment, ActiveWing
         GameObject go = Instantiate(skillObject, this.transform.position, Quaternion.identity);
         //go.transform.rotation = Quaternion.AngleAxis(playerInfo.headAngle, Vector3.forward);
         go.transform.eulerAngles = new Vector3(0, 0, playerInfo.headAngle);
+        go.transform.position += go.transform.right;
         go.GetComponent<StarryNightSkill>().damage = playerInfo.damage * damageMultiplier;
         go.GetComponent<Rigidbody2D>().AddForce(go.transform.right, ForceMode2D.Impulse);
         Destroy(go, skillTime);

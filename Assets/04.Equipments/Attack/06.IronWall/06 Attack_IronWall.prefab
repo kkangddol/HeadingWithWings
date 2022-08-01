@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 0
+  pool: {fileID: 0}
   effectColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   collisionCount: 0
   ironWallAttack: {fileID: 0}
@@ -297,6 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 0
+  pool: {fileID: 0}
   effectColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   collisionCount: 0
   ironWallAttack: {fileID: 0}

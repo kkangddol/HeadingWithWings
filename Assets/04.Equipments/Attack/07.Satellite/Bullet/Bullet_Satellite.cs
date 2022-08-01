@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet_Satellite : EffectBullet
 {
-    const string ENEMY = "ENEMY";
+    void OnEnable() {}
 
     private void Update()
     {

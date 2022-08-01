@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bullet_IronWall : EffectBullet
 {
     private Animator anim = null;
-    private const string ENEMY = "ENEMY";
     private const string ATTACK = "ATTACK";
     private const string IDLE = "IDLE";
     public int collisionCount = 0;
@@ -15,6 +14,8 @@ public class Bullet_IronWall : EffectBullet
     {
         anim = this.GetComponent<Animator>();
     }
+
+    void OnEnable() {}
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(!other.CompareTag(ENEMY))  return;

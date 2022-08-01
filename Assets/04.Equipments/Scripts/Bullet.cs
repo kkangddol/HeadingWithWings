@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour
 {
+    public const string PLAYER = "PLAYER";
     public const string ENEMY = "ENEMY";
 
     [HideInInspector]

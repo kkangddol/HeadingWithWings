@@ -643,7 +643,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.18
+  m_PixelsPerUnitMultiplier: 0.15
 --- !u!222 &311761906
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10316,6 +10316,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 5255047323856466934, guid: bbcc30d9c425cc44fbf77d5f628b0e23,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5255047323856466939, guid: bbcc30d9c425cc44fbf77d5f628b0e23,
         type: 3}
