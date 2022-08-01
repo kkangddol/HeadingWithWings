@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Skill_Heal : MonoBehaviour, IBoss_Skill
+public class Boss_Skill_Heal : BossSkillBase, IBoss_Skill
 {
     //스스로의 체력을 회복합니다.
     Boss_Skill_Manager skillManager;
@@ -13,11 +13,13 @@ public class Boss_Skill_Heal : MonoBehaviour, IBoss_Skill
     private void Start()
     {
         enemyInfo = GetComponent<EnemyInfo>();
+        skillManager = GetComponent<Boss_Skill_Manager>();
         offset = new Vector3(0f, -0.4f, 0f) * this.transform.localScale.x;
     }
 
     public void ActivateSkill()
     {
+        skillManager.currentSkill = this;
         StartCoroutine(Heal());
     }
 

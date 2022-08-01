@@ -80,10 +80,10 @@ public class EnemyInfo : MonoBehaviour
         this.tag = "Untagged";
         GetComponent<IEnemyStopHandler>().StopMove();
 
-        var stopAttack = GetComponent<EnemyRangeAttackBase>();
-        if(stopAttack != null)  stopAttack.StopFire();
-        var stopSkill = GetComponent<Boss_Skill_Manager>();
-        if(stopSkill != null)  stopSkill.enabled = false;
+        var enemy = GetComponent<EnemyRangeAttackBase>();
+        if(enemy != null)  enemy.StopFire();
+        var boss = GetComponent<Boss_Skill_Manager>();
+        if(boss != null)  boss.StopSkill();
 
         GetComponent<Collider2D>().enabled = false;
         GetComponentInChildren<Animator>().enabled = false;

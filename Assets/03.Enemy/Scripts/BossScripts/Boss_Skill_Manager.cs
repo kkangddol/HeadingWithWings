@@ -9,6 +9,7 @@ public class Boss_Skill_Manager : MonoBehaviour
     float trembleTime = 2f;
 
     IBoss_Skill[] skills;
+    public BossSkillBase currentSkill = null;
     IEnemyStopHandler stopHandler;
 
     public float skillCoolTime;
@@ -21,7 +22,7 @@ public class Boss_Skill_Manager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] audioClips;
     
-    public static bool isSkillEnd = true;
+    public static bool isSkillEnd = false;
 
     private void Awake() {
         enemyInfo = GetComponent<EnemyInfo>();
@@ -31,6 +32,51 @@ public class Boss_Skill_Manager : MonoBehaviour
         skillCoolTime = Random.Range(0, 5f);
         audioSource = GetComponent<AudioSource>();
     }
+
+    private void Start()
+    {
+        SpawnSequence();
+    }
+
+    public void SpawnSequence()
+    {
+        isCoolTime = true;
+        isSkillEnd = false;
+
+        stopHandler.StopMove();
+        animator.SetBool("isReady", true);
+
+        StartCoroutine(FirstTrembleHandler());
+    }
+    IEnumerator FirstTrembleHandler()
+    {
+        audioSource.PlayOneShot(audioClips[0]);
+        yield return new WaitForSeconds(trembleTime);
+        audioSource.Stop();
+        AppearSkill();
+    }
+
+    private void AppearSkill()
+    {
+        animator.SetBool("isReady", false);
+
+        // 첫번째 스킬이 등장 스킬이여야만 함
+        animator.SetInteger("SkillNumber", 0);
+        skills[0].ActivateSkill();
+
+        currentSkill = ((BossSkillBase)skills[0]);
+
+        stopHandler.ResumeMove();
+    }
+
+    public void StopSkill()
+    {
+        isCoolTime = true;
+        isSkillEnd = false;
+
+        if(currentSkill != null)  currentSkill.StopSkill();
+    }
+
 
     private void Update() {
         if(!isCoolTime)
@@ -81,6 +127,8 @@ public class Boss_Skill_Manager : MonoBehaviour
         int randomNumber = Random.Range(0, skills.Length);
         animator.SetInteger("SkillNumber", randomNumber);
         skills[randomNumber].ActivateSkill();
+
+        currentSkill = ((BossSkillBase)skills[randomNumber]);
 
         stopHandler.ResumeMove();
     }
