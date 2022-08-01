@@ -29,8 +29,10 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
         isHit = false;
         audioSource = GetComponent<AudioSource>();
     }
-    public void TakeDamage(Transform hitTr, float damage, float knockbackSize)
+    public void TakeDamage(Transform hitTr, float damage, float knockbackSize, bool isBoss = false)
     {
+        if(!isBoss)  GameManager.Instance.totalDamage += damage;
+        
         isHit = true;
 
         enemyInfo.healthPoint -= damage;
@@ -75,6 +77,6 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
 
     public void TakeBossAttack(Transform hitTr, float damage, float knockbackSize)
     {
-        TakeDamage(hitTr, damage, knockbackSize);
+        TakeDamage(hitTr, damage, knockbackSize, true);
     }
 }

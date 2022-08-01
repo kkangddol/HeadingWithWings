@@ -6911,6 +6911,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7066116979328304632, guid: b67e872561ef3ec4d81ec8ffaf34ed36,
+        type: 3}
+      propertyPath: happyoverUI
+      value: 
+      objectReference: {fileID: 6071691565051270512, guid: 1fa69b5845df3734691e09d5c8d7eb13,
+        type: 3}
     - target: {fileID: 7066116979328304633, guid: b67e872561ef3ec4d81ec8ffaf34ed36,
         type: 3}
       propertyPath: m_Name
@@ -7484,8 +7490,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -150, y: -604.1}
-  m_SizeDelta: {x: -750, y: -1500}
+  m_AnchoredPosition: {x: -150, y: -605}
+  m_SizeDelta: {x: -800, y: -1500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1528603980
 GameObject:
