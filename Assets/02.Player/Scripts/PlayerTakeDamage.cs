@@ -7,6 +7,7 @@ public class PlayerTakeDamage : MonoBehaviour, ITakeBossAttack
     PlayerInfo playerInfo;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
+    public bool isGodMode = false;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class PlayerTakeDamage : MonoBehaviour, ITakeBossAttack
 
     public void TakeDamage(float damage)
     {
+        if(isGodMode) return;
         playerInfo.HealthPoint = playerInfo.HealthPoint - damage;
         spriteRenderer.material.color = Color.red;
         Invoke("EndTakeDamage", 0.1f);

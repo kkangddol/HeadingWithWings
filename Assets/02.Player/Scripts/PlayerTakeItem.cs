@@ -15,7 +15,17 @@ public class PlayerTakeItem : MonoBehaviour
         Item item = other.GetComponent<Item>();
         if(item != null)
         {
-            SoundManager.Instance.TryPlayOneShot(audioSource, audioClips[item.UseItem()], 0.25f);
+            int index = item.UseItem();
+            switch(index)
+            {
+                case 0:
+                    SoundManager.Instance.TryPlayOneShot(audioSource, audioClips[index], 1f);
+                    break;
+                case 1:
+                    SoundManager.Instance.TryPlayOneShot(audioSource, audioClips[index], 0.5f);
+                    break;
+            }
+            
         }
     }
 }

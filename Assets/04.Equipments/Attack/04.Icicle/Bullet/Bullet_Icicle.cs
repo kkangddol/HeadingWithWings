@@ -18,10 +18,18 @@ public class Bullet_Icicle : EffectBullet
     {
         if (other.CompareTag(ENEMY))
         {
-            HitEffect(BasicEffectPool.Instance, other.transform.position, effectColor);
-            other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
-            other.GetComponent<EnemyFreezingHandler>().SlowMove(speedMultiplier, slowDuration);
-            ReturnBullet();
+            
+            Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, 2f);
+            foreach(var target in targets)
+            {
+                if(target.CompareTag("ENEMY"))
+                {
+                    HitEffect(BasicEffectPool.Instance, other.transform.position, effectColor);
+                    target.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
+                    target.GetComponent<EnemyFreezingHandler>().SlowMove(speedMultiplier, slowDuration);
+                }
+            }
+            ReturnBullet();            
         }
     }
 }

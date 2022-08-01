@@ -25,7 +25,8 @@ public class SoundManager : MonoBehaviour
         }
     }
     private Dictionary<AudioClip, float> soundOneShot = new Dictionary<AudioClip, float>();
-    private int MaxDuplicateClips = 5;
+    private Dictionary<AudioClip, List<float>> soundLimit = new Dictionary<AudioClip, List<float>>();
+    private int MaxDuplicateClips = 30;
 
     private static SoundManager Create()
     {
@@ -43,14 +44,21 @@ public class SoundManager : MonoBehaviour
         if(!soundOneShot.ContainsKey(clip))
         {
             soundOneShot[clip] = nowTime;
+            soundLimit[clip] = new List<float>() { volume };
         }
         else
         {
             if(soundOneShot.TryGetValue(clip, out float playedTime)) return;
+
+            int count = soundLimit[clip].Count;
+            if(count == MaxDuplicateClips) return;
+
             soundOneShot[clip] = nowTime;
+            soundLimit[clip].Add(volume);
         }
         source.PlayOneShot(clip, volume);
         StartCoroutine(RemoveVolumeFromClip(clip, nowTime));
+        StartCoroutine(RemoveVolumeFromClip2(clip,volume));
     }
 
     private IEnumerator RemoveVolumeFromClip(AudioClip clip, float nowTime)
@@ -61,6 +69,17 @@ public class SoundManager : MonoBehaviour
         if (soundOneShot.TryGetValue(clip, out float babo))
         {
             soundOneShot.Remove(clip);
+        }
+    }
+    private IEnumerator RemoveVolumeFromClip2(AudioClip clip, float volume)
+    {
+        // 재생 시간동안기다리고 그후에 저장된 값을 지운다
+        yield return new WaitForSeconds(clip.length);
+
+        List<float> volumes;
+        if (soundLimit.TryGetValue(clip, out volumes))
+        {
+            volumes.Remove(volume);
         }
     }
 }

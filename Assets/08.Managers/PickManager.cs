@@ -132,7 +132,7 @@ public class PickManager : MonoBehaviour
             Button button = pickUI.slotButtons[i];
 
             button.onClick.RemoveAllListeners();
-            pickUI.ClearSlotBan();
+            //pickUI.ClearSlotBan();
 
             float[] probs = {attackDropRate, abilityDropRate, wingDropRate};
             int chosenEquip = Choose(probs);
@@ -145,29 +145,35 @@ public class PickManager : MonoBehaviour
                 {
                     //Attack
                     randomEquip = Random.Range(0,EquipmentManager.Instance.attackEquipmentObjects.Length);
+                    int equipID;
                     if(EquipmentManager.Instance.attackEquipmentsLevel[randomEquip] >= 5)
                     {
-                        pickUI.SetSlotBan(i);
-                        break;
+                        equipID = ATTACKID + ((randomEquip + 1) * 100) + EquipmentManager.Instance.attackEquipmentsLevel[randomEquip];
                     }
-                    int equipID = ATTACKID + ((randomEquip + 1) * 100) + EquipmentManager.Instance.attackEquipmentsLevel[randomEquip] + 1;
+                    else
+                    {
+                        equipID = ATTACKID + ((randomEquip + 1) * 100) + EquipmentManager.Instance.attackEquipmentsLevel[randomEquip] + 1;
+                    }
                     var equipData = GameManager.Data.EquipDescriptionDict[equipID];
                     
-                    pickUI.slotImages[i].sprite = EquipmentManager.Instance.attackEquipmentSprites[randomEquip];
-                    pickUI.slotLevel[i].text = "Lv." + equipData.level.ToString();
-                    pickUI.slotName[i].text = equipData.equipName;
+                    pickUI.slotEquipImages[i].sprite = EquipmentManager.Instance.attackEquipmentSprites[randomEquip];
+                    pickUI.SetLevel(i, equipData.level);
+                    pickUI.slotEquipName[i].text = equipData.equipName;
 
-                    GameObject[] slotInfos = pickUI.slotInfos[i];
-                    for(int j = 0; j < equipData.infoList.Count; j++)
-                    {
-                        GameObject infoSlot = slotInfos[j];
-                        infoSlot.GetComponentsInChildren<Image>()[1].sprite = icons[ToInt(equipData.infoTitle[j])];
-                        infoSlot.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = equipData.infoList[j];
-                        slotInfos[j].SetActive(true);
-                    }
+                    pickUI.info[i].text = equipData.info;
+                    pickUI.detailInfo[i].text = equipData.detailInfo;
 
-                    string description = equipData.description + "\n" + equipData.extraDescription;
-                    pickUI.infoButtons[i].onClick.AddListener(delegate{pickUI.SetInfoUIText(description);});
+                    // GameObject[] slotInfos = pickUI.slotInfos[i];
+                    // for(int j = 0; j < equipData.infoList.Count; j++)
+                    // {
+                    //     GameObject infoSlot = slotInfos[j];
+                    //     infoSlot.GetComponentsInChildren<Image>()[1].sprite = icons[ToInt(equipData.infoTitle[j])];
+                    //     infoSlot.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = equipData.infoList[j];
+                    //     slotInfos[j].SetActive(true);
+                    // }
+
+                    //string description = equipData.description + "\n" + equipData.extraDescription;
+                    //pickUI.infoButtons[i].onClick.AddListener(delegate{pickUI.SetInfoUIText(description);});
 
                     button.onClick.AddListener(delegate {EquipmentManager.Instance.TakeAttackEquipment(randomEquip);});
                     break;
@@ -176,29 +182,27 @@ public class PickManager : MonoBehaviour
                 {
                     //Ability
                     randomEquip = Random.Range(0,EquipmentManager.Instance.abilityEquipmentObjects.Length);
-                    if(EquipmentManager.Instance.abilityEquipmentsLevel[randomEquip] >= 5)
-                    {
-                        pickUI.SetSlotBan(i);
-                        break;
-                    }
                     int equipID = ABILITYID + ((randomEquip + 1) * 100) + 1;
                     var equipData = GameManager.Data.EquipDescriptionDict[equipID];
 
-                    pickUI.slotImages[i].sprite = EquipmentManager.Instance.abilityEquipmentSprites[randomEquip];
-                    pickUI.slotLevel[i].text = "Lv." + equipData.level.ToString();
-                    pickUI.slotName[i].text = equipData.equipName;
+                    pickUI.slotEquipImages[i].sprite = EquipmentManager.Instance.abilityEquipmentSprites[randomEquip];
+                    pickUI.SetLevel(i, equipData.level);
+                    pickUI.slotEquipName[i].text = equipData.equipName;
 
-                    GameObject[] slotInfos = pickUI.slotInfos[i];
-                    for(int j = 0; j < equipData.infoList.Count; j++)
-                    {
-                        GameObject infoSlot = slotInfos[j];
-                        infoSlot.GetComponentsInChildren<Image>()[1].sprite = icons[ToInt(equipData.infoTitle[j])];
-                        infoSlot.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = equipData.infoList[j];
-                        slotInfos[j].SetActive(true);
-                    }
+                    pickUI.info[i].text = equipData.info;
+                    pickUI.detailInfo[i].text = equipData.detailInfo;
 
-                    string description = equipData.description + "\n" + equipData.extraDescription;
-                    pickUI.infoButtons[i].onClick.AddListener(delegate{pickUI.SetInfoUIText(description);});
+                    // GameObject[] slotInfos = pickUI.slotInfos[i];
+                    // for(int j = 0; j < equipData.infoList.Count; j++)
+                    // {
+                    //     GameObject infoSlot = slotInfos[j];
+                    //     infoSlot.GetComponentsInChildren<Image>()[1].sprite = icons[ToInt(equipData.infoTitle[j])];
+                    //     infoSlot.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = equipData.infoList[j];
+                    //     slotInfos[j].SetActive(true);
+                    // }
+
+                    // string description = equipData.description + "\n" + equipData.extraDescription;
+                    // pickUI.infoButtons[i].onClick.AddListener(delegate{pickUI.SetInfoUIText(description);});
 
                     button.onClick.AddListener(delegate {EquipmentManager.Instance.TakeAbilityItem(randomEquip);});
                     break;
@@ -207,29 +211,36 @@ public class PickManager : MonoBehaviour
                 {
                     //Wing
                     randomEquip = Random.Range(0,EquipmentManager.Instance.wingEquipmentObjects.Length);
+
+                    int equipID;
                     if(EquipmentManager.Instance.wingEquipmentsLevel[randomEquip] >= 5)
                     {
-                        pickUI.SetSlotBan(i);
-                        break;
+                        equipID = WINGID + ((randomEquip + 1) * 100) + EquipmentManager.Instance.wingEquipmentsLevel[randomEquip];
                     }
-                    int equipID = WINGID + ((randomEquip + 1) * 100) + EquipmentManager.Instance.wingEquipmentsLevel[randomEquip] + 1;
+                    else
+                    {
+                        equipID = WINGID + ((randomEquip + 1) * 100) + EquipmentManager.Instance.wingEquipmentsLevel[randomEquip] + 1;
+                    }
                     var equipData = GameManager.Data.EquipDescriptionDict[equipID];
 
-                    pickUI.slotImages[i].sprite = EquipmentManager.Instance.wingEquipmentSprites[randomEquip];
-                    pickUI.slotLevel[i].text = "Lv." + equipData.level.ToString();
-                    pickUI.slotName[i].text = equipData.equipName;
+                    pickUI.slotEquipImages[i].sprite = EquipmentManager.Instance.wingEquipmentSprites[randomEquip];
+                    pickUI.SetLevel(i, equipData.level);
+                    pickUI.slotEquipName[i].text = equipData.equipName;
 
-                    GameObject[] slotInfos = pickUI.slotInfos[i];
-                    for(int j = 0; j < equipData.infoList.Count; j++)
-                    {
-                        GameObject infoSlot = slotInfos[j];
-                        infoSlot.GetComponentsInChildren<Image>()[1].sprite = icons[ToInt(equipData.infoTitle[j])];
-                        infoSlot.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = equipData.infoList[j];
-                        slotInfos[j].SetActive(true);
-                    }
+                    pickUI.info[i].text = equipData.info;
+                    pickUI.detailInfo[i].text = equipData.detailInfo;
 
-                    string description = equipData.description + "\n" + equipData.extraDescription;
-                    pickUI.infoButtons[i].onClick.AddListener(delegate{pickUI.SetInfoUIText(description);});
+                    // GameObject[] slotInfos = pickUI.slotInfos[i];
+                    // for(int j = 0; j < equipData.infoList.Count; j++)
+                    // {
+                    //     GameObject infoSlot = slotInfos[j];
+                    //     infoSlot.GetComponentsInChildren<Image>()[1].sprite = icons[ToInt(equipData.infoTitle[j])];
+                    //     infoSlot.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = equipData.infoList[j];
+                    //     slotInfos[j].SetActive(true);
+                    // }
+
+                    // string description = equipData.description + "\n" + equipData.extraDescription;
+                    // pickUI.infoButtons[i].onClick.AddListener(delegate{pickUI.SetInfoUIText(description);});
 
                     button.onClick.AddListener(delegate {EquipmentManager.Instance.TakeWingItem(randomEquip);});
                     break;

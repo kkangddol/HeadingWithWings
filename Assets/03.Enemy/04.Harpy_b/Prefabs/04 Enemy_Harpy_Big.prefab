@@ -243,8 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb25f7f64632cb4686d778917884e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 8040205903655349996, guid: ac684a874d75a1d49a190dd77396b946,
-    type: 3}
   projectileCount: 3
   projectileSpread: 30
 --- !u!114 &6102667122217650958

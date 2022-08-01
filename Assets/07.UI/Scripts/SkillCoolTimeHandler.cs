@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SkillCoolTimeHandler : MonoBehaviour
 {
     public Slider slider;
+    public Slider sliderInside;
     public TMPro.TextMeshProUGUI coolTimeText;
     public float _coolTime;
 
@@ -17,12 +18,14 @@ public class SkillCoolTimeHandler : MonoBehaviour
     public void StartCoolTime()
     {
         slider.value = 0;
+        sliderInside.value = 0;
         StartCoroutine(FilltheCircle());
     }
 
     public void SetCoolTime(float coolTime)
     {
         slider.maxValue = coolTime;
+        sliderInside.maxValue = coolTime;
         _coolTime = coolTime;
     }
 
@@ -33,6 +36,7 @@ public class SkillCoolTimeHandler : MonoBehaviour
         {
             _coolTime -= Time.deltaTime;
             slider.value += Time.deltaTime;
+            sliderInside.value += Time.deltaTime;
             coolTimeText.text = $"{(int)_coolTime}s";
             yield return null;
         }
@@ -43,5 +47,6 @@ public class SkillCoolTimeHandler : MonoBehaviour
     {
         coolTimeText.text = "";
         slider.value = slider.maxValue;
+        sliderInside.value = sliderInside.maxValue;
     }
 }
