@@ -24,8 +24,8 @@ public class SoundManager : MonoBehaviour
             return instance;
         }
     }
-    private Dictionary<AudioClip, List<float>> soundOneShot = new Dictionary<AudioClip, List<float>>();
-    private int MaxDuplicateClips = 20;
+    private Dictionary<AudioClip, float> soundOneShot = new Dictionary<AudioClip, float>();
+    private int MaxDuplicateClips = 5;
 
     private static SoundManager Create()
     {
@@ -37,37 +37,30 @@ public class SoundManager : MonoBehaviour
         instance = this;
     }
 
-    public void PlayWithCheck(AudioSource source, AudioClip clip, float volumeScale)
+    public void TryPlayOneShot(AudioSource source, AudioClip clip, float volume)
     {
-        //해당 클립당 재생되고 잇는 사운드 수를 계산하기위해 아래와같이 처리한다
-        // 재생수가 max 만큼이면 재생안한다
+        float nowTime = GameManager.Instance.PlayingTime;
         if(!soundOneShot.ContainsKey(clip))
         {
-            soundOneShot[clip] = new List<float>() { volumeScale };
+            soundOneShot[clip] = nowTime;
         }
         else
         {
-            int count = soundOneShot[clip].Count;
-            //한클립당 현재 재생수가 30개 넘으면 리턴한다
-            if (count == MaxDuplicateClips) return;
-            soundOneShot[clip].Add(volumeScale);
+            if(soundOneShot.TryGetValue(clip, out float playedTime)) return;
+            soundOneShot[clip] = nowTime;
         }
-        int count1 = soundOneShot[clip].Count;
-        Debug.Log(clip.name + " 재생갯수 : " + count1);
-      
-        source.PlayOneShot(clip, volumeScale);
-        StartCoroutine(RemoveVolumeFromClip(clip, volumeScale));
+        source.PlayOneShot(clip, volume);
+        StartCoroutine(RemoveVolumeFromClip(clip, nowTime));
     }
 
-    private IEnumerator RemoveVolumeFromClip(AudioClip clip, float volume)
+    private IEnumerator RemoveVolumeFromClip(AudioClip clip, float nowTime)
     {
         // 재생 시간동안기다리고 그후에 저장된 값을 지운다
-        yield return new WaitForSeconds(clip.length);
+        yield return new WaitForSeconds(clip.length * 0.005f);
 
-        List<float> volumes;
-        if (soundOneShot.TryGetValue(clip, out volumes))
+        if (soundOneShot.TryGetValue(clip, out float babo))
         {
-            volumes.Remove(volume);
+            soundOneShot.Remove(clip);
         }
     }
 }

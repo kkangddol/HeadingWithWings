@@ -4,5 +4,5 @@ using UnityEngine;
 
 interface Item
 {
-    void UseItem();
+    int UseItem();
 }

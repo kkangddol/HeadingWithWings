@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - damageText: {fileID: 3997464698092151095, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
       type: 3}
+  - audioClip: {fileID: 8300000, guid: 4bf4ef1d33d06894a9bec8a2fa16e35d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

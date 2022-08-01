@@ -5,39 +5,32 @@ using TMPro;
 
 public class TextPopup : MonoBehaviour
 {
-    private Camera mainCamera;
     TextMeshPro textMeshPro;
-    private int textValue;
-    private Color color;
+
+    void Awake()
+    {
+        textMeshPro = GetComponentInChildren<TextMeshPro>();
+    }
 
     public void SetDamage(int damage)
     {
-        textValue = damage;
-        color = Color.white;
+        textMeshPro.text = damage.ToString();
+        textMeshPro.color = Color.white;
     }
     public void SetHealAmount(int healAmount)
     {
-        textValue = healAmount;
-        color = Color.green;
+        textMeshPro.text = healAmount.ToString();
+        textMeshPro.color = Color.green;
     }
     public void SetOxygenAmount(int oxygenAmount)
     {
-        textValue = oxygenAmount;
-        color = Color.cyan;
-    }
-
-    void Start()
-    {
-        mainCamera = Camera.main;
-        textMeshPro = GetComponentInChildren<TextMeshPro>();
-        textMeshPro.text = textValue.ToString();
-        textMeshPro.color = color;
+        textMeshPro.text = oxygenAmount.ToString();
+        textMeshPro.color = Color.cyan;
     }
 
     public void Init()
     {
         Invoke("ReturnObject", 1.15f);
-        textValue = 0;
     }
 
     void ReturnObject()

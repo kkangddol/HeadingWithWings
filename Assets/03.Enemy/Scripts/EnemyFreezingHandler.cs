@@ -25,8 +25,8 @@ public class EnemyFreezingHandler : MonoBehaviour
 
     public void SlowMove(float speedMultiplier, float duration = 1.5f)
     {
-        audioSource.PlayOneShot(iceBreak);
-        audioSource.PlayOneShot(ice);
+        SoundManager.Instance.TryPlayOneShot(audioSource, iceBreak, 0.3f);
+        SoundManager.Instance.TryPlayOneShot(audioSource, ice, 0.3f);
         StartCoroutine(EnemySetSlow(speedMultiplier, duration));
     }
 

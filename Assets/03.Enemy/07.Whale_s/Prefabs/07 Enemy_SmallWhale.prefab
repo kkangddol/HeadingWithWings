@@ -245,8 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageText: {fileID: 3997464698092151095, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
     type: 3}
-  audioClips:
-  - {fileID: 8300000, guid: 4bf4ef1d33d06894a9bec8a2fa16e35d, type: 3}
+  audioClip: {fileID: 8300000, guid: 4bf4ef1d33d06894a9bec8a2fa16e35d, type: 3}
 --- !u!114 &-3459935353691133386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +290,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
