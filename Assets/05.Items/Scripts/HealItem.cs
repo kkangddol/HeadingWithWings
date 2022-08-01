@@ -10,7 +10,7 @@ public class HealItem : MonoBehaviour, Item
     private void Start() {
         playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
     }
-    public void UseItem()
+    public int UseItem()
     {
         playerInfo.HealthPoint += playerInfo.healAmount;
 
@@ -20,5 +20,6 @@ public class HealItem : MonoBehaviour, Item
         newTextPopup.GetComponent<TextPopup>().SetHealAmount((int)playerInfo.healAmount);
 
         Destroy(gameObject);
+        return 0;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerTakeItem : MonoBehaviour
 {
-    public AudioClip coinAudio;
+    public AudioClip[] audioClips;
     AudioSource audioSource;
 
     private void Start() {
@@ -15,8 +15,7 @@ public class PlayerTakeItem : MonoBehaviour
         Item item = other.GetComponent<Item>();
         if(item != null)
         {
-            item.UseItem();
-            audioSource.PlayOneShot(coinAudio);
+            SoundManager.Instance.TryPlayOneShot(audioSource, audioClips[item.UseItem()], 0.25f);
         }
     }
 }

@@ -47,8 +47,6 @@ public class FeatherAttack : Equipment
         }
         bullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
         bullet.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.position).normalized * bulletSpeed, ForceMode2D.Impulse);
-        isCoolDown = true;
-        StartCoroutine(CoolDown());
     }
     private void SetupPenetrate(Bullet bullet)
     {
@@ -63,19 +61,18 @@ public class FeatherAttack : Equipment
         while(true)
         {
             yield return null;
-            targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
-
-            if(targetTransform == transform) continue;
-
-            if(Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
-
             if(!isCoolDown)
             {
+                targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
+                if(Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
+
                 for(int i = 0; i < fireCount; i++)
                 {
+                    isCoolDown = true;
                     Fire();
                     yield return waitForInterval;
                 }
+                StartCoroutine(CoolDown());
             }
         }
     }
