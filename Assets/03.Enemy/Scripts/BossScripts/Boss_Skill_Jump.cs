@@ -5,7 +5,7 @@ using FirstGearGames.SmoothCameraShaker;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
-public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
+public class Boss_Skill_Jump : BossSkillBase, IBoss_Skill
 {
     Boss_Skill_Manager skillManager;
     private Rigidbody2D playerRigid;
@@ -36,6 +36,7 @@ public class Boss_Skill_Jump : MonoBehaviour, IBoss_Skill
 
     public void ActivateSkill()
     {
+        skillManager.currentSkill = this;
         jump = true;
     }
 

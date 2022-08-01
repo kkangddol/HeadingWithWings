@@ -191,7 +191,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: -918946799, guid: a24695839e8abd542861351d2dabdf2a, type: 3}
+  m_Sprite: {fileID: 597310268, guid: 752e4c89771d83d47a463e273239e51d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
-  dieSprite: {fileID: 1774311727, guid: a24695839e8abd542861351d2dabdf2a, type: 3}
+  dieSprite: {fileID: 481873431, guid: 752e4c89771d83d47a463e273239e51d, type: 3}
   monsterID: 0
   healthPoint: 0
   moveSpeed: 0
@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73ccbf11b622e14cbf1b410489d954e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSkill: {fileID: 0}
   skillCoolTime: 0
   skillDamage: 0
   skillKnockBackSize: 10

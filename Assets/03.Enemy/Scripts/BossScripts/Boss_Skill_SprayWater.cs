@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Skill_SprayWater : EnemyRangeAttackBase, IBoss_Skill
+public class Boss_Skill_SprayWater : BossSkillBase, IBoss_Skill
 {
     Boss_Skill_Manager skillManager;
     EnemyInfo enemyInfo;
@@ -24,6 +24,7 @@ public class Boss_Skill_SprayWater : EnemyRangeAttackBase, IBoss_Skill
 
     public void ActivateSkill()
     {
+        skillManager.currentSkill = this;
         StartCoroutine(SprayWater());
     }
 
