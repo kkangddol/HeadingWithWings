@@ -6,6 +6,7 @@ public class BossSkillBase : EnemyRangeAttackBase
 {
     public void StopSkill()
     {
+        this.StopAllCoroutines();
         this.enabled = false;
     }
 }
