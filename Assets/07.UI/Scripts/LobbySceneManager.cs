@@ -7,6 +7,16 @@ public class LobbySceneManager : MonoBehaviour
 {
     public GameObject collectionPrefab;
     public GameObject optionPrefab;
+
+    private void Update() {
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+    }
     
     public void OnClickStartButton()
     {

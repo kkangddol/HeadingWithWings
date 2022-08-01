@@ -48,7 +48,7 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
     void ReactForDamage(Vector2 reactVec, float knockbackSize)
     {
         //audioSource.PlayOneShot(audioClip);
-        SoundManager.Instance.TryPlayOneShot(audioSource, audioClip, 0.5f);
+        SoundManager.Instance.TryPlayOneShot(audioSource, audioClip, 0.3f);
 
         reactVec = reactVec.normalized;
         rigid.AddForce(reactVec * knockbackSize, ForceMode2D.Impulse);

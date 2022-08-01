@@ -148,7 +148,8 @@ public class StageManager : MonoBehaviour
 
     void SpawnBoss(int referenceID, int wave, GameObject bossPrefab)
     {
-        var spawnedEnemy = Instantiate(bossPrefab, GetRandomPosition(), Quaternion.identity, enemyParentObject);
+        Vector2 upperPosition = GameManager.playerRigidbody.position + new Vector2(0, 12);
+        var spawnedEnemy = Instantiate(bossPrefab, upperPosition, Quaternion.identity, enemyParentObject);
         enemies.Add(spawnedEnemy.GetComponent<EnemyInfo>());
         spawnedEnemy.GetComponent<EnemyInfo>().SetID(referenceID + wave);
         spawnedEnemy.GetComponent<EnemyInfo>().DataInit();

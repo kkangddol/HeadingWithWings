@@ -11,7 +11,7 @@ public class Bullet_Military : EffectBullet
 
     private void OnEnable() 
     {
-        Invoke("ReturnBullet", 0.3f);
+        Invoke("ReturnBullet", 0.43f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

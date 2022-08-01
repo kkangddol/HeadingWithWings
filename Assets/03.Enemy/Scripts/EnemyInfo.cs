@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyInfo : MonoBehaviour
 {
@@ -33,17 +34,21 @@ public class EnemyInfo : MonoBehaviour
             if(value)
             {
                 EnemyDie();
+                boss();
             }
         }
     }
 
     bool isChainDie = false;
 
+    public Action boss;
+
 
     void Start()
     {
         playerTransform = GameObject.FindWithTag("PLAYER").GetComponent<Transform>();
         IsDead = false;
+        boss = () => {};
     }
 
     private void FixedUpdate() {
@@ -97,6 +102,17 @@ public class EnemyInfo : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             temp.color = Color.white * 0.5f;
             yield return new WaitForSeconds(0.1f);
+        }
+
+        if(boss)
+        {
+            for (int i = 0; i < 10; i++)
+        {
+            temp.color = Color.white;
+            yield return new WaitForSeconds(0.1f);
+            temp.color = Color.white * 0.5f;
+            yield return new WaitForSeconds(0.1f);
+        }
         }
 
         temp.color = Color.clear;

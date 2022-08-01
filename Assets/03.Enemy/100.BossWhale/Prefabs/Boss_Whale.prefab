@@ -238,6 +238,8 @@ GameObject:
   - component: {fileID: -9090617868488843682}
   - component: {fileID: 917981209102636224}
   - component: {fileID: 917981209102636225}
+  - component: {fileID: -7587790754270593216}
+  - component: {fileID: -5724062858600795199}
   - component: {fileID: 917981209102636227}
   - component: {fileID: 917981209102636287}
   - component: {fileID: 5803653837190109304}
@@ -394,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73ccbf11b622e14cbf1b410489d954e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSkill: {fileID: 0}
   skillCoolTime: 0
   skillDamage: 0
   skillKnockBackSize: 0
@@ -402,6 +405,42 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   audioClips:
   - {fileID: 8300000, guid: 6e2a8af66624fab4c83353fc9aaf336b, type: 3}
+--- !u!114 &-7587790754270593216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923775193761803308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89a8d290ab87164a904709fc99d3fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silverPrefab: {fileID: 3810181411317358590, guid: c629a69eb7935954e904c6e792939e9f,
+    type: 3}
+  goldPrefab: {fileID: 3810181411317358590, guid: 0dde7b16107d56c48825819e4b00b637,
+    type: 3}
+  healItemPrefab: {fileID: 3483643955154888932, guid: a33de5b9ff484394181fb6d8744ee25a,
+    type: 3}
+--- !u!114 &-5724062858600795199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923775193761803308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4906dc4bd7e3024ab4546787388b7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silverPrefab: {fileID: 3810181411317358590, guid: 5bd3c3f47f45b08448cc88afb41ccb7f,
+    type: 3}
+  goldPrefab: {fileID: 3810181411317358590, guid: 40b76a214195bd64c871edb3075d71c1,
+    type: 3}
+  silverInterval: 0.05
+  goldInterval: 0.15
 --- !u!114 &917981209102636227
 MonoBehaviour:
   m_ObjectHideFlags: 0

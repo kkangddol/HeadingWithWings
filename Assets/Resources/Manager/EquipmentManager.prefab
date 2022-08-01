@@ -79,18 +79,18 @@ MonoBehaviour:
   - {fileID: 5565552570625225846, guid: 80d253adbf63ff74f9697cbf2faa0bbd, type: 3}
   - {fileID: 3286775588667186500, guid: 303fe77d3b087144fa7a4e6d9c18c0d7, type: 3}
   abilityEquipmentSprites:
-  - {fileID: -1375819794, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: 808564960, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: 1840594051, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: -1814215106, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: -1400434872, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: 1268077247, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: -237775477, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: -427960312, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: -1652468994, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: -1990447711, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: -718067822, guid: 919173ad2d36f424db856165a075dae9, type: 3}
-  - {fileID: -1298133882, guid: 919173ad2d36f424db856165a075dae9, type: 3}
+  - {fileID: -647160874, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: -1827204863, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: 795782955, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: 1502990125, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: 695454938, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: 1070244511, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: 1577556852, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: 1564512629, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: -1061115444, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: 1700299734, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: 1782274880, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
+  - {fileID: -800218829, guid: 3bcb6d8a1da99e44ca717fe16acdc313, type: 3}
   - {fileID: -655936724, guid: b66dd83ef4a94c342a98b19acdf0b10a, type: 3}
   wingEquipmentsLevel: 
   wingEquipmentObjects:
@@ -99,8 +99,13 @@ MonoBehaviour:
   - {fileID: 5234888776444945210, guid: 19e5f811c6455944a867e5faf534414f, type: 3}
   - {fileID: 7361542833992323426, guid: 9deb1d556c793cd40ae234faa63dd3f8, type: 3}
   wingEquipmentSprites:
-  - {fileID: -797997595, guid: b66dd83ef4a94c342a98b19acdf0b10a, type: 3}
-  - {fileID: 1215756776, guid: b66dd83ef4a94c342a98b19acdf0b10a, type: 3}
-  - {fileID: 1691244727, guid: b66dd83ef4a94c342a98b19acdf0b10a, type: 3}
-  - {fileID: 1072640694, guid: b66dd83ef4a94c342a98b19acdf0b10a, type: 3}
+  - {fileID: 305236402, guid: 6641d7a653adf924fb4fefd0ee1efd79, type: 3}
+  - {fileID: -1342619955, guid: 6641d7a653adf924fb4fefd0ee1efd79, type: 3}
+  - {fileID: 1288810701, guid: 6641d7a653adf924fb4fefd0ee1efd79, type: 3}
+  - {fileID: -2111011560, guid: 6641d7a653adf924fb4fefd0ee1efd79, type: 3}
+  wingAnimators:
+  - {fileID: 9100000, guid: 470581766f88413499c837c1a0aa4126, type: 2}
+  - {fileID: 9100000, guid: 690e708146ebe1f4da5830dff9dd7280, type: 2}
+  - {fileID: 9100000, guid: 7baec74c02c97b54f881673890e93720, type: 2}
+  - {fileID: 9100000, guid: 8741500df29e96e49a3fb05423992eb9, type: 2}
   skillButton: {fileID: 0}
