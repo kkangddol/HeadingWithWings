@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject gameoverUI;
+    [SerializeField]
+    private GameObject happyoverUI;
     private HeightBar heightBar;
     public HeightBar HeightBar
     {
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
             killCountText.text = killCount.ToString();
         }
     }
+    public float totalDamage = 0f;
     private float playerHeight;
     public float PlayerHeight { 
         set
@@ -79,6 +82,7 @@ public class GameManager : MonoBehaviour
     public float PlayingTime{
         get {return playingTime;}
     }
+    [SerializeField]
     private int playingTimeMinute;
     public int PlayingTimeMinute
     {
@@ -227,7 +231,8 @@ public class GameManager : MonoBehaviour
 
     private void PopUpUI()
     {
-        Instantiate(gameoverUI);
+        if(playingTimeMinute >= 20)  Instantiate(happyoverUI).GetComponent<GameOverUI>().SetData(playerInfo.gameObject.GetComponentInChildren<SpriteRenderer>().sprite, playingTimeText.text, playerHeight, killCount, totalDamage);
+        else  Instantiate(gameoverUI).GetComponent<GameOverUI>().SetData(playerInfo.gameObject.GetComponentInChildren<SpriteRenderer>().sprite, playingTimeText.text, playerHeight, killCount, totalDamage);
     }
 
     public void PickStart()

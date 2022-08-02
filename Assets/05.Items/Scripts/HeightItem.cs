@@ -5,9 +5,10 @@ using UnityEngine;
 public class HeightItem : MonoBehaviour, Item
 {
     public float riseAmount;
-    public void UseItem()
+    public int UseItem()
     {
         GameManager.Instance.PlayerHeight += riseAmount;
         Destroy(gameObject);
+        return 1;
     }
 }

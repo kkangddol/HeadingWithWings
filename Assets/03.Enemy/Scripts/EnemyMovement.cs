@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour, IEnemyStopHandler
 
 
 
-    private void Start()
+    private void Awake()
     {
         Initialize();
     }

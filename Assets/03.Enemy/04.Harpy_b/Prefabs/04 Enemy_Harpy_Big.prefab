@@ -243,8 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb25f7f64632cb4686d778917884e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 8040205903655349996, guid: ac684a874d75a1d49a190dd77396b946,
-    type: 3}
   projectileCount: 3
   projectileSpread: 30
 --- !u!114 &6102667122217650958
@@ -261,8 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageText: {fileID: 3997464698092151095, guid: 1321e8bf32ccb1344811fec23cd2dd5d,
     type: 3}
-  audioClips:
-  - {fileID: 8300000, guid: 4bf4ef1d33d06894a9bec8a2fa16e35d, type: 3}
+  audioClip: {fileID: 8300000, guid: 4bf4ef1d33d06894a9bec8a2fa16e35d, type: 3}
 --- !u!114 &-7574558083319685184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +304,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

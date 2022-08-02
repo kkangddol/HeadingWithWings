@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a24695839e8abd542861351d2dabdf2a
+guid: 752e4c89771d83d47a463e273239e51d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pegasus_heal
+      name: pegasus_sheet_heal
       rect:
         serializedVersion: 2
         x: 0
-        y: 224
+        y: 288
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f91a9d439b8fbb49adb22a0cbad72dd
-      internalID: -498660383
+      spriteID: d7493592be3422c488fa6c13d1ff34ba
+      internalID: -1203677177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_die
+      name: pegasus_sheet_die
       rect:
         serializedVersion: 2
         x: 128
-        y: 224
+        y: 288
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 215d20bb5c1d5ae4a8e140d6afc42062
-      internalID: 1774311727
+      spriteID: 06477f390e63e1245963c11b60967302
+      internalID: 481873431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_dash_0
+      name: pegasus_sheet_ready_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 112
+        y: 144
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f28584d691c47ec43977ed185f76eb59
-      internalID: 1115200728
+      spriteID: 9bae3597b11a5d842b65f61ac7f8989b
+      internalID: -1690637000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_dash_1
+      name: pegasus_sheet_ready_1
       rect:
         serializedVersion: 2
         x: 128
-        y: 112
+        y: 144
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc1cac02c7a37b949bb9a2a7aa450b28
-      internalID: 641768808
+      spriteID: 2dfde2cd48d9a9d44ae33e1512e50661
+      internalID: 222423915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_dash_2
+      name: pegasus_sheet_ready_2
       rect:
         serializedVersion: 2
         x: 256
-        y: 112
+        y: 144
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +202,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a8049775d154ca4c9fa6fc15492342a
-      internalID: 84034968
+      spriteID: 88897f4ca8d0de24eb564c730016604c
+      internalID: 2356596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_dash_4
+      name: pegasus_sheet_ready_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 144
+        width: 128
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b08d6180aa96f5d49b3d93686b1014f3
+      internalID: 1916806606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pegasus_sheet_ready_4
       rect:
         serializedVersion: 2
         x: 512
-        y: 112
+        y: 144
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,20 +244,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0a43213841fc3c4181ee2a8fc0db073
-      internalID: -116022023
+      spriteID: 5d6729b29ce1e4e40b3f2b1a70a6c127
+      internalID: -250866577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_dash_7
+      name: pegasus_sheet_ready_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 144
+        width: 128
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeb875f3a735c8c4ba568231eee2a57b
+      internalID: -680211559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pegasus_sheet_ready_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 144
+        width: 128
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68ac19ab1c14ee746b4fc9b1b574022f
+      internalID: 734131626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pegasus_sheet_ready_7
       rect:
         serializedVersion: 2
         x: 896
-        y: 112
+        y: 144
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,20 +307,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 715a45bb2bac5f84d9a3f96ced4c9e2b
-      internalID: -1667157338
+      spriteID: 131d5210e89a253428b3a1812db73035
+      internalID: -764525181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_0
+      name: pegasus_sheet_ready_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 144
+        width: 128
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b50c0aa6c9a5ea4cb2c7fd88658a2cc
+      internalID: 264931193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pegasus_sheet_dash_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,20 +349,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecd7a73461a9ea14eab15cb87e557bc6
-      internalID: -918946799
+      spriteID: 749d6d61ce2a91e4da81e22e25e01068
+      internalID: 597310268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_1
+      name: pegasus_sheet_dash_1
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,20 +370,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be3163c0fbdde9b41867340f185ebd73
-      internalID: 1964852700
+      spriteID: 872b31fa22b8eac4cb31f1feffc63491
+      internalID: 58070793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_2
+      name: pegasus_sheet_dash_2
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,20 +391,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 028b910e5335d4b459e110ab7b77b88b
-      internalID: 1308651523
+      spriteID: 0ee9ede90e96d8e43b08bfa32b243636
+      internalID: -500668507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_3
+      name: pegasus_sheet_dash_3
       rect:
         serializedVersion: 2
         x: 384
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,20 +412,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a2e170a9cc11c34f85dbfca145a0284
-      internalID: -1777567202
+      spriteID: db71464eef274f641b803c64e263136d
+      internalID: -480942036
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_4
+      name: pegasus_sheet_dash_4
       rect:
         serializedVersion: 2
         x: 512
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,20 +433,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4267700b700ca648a163f65122a62c4
-      internalID: -21911215
+      spriteID: 9f06d940315d54d4792402b3ca99a3a8
+      internalID: -414289351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_5
+      name: pegasus_sheet_dash_5
       rect:
         serializedVersion: 2
         x: 640
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -370,20 +454,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7b34576d267bcd43b9a36f6a1a95eba
-      internalID: -1046099876
+      spriteID: 46d649db035460d4eb9f8f9943cbe1d6
+      internalID: -1952063146
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_6
+      name: pegasus_sheet_dash_6
       rect:
         serializedVersion: 2
         x: 768
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,20 +475,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40bbfb810dd283142940ca2702b30d85
-      internalID: -1175639698
+      spriteID: cc0b6b2d8df06cc48b33750813f26997
+      internalID: -77750867
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_7
+      name: pegasus_sheet_dash_7
       rect:
         serializedVersion: 2
         x: 896
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,20 +496,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5eb857f2be5f104bb49bc15dc395006
-      internalID: -458489516
+      spriteID: 6590265d723364447895d988cbb23d5f
+      internalID: -1284808186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_8
+      name: pegasus_sheet_dash_8
       rect:
         serializedVersion: 2
         x: 1024
-        y: 0
+        y: 1
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,20 +517,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcbde615fe222e5498c841290ed3788e
-      internalID: -162350703
+      spriteID: 85431b2a772453f49b6ba7f1d9e4a6e8
+      internalID: 1967664175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_9
+      name: pegasus_sheet_dash_9
       rect:
         serializedVersion: 2
         x: 1152
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -454,20 +538,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cbcc5d37fe3e6e478225ab0c095d0ae
-      internalID: -2145109913
+      spriteID: 4078c39966dacc540aba88c5a1e85959
+      internalID: 144574488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_idle_10
+      name: pegasus_sheet_dash_10
       rect:
         serializedVersion: 2
         x: 1280
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -475,104 +559,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 223d88cb4cc4d0041ad404a475c71e73
-      internalID: 362805196
+      spriteID: e0d1ed475eac2e348a72ef9274ca13a1
+      internalID: 1600539476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pegasus_dash_3
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 112
-        width: 128
-        height: 112
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 978e51b89659bbf47ba65d307eae38d5
-      internalID: 395729731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pegasus_dash_5
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 112
-        width: 128
-        height: 112
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75645e3cd6ebd434c8dd978b53e0944c
-      internalID: -2103029775
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pegasus_dash_6
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 112
-        width: 128
-        height: 112
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c27f58a97d66ee40815c08531c09d16
-      internalID: -1126886607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pegasus_dash_8
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 112
-        width: 128
-        height: 112
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4564a4fc8f915d94eb4adb14bf8b204e
-      internalID: -1261443223
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pegasus_idle_11
+      name: pegasus_sheet_dash_11
       rect:
         serializedVersion: 2
         x: 1408
         y: 0
         width: 128
-        height: 112
+        height: 144
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -580,8 +580,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a9bb33b5d906e6439fc131326c4ed5e
-      internalID: 523382899
+      spriteID: 55ac4ade9ffbe4449ba9b86200540494
+      internalID: 277787005
       vertices: []
       indices: 
       edges: []
@@ -597,29 +597,29 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pegasus_dash_8: -1261443223
-      pegasus_dash_5: -2103029775
-      pegasus_dash_7: -1667157338
-      pegasus_dash_4: -116022023
-      pegasus_idle_1: 1964852700
-      pegasus_idle_2: 1308651523
-      pegasus_heal: -498660383
-      pegasus_dash_3: 395729731
-      pegasus_idle_8: -162350703
-      pegasus_idle_9: -2145109913
-      pegasus_idle_10: 362805196
-      pegasus_dash_2: 84034968
-      pegasus_dash_1: 641768808
-      pegasus_idle_0: -918946799
-      pegasus_idle_4: -21911215
-      pegasus_dash_0: 1115200728
-      pegasus_idle_6: -1175639698
-      pegasus_idle_5: -1046099876
-      pegasus_idle_3: -1777567202
-      pegasus_die: 1774311727
-      pegasus_idle_7: -458489516
-      pegasus_dash_6: -1126886607
-      pegasus_idle_11: 523382899
+      pegasus_sheet_dash_2: -500668507
+      pegasus_sheet_dash_7: -1284808186
+      pegasus_sheet_ready_3: 1916806606
+      pegasus_sheet_dash_1: 58070793
+      pegasus_sheet_ready_5: -680211559
+      pegasus_sheet_ready_0: -1690637000
+      pegasus_sheet_dash_0: 58070793
+      pegasus_sheet_die: 481873431
+      pegasus_sheet_ready_2: 2356596
+      pegasus_sheet_ready_4: -250866577
+      pegasus_sheet_dash_10: 1600539476
+      pegasus_sheet_heal: -1203677177
+      pegasus_sheet_dash_6: -77750867
+      pegasus_sheet_ready_7: 264931193
+      pegasus_sheet_dash_3: -480942036
+      pegasus_sheet_dash_8: 1967664175
+      pegasus_sheet_ready_8: 222423915
+      pegasus_sheet_ready_1: -77750867
+      pegasus_sheet_dash_4: -414289351
+      pegasus_sheet_dash_5: -1952063146
+      pegasus_sheet_dash_9: 144574488
+      pegasus_sheet_dash_11: 277787005
+      pegasus_sheet_ready_6: 597310268
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

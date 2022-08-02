@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackRange : MonoBehaviour
+public class EnemyAttackRange : EnemyRangeAttackBase
 {
     private Transform playerTransform;
     private EnemyInfo enemyInfo;
     private IEnemyStopHandler stopHandler;
-    public EnemyProjectile enemyProjectile;
     private bool isAttacking;
     private bool isInRange = false;
     public bool IsInRange
@@ -76,11 +75,12 @@ public class EnemyAttackRange : MonoBehaviour
 
     void Fire()
     {
-        EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, transform.rotation);
-        newProjectile.damage = enemyInfo.projectileDamage;
+        EnemyProjectile projectile = GetProjectile(BasicProjectilePool.Instance);
+        projectile.transform.SetPositionAndRotation(this.transform.position, this.transform.rotation);
+        projectile.damage = enemyInfo.projectileDamage;
         Vector2 direction = (playerTransform.position - transform.position).normalized;
-        newProjectile.transform.right = direction;
-        newProjectile.GetComponent<Rigidbody2D>().AddForce(newProjectile.transform.right * enemyInfo.projectileSpeed, ForceMode2D.Impulse);
+        projectile.transform.right = direction;
+        projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.right * enemyInfo.projectileSpeed, ForceMode2D.Impulse);
     }
 
     // IEnumerator FireCycle()

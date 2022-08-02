@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Archon : Bullet
+public class Bullet_Archon : ArchonEffectBullet
 {
     [HideInInspector]
     public float splashRange = 3.0f;
     public ParticleSystem effect = null;
+
+    void OnEnable() {}
 
     public void SplashDamage(Transform target)
     {
@@ -17,7 +19,7 @@ public class Bullet_Archon : Bullet
             EnemyTakeDamage temp = hitCollider.GetComponent<EnemyTakeDamage>();
             if (temp != null)
             {
-                HitEffect(temp.transform.position);
+                HitEffect(ArchonEffectPool.Instance, temp.transform.position);
                 temp.TakeDamage(temp.transform, damage, knockbackSize);
             }
         }

@@ -14,7 +14,7 @@ public class ObjectPool : MonoBehaviour
     {
         Instance = this;
 
-        Initialize(500);
+        Initialize(200);
     }
 
     private void Initialize(int initCount)
@@ -54,10 +54,10 @@ public class ObjectPool : MonoBehaviour
 
     public void ReturnTextObject(GameObject obj)
     {
-        obj.SetActive(false);
         obj.transform.SetParent(textParent);
         Instance.textQueue.Enqueue(obj);
         obj.transform.position.Set(0, 0, 0);
+        obj.SetActive(false);
     }
 
 }

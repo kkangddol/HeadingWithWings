@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackParabola : MonoBehaviour
+public class EnemyAttackParabola : EnemyRangeAttackBase
 {
     private Transform playerTransform;
     private EnemyInfo enemyInfo;
     private IEnemyStopHandler stopHandler;
-    public EnemyProjectile enemyProjectile;
     public int projectileCount = 1;
     private bool isAttacking;
     private bool isInRange = false;
@@ -77,13 +76,13 @@ public class EnemyAttackParabola : MonoBehaviour
 
     void Fire()
     {
-        for (int i = 0; i < projectileCount; i++)
-        {
-            EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, Quaternion.identity);
-            newProjectile.damage = enemyInfo.projectileDamage;
-            ((EnemyParabolaProjectile)newProjectile).startPos = this.transform.position;
-            ((EnemyParabolaProjectile)newProjectile).targetPos = playerTransform.position;
-        }
+        EnemyProjectile projectile = GetProjectile(CupidProjectilePool.Instance);
+        projectile.gameObject.SetActive(false);
+        projectile.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
+        projectile.damage = enemyInfo.projectileDamage;
+        ((EnemyParabolaProjectile)projectile).startPos = this.transform.position;
+        ((EnemyParabolaProjectile)projectile).targetPos = playerTransform.position;
+        projectile.gameObject.SetActive(true);
     }
 
     IEnumerator FireDelay()

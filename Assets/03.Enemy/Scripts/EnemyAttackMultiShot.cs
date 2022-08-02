@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackMultiShot : MonoBehaviour
+public class EnemyAttackMultiShot : EnemyRangeAttackBase
 {
     private Transform playerTransform;
     private EnemyInfo enemyInfo;
     private IEnemyStopHandler stopHandler;
-    public EnemyProjectile enemyProjectile;
     public int projectileCount = 3;
     public float projectileSpread = 30;
     private bool isAttacking;
@@ -80,12 +79,13 @@ public class EnemyAttackMultiShot : MonoBehaviour
     {
         for(int i = 0; i < projectileCount; i++)
         {
-            EnemyProjectile newProjectile = Instantiate<EnemyProjectile>(enemyProjectile, transform.position, transform.rotation);
-            newProjectile.damage = enemyInfo.projectileDamage;
+            EnemyProjectile projectile = GetProjectile(BasicProjectilePool.Instance);
+            projectile.transform.SetPositionAndRotation(this.transform.position, this.transform.rotation);
+            projectile.damage = enemyInfo.projectileDamage;
             Vector2 direction = (playerTransform.position - transform.position).normalized;
-            newProjectile.transform.right = direction;
-            newProjectile.transform.Rotate(0, 0, i * (projectileSpread / projectileCount) - (projectileSpread / 2));
-            newProjectile.GetComponent<Rigidbody2D>().AddForce(newProjectile.transform.right * enemyInfo.projectileSpeed, ForceMode2D.Impulse);
+            projectile.transform.right = direction;
+            projectile.transform.Rotate(0, 0, i * (projectileSpread / projectileCount) - (projectileSpread / 2));
+            projectile.GetComponent<Rigidbody2D>().AddForce(projectile.transform.right * enemyInfo.projectileSpeed, ForceMode2D.Impulse);
         }
     }
 

@@ -4,32 +4,42 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    const string PLAYER = "PLAYER";
-    const string IRONWALL = "IRONWALL";
+    protected const string PLAYER = "PLAYER";
+    protected const string IRONWALL = "IRONWALL";
     public float damage;
+
+    protected ObjectPoolBase pool = null;
 
     private void Start()
     {
-        Invoke("DestroyProjectile", 10.0f);
+        pool = BasicProjectilePool.Instance;
     }
+
+    private void OnEnable()
+    {
+        Invoke("ReturnProjectile", 10.0f);
+    }
+    private void OnDisable() {
+        CancelInvoke();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag(PLAYER))
         {
             other.GetComponent<PlayerTakeDamage>().TakeDamage(damage);
-            DestroyProjectile();
+            ReturnProjectile();
         }
         if(other.CompareTag(IRONWALL))
         {
             other.GetComponent<Bullet_IronWall>().TakeDamage();
-            DestroyProjectile();
+            ReturnProjectile();
         }
     }
 
-    private void DestroyProjectile()
+    private void ReturnProjectile()
     {
-        CancelInvoke();
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        Destroy(gameObject);
+        pool.ReturnObject(this.gameObject);
     }
 }

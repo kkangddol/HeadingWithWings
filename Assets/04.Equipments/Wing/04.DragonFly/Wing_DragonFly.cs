@@ -41,11 +41,14 @@ public class Wing_DragonFly : Equipment, ActiveWing
 
     public GameObject effect;
 
+    [Tooltip("HitEffect Color")]
+    public Color effectColor;
+
     private bool isAttacking = false;
 
     public GameObject skillButton;
 
-    public GameObject hitEffect;
+    PlayerTakeDamage playerTakeDamage;
 
     private void Start()
     {
@@ -59,6 +62,7 @@ public class Wing_DragonFly : Equipment, ActiveWing
         playerRigid = GameObject.FindWithTag("PLAYER").GetComponent<Rigidbody2D>();
         col = GetComponent<CircleCollider2D>();
         DashCount = maxDashCount;
+        playerTakeDamage = playerInfo.gameObject.GetComponent<PlayerTakeDamage>();
     }
 
     public void SetButton(GameObject button)
@@ -74,6 +78,8 @@ public class Wing_DragonFly : Equipment, ActiveWing
 
         if(isAttacking) return;
 
+
+        playerTakeDamage.isGodMode = true;
         isAttacking = true;
         playerMoveController.StopMove();
         IsDashStarted = true;
@@ -104,16 +110,25 @@ public class Wing_DragonFly : Equipment, ActiveWing
         }
     }
 
+    private void HitEffect(Vector3 hitPos)
+    {
+        GameObject obj = BasicEffectPool.Instance.GetObject();
+        obj.transform.position = hitPos;
+        obj.GetComponent<SpriteRenderer>().color = effectColor;
+        BasicEffectPool.Instance.ReturnObject(obj, obj.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0).Length);
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("ENEMY"))
         {
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, playerInfo.damage * damageMultiplier, knockbackSize);
-            Instantiate(hitEffect, other.transform.position, Quaternion.identity);
+            HitEffect(other.transform.position);
         }
     }
 
     void StopShort()
     {
+        playerTakeDamage.isGodMode = false;
         playerRigid.velocity = Vector2.zero;
         playerMoveController.ResumeMove();
         col.enabled = false;

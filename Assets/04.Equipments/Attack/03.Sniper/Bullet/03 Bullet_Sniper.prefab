@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4274656806881653096}
   - component: {fileID: 5456949085471648091}
+  - component: {fileID: 2605394581044796119}
   - component: {fileID: 7899013379030827032}
   - component: {fileID: 354152304}
-  - component: {fileID: 4404061354557132814}
   m_Layer: 0
   m_Name: 03 Bullet_Sniper
   m_TagString: ATTACK
@@ -57,6 +57,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &2605394581044796119
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4274656806881653110}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &7899013379030827032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,8 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 5
-  hitEffectPrefab: {fileID: 3150084289082012419, guid: ea060fc948e4dc040a80fe2b6e7d3baf,
-    type: 3}
+  effectColor: {r: 1, g: 0.78431374, b: 0, a: 1}
   headShotChance: 0
   headShotDamageMultiplier: 0
 --- !u!96 &354152304
@@ -201,22 +216,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!70 &4404061354557132814
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4274656806881653110}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.4, y: 0.15}
-  m_Direction: 1
 --- !u!1 &7195508365428956232
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,8 +242,8 @@ Transform:
   m_GameObject: {fileID: 7195508365428956232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4274656806881653096}
   m_RootOrder: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Skill_Summon : MonoBehaviour, IBoss_Skill
+public class Boss_Skill_Summon : BossSkillBase, IBoss_Skill
 {
     EnemyInfo enemyInfo;
     Boss_Skill_Manager skillManager;
@@ -20,6 +20,7 @@ public class Boss_Skill_Summon : MonoBehaviour, IBoss_Skill
     }   
     public void ActivateSkill()
     {
+        skillManager.currentSkill = this;
         stopHandler.StopMove();
 
         GameObject newEffect = Instantiate(effect, transform.position + Vector3.down * 2 , Quaternion.identity);

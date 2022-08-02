@@ -6,8 +6,6 @@ public class MeteorAttack : Equipment
 {
     PlayerInfo playerInfo;
     const int equipID = 10800;
-    const string ENEMY = "ENEMY";
-    public GameObject bullet;
     public float damageMultiplier;
     public float attackDelayMultiplier;
     public float attackRange;
@@ -28,17 +26,18 @@ public class MeteorAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
     }
 
     public void Fire()
     {
-        Bullet newBullet = Instantiate(bullet, transform.position, transform.rotation).GetComponentInChildren<Bullet>();
-        newBullet.damage = playerInfo.damage * damageMultiplier;
-        ((Bullet_Meteor)newBullet).dotDamage = newBullet.damage * 0.1f;
-        newBullet.knockbackSize = knockbackSize;
-        ((Bullet_Meteor)newBullet).isGTAEMeteor = isGTAEMeteor;
-        newBullet.transform.parent.position = (Vector2)this.transform.position + Random.insideUnitCircle * attackRange;
+        Bullet bullet = MeteorBulletPool.Instance.GetObject().GetComponentInChildren<Bullet>();
+        bullet.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        bullet.damage = playerInfo.damage * damageMultiplier;
+        ((Bullet_Meteor)bullet).dotDamage = bullet.damage * 0.1f;
+        bullet.knockbackSize = knockbackSize;
+        ((Bullet_Meteor)bullet).isGTAEMeteor = isGTAEMeteor;
+        bullet.transform.parent.position = (Vector2)this.transform.position + Random.insideUnitCircle * attackRange;
     }
     
     IEnumerator MeteorFire()

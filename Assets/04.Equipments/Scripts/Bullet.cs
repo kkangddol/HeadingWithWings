@@ -4,16 +4,35 @@ using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour
 {
+    public const string PLAYER = "PLAYER";
+    public const string ENEMY = "ENEMY";
+
     [HideInInspector]
     public float damage;
     [HideInInspector]
     public float knockbackSize;
 
-    public GameObject hitEffectPrefab;
+    [HideInInspector]
+    public ObjectPoolBase pool = null;
 
-    protected void HitEffect(Vector3 hitPos)
+    private void Start() 
     {
-        GameObject go = GameObject.Instantiate(hitEffectPrefab, hitPos, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
-        Destroy(go, go.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0).Length);
+        pool = FeatherBulletPool.Instance;
+    }
+
+    private void OnEnable() 
+    {
+        Invoke("ReturnBullet", 5f);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
+    }
+
+    public void ReturnBullet()
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        pool.ReturnObject(this.gameObject);
     }
 }

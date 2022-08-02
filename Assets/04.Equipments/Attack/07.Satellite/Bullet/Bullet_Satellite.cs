@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Satellite : Bullet
+public class Bullet_Satellite : EffectBullet
 {
-    const string ENEMY = "ENEMY";
+    void OnEnable() {}
 
     private void Update()
     {
@@ -15,7 +15,7 @@ public class Bullet_Satellite : Bullet
     {
         if (other.CompareTag(ENEMY))
         {
-            HitEffect(other.transform.position);
+            HitEffect(SatelliteEffectPool.Instance, other.transform.position);
             other.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
         }
     }

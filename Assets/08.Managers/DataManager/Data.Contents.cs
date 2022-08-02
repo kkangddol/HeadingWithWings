@@ -244,6 +244,8 @@ public class EquipDescriptionRaw
     public int equipID = 0;
     public string equipName = "";
     public int level = 0;
+    public string info = "";
+    public string detailInfo = "";
     public string damage = "";
     public string delay = "";
     public float range = 0.0f;
@@ -255,8 +257,7 @@ public class EquipDescriptionRaw
     public string slowTime = "";
     public string healAmount = "";
     public string skillTime = "";
-     public string description = "";
-    public string extraDescription = "";
+
 }
 
 [Serializable]
@@ -265,6 +266,8 @@ public class EquipDescription
     public int equipID = 0;
     public string equipName = "";
     public int level = 0;
+    public string info = "";
+    public string detailInfo = "";
     public string damage = "";
     public string delay = "";
     public float range = 0.0f;
@@ -276,8 +279,6 @@ public class EquipDescription
     public string slowTime = "";
     public string healAmount = "";
     public string skillTime = "";
-     public string description = "";
-    public string extraDescription = "";
     public List<string> infoList = new List<string>();
     public List<string> infoTitle = new List<string>();
 }
@@ -295,6 +296,8 @@ public class EquipDescriptionpData: ILoader<int, EquipDescription>
         temp.equipID = rawData.equipID;
         temp.equipName = rawData.equipName;
         temp.level = rawData.level;
+        temp.info = rawData.info == "null" ? null : rawData.info;
+        temp.detailInfo = rawData.detailInfo == "null" ? null : rawData.detailInfo;
         temp.damage = rawData.damage == "null" ? null : rawData.damage;
         temp.delay = rawData.delay == "null" ? null : rawData.delay;
         temp.range = rawData.range;
@@ -306,9 +309,6 @@ public class EquipDescriptionpData: ILoader<int, EquipDescription>
         temp.slowTime = rawData.slowTime == "null" ? null : rawData.slowTime;
         temp.healAmount = rawData.healAmount == "null" ? null : rawData.healAmount;
         temp.skillTime = rawData.skillTime == "null" ? null : rawData.skillTime;
-        temp.description = rawData.description == "null" ? null : rawData.description;
-        temp.extraDescription = rawData.extraDescription == "null" ? null : rawData.extraDescription;
-
 
         if(temp.damage != null) {temp.infoList.Add(temp.damage); temp.infoTitle.Add("damage");} 
         if(temp.delay != null) {temp.infoList.Add(temp.delay); temp.infoTitle.Add("delay");}

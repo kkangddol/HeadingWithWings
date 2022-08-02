@@ -79,7 +79,10 @@ public class PlayerDash : MonoBehaviour
             if(coolTime <= 0)
             {
                 isCooling = false;
-                DashCount++;
+                if(DashCount < MaxDashCount)
+                {
+                    DashCount++;
+                }
                 break;
             }
         }

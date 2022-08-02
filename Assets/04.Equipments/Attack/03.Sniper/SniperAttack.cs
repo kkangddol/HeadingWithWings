@@ -7,7 +7,6 @@ public class SniperAttack : Equipment
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
     const int equipID = 10300;
-    const string ENEMY = "ENEMY";
     const float TOTALTIME = 1.6f; // for sniping
     public LineRenderer laser = null;
     public GameObject scope = null;
@@ -35,7 +34,7 @@ public class SniperAttack : Equipment
 
     void Initialize()
     {
-        playerInfo = GameObject.FindWithTag("PLAYER").GetComponent<PlayerInfo>();
+        playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
         detectEnemy = GetComponent<DetectEnemy>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -81,13 +80,14 @@ public class SniperAttack : Equipment
 
     void Fire()
     {
-        Bullet newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
-        newBullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
-        newBullet.damage = playerInfo.damage * damageMultiplier;
-        newBullet.knockbackSize = knockbackSize;
-        ((Bullet_Sniper)newBullet).headShotChance = headShotChance;
-        ((Bullet_Sniper)newBullet).headShotChance = headShotDamageMultiplier;
-        newBullet.GetComponent<Rigidbody2D>().AddForce(newBullet.transform.right * bulletSpeed, ForceMode2D.Impulse);
+        Bullet bullet = GetBullet(SniperBulletPool.Instance);
+        bullet.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        bullet.transform.rotation = Utilities.LookAt2(this.transform, targetTransform);
+        bullet.damage = playerInfo.damage * damageMultiplier;
+        bullet.knockbackSize = knockbackSize;
+        ((Bullet_Sniper)bullet).headShotChance = headShotChance;
+        ((Bullet_Sniper)bullet).headShotChance = headShotDamageMultiplier;
+        bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * bulletSpeed, ForceMode2D.Impulse);
         StartCoroutine(CoolDown());
         audioSource.PlayOneShot(audioClips[0]);
     }
@@ -97,14 +97,11 @@ public class SniperAttack : Equipment
         while (true)
         {
             yield return null;
-            targetTransform = detectEnemy.FindNearestEnemy(ENEMY);
-
-            if (targetTransform == transform) continue;
-
-            if (Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
-
             if (!isCoolDown)
             {
+                targetTransform = detectEnemy.FindStrongestEnemy(ENEMY);
+                if (targetTransform == transform) continue;
+                if (Vector2.Distance(transform.position, targetTransform.position) > attackRange) continue;
                 StartCoroutine(Sniping());
             }
         }

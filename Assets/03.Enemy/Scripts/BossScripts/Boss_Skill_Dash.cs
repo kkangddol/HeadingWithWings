@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
+public class Boss_Skill_Dash : BossSkillBase, IBoss_Skill
 {
     //플레이어 방향으로 직선으로 돌진하는 스킬입니다.
     //EnemyAttackMelee와는 별개로 OverlapSphere 이용해서 돌진의 데미지를 따로 입혀주면 좋을 것 같습니다.
@@ -37,6 +37,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
 
     public void ActivateSkill()
     {
+        skillManager.currentSkill = this;
         StartCoroutine(Dash());
     }
 
@@ -45,7 +46,7 @@ public class Boss_Skill_Dash : MonoBehaviour, IBoss_Skill
         StartCoroutine(ShowDamageZone());
         yield return new WaitForSeconds(0.5f);
 
-        skillManager.audioSource.PlayOneShot(audioClips[0]);
+        skillManager.audioSource.PlayOneShot(audioClips[0], 0.6f);
         isDash = true;
         StartCoroutine(DashDotDamage());
         rb2D.AddForce((dashPos - this.transform.position) * 2f, ForceMode2D.Impulse);

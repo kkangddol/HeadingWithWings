@@ -12,7 +12,7 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
     private float reactTime;
     bool isHit;
     AudioSource audioSource;
-    public AudioClip[] audioClips;
+    public AudioClip audioClip;
 
     private void Start()
     {
@@ -29,16 +29,18 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
         isHit = false;
         audioSource = GetComponent<AudioSource>();
     }
-    public void TakeDamage(Transform hitTr, float damage, float knockbackSize)
+    public void TakeDamage(Transform hitTr, float damage, float knockbackSize, bool isBoss = false)
     {
+        if(!isBoss)  GameManager.Instance.totalDamage += damage;
+        
         isHit = true;
 
         enemyInfo.healthPoint -= damage;
         float randomX = Random.Range(-0.5f,0.5f);
         //GameObject dText = Instantiate(damageText, transform.position + (Vector3.up / 2) + (Vector3.right * randomX), Quaternion.identity);
         GameObject dText = ObjectPool.Instance.GetTextObject();
-        dText.transform.position = transform.position + (Vector3.up / 2) + (Vector3.right * randomX);
         dText.GetComponent<TextPopup>().SetDamage((int)damage);
+        dText.transform.position = transform.position + (Vector3.up / 2) + (Vector3.right * randomX);
 
         Vector2 reactVec = transform.position - hitTr.position;
 
@@ -47,7 +49,9 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
 
     void ReactForDamage(Vector2 reactVec, float knockbackSize)
     {
-        audioSource.PlayOneShot(audioClips[0]);
+        //audioSource.PlayOneShot(audioClip);
+        SoundManager.Instance.TryPlayOneShot(audioSource, audioClip, 0.3f);
+
         reactVec = reactVec.normalized;
         rigid.AddForce(reactVec * knockbackSize, ForceMode2D.Impulse);
         skinnedMeshRenderer.material.color = Color.red;
@@ -73,6 +77,6 @@ public class EnemyTakeDamage : MonoBehaviour, ITakeBossAttack
 
     public void TakeBossAttack(Transform hitTr, float damage, float knockbackSize)
     {
-        TakeDamage(hitTr, damage, knockbackSize);
+        TakeDamage(hitTr, damage, knockbackSize, true);
     }
 }
