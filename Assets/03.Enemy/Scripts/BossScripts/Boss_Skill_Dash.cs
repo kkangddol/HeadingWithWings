@@ -46,7 +46,7 @@ public class Boss_Skill_Dash : BossSkillBase, IBoss_Skill
         StartCoroutine(ShowDamageZone());
         yield return new WaitForSeconds(0.5f);
 
-        skillManager.audioSource.PlayOneShot(audioClips[0]);
+        skillManager.audioSource.PlayOneShot(audioClips[0], 0.6f);
         isDash = true;
         StartCoroutine(DashDotDamage());
         rb2D.AddForce((dashPos - this.transform.position) * 2f, ForceMode2D.Impulse);

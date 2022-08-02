@@ -30,7 +30,7 @@ public class Boss_Skill_SprayWater : BossSkillBase, IBoss_Skill
 
     IEnumerator SprayWater()
     {
-        skillManager.audioSource.PlayOneShot(audioClips[0]);
+        skillManager.audioSource.PlayOneShot(audioClips[0], 0.5f);
         stopHandler.StopMove();
         Vector2 direction;
 

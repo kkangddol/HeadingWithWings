@@ -81,7 +81,7 @@ public class Boss_Skill_Jump : BossSkillBase, IBoss_Skill
             trailRenderer.emitting = true;
 
             col.enabled = false;
-            skillManager.audioSource.PlayOneShot(audioClips[0]);
+            skillManager.audioSource.PlayOneShot(audioClips[0], 0.6f);
         }
         else
         {
