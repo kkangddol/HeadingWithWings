@@ -158,6 +158,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.HeadingGames.HeadingWithWings
+    Standalone: com.Project-W.---------
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -275,7 +276,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 371e606454f6c5d4ebf90303ce151036, type: 3}
+      m_Icon: {fileID: 2800000, guid: abf65f58a368e8f4ba1035ac041403c7, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
