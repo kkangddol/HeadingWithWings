@@ -6487,8 +6487,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6ca850c09dced40b69f18369c7db33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initCount: 20
-  poolingObject: {fileID: 5124250343714136914, guid: 16441a3fcd5427e42a9832f7dda4c593,
+  initCount: 50
+  poolingObject: {fileID: 5124250343714136914, guid: 8b54bb8e62ea78242a38acac735b1c8e,
     type: 3}
 --- !u!1 &1348613884
 GameObject:

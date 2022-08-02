@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Bullet_Feather : EffectBullet
 {
-    const string ENEMY = "ENEMY";
-
     private void Awake() {
         pool = FeatherBulletPool.Instance;
         Invoke("ReturnBullet", 5);
