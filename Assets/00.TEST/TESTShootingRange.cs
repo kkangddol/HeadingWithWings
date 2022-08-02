@@ -20,7 +20,6 @@ public class TESTShootingRange : MonoBehaviour
         }
 
         Destroy(GameManager.playerInfo.wingEquipment);
-        Destroy(GameManager.playerInfo.wingModel);
 
         Player.GetComponent<PlayerInfo>().attackEquipments = new GameObject[EquipmentManager.Instance.attackEquipmentObjects.Length];
         EquipmentManager.Instance.attackEquipmentsLevel = new int[EquipmentManager.Instance.attackEquipmentObjects.Length];

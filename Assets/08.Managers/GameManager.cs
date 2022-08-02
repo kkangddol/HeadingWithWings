@@ -231,8 +231,8 @@ public class GameManager : MonoBehaviour
 
     private void PopUpUI()
     {
-        if(playingTimeMinute >= 20)  Instantiate(happyoverUI).GetComponent<GameOverUI>().SetData(playingTimeText.text, playerHeight, killCount, totalDamage);
-        else  Instantiate(gameoverUI).GetComponent<GameOverUI>().SetData(playingTimeText.text, playerHeight, killCount, totalDamage);
+        if(playingTimeMinute >= 20)  Instantiate(happyoverUI).GetComponent<GameOverUI>().SetData(playerInfo.gameObject.GetComponentInChildren<SpriteRenderer>().sprite, playingTimeText.text, playerHeight, killCount, totalDamage);
+        else  Instantiate(gameoverUI).GetComponent<GameOverUI>().SetData(playerInfo.gameObject.GetComponentInChildren<SpriteRenderer>().sprite, playingTimeText.text, playerHeight, killCount, totalDamage);
     }
 
     public void PickStart()

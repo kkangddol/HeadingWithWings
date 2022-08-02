@@ -38,6 +38,7 @@ public class EquipmentManager : MonoBehaviour
     public GameObject[] wingEquipmentObjects;
     public Sprite[] wingEquipmentSprites;
     public RuntimeAnimatorController[] wingAnimators;
+    public GameObject[] wingParticles;
 
     public GameObject skillButton;
 
@@ -108,8 +109,8 @@ public class EquipmentManager : MonoBehaviour
             //신규 장착
             if(GameManager.playerInfo.wingEquipmentParent.childCount != 0)
             {
+                Destroy(GameManager.playerInfo.wingParticle);
                 Destroy(GameManager.playerInfo.wingEquipment);
-                Destroy(GameManager.playerInfo.wingModel);
             }
             if(GameManager.playerInfo.wingNumber != -1)
             {
@@ -119,6 +120,9 @@ public class EquipmentManager : MonoBehaviour
             GameManager.playerInfo.gameObject.GetComponent<PlayerTakeDamage>().isGodMode = false;
 
             GameManager.playerInfo.gameObject.GetComponentInChildren<Animator>().runtimeAnimatorController = wingAnimators[EquipmentNumber];
+            
+            GameObject particles = Instantiate(wingParticles[EquipmentNumber], GameManager.playerInfo.wingEquipmentParent);
+            GameManager.playerInfo.wingParticle = particles;
 
             GameObject equipment = Instantiate(wingEquipmentObjects[EquipmentNumber], GameManager.playerInfo.wingEquipmentParent);
 

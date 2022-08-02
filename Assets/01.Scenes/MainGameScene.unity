@@ -1222,6 +1222,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241636560}
   m_CullTransparentMesh: 1
+--- !u!1 &269356364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7456674016637473787, guid: 897193135937146428ded6df44eb5383,
+    type: 3}
+  m_PrefabInstance: {fileID: 1677048018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &323400501
 GameObject:
   m_ObjectHideFlags: 0
@@ -3171,6 +3177,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipmentManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7451788280324424566, guid: e7b1881621a19ff48bd1795a6babb3cd,
+        type: 3}
+      propertyPath: wingParticles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7451788280324424566, guid: e7b1881621a19ff48bd1795a6babb3cd,
+        type: 3}
+      propertyPath: wingParticles.Array.data[0]
+      value: 
+      objectReference: {fileID: 2975577624470176834, guid: 63ed96f22e6bcea46aba0c33376abc49,
+        type: 3}
+    - target: {fileID: 7451788280324424566, guid: e7b1881621a19ff48bd1795a6babb3cd,
+        type: 3}
+      propertyPath: wingParticles.Array.data[1]
+      value: 
+      objectReference: {fileID: 286180307372982187, guid: 0cd5f57fc8ffc2042b51c7e8ea810fd0,
+        type: 3}
+    - target: {fileID: 7451788280324424566, guid: e7b1881621a19ff48bd1795a6babb3cd,
+        type: 3}
+      propertyPath: wingParticles.Array.data[2]
+      value: 
+      objectReference: {fileID: 6879816339725157459, guid: d3b4eb5066e4d5a47ae65f2eb296b37e,
+        type: 3}
+    - target: {fileID: 7451788280324424566, guid: e7b1881621a19ff48bd1795a6babb3cd,
+        type: 3}
+      propertyPath: wingParticles.Array.data[3]
+      value: 
+      objectReference: {fileID: 5838046595782809517, guid: c269c8aa8614f894180ad6fbd244405d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7b1881621a19ff48bd1795a6babb3cd, type: 3}
 --- !u!1 &757338190
@@ -8284,13 +8319,8 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1107754387294122241}
+    m_TransformParent: {fileID: 1107754389330713110}
     m_Modifications:
-    - target: {fileID: 3010047486005135605, guid: 897193135937146428ded6df44eb5383,
-        type: 3}
-      propertyPath: InheritVelocityModule.m_Curve.scalar
-      value: -0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7456674016637473787, guid: 897193135937146428ded6df44eb5383,
         type: 3}
       propertyPath: m_Name
@@ -8299,7 +8329,7 @@ PrefabInstance:
     - target: {fileID: 9193577567761641071, guid: 897193135937146428ded6df44eb5383,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9193577567761641071, guid: 897193135937146428ded6df44eb5383,
         type: 3}
@@ -11997,7 +12027,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1107754388574598938}
-  - {fileID: 1677048019}
   m_Father: {fileID: 1107754388255959797}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12237,11 +12266,10 @@ MonoBehaviour:
   attackEquipments: []
   abilityEquipments: 
   wingEquipment: {fileID: 0}
-  wingModel: {fileID: 0}
+  wingParticle: {fileID: 269356364}
   wingNumber: -1
   attackEquipmentsParent: {fileID: 1107754387953365780}
   wingEquipmentParent: {fileID: 1107754389330713110}
-  wingModelParent: {fileID: 0}
   headAngle: 0
   headVector: {x: 0, y: 0}
   startAttack: 0
@@ -13026,7 +13054,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1677048019}
   m_Father: {fileID: 1107754388255959797}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

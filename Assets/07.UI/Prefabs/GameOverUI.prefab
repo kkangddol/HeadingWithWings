@@ -1026,6 +1026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f14d18004036740adbe3807515e79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerImage: {fileID: 4794419845823384680}
   survivalTimeTxt: {fileID: 7320538467447260446}
   heightTxt: {fileID: 8610446240793847098}
   killCountTxt: {fileID: 5568254477109164511}
