@@ -24,7 +24,7 @@ public class Bullet_Icicle : EffectBullet
             {
                 if(target.CompareTag("ENEMY"))
                 {
-                    HitEffect(BasicEffectPool.Instance, other.transform.position, effectColor);
+                    HitEffect(BasicEffectPool.Instance, target.transform.position, effectColor);
                     target.GetComponent<EnemyTakeDamage>().TakeDamage(transform, damage, knockbackSize);
                     target.GetComponent<EnemyFreezingHandler>().SlowMove(speedMultiplier, slowDuration);
                 }
