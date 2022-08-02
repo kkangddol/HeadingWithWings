@@ -34,7 +34,7 @@ public class PlayerMoveController : MonoBehaviour
     }
 
 	private void Update() {
-		if(rb.velocity.magnitude >= 5)
+		if(rb.velocity.magnitude >= 7.5)
 		{
 			trail.emitting = true;
             ghost.makeGhost = true;
