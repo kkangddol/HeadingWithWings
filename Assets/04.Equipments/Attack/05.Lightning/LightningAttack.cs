@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArchonAttack : Equipment
+public class LightningAttack : Equipment
 {
     PlayerInfo playerInfo;
     DetectEnemy detectEnemy;
@@ -41,9 +41,9 @@ public class ArchonAttack : Equipment
     {
         bullet.damage = playerInfo.damage * damageMultiplier;
         bullet.knockbackSize = knockbackSize;
-        ((Bullet_Archon)bullet).splashRange = splashRange;
+        ((Bullet_Lightning)bullet).splashRange = splashRange;
         StartCoroutine(BulletScaling());
-        ((Bullet_Archon)bullet).SplashDamage(targetTransform);
+        ((Bullet_Lightning)bullet).SplashDamage(targetTransform);
         isCoolDown = true;
         audioSource.PlayOneShot(audioClips[0]);
         StartCoroutine(CoolDown());

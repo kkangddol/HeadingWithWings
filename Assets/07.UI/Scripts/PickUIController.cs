@@ -12,7 +12,6 @@ public class PickUIController : MonoBehaviour
     public GameObject[] thirdSlotLevelImages;
     public List<GameObject[]> levels = new List<GameObject[]>();
     public TMPro.TextMeshProUGUI[] slotEquipName;
-    //public GameObject[] slotBan;
     public TMPro.TextMeshProUGUI[] info;
     public TMPro.TextMeshProUGUI[] detailInfo;
     // [SerializeField] private GameObject[] firstSlotInfos;
@@ -21,28 +20,32 @@ public class PickUIController : MonoBehaviour
     //public List<GameObject[]> slotInfos = new List<GameObject[]>();
     public Button[] infoButtons;
     public GameObject[] detailInfoUI;
+    public GameObject[] slotBan;
     public Button rerollButton;
     public GameObject rerollBan;
     public Button skipButton;
-    
-    public void Init(){
-        // slotInfos.Add(firstSlotInfos);
-        // slotInfos.Add(secondSlotInfos);
-        // slotInfos.Add(thirdSlotInfos);
+
+    private void Awake() {
         levels.Add(firstSlotLevelImages);
         levels.Add(secondSlotLevelImages);
         levels.Add(thirdSlotLevelImages);
+    }
+
+    public void Init(){
         GetComponent<AudioSource>().Play();
     }
 
-    public void DetailInfoOpen(int index)
+    public void ClearUI()
     {
-        detailInfoUI[index].SetActive(true);
-    }
-
-    public void DetailInfoExit(int index)
-    {
-        detailInfoUI[index].SetActive(false);
+        for(int i = 0; i < 3; i++)
+        {
+            detailInfoUI[i].SetActive(false);
+            foreach(GameObject level in levels[i])
+            {
+                level.SetActive(false);
+            }
+        }
+        ClearSlotBan();
     }
 
     public void SetLevel(int index, int level)
@@ -58,17 +61,17 @@ public class PickUIController : MonoBehaviour
         rerollButton.gameObject.SetActive(false);
         rerollBan.SetActive(true);
     }
-    // public void SetSlotBan(int index)
-    // {
-    //     slotBan[index].SetActive(true);
-    // }
-    // public void ClearSlotBan()
-    // {
-    //     foreach(var ban in slotBan)
-    //     {
-    //         ban.SetActive(false);
-    //     }
-    // }
+    public void SetSlotBan(int index)
+    {
+        slotBan[index].SetActive(true);
+    }
+    public void ClearSlotBan()
+    {
+        foreach(var ban in slotBan)
+        {
+            ban.SetActive(false);
+        }
+    }
     
     public void PickUIExit()
     {
@@ -79,18 +82,7 @@ public class PickUIController : MonoBehaviour
         //     secondSlotInfos[i].SetActive(false);
         //     thirdSlotInfos[i].SetActive(false);
         // }
-        // for(int i = 0; i < 3; i++)
-        // {
-        //     slotBan[i].SetActive(false);
-        // }
-        for(int i = 0; i < 3; i++)
-        {
-            detailInfoUI[i].SetActive(false);
-            foreach(GameObject level in levels[i])
-            {
-                level.SetActive(false);
-            }
-        }
+        ClearUI();
         rerollButton.gameObject.SetActive(true);
         rerollBan.SetActive(false);
         gameObject.SetActive(false);

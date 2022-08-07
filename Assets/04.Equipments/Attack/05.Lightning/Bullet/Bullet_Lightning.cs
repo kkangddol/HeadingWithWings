@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Archon : ArchonEffectBullet
+public class Bullet_Lightning : ArchonEffectBullet
 {
     [HideInInspector]
     public float splashRange = 3.0f;
