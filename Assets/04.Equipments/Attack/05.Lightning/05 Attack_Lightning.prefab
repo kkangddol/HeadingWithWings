@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: -4908629925767661928}
   - component: {fileID: 1184927950801709019}
   m_Layer: 0
-  m_Name: 05 Attack_Archon
+  m_Name: 05 Attack_Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

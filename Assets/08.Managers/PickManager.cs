@@ -81,7 +81,7 @@ public class PickManager : MonoBehaviour
         pickUI.gameObject.SetActive(true);
         levelUpEffect.SetActive(true);
         pickUI.Init();
-        GameManager.Instance.PlayerHeight = 0;
+        GameManager.Instance.PlayerExp = 0;
         Time.timeScale = 0;
         SetSlot();
         if(GameManager.playerInfo.HealthPoint <= GameManager.playerInfo.MaxHealthPoint * 0.2f)
@@ -127,6 +127,16 @@ public class PickManager : MonoBehaviour
         pickedAbility.Clear();
         pickedWing.Clear();
 
+        pickUI.ClearUI();
+
+        for(int i = 0; i < 3; i++)
+        {
+            foreach(GameObject level in pickUI.levels[i])
+            {
+                level.SetActive(false);
+            }
+        }
+
         for(int i = 0; i < 3; i++)
         {
             Button button = pickUI.slotButtons[i];
@@ -149,6 +159,10 @@ public class PickManager : MonoBehaviour
                     if(EquipmentManager.Instance.attackEquipmentsLevel[randomEquip] >= 5)
                     {
                         equipID = ATTACKID + ((randomEquip + 1) * 100) + EquipmentManager.Instance.attackEquipmentsLevel[randomEquip];
+                        pickUI.slotEquipImages[i].sprite = EquipmentManager.Instance.attackEquipmentSprites[randomEquip];
+                        pickUI.SetLevel(i, GameManager.Data.EquipDescriptionDict[equipID].level);
+                        pickUI.SetSlotBan(i);
+                        break;
                     }
                     else
                     {
@@ -216,6 +230,10 @@ public class PickManager : MonoBehaviour
                     if(EquipmentManager.Instance.wingEquipmentsLevel[randomEquip] >= 5)
                     {
                         equipID = WINGID + ((randomEquip + 1) * 100) + EquipmentManager.Instance.wingEquipmentsLevel[randomEquip];
+                        pickUI.slotEquipImages[i].sprite = EquipmentManager.Instance.wingEquipmentSprites[randomEquip];
+                        pickUI.SetLevel(i, GameManager.Data.EquipDescriptionDict[equipID].level);
+                        pickUI.SetSlotBan(i);
+                        break;
                     }
                     else
                     {
@@ -272,8 +290,8 @@ public class PickManager : MonoBehaviour
     public void Skip()
     {
         //높이만 올려주고 스킵
-        float skipRewardHeight = GameManager.Instance.PickHeight * 0.3f;
-        GameManager.Instance.PlayerHeight += skipRewardHeight;
+        float skipRewardExp = GameManager.Instance.PickExp * 0.3f;
+        GameManager.Instance.PlayerExp += skipRewardExp;
         EndPickSequence();
     }
 

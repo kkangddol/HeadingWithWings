@@ -9,7 +9,6 @@ TagManager:
   - GAMEMANAGER
   - TIMETEXT
   - KILLCOUNT
-  - HEIGHTBAR
   - ATTACK
   - PICKUI
   - SKILLBUTTON
@@ -17,6 +16,7 @@ TagManager:
   - ITEMPARENT
   - DASHBUTTON
   - IRONWALL
+  - EXPBAR
   layers:
   - Default
   - TransparentFX

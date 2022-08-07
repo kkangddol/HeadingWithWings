@@ -10,7 +10,7 @@ public class GameOverUI : MonoBehaviour
 
     public Image playerImage = null;
     public TMP_Text survivalTimeTxt = null;
-    public TMP_Text heightTxt = null;
+    public TMP_Text levelTxt = null;
     public TMP_Text killCountTxt = null;
     public TMP_Text totalDamageTxt = null;
 
@@ -24,7 +24,7 @@ public class GameOverUI : MonoBehaviour
     {
         playerImage.sprite = playerSprite;
         survivalTimeTxt.text = survivalTime;
-        heightTxt.text = height + " 미터";
+        levelTxt.text = height + " 미터";
         killCountTxt.text = killCount + " 마리";
         totalDamageTxt.text = totalDamage + " 데미지";
     }

@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4274656806881653110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.41, y: -1.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -72,7 +72,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &7899013379030827032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockbackSize: 5
+  pool: {fileID: 0}
   effectColor: {r: 1, g: 0.78431374, b: 0, a: 1}
   headShotChance: 0
   headShotDamageMultiplier: 0
@@ -141,33 +142,24 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.10134888
-        inSlope: 6.011983
-        outSlope: 6.011983
+        value: 0.6695328
+        inSlope: 8.755675
+        outSlope: 8.755675
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.37577957
+        outWeight: 1
       - serializedVersion: 3
-        time: 0.10924253
-        value: 0.24429512
-        inSlope: -0.7594602
-        outSlope: -0.7594602
+        time: 0.027005292
+        value: 1
+        inSlope: -2.7484481
+        outSlope: -2.7484481
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.65803874
+        outWeight: 1
       - serializedVersion: 3
-        time: 0.32766986
-        value: 0.08783784
-        inSlope: -0.40447614
-        outSlope: -0.40447614
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.1987709
-      - serializedVersion: 3
-        time: 1
+        time: 0.19737244
         value: 0
         inSlope: 0.05511997
         outSlope: 0.05511997

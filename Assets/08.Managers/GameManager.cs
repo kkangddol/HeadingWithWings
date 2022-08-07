@@ -39,16 +39,16 @@ public class GameManager : MonoBehaviour
     private GameObject gameoverUI;
     [SerializeField]
     private GameObject happyoverUI;
-    private HeightBar heightBar;
-    public HeightBar HeightBar
+    private ExpBar expBar;
+    public ExpBar ExpBar
     {
         get
         {
-            return heightBar;
+            return expBar;
         }
         set
         {
-            heightBar = value;
+            expBar = value;
         }
     }
     public bool isGameOver;
@@ -66,14 +66,15 @@ public class GameManager : MonoBehaviour
         }
     }
     public float totalDamage = 0f;
-    private float playerHeight;
-    public float PlayerHeight { 
+    private int playerLevel;
+    private float playerExp;
+    public float PlayerExp { 
         set
         {
-            playerHeight = value;
-            heightBar.SetHeight(playerHeight);
+            playerExp = value;
+            ExpBar.SetExp(value);
         }
-        get { return playerHeight; } 
+        get { return playerExp; } 
     }
 
     
@@ -100,7 +101,7 @@ public class GameManager : MonoBehaviour
     const string PLAYER = "PLAYER";
     const string TIMETEXT = "TIMETEXT";
     const string KILLCOUNT = "KILLCOUNT";
-    const string HEIGHTBAR = "HEIGHTBAR";
+    const string EXPBAR = "EXPBAR";
     const string PICKUI = "PICKUI";
     public static PlayerInfo playerInfo;
     public static Transform playerTransform;
@@ -115,9 +116,9 @@ public class GameManager : MonoBehaviour
     {
         Application.targetFrameRate = 60;
 
-        //임시
-        GameStartInit();
-        //임시끝
+        // //임시
+        // GameStartInit();
+        // //임시끝
 
         if(Instance != this)
         {
@@ -158,7 +159,8 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         playingTime = 0;
         killCount = 0;
-        playerHeight = 0;
+        PlayerExp = 0;
+        playerLevel = 0;
         heightSilverDropRate = 70;
         heightGoldDropRate = 20;
         healItemDropRate = 10;
@@ -166,30 +168,31 @@ public class GameManager : MonoBehaviour
         playerInfo = GameObject.FindWithTag(PLAYER).GetComponent<PlayerInfo>();
         playerTransform = GameObject.FindWithTag(PLAYER).GetComponent<Transform>();
         playerRigidbody = GameObject.FindWithTag(PLAYER).GetComponent<Rigidbody2D>();
-        heightBar = GameObject.FindWithTag(HEIGHTBAR).GetComponent<HeightBar>();
-        heightBar.SetMaxValue(PickHeight);
+        ExpBar = GameObject.FindWithTag(EXPBAR).GetComponent<ExpBar>();
+        ExpBar.SetMaxValue(PickExp);
         playingTimeText = GameObject.FindWithTag(TIMETEXT).GetComponent<TMPro.TextMeshProUGUI>();
         killCountText = GameObject.FindWithTag(KILLCOUNT).GetComponent<TMPro.TextMeshProUGUI>();
         StartCoroutine(TimeFlow());
     }
 
-    int pickHeight = 2;
-    public int PickHeight
+    int pickExp = 2;
+    public int PickExp
     {
-        get{return pickHeight;}
+        get{return pickExp;}
         set
         {
-            pickHeight = value;
-            heightBar.SetMaxValue(value);
+            pickExp = value;
+            ExpBar.SetMaxValue(value);
         }
     } 
     private void Update()
     {
 
-        if(playerHeight >= pickHeight)
+        if(PlayerExp >= PickExp)
         {
             PickStart();
-            PickHeight++;
+            PickExp++;
+            playerLevel++;
         }
 
 
@@ -231,8 +234,8 @@ public class GameManager : MonoBehaviour
 
     private void PopUpUI()
     {
-        if(playingTimeMinute >= 20)  Instantiate(happyoverUI).GetComponent<GameOverUI>().SetData(playerInfo.gameObject.GetComponentInChildren<SpriteRenderer>().sprite, playingTimeText.text, playerHeight, killCount, totalDamage);
-        else  Instantiate(gameoverUI).GetComponent<GameOverUI>().SetData(playerInfo.gameObject.GetComponentInChildren<SpriteRenderer>().sprite, playingTimeText.text, playerHeight, killCount, totalDamage);
+        if(playingTimeMinute >= 20)  Instantiate(happyoverUI).GetComponent<GameOverUI>().SetData(playerInfo.gameObject.GetComponentInChildren<SpriteRenderer>().sprite, playingTimeText.text, playerLevel, killCount, totalDamage);
+        else  Instantiate(gameoverUI).GetComponent<GameOverUI>().SetData(playerInfo.gameObject.GetComponentInChildren<SpriteRenderer>().sprite, playingTimeText.text, playerLevel, killCount, totalDamage);
     }
 
     public void PickStart()

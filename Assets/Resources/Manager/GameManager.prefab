@@ -44,12 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05552ffaeb094944fabf3548ee8b6130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageManager: {fileID: 0}
   gameoverUI: {fileID: 6071691565051270512, guid: 2e647d05da297d849a4190a29ff78d75,
     type: 3}
+  happyoverUI: {fileID: 6071691565051270512, guid: 1fa69b5845df3734691e09d5c8d7eb13,
+    type: 3}
   isGameOver: 0
+  totalDamage: 0
   playingTime: 0
   playingTimeMinute: 0
   playingTimeText: {fileID: 0}
   heightSilverDropRate: 0
   heightGoldDropRate: 0
   healItemDropRate: 0
+  nothingDropRate: 0
