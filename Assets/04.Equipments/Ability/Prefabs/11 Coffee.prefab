@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1e9c4816b94f1489ffb1a95624a17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeMultiplier: -20
+  changeMultiplier: -10
 --- !u!114 &4152115909474281664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff3db88a1d49bf4db34ac7df45de455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeMultiplier: -30
+  changeMultiplier: -5
 --- !u!114 &-3551963954899265857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,4 +72,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695ebdc0e304420499d6775ca46a57d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeMultiplier: 10
+  changeMultiplier: 5

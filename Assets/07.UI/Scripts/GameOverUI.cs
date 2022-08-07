@@ -24,7 +24,7 @@ public class GameOverUI : MonoBehaviour
     {
         playerImage.sprite = playerSprite;
         survivalTimeTxt.text = survivalTime;
-        levelTxt.text = height + " 미터";
+        levelTxt.text = height.ToString();
         killCountTxt.text = killCount + " 마리";
         totalDamageTxt.text = totalDamage + " 데미지";
     }

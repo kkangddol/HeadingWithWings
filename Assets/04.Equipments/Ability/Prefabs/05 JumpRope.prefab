@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff3db88a1d49bf4db34ac7df45de455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeMultiplier: -10
+  changeMultiplier: -5
