@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff3db88a1d49bf4db34ac7df45de455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeMultiplier: -5
+  changeMultiplier: -3
 --- !u!114 &8538028632471378016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,4 +72,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3786166703efee34bac1859c5e26a0e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeMultiplier: -20
+  changeMultiplier: -12
